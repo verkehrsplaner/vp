@@ -12,4 +12,6 @@ package de.vp;
  */
 public class Linie {
     
+    private String name;
+    
 }

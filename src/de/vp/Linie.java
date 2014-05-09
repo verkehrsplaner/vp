@@ -52,14 +52,14 @@ public class Linie {
      * einen Zug hinzufügen
      */
     public void zugEinstellen() {
-        this.zuege = zuege++;
+        zuege++;
     }
     
      /**
      * einen Zug aus der Linie löschen
      */
     public void zugEntfernen() {
-        this.zuege = zuege--;
+        zuege--;
     }
     
     

@@ -6,10 +6,22 @@
 
 package de.vp;
 
+import java.awt.Color;
+
 /**
  *
  * @author Felix
  */
-public class Firma {
+public class Firma extends Stadtteil{
+
+    @Override
+    public int getPersonen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Color getFarbe() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

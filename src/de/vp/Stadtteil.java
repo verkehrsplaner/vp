@@ -6,10 +6,13 @@
 
 package de.vp;
 
+import java.awt.Color;
+
 /**
  *
  * @author Felix
  */
-public class Stadtteil {
-    
+public abstract class Stadtteil{
+    public abstract int getPersonen();
+    public abstract Color getFarbe();
 }

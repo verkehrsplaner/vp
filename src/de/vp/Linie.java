@@ -10,16 +10,23 @@ import java.awt.Color;
 
 /**
  *
- * @author Felix
+ * @author Nicolai
  */
 public class Linie {
     
     private String name;
     private Color farbe;
     private int zuege;
-    private int zugkosten;
+    private int zugKosten;
+    private int zugUnterhaltungsKosten;
     private Bahnhof[] bhfListe;
+    private int bhfs;
 
+    public Linie(){
+        zugKosten = 10000;
+        zugUnterhaltungsKosten = 1000;
+        bhfListe = new Bahnhof[20];
+    }
     /**
      * @return the name
      */
@@ -49,10 +56,11 @@ public class Linie {
     }
 
     /**
-     * einen Zug hinzufügen
+     * einen Zug hinzufügen/kaufen
      */
     public void zugEinstellen() {
         zuege++;
+        Spielsteuerung.geldNehmen(zugKosten);
     }
     
      /**
@@ -62,6 +70,24 @@ public class Linie {
         zuege--;
     }
     
-    
+    /**
+     * 
+     * @param bhf gegebener Bhf wird in bhfListe eingefügt
+     */
+    public void bahnhofHinzufuegen(Bahnhof bhf){
+        if(bhfListe.length > bhfs + 1){
+            bhfListe[bhfs + 1] = bhf;
+            bhfs++;
+        }
+        else{
+            Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
+            for(int i=0; i > bhfListe.length; i++){
+                bhfHilf[i] = bhfListe[i];
+            }
+            bhfListe = bhfHilf;
+            bhfListe[bhfs + 1] = bhf;
+            bhfs++;
+        }
+    }
 }
 

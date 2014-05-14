@@ -21,6 +21,7 @@ public class Linie {
     private Bahnhof[] bhfListe;
     private int bhfs;
     private int bhfUnterhaltungsKosten;
+    private int zugKapazitaet;
 
     public Linie(){
         zugUnterhaltungsKosten = 1000;
@@ -131,6 +132,10 @@ public class Linie {
             k = k+bhfListe[i].personenBerechnen();
         }
         return k;
+    }
+    
+    public int maxKapazitaet() {
+        return zuege*zugKapazitaet;
     }
     
     public int getZuege() {

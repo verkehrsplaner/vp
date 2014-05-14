@@ -12,16 +12,14 @@ package de.vp;
  */
 public class Bahnhof {
 
-    private int einflussradius;
     private int fahrtKosten;
     private int X;
     private int Y;
     private Stadtteil[] teile;
     
     public Bahnhof(){
-        einflussradius = 5;
         fahrtKosten = 1;
-        teile = new Stadtteil[25];
+        teile = new Stadtteil[100];
     }
     
     /**

@@ -39,6 +39,10 @@ public class Bahnhof {
         return x;
     }
 
+    /**
+     * 
+     * @return alle personen zusammen die ein und aussteigen
+     */
     public int personenBerechnen() {
         int x = 0;
         for(int i=0; i>teile.length; i++){

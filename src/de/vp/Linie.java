@@ -10,7 +10,7 @@ import java.awt.Color;
 
 /**
  *
- * @author Felix
+ * @author Nicolai
  */
 public class Linie {
     

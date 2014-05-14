@@ -60,7 +60,6 @@ public class Linie {
      */
     public void zugEinstellen() {
         zuege++;
-        Spielsteuerung.geldNehmen(zugKosten);
     }
     
      /**
@@ -80,6 +79,7 @@ public class Linie {
             bhfs++;
         }
         else{
+            //Bei zu kurzer Liste wird diese erweitert
             Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
             for(int i=0; i > bhfListe.length; i++){
                 bhfHilf[i] = bhfListe[i];
@@ -88,6 +88,16 @@ public class Linie {
             bhfListe[bhfs + 1] = bhf;
             bhfs++;
         }
+    }
+    
+    /**
+     * 
+     * @param bhf gegebener Bhf wird aus der Liste gelöscht?
+     * letzter Bhf wird aus der Liste gelöscht
+     */
+    public void bahnhofEntfernen(Bahnhof bhf) {
+        bhfListe[bhfs] = null;
+        bhfs--;
     }
 }
 

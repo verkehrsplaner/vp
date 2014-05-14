@@ -11,5 +11,9 @@ package de.vp;
  * @author Felix
  */
 public class Bahnhof {
+
+    public int gewinn() {
+        return 0;
+    }
     
 }

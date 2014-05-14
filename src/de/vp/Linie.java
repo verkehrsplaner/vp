@@ -10,7 +10,7 @@ import java.awt.Color;
 
 /**
  *
- * @author Nicolai
+ * @author Felix
  */
 public class Linie {
     
@@ -20,12 +20,12 @@ public class Linie {
     private int zugUnterhaltungsKosten;
     private Bahnhof[] bhfListe;
     private int bhfs;
-    private int bhfKosten;
+    private int bhfUnterhaltungsKosten;
 
     public Linie(){
         zugUnterhaltungsKosten = 1000;
         bhfListe = new Bahnhof[20];
-        bhfKosten = 1000;
+        bhfUnterhaltungsKosten = 1000;
     }
     /**
      * @return the name
@@ -104,7 +104,7 @@ public class Linie {
      * @return alle Kosten die für Zug- und Bahnhofsunterhalt anfallen
      */
     public int kosten() {
-        return zuege*zugUnterhaltungsKosten+bhfs*bhfKosten;
+        return zuege*zugUnterhaltungsKosten+bhfs*bhfUnterhaltungsKosten;
     }
     
     public int gewinn() {

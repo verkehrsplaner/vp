@@ -66,8 +66,12 @@ public class Linie {
      /**
      * einen Zug aus der Linie löschen
      */
-    public void zugEntfernen() {
-        zuege--;
+    public boolean zugEntfernen() {
+        if(zuege > 0){
+            zuege--;
+            return true;
+        }
+        else return false;
     }
     
     /**

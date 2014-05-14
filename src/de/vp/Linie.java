@@ -17,15 +17,15 @@ public class Linie {
     private String name;
     private Color farbe;
     private int zuege;
-    private int zugKosten;
     private int zugUnterhaltungsKosten;
     private Bahnhof[] bhfListe;
     private int bhfs;
+    private int bhfKosten;
 
     public Linie(){
-        zugKosten = 10000;
         zugUnterhaltungsKosten = 1000;
         bhfListe = new Bahnhof[20];
+        bhfKosten = 1000;
     }
     /**
      * @return the name
@@ -98,6 +98,21 @@ public class Linie {
     public void bahnhofEntfernen(Bahnhof bhf) {
         bhfListe[bhfs] = null;
         bhfs--;
+    }
+    /**
+     * 
+     * @return alle Kosten die für Zug- und Bahnhofsunterhalt anfallen
+     */
+    public int kosten() {
+        return zuege*zugUnterhaltungsKosten+bhfs*bhfKosten;
+    }
+    
+    public int gewinn() {
+        int k = 0;
+        for(int i=0; i>bhfs; i++){
+            k = k+bhfListe[i].kosten();
+        }
+        return k;
     }
 }
 

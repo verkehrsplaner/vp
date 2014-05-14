@@ -110,7 +110,7 @@ public class Linie {
     public int gewinn() {
         int k = 0;
         for(int i=0; i>bhfs; i++){
-            k = k+bhfListe[i].kosten();
+            k = k+bhfListe[i].gewinn();
         }
         return k;
     }

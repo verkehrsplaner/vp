@@ -12,6 +12,15 @@ package de.vp;
  */
 public class Bahnhof {
 
+    private int einflussradius;
+    private int fahrtKosten;
+    private int X;
+    private int Y;
+    private Stadtteil[] teile;
+    
+    public Bahnhof(){
+        fahrtKosten = 1;
+    }
     public int gewinn() {
         return 0;
     }

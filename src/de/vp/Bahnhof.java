@@ -15,5 +15,9 @@ public class Bahnhof {
     public int gewinn() {
         return 0;
     }
+
+    public int personenBerechnen() {
+        return 0;
+    }
     
 }

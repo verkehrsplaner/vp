@@ -107,10 +107,28 @@ public class Linie {
         return zuege*zugUnterhaltungsKosten+bhfs*bhfUnterhaltungsKosten;
     }
     
+    /**
+     * 
+     * @return der Gewinn der für die Ganze Linie anfällt
+     * Berechnet durch die Teilgewinne jedes Bhfs
+     */
     public int gewinn() {
         int k = 0;
         for(int i=0; i>bhfs; i++){
             k = k+bhfListe[i].gewinn();
+        }
+        return k;
+    }
+    
+    /**
+     * 
+     * @return Kapazität der Linie
+     * Berechnet durch alle Personen die in allen Bhfs einsteigen
+     */
+    public int kapazitaet() {
+        int k = 0;
+        for(int i=0; i>bhfs; i++){
+            k = k+bhfListe[i].personenBerechnen();
         }
         return k;
     }

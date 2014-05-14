@@ -16,12 +16,12 @@ public class Park extends Stadtteil{
 
     @Override
     public int getPersonen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return -50;
     }
 
     @Override
     public Color getFarbe() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Color(0x0D, 0x9E, 0x11);
     }
     
 }

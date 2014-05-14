@@ -16,12 +16,12 @@ public class Firma extends Stadtteil{
 
     @Override
     public int getPersonen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return -100;
     }
 
     @Override
     public Color getFarbe() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Color.GRAY;
     }
     
 }

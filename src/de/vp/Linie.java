@@ -21,6 +21,7 @@ public class Linie {
     private Bahnhof[] bhfListe;
     private int bhfs;
     private int bhfUnterhaltungsKosten;
+    private int zugKapazitaet;
 
     public Linie(){
         zugUnterhaltungsKosten = 1000;
@@ -107,12 +108,38 @@ public class Linie {
         return zuege*zugUnterhaltungsKosten+bhfs*bhfUnterhaltungsKosten;
     }
     
+    /**
+     * 
+     * @return der Gewinn der für die Ganze Linie anfällt
+     * Berechnet durch die Teilgewinne jedes Bhfs
+     */
     public int gewinn() {
         int k = 0;
         for(int i=0; i>bhfs; i++){
             k = k+bhfListe[i].gewinn();
         }
         return k;
+    }
+    
+    /**
+     * 
+     * @return Kapazität der Linie
+     * Berechnet durch alle Personen die in allen Bhfs einsteigen
+     */
+    public int kapazitaet() {
+        int k = 0;
+        for(int i=0; i>bhfs; i++){
+            k = k+bhfListe[i].personenBerechnen();
+        }
+        return k;
+    }
+    
+    public int maxKapazitaet() {
+        return zuege*zugKapazitaet;
+    }
+    
+    public int getZuege() {
+        return zuege;
     }
 }
 

@@ -8,12 +8,82 @@ package de.vp;
 
 /**
  *
- * @author Felix
+ * @author Nicolai
  */
 public class Bahnhof {
 
+    private int einflussradius;
+    private int fahrtKosten;
+    private int X;
+    private int Y;
+    private Stadtteil[] teile;
+    
+    public Bahnhof(){
+        einflussradius = 5;
+        fahrtKosten = 1;
+        teile = new Stadtteil[25];
+    }
+    
+    /**
+     * 
+     * @return gesamter Gewinn des Bahnhofs
+     * berechnet durch alle Stadtteile im Radius
+     */
     public int gewinn() {
-        return 0;
+        int x = 0;
+        for(int i=0; i>teile.length; i++){
+            if(teile[i].getPersonen() > 0){
+            x = x + teile[i].getPersonen()*fahrtKosten;
+            }
+        }
+        return x;
+    }
+
+    /**
+     * 
+     * @return alle personen zusammen die ein und aussteigen
+     */
+    public int personenBerechnen() {
+        int x = 0;
+        for(int i=0; i>teile.length; i++){
+            x = x + teile[i].getPersonen();
+        }
+        return x;
+    }
+
+    /**
+     * @return the fahrtKosten
+     */
+    public int getFahrtKosten() {
+        return fahrtKosten;
+    }
+
+    /**
+     * @return the X
+     */
+    public int getX() {
+        return X;
+    }
+
+    /**
+     * @param X the X to set
+     */
+    public void setX(int X) {
+        this.X = X;
+    }
+
+    /**
+     * @return the Y
+     */
+    public int getY() {
+        return Y;
+    }
+
+    /**
+     * @param Y the Y to set
+     */
+    public void setY(int Y) {
+        this.Y = Y;
     }
     
 }

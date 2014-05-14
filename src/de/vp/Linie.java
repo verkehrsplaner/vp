@@ -93,7 +93,7 @@ public class Linie {
     /**
      * 
      * @param bhf gegebener Bhf wird aus der Liste gelöscht?
-     * letzter Bhf wird aus der Liste gelöscht
+     * letzter Bhf wird aus der Liste gelöscht!
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
         bhfListe[bhfs] = null;

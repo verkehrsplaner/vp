@@ -132,5 +132,9 @@ public class Linie {
         }
         return k;
     }
+    
+    public int getZuege() {
+        return zuege;
+    }
 }
 

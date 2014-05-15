@@ -18,7 +18,7 @@ public class Bahnhof {
     private Stadtteil[] teile;
     
     public Bahnhof(){
-        fahrtKosten = 1;
+        fahrtKosten = 3;
         teile = new Stadtteil[100];
     }
     

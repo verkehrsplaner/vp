@@ -57,7 +57,7 @@ public class Linie {
     }
 
     /**
-     * einen Zug hinzufügen/kaufen
+     * einen Zug hinzufügen
      */
     public void zugEinstellen() {
         zuege++;

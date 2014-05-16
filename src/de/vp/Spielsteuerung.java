@@ -1,5 +1,9 @@
 package de.vp;
 
+import java.util.Date;
+import java.util.Timer;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Felix & Nicolai
@@ -11,6 +15,9 @@ public class Spielsteuerung {
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
     private Linie[] linien;
+    private Timer timer;
+    private GUITimer guiTimer;
+    private StrgTimer strgTimer;
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -10000000;
@@ -20,11 +27,14 @@ public class Spielsteuerung {
     private final int preisLinie = 10000;
     // ========== Ende Spielvariablen ==========
 
-    public Spielsteuerung(int hoehe, int breite) {
+    public Spielsteuerung(int hoehe, int breite, JPanel panel) {
         depot = 0;
         werkstatt = 0;
         anzLinien = 0;
         geld = 100000000; // 100 Mio.
+        timer = new Timer();
+        guiTimer = new GUITimer(panel);
+        strgTimer = new StrgTimer(this);
         hatBahnhof = new boolean[hoehe][breite];
         teile = new Stadtteil[hoehe][breite];
         bahnhoefe = new Bahnhof[hoehe][breite];
@@ -39,6 +49,16 @@ public class Spielsteuerung {
         for (int i = 0; i < linien.length; i++) {
             linien[i] = null;
         }
+        timer.scheduleAtFixedRate(guiTimer, 0, 40);
+        timer.scheduleAtFixedRate(strgTimer, 0, 8);
+    }
+    
+    /**
+     *
+     * @return Die aktuelle In-Game-Zeit als Date-Objekt
+     */
+    public Date getTime() {
+        return strgTimer.getTime();
     }
 
     /**

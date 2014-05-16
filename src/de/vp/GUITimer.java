@@ -1,15 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package de.vp;
+
+import java.util.TimerTask;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Felix
  */
-public class GUITimer {
+public class GUITimer extends TimerTask{
+    JPanel panel;
+    
+    public GUITimer(JPanel p) {
+        panel = p;
+    }
+    
+    @Override
+    public void run() {
+        panel.repaint();
+    }
     
 }

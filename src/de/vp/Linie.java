@@ -89,7 +89,7 @@ public class Linie {
         } else {
             //Bei zu kurzer Liste wird diese erweitert
             Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
-            for (int i = 0; i > bhfListe.length; i++) {
+            for (int i = 0; i < bhfListe.length; i++) {
                 bhfHilf[i] = bhfListe[i];
             }
             bhfListe = bhfHilf;
@@ -123,7 +123,7 @@ public class Linie {
      */
     public int gewinn() {
         int k = 0;
-        for (int i = 0; i > bhfs; i++) {
+        for (int i = 0; i < bhfs; i++) {
             k = k + bhfListe[i].gewinn();
         }
         return k;
@@ -136,7 +136,7 @@ public class Linie {
      */
     public int auslastung() {
         int k = 0;
-        for (int i = 0; i > bhfs; i++) {
+        for (int i = 0; i < bhfs; i++) {
             if (k < kapazitaet()) {
                 k = k + bhfListe[i].personenBerechnen();
             }

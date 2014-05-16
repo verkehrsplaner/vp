@@ -133,6 +133,7 @@ public class Spielsteuerung {
             if(linien.length > anzLinien + 1) {
                 linien[anzLinien + 1] = new Linie(name);
                 anzLinien++;
+                geld = geld - preisLinie;
             }
             else {
                 Linie[] hilf = new Linie[anzLinien + 10];
@@ -175,5 +176,64 @@ public class Spielsteuerung {
         }
         else return false;
     }
+    
+    /**
+     * 
+     * Ein neuer Bahnhof wird in bahnhoefe[x][y] an den gegebenen Koordinaten x & y eingesetzt
+     * @param x 
+     * @param y
+     * @return 
+     */
+    private boolean neuerBahnhof(int x, int y) {
+        if(geld - preisBhf >= maxMinus) {
+            bahnhoefe[x][y] = new Bahnhof();
+            geld = geld - preisBhf;
+            return true;
+        }
+        else return false;
+    }
+    
+    /**
+     * 
+     * der gegebene Bahnhof wird aus bahnhoefe[][] gelöscht
+     * @param bhf
+     * @return true
+     */
+    public boolean bhfEntfernen(Bahnhof bhf) {
+        for (int h = 0; h < bahnhoefe.length; h++) {
+            for (int b = 0; b < bahnhoefe[h].length; b++) {
+                if(bahnhoefe[h][b].equals(bhf))
+                    bahnhoefe[h][b] = null;
+                }
+            }
+        return true;
+    }
 
+    /**
+     * 
+     * gegebener Stadtteil wird durch Zufall/Wahrscheinlichkeit an einer Stelle der Stadt eingefügt
+     * @param s
+     * @return 
+     */
+    public boolean stadtteilBauen(Stadtteil s) {
+        return true;
+    }
+    
+    /**
+     * 
+     * Baut automatisch die "Altstadt" der Karte - Als Ausgangssituation bei "Spiel starten" für das weitere Spiel
+     * @return 
+     */
+    private boolean altstadt() {
+        int mX = 0;
+        int mY = 0;
+        
+        return true;
+    }
+    
+    
+    public boolean step() {
+        return true;
+    }
+    
 }

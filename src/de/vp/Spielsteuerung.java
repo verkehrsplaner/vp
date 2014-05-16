@@ -44,6 +44,7 @@ public class Spielsteuerung {
     /**
      * 
      * Fügt dem Depot einen neuen Zug hinzu
+     * @return 
      */
     public boolean zugKaufen() {
         if (geld - preisZug >= maxMinus) {
@@ -58,6 +59,7 @@ public class Spielsteuerung {
     /**
      * 
      * Entfernt einen Zug aus dem Depot
+     * @return 
      */
     public boolean zugVerschrotten() {
         if (depot > 0) {
@@ -73,6 +75,7 @@ public class Spielsteuerung {
      * 
      * Fügt der gegebenen Linie einen Zug aus dem Depot hinzu
      * @param l Linie
+     * @return 
      */
     public boolean zugEinstellen(Linie l) {
         if (depot > 0) {
@@ -88,6 +91,7 @@ public class Spielsteuerung {
      * 
      * Entfernt aus gegebener Linie einen Zug ins Depot
      * @param l Linie
+     * @return 
      */
     public boolean zugInsDepot(Linie l) {
         boolean b = l.zugEntfernen();
@@ -102,6 +106,7 @@ public class Spielsteuerung {
     /**
      * 
      * @param name benötigt einen Namen
+     * @return 
      */
     public boolean neueLinie(String name) {
         if(geld - preisLinie >= maxMinus) {
@@ -127,12 +132,13 @@ public class Spielsteuerung {
      * 
      * Löscht die gegebene Linie aus der Liste linien[]
      * @param l die zu löschende Linie
+     * @return 
      */
     public boolean linieEntfernen(Linie l){
         int x = 0;
         if(anzLinien > 0) {
             for(int i=0; i > anzLinien; i++) {
-                if(linien[i].getName() == l.getName()){
+                if(linien[i].getName().equals(l.getName())){
                     x = i;
                 }
             }
@@ -140,9 +146,10 @@ public class Spielsteuerung {
             for(int i=0; i > anzLinien; i++){
                 hilf[i] = linien[i];
             }
-            for(int i=x; i> anzLinien; i++) {
+            for(int i=x; i> linien.length - 1; i++) {
                 hilf[i] = linien[i + 1];
             }
+            hilf[linien.length] = null;
             linien = hilf;
             return true;
         }

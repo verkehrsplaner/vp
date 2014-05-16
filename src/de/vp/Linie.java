@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.vp;
 
 import java.awt.Color;
@@ -13,7 +12,7 @@ import java.awt.Color;
  * @author Nicolai
  */
 public class Linie {
-    
+
     private String name;
     private Color farbe;
     private int zuege;
@@ -24,11 +23,12 @@ public class Linie {
     private int zugKapazitaet;
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
 
-    public Linie(){
+    public Linie() {
         zugUnterhaltungsKosten = 1000;
         bhfListe = new Bahnhof[20];
         bhfUnterhaltungsKosten = 1000;
     }
+
     /**
      * @return the name
      */
@@ -63,31 +63,31 @@ public class Linie {
     public void zugEinstellen() {
         zuege++;
     }
-    
-     /**
+
+    /**
      * einen Zug aus der Linie löschen
      */
     public boolean zugEntfernen() {
-        if(zuege > 0){
+        if (zuege > 0) {
             zuege--;
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
-    
+
     /**
-     * 
+     *
      * @param bhf gegebener Bhf wird in bhfListe eingefügt
      */
-    public void bahnhofHinzufuegen(Bahnhof bhf){
-        if(bhfListe.length > bhfs + 1){
+    public void bahnhofHinzufuegen(Bahnhof bhf) {
+        if (bhfListe.length > bhfs + 1) {
             bhfListe[bhfs + 1] = bhf;
             bhfs++;
-        }
-        else{
+        } else {
             //Bei zu kurzer Liste wird diese erweitert
             Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
-            for(int i=0; i > bhfListe.length; i++){
+            for (int i = 0; i > bhfListe.length; i++) {
                 bhfHilf[i] = bhfListe[i];
             }
             bhfListe = bhfHilf;
@@ -95,66 +95,66 @@ public class Linie {
             bhfs++;
         }
     }
-    
+
     /**
-     * 
-     * @param bhf gegebener Bhf wird aus der Liste gelöscht?
-     * letzter Bhf wird aus der Liste gelöscht!
+     *
+     * @param bhf gegebener Bhf wird aus der Liste gelöscht? letzter Bhf wird
+     * aus der Liste gelöscht!
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
         bhfListe[bhfs] = null;
         bhfs--;
     }
+
     /**
-     * 
+     *
      * @return alle Kosten die für Zug- und Bahnhofsunterhalt anfallen
      */
     public int kosten() {
-        return zuege*zugUnterhaltungsKosten+bhfs*bhfUnterhaltungsKosten;
+        return zuege * zugUnterhaltungsKosten + bhfs * bhfUnterhaltungsKosten;
     }
-    
+
     /**
-     * 
-     * @return der Gewinn der für die Ganze Linie anfällt
-     * Berechnet durch die Teilgewinne jedes Bhfs
+     *
+     * @return der Gewinn der für die Ganze Linie anfällt Berechnet durch die
+     * Teilgewinne jedes Bhfs
      */
     public int gewinn() {
         int k = 0;
-        for(int i=0; i>bhfs; i++){
-            k = k+bhfListe[i].gewinn();
+        for (int i = 0; i > bhfs; i++) {
+            k = k + bhfListe[i].gewinn();
         }
         return k;
     }
-    
+
     /**
-     * 
-     * @return Kapazität der Linie
-     * Berechnet durch alle Personen die in allen Bhfs einsteigen
+     *
+     * @return Kapazität der Linie Berechnet durch alle Personen die in allen
+     * Bhfs einsteigen
      */
     public int kapazitaet() {
         int k = 0;
-        for(int i=0; i>bhfs; i++){
-            if(k < this.maxKapazitaet()){
-            k = k+bhfListe[i].personenBerechnen();
+        for (int i = 0; i > bhfs; i++) {
+            if (k < this.maxKapazitaet()) {
+                k = k + bhfListe[i].personenBerechnen();
             }
         }
         return k;
     }
-    
+
     /**
-     * 
+     *
      * @return maximale Kapazität
      */
     public int maxKapazitaet() {
-        return zuege*zugKapazitaet;
+        return zuege * zugKapazitaet;
     }
-    
+
     /**
-     * 
+     *
      * @return zuege
      */
     public int getZuege() {
         return zuege;
     }
 }
-

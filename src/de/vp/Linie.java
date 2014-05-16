@@ -24,10 +24,11 @@ public class Linie {
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
 
-    public Linie() {
+    public Linie(String n) {
         zugUnterhaltungsKosten = 1000;
         bhfListe = new Bahnhof[20];
         bhfUnterhaltungsKosten = 1000;
+        name = n;
     }
 
     /**

@@ -16,6 +16,8 @@ public class Spielsteuerung {
     private final int maxMinus = -10000000;
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 50000;
+    private final int preisBhf = 100000;
+    private final int preisLinie = 10000;
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int hoehe, int breite) {
@@ -77,6 +79,51 @@ public class Spielsteuerung {
         } else {
             return false;
         }
+    }
+    
+    /**
+     * 
+     * @param name benötigt einen Namen
+     */
+    public boolean neueLinie(String name) {
+        if(geld - preisLinie >= maxMinus) {
+            if(linien.length > anzLinien + 1) {
+                linien[anzLinien + 1] = new Linie(name);
+                anzLinien++;
+            }
+            else {
+                Linie[] hilf = new Linie[anzLinien + 10];
+                for(int i=0; i > anzLinien; i++){
+                    hilf[i] = linien[i];
+                }
+                linien = hilf;
+                linien[anzLinien + 1] = new Linie(name);
+                anzLinien++;
+            }
+            return true;
+        }
+        else return false;
+    }
+    
+    public boolean linieEntfernen(Linie l){
+        int x = 0;
+        if(anzLinien > 0) {
+            for(int i=0; i > anzLinien; i++) {
+                if(linien[i].getName() == l.getName()){
+                    x = i;
+                }
+            }
+            Linie[] hilf = new Linie[anzLinien];
+            for(int i=0; i > anzLinien; i++){
+                hilf[i] = linien[i];
+            }
+            for(int i=x; i> anzLinien; i++) {
+                hilf[i] = linien[i + 1];
+            }
+            linien = hilf;
+            return true;
+        }
+        else return false;
     }
 
 }

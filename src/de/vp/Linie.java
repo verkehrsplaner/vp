@@ -22,6 +22,7 @@ public class Linie {
     private int bhfs;
     private int bhfUnterhaltungsKosten;
     private int zugKapazitaet;
+    private int personen; // Personen die gerade auf der Linie unterwegs sind.
 
     public Linie(){
         zugUnterhaltungsKosten = 1000;
@@ -133,15 +134,25 @@ public class Linie {
     public int kapazitaet() {
         int k = 0;
         for(int i=0; i>bhfs; i++){
+            if(k < this.maxKapazitaet()){
             k = k+bhfListe[i].personenBerechnen();
+            }
         }
         return k;
     }
     
+    /**
+     * 
+     * @return maximale Kapazität
+     */
     public int maxKapazitaet() {
         return zuege*zugKapazitaet;
     }
     
+    /**
+     * 
+     * @return zuege
+     */
     public int getZuege() {
         return zuege;
     }

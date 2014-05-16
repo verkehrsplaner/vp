@@ -2,7 +2,7 @@ package de.vp;
 
 /**
  *
- * @author Felix
+ * @author Felix & Nicolai
  */
 public class Spielsteuerung {
 
@@ -41,6 +41,10 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * 
+     * Fügt dem Depot einen neuen Zug hinzu
+     */
     public boolean zugKaufen() {
         if (geld - preisZug >= maxMinus) {
             geld = geld - preisZug;
@@ -51,6 +55,10 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * 
+     * Entfernt einen Zug aus dem Depot
+     */
     public boolean zugVerschrotten() {
         if (depot > 0) {
             geld = geld + geldZugZurueck;
@@ -61,6 +69,11 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * 
+     * Fügt der gegebenen Linie einen Zug aus dem Depot hinzu
+     * @param l Linie
+     */
     public boolean zugEinstellen(Linie l) {
         if (depot > 0) {
             l.zugEinstellen();
@@ -71,6 +84,11 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * 
+     * Entfernt aus gegebener Linie einen Zug ins Depot
+     * @param l Linie
+     */
     public boolean zugInsDepot(Linie l) {
         boolean b = l.zugEntfernen();
         if (b) {
@@ -105,6 +123,11 @@ public class Spielsteuerung {
         else return false;
     }
     
+    /**
+     * 
+     * Löscht die gegebene Linie aus der Liste linien[]
+     * @param l die zu löschende Linie
+     */
     public boolean linieEntfernen(Linie l){
         int x = 0;
         if(anzLinien > 0) {

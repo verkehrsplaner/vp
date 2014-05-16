@@ -25,6 +25,7 @@ public class Spielsteuerung {
     private final int geldZugZurueck = 50000;
     private final int preisBhf = 100000;
     private final int preisLinie = 10000;
+    private final int reparatur = 10000;
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int h, int b, JPanel panel) {
@@ -301,9 +302,60 @@ public class Spielsteuerung {
         return true;
     }
     
+    /**
+     * 
+     * verschiebt einen Zug für Geld von werkstatt zu depot 
+     * @return 
+     */
+    public boolean zugReparieren() {
+        if(werkstatt != 0 && geld - reparatur >= maxMinus){
+            werkstatt--;
+            depot++;
+            geld = geld - reparatur;
+            return true;
+        }
+        else return false;
+    }
     
+    /**
+     * berechnet alle Kosten, die durch Bahnhöfe, Züge, etc anfallen.
+     */
+    private void gesamtKosten() {
+        
+    }
+    
+    /**
+     * berechnet den Gesamten Gewinn
+     */
+    private void gesamtGewinn() {
+        
+    }
+    
+    /**
+     * 
+     * ?!
+     * @return 
+     */
     public boolean step() {
         return true;
+    }
+    
+    /**
+     * was weiß ich!
+     * @return 
+     */
+    public boolean klick() {
+        return true;
+    }
+    
+    public int kapazitaet(Linie l) {
+        int k = 0;
+        for(int i=0; i < linien.length; i++) {
+            if(linien[i].equals(l)) {
+                k = linien[i].kapazitaet();
+            }
+        }
+        return k;
     }
     
 }

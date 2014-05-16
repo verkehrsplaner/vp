@@ -30,7 +30,7 @@ public class Bahnhof {
      */
     public int gewinn() {
         int x = 0;
-        for(int i=0; i>teile.length; i++){
+        for(int i=0; i < teile.length; i++){
             if(teile[i].getPersonen() > 0){
             x = x + teile[i].getPersonen()*fahrtKosten;
             }
@@ -44,7 +44,7 @@ public class Bahnhof {
      */
     public int personenBerechnen() {
         int x = 0;
-        for(int i=0; i>teile.length; i++){
+        for(int i=0; i < teile.length; i++){
             x = x + teile[i].getPersonen();
         }
         personen = personen + x;

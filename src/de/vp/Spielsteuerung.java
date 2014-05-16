@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, geld, anzLinien;
+    private int depot, werkstatt, geld, anzLinien, hoehe, breite;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
@@ -27,7 +27,9 @@ public class Spielsteuerung {
     private final int preisLinie = 10000;
     // ========== Ende Spielvariablen ==========
 
-    public Spielsteuerung(int hoehe, int breite, JPanel panel) {
+    public Spielsteuerung(int h, int b, JPanel panel) {
+        hoehe = h;
+        breite = b;
         depot = 0;
         werkstatt = 0;
         anzLinien = 0;
@@ -39,11 +41,11 @@ public class Spielsteuerung {
         teile = new Stadtteil[hoehe][breite];
         bahnhoefe = new Bahnhof[hoehe][breite];
         linien = new Linie[20];
-        for (int h = 0; h < hoehe; h++) {
-            for (int b = 0; b < breite; b++) {
-                hatBahnhof[h][b] = false;
-                teile[h][b] = null;
-                bahnhoefe[h][b] = null;
+        for (int y = 0; y < hoehe; y++) {
+            for (int x = 0; x < breite; x++) {
+                hatBahnhof[y][x] = false;
+                teile[y][x] = null;
+                bahnhoefe[y][x] = null;
             }
         }
         for (int i = 0; i < linien.length; i++) {
@@ -225,9 +227,77 @@ public class Spielsteuerung {
      * @return 
      */
     private boolean altstadt() {
-        int mX = 0;
-        int mY = 0;
-        
+        int mh = Math.round(hoehe/2);
+        int mb = Math.round(breite/2);
+        teile[mh][mb] = new Rathaus();
+        teile[mh-1][mb] = new Park();
+        teile[mh-2][mb] = new Park();
+        teile[mh+4][mb-2] = new Haus();
+        teile[mh+4][mb-1] = new Haus();
+        teile[mh+4][mb] = new Haus();
+        teile[mh+4][mb+1] = new Haus();
+        teile[mh+4][mb+2] = new Haus();
+        teile[mh+3][mb-3] = new Haus();
+        teile[mh+3][mb-2] = new Haus();
+        teile[mh+3][mb-1] = new Haus();
+        teile[mh+3][mb] = new Haus();
+        teile[mh+3][mb+1] = new Haus();
+        teile[mh+3][mb+2] = new Haus();
+        teile[mh+3][mb+3] = new Haus();
+        teile[mh+2][mb-4] = new Haus();
+        teile[mh+2][mb-3] = new Haus();
+        teile[mh+2][mb-2] = new Haus();
+        teile[mh+2][mb-1] = new Haus();
+        teile[mh+2][mb] = new Haus();
+        teile[mh+2][mb+1] = new Haus();
+        teile[mh+2][mb+2] = new Haus();
+        teile[mh+2][mb+3] = new Haus();
+        teile[mh+2][mb+4] = new Haus();
+        teile[mh+1][mb-4] = new Haus();
+        teile[mh+1][mb-3] = new Haus();
+        teile[mh+1][mb-2] = new Haus();
+        teile[mh+1][mb-1] = new Haus();
+        teile[mh+1][mb] = new Haus();
+        teile[mh+1][mb+1] = new Haus();
+        teile[mh+1][mb+2] = new Haus();
+        teile[mh+1][mb+3] = new Haus();
+        teile[mh+1][mb+4] = new Haus();
+        teile[mh][mb-4] = new Haus();
+        teile[mh][mb-3] = new Haus();
+        teile[mh][mb-2] = new Haus();
+        teile[mh][mb-1] = new Haus();
+        teile[mh][mb+1] = new Haus();
+        teile[mh][mb+2] = new Haus();
+        teile[mh][mb+3] = new Haus();
+        teile[mh][mb+4] = new Haus();
+        teile[mh-1][mb-4] = new Haus();
+        teile[mh-1][mb-3] = new Haus();
+        teile[mh-1][mb-2] = new Haus();
+        teile[mh-1][mb-1] = new Haus();
+        teile[mh-1][mb+1] = new Haus();
+        teile[mh-1][mb+2] = new Haus();
+        teile[mh-1][mb+3] = new Haus();
+        teile[mh-1][mb+4] = new Haus();
+        teile[mh-2][mb-4] = new Haus();
+        teile[mh-2][mb-3] = new Haus();
+        teile[mh-2][mb-2] = new Haus();
+        teile[mh-2][mb-1] = new Haus();
+        teile[mh-2][mb+1] = new Haus();
+        teile[mh-2][mb+2] = new Haus();
+        teile[mh-2][mb+3] = new Haus();
+        teile[mh-2][mb+4] = new Haus();
+        teile[mh-3][mb-3] = new Haus();
+        teile[mh-3][mb-2] = new Haus();
+        teile[mh-3][mb-1] = new Haus();
+        teile[mh-3][mb] = new Haus();
+        teile[mh-3][mb+1] = new Haus();
+        teile[mh-3][mb+2] = new Haus();
+        teile[mh-3][mb+3] = new Haus();
+        teile[mh-4][mb-2] = new Haus();
+        teile[mh-4][mb-1] = new Haus();
+        teile[mh-4][mb] = new Haus();
+        teile[mh-4][mb+1] = new Haus();
+        teile[mh-4][mb+2] = new Haus();
         return true;
     }
     

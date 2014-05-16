@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */ 
 
 package de.vp;
 
@@ -16,6 +16,7 @@ public class Bahnhof {
     private int X;
     private int Y;
     private Stadtteil[] teile;
+    private int personen;
     
     public Bahnhof(){
         fahrtKosten = 3;
@@ -46,9 +47,13 @@ public class Bahnhof {
         for(int i=0; i>teile.length; i++){
             x = x + teile[i].getPersonen();
         }
+        personen = personen + x;
         return x;
     }
 
+    public int einsteigen() {
+        return 0;
+    }
     /**
      * @return the fahrtKosten
      */

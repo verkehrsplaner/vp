@@ -135,7 +135,7 @@ public class Linie {
     public int kapazitaet() {
         int k = 0;
         for (int i = 0; i > bhfs; i++) {
-            if (k < this.maxKapazitaet()) {
+            if (k < maxKapazitaet()) {
                 k = k + bhfListe[i].personenBerechnen();
             }
         }

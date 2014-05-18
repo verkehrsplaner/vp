@@ -1,5 +1,8 @@
 package de.vp;
 
+import java.awt.Color;
+import java.awt.Color;
+import java.awt.Color;
 import java.util.Date;
 import java.util.Timer;
 import javax.swing.JPanel;
@@ -55,7 +58,7 @@ public class Spielsteuerung {
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
     }
-    
+
     /**
      *
      * @return Die aktuelle In-Game-Zeit als Date-Objekt
@@ -65,9 +68,10 @@ public class Spielsteuerung {
     }
 
     /**
-     * 
+     *
      * Fügt dem Depot einen neuen Zug hinzu
-     * @return 
+     *
+     * @return
      */
     public boolean zugKaufen() {
         if (geld - preisZug >= maxMinus) {
@@ -80,9 +84,10 @@ public class Spielsteuerung {
     }
 
     /**
-     * 
+     *
      * Entfernt einen Zug aus dem Depot
-     * @return 
+     *
+     * @return
      */
     public boolean zugVerschrotten() {
         if (depot > 0) {
@@ -95,10 +100,11 @@ public class Spielsteuerung {
     }
 
     /**
-     * 
+     *
      * Fügt der gegebenen Linie einen Zug aus dem Depot hinzu
+     *
      * @param l Linie
-     * @return 
+     * @return
      */
     public boolean zugEinstellen(Linie l) {
         if (depot > 0) {
@@ -111,10 +117,11 @@ public class Spielsteuerung {
     }
 
     /**
-     * 
+     *
      * Entfernt aus gegebener Linie einen Zug ins Depot
+     *
      * @param l Linie
-     * @return 
+     * @return
      */
     public boolean zugInsDepot(Linie l) {
         boolean b = l.zugEntfernen();
@@ -125,22 +132,21 @@ public class Spielsteuerung {
             return false;
         }
     }
-    
+
     /**
-     * 
+     *
      * @param name benötigt einen Namen
-     * @return 
+     * @return
      */
     public boolean neueLinie(String name) {
-        if(geld - preisLinie >= maxMinus) {
-            if(linien.length > anzLinien + 1) {
+        if (geld - preisLinie >= maxMinus) {
+            if (linien.length > anzLinien + 1) {
                 linien[anzLinien + 1] = new Linie(name);
                 anzLinien++;
                 geld = geld - preisLinie;
-            }
-            else {
+            } else {
                 Linie[] hilf = new Linie[anzLinien + 10];
-                for(int i=0; i > anzLinien; i++){
+                for (int i = 0; i > anzLinien; i++) {
                     hilf[i] = linien[i];
                 }
                 linien = hilf;
@@ -148,214 +154,302 @@ public class Spielsteuerung {
                 anzLinien++;
             }
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
-    
+
     /**
-     * 
+     *
      * Löscht die gegebene Linie aus der Liste linien[]
+     *
      * @param l die zu löschende Linie
-     * @return 
+     * @return
      */
-    public boolean linieEntfernen(Linie l){
+    public boolean linieEntfernen(Linie l) {
         int x = 0;
-        if(anzLinien > 0) {
-            for(int i=0; i > anzLinien; i++) {
-                if(linien[i].getName().equals(l.getName())){
+        if (anzLinien > 0) {
+            for (int i = 0; i > anzLinien; i++) {
+                if (linien[i].getName().equals(l.getName())) {
                     x = i;
                 }
             }
             Linie[] hilf = new Linie[anzLinien];
-            for(int i=0; i > anzLinien; i++){
+            for (int i = 0; i > anzLinien; i++) {
                 hilf[i] = linien[i];
             }
-            for(int i=x; i> linien.length - 1; i++) {
+            for (int i = x; i > linien.length - 1; i++) {
                 hilf[i] = linien[i + 1];
             }
             hilf[linien.length] = null;
             linien = hilf;
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
-    
+
     /**
-     * 
-     * Ein neuer Bahnhof wird in bahnhoefe[x][y] an den gegebenen Koordinaten x & y eingesetzt
-     * @param x 
+     *
+     * Ein neuer Bahnhof wird in bahnhoefe[x][y] an den gegebenen Koordinaten x
+     * & y eingesetzt
+     *
+     * @param x
      * @param y
-     * @return 
+     * @return
      */
     private boolean neuerBahnhof(int x, int y) {
-        if(geld - preisBhf >= maxMinus) {
+        if (geld - preisBhf >= maxMinus) {
             bahnhoefe[x][y] = new Bahnhof();
             geld = geld - preisBhf;
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
-    
+
     /**
-     * 
+     *
      * der gegebene Bahnhof wird aus bahnhoefe[][] gelöscht
+     *
      * @param bhf
      * @return true
      */
     public boolean bhfEntfernen(Bahnhof bhf) {
         for (int h = 0; h < bahnhoefe.length; h++) {
             for (int b = 0; b < bahnhoefe[h].length; b++) {
-                if(bahnhoefe[h][b].equals(bhf))
+                if (bahnhoefe[h][b].equals(bhf)) {
                     bahnhoefe[h][b] = null;
                 }
             }
+        }
         return true;
     }
 
     /**
-     * 
-     * gegebener Stadtteil wird durch Zufall/Wahrscheinlichkeit an einer Stelle der Stadt eingefügt
-     * @param s
-     * @return 
+     *
+     * Ein Stadtteil wird zufällig generiert
+     *
+     * @return true, wenn ein Haus gebaut werden konnte
      */
-    public boolean stadtteilBauen(Stadtteil s) {
+    public boolean stadtteilBauen() {
+        double z = Math.random();
+        if (z < 0.5) {
+            return hausBauen();
+        } else if (z < 0.8) {
+            return firmaBauen();
+        } else {
+            return parkBauen();
+        }
+    }
+
+    /**
+     * Ein Haus wird an einer zufälligen Position auf der Karte gebaut
+     *
+     * @return true, wenn das Haus gebaut werden konnte
+     */
+    public boolean hausBauen() {
+        boolean gefunden = false;
+        double w = 0.0;     //wahrscheinlichkeit
+        double wv = 0.0;    //wahrscheinlichkeit des Vorgängers
+        int x = 0;
+        int y = 0;
+        for (int h = 0; h < hoehe; h++) {
+            for (int b = 0; b < breite; b++) {
+                if (teile[h][b] = null) {
+                    if (teile[h - 1][b] != null) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h + 1][b] != null) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h][b - 1] != null) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h][b + 1] != null) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h - 1][b - 1] != null) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h - 1][b + 1] != null) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h + 1][b + 1] != null) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h + 1][b - 1] != null) {
+                        w = w + Math.random();
+                    }
+                }
+            }
+
+        }
+        if (gefunden) {
+            teile[y][x] = new Haus();
+        }
         return true;
     }
-    
+
     /**
-     * 
-     * Baut automatisch die "Altstadt" der Karte - Als Ausgangssituation bei "Spiel starten" für das weitere Spiel
-     * @return 
+     * Eine Firma wird an einer zufälligen Position auf der Karte gebaut
+     *
+     * @return true, wenn die Firma gebaut werden konnte
      */
-    private boolean altstadt() {
-        int mh = Math.round(hoehe/2);
-        int mb = Math.round(breite/2);
+    public boolean firmaBauen() {
+
+        return true;
+    }
+
+    /**
+     * Ein Park wird an einer zufälligen Position auf der Karte gebaut
+     *
+     * @return true, wenn der Park gebaut werden konnte
+     */
+    private boolean parkBauen() {
+        return true;
+    }
+
+    /**
+     *
+     * Baut automatisch die "Altstadt" der Karte - Als Ausgangssituation bei
+     * "Spiel starten" für das weitere Spiel
+     *
+     * @return
+     */
+    public boolean altstadt() {
+        int mh = Math.round(hoehe / 2);
+        int mb = Math.round(breite / 2);
         teile[mh][mb] = new Rathaus();
-        teile[mh-1][mb] = new Park();
-        teile[mh-2][mb] = new Park();
-        teile[mh+4][mb-2] = new Haus();
-        teile[mh+4][mb-1] = new Haus();
-        teile[mh+4][mb] = new Haus();
-        teile[mh+4][mb+1] = new Haus();
-        teile[mh+4][mb+2] = new Haus();
-        teile[mh+3][mb-3] = new Haus();
-        teile[mh+3][mb-2] = new Haus();
-        teile[mh+3][mb-1] = new Haus();
-        teile[mh+3][mb] = new Haus();
-        teile[mh+3][mb+1] = new Haus();
-        teile[mh+3][mb+2] = new Haus();
-        teile[mh+3][mb+3] = new Haus();
-        teile[mh+2][mb-4] = new Haus();
-        teile[mh+2][mb-3] = new Haus();
-        teile[mh+2][mb-2] = new Haus();
-        teile[mh+2][mb-1] = new Haus();
-        teile[mh+2][mb] = new Haus();
-        teile[mh+2][mb+1] = new Haus();
-        teile[mh+2][mb+2] = new Haus();
-        teile[mh+2][mb+3] = new Haus();
-        teile[mh+2][mb+4] = new Haus();
-        teile[mh+1][mb-4] = new Haus();
-        teile[mh+1][mb-3] = new Haus();
-        teile[mh+1][mb-2] = new Haus();
-        teile[mh+1][mb-1] = new Haus();
-        teile[mh+1][mb] = new Haus();
-        teile[mh+1][mb+1] = new Haus();
-        teile[mh+1][mb+2] = new Haus();
-        teile[mh+1][mb+3] = new Haus();
-        teile[mh+1][mb+4] = new Haus();
-        teile[mh][mb-4] = new Haus();
-        teile[mh][mb-3] = new Haus();
-        teile[mh][mb-2] = new Haus();
-        teile[mh][mb-1] = new Haus();
-        teile[mh][mb+1] = new Haus();
-        teile[mh][mb+2] = new Haus();
-        teile[mh][mb+3] = new Haus();
-        teile[mh][mb+4] = new Haus();
-        teile[mh-1][mb-4] = new Haus();
-        teile[mh-1][mb-3] = new Haus();
-        teile[mh-1][mb-2] = new Haus();
-        teile[mh-1][mb-1] = new Haus();
-        teile[mh-1][mb+1] = new Haus();
-        teile[mh-1][mb+2] = new Haus();
-        teile[mh-1][mb+3] = new Haus();
-        teile[mh-1][mb+4] = new Haus();
-        teile[mh-2][mb-4] = new Haus();
-        teile[mh-2][mb-3] = new Haus();
-        teile[mh-2][mb-2] = new Haus();
-        teile[mh-2][mb-1] = new Haus();
-        teile[mh-2][mb+1] = new Haus();
-        teile[mh-2][mb+2] = new Haus();
-        teile[mh-2][mb+3] = new Haus();
-        teile[mh-2][mb+4] = new Haus();
-        teile[mh-3][mb-3] = new Haus();
-        teile[mh-3][mb-2] = new Haus();
-        teile[mh-3][mb-1] = new Haus();
-        teile[mh-3][mb] = new Haus();
-        teile[mh-3][mb+1] = new Haus();
-        teile[mh-3][mb+2] = new Haus();
-        teile[mh-3][mb+3] = new Haus();
-        teile[mh-4][mb-2] = new Haus();
-        teile[mh-4][mb-1] = new Haus();
-        teile[mh-4][mb] = new Haus();
-        teile[mh-4][mb+1] = new Haus();
-        teile[mh-4][mb+2] = new Haus();
+        teile[mh - 1][mb] = new Park();
+        teile[mh - 2][mb] = new Park();
+        teile[mh + 4][mb - 2] = new Haus();
+        teile[mh + 4][mb - 1] = new Haus();
+        teile[mh + 4][mb] = new Haus();
+        teile[mh + 4][mb + 1] = new Haus();
+        teile[mh + 4][mb + 2] = new Haus();
+        teile[mh + 3][mb - 3] = new Haus();
+        teile[mh + 3][mb - 2] = new Haus();
+        teile[mh + 3][mb - 1] = new Haus();
+        teile[mh + 3][mb] = new Haus();
+        teile[mh + 3][mb + 1] = new Haus();
+        teile[mh + 3][mb + 2] = new Haus();
+        teile[mh + 3][mb + 3] = new Haus();
+        teile[mh + 2][mb - 4] = new Haus();
+        teile[mh + 2][mb - 3] = new Haus();
+        teile[mh + 2][mb - 2] = new Haus();
+        teile[mh + 2][mb - 1] = new Haus();
+        teile[mh + 2][mb] = new Haus();
+        teile[mh + 2][mb + 1] = new Haus();
+        teile[mh + 2][mb + 2] = new Haus();
+        teile[mh + 2][mb + 3] = new Haus();
+        teile[mh + 2][mb + 4] = new Haus();
+        teile[mh + 1][mb - 4] = new Haus();
+        teile[mh + 1][mb - 3] = new Haus();
+        teile[mh + 1][mb - 2] = new Haus();
+        teile[mh + 1][mb - 1] = new Haus();
+        teile[mh + 1][mb] = new Haus();
+        teile[mh + 1][mb + 1] = new Haus();
+        teile[mh + 1][mb + 2] = new Haus();
+        teile[mh + 1][mb + 3] = new Haus();
+        teile[mh + 1][mb + 4] = new Haus();
+        teile[mh][mb - 4] = new Haus();
+        teile[mh][mb - 3] = new Haus();
+        teile[mh][mb - 2] = new Haus();
+        teile[mh][mb - 1] = new Haus();
+        teile[mh][mb + 1] = new Haus();
+        teile[mh][mb + 2] = new Haus();
+        teile[mh][mb + 3] = new Haus();
+        teile[mh][mb + 4] = new Haus();
+        teile[mh - 1][mb - 4] = new Haus();
+        teile[mh - 1][mb - 3] = new Haus();
+        teile[mh - 1][mb - 2] = new Haus();
+        teile[mh - 1][mb - 1] = new Haus();
+        teile[mh - 1][mb + 1] = new Haus();
+        teile[mh - 1][mb + 2] = new Haus();
+        teile[mh - 1][mb + 3] = new Haus();
+        teile[mh - 1][mb + 4] = new Haus();
+        teile[mh - 2][mb - 4] = new Haus();
+        teile[mh - 2][mb - 3] = new Haus();
+        teile[mh - 2][mb - 2] = new Haus();
+        teile[mh - 2][mb - 1] = new Haus();
+        teile[mh - 2][mb + 1] = new Haus();
+        teile[mh - 2][mb + 2] = new Haus();
+        teile[mh - 2][mb + 3] = new Haus();
+        teile[mh - 2][mb + 4] = new Haus();
+        teile[mh - 3][mb - 3] = new Haus();
+        teile[mh - 3][mb - 2] = new Haus();
+        teile[mh - 3][mb - 1] = new Haus();
+        teile[mh - 3][mb] = new Haus();
+        teile[mh - 3][mb + 1] = new Haus();
+        teile[mh - 3][mb + 2] = new Haus();
+        teile[mh - 3][mb + 3] = new Haus();
+        teile[mh - 4][mb - 2] = new Haus();
+        teile[mh - 4][mb - 1] = new Haus();
+        teile[mh - 4][mb] = new Haus();
+        teile[mh - 4][mb + 1] = new Haus();
+        teile[mh - 4][mb + 2] = new Haus();
         return true;
     }
-    
+
     /**
-     * 
-     * verschiebt einen Zug für Geld von werkstatt zu depot 
-     * @return 
+     *
+     * verschiebt einen Zug für Geld von werkstatt zu depot
+     *
+     * @return
      */
     public boolean zugReparieren() {
-        if(werkstatt != 0 && geld - reparatur >= maxMinus){
+        if (werkstatt != 0 && geld - reparatur >= maxMinus) {
             werkstatt--;
             depot++;
             geld = geld - reparatur;
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
-    
+
     /**
      * berechnet alle Kosten, die durch Bahnhöfe, Züge, etc anfallen.
      */
     private void gesamtKosten() {
-        
+
     }
-    
+
     /**
      * berechnet den Gesamten Gewinn
      */
     private void gesamtGewinn() {
-        
+
     }
-    
+
     /**
-     * 
+     *
      * ?!
-     * @return 
+     *
+     * @return
      */
     public boolean step() {
         return true;
     }
-    
+
     /**
      * was weiß ich!
-     * @return 
+     *
+     * @return
      */
     public boolean klick() {
         return true;
     }
-    
+
     public int kapazitaet(Linie l) {
         int k = 0;
-        for(int i=0; i < linien.length; i++) {
-            if(linien[i].equals(l)) {
+        for (int i = 0; i < linien.length; i++) {
+            if (linien[i].equals(l)) {
                 k = linien[i].kapazitaet();
             }
         }
         return k;
     }
-    
+
 }

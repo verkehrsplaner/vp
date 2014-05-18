@@ -55,7 +55,7 @@ public class Bahnhof {
         int x = 0;
         for(int i=0; i < teile.length; i++){
             if(teile[i].getPersonen() > 0){
-            x = x + teile[i].getPersonen()*fahrtKosten;
+            x = x + teile[i].getPersonen()*getFahrtKosten();
             }
         }
         return x;

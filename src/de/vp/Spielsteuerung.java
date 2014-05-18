@@ -256,7 +256,7 @@ public class Spielsteuerung {
         int y = 0;
         for (int h = 0; h < hoehe; h++) {
             for (int b = 0; b < breite; b++) {
-                if (teile[h][b] = null) {
+                if (teile[h][b] == null) {
                     if (teile[h - 1][b] != null) {
                         w = w + Math.random();
                     }
@@ -270,16 +270,16 @@ public class Spielsteuerung {
                         w = w + Math.random();
                     }
                     if (teile[h - 1][b - 1] != null) {
-                        w = w + Math.random();
+                        w = w + Math.random()/2;
                     }
                     if (teile[h - 1][b + 1] != null) {
-                        w = w + Math.random();
+                        w = w + Math.random()/2;
                     }
                     if (teile[h + 1][b + 1] != null) {
-                        w = w + Math.random();
+                        w = w + Math.random()/2;
                     }
                     if (teile[h + 1][b - 1] != null) {
-                        w = w + Math.random();
+                        w = w + Math.random()/2;
                     }
                 }
             }

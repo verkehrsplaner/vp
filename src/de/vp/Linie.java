@@ -160,4 +160,19 @@ public class Linie {
     public int getZuege() {
         return zuege;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && o.getClass().equals(getClass())) {
+            Linie l = (Linie) o;
+            if (name == l.name) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
 }

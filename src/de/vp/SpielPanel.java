@@ -17,6 +17,7 @@ public class SpielPanel extends javax.swing.JPanel {
      */
     public SpielPanel() {
         initComponents();
+        // Wer auch immer das hier mal schreibt: Bitte dafür sorgen, dass das Spielfeld min. 10 x 10 Felder groß ist
     }
 
     /**

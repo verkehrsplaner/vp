@@ -18,9 +18,32 @@ public class Bahnhof {
     private Stadtteil[] teile;
     private int personen;
     
-    public Bahnhof(){
+    public Bahnhof(int x, int y){
+        X = x;
+        Y = y;
         fahrtKosten = 3;
         teile = new Stadtteil[100];
+    }
+
+    /**
+     * @return the fahrtKosten
+     */
+    public int getFahrtKosten() {
+        return fahrtKosten;
+    }
+
+    /**
+     * @return the X
+     */
+    public int getX() {
+        return X;
+    }
+
+    /**
+     * @return the Y
+     */
+    public int getY() {
+        return Y;
     }
     
     /**
@@ -32,7 +55,7 @@ public class Bahnhof {
         int x = 0;
         for(int i=0; i < teile.length; i++){
             if(teile[i].getPersonen() > 0){
-            x = x + teile[i].getPersonen()*fahrtKosten;
+            x = x + teile[i].getPersonen()*getFahrtKosten();
             }
         }
         return x;
@@ -54,39 +77,19 @@ public class Bahnhof {
     public int einsteigen() {
         return 0;
     }
-    /**
-     * @return the fahrtKosten
-     */
-    public int getFahrtKosten() {
-        return fahrtKosten;
-    }
-
-    /**
-     * @return the X
-     */
-    public int getX() {
-        return X;
-    }
-
-    /**
-     * @param X the X to set
-     */
-    public void setX(int X) {
-        this.X = X;
-    }
-
-    /**
-     * @return the Y
-     */
-    public int getY() {
-        return Y;
-    }
-
-    /**
-     * @param Y the Y to set
-     */
-    public void setY(int Y) {
-        this.Y = Y;
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && o.getClass().equals(getClass())) {
+            Bahnhof bhf = (Bahnhof) o;
+            if (X == bhf.X && Y == bhf.Y) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
     
 }

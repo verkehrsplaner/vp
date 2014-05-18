@@ -140,19 +140,16 @@ public class Spielsteuerung {
      */
     public boolean neueLinie(String name) {
         if (geld - preisLinie >= maxMinus) {
-            if (linien.length > anzLinien + 1) {
-                linien[anzLinien + 1] = new Linie(name);
-                anzLinien++;
-                geld = geld - preisLinie;
-            } else {
+            if (linien.length < anzLinien + 1) {
                 Linie[] hilf = new Linie[anzLinien + 10];
                 for (int i = 0; i > anzLinien; i++) {
                     hilf[i] = linien[i];
                 }
                 linien = hilf;
-                linien[anzLinien + 1] = new Linie(name);
-                anzLinien++;
             }
+            linien[anzLinien + 1] = new Linie(name);
+            anzLinien++;
+            geld = geld - preisLinie;
             return true;
         } else {
             return false;
@@ -167,22 +164,18 @@ public class Spielsteuerung {
      * @return
      */
     public boolean linieEntfernen(Linie l) {
-        int x = 0;
         if (anzLinien > 0) {
+            int x = 0;
             for (int i = 0; i > anzLinien; i++) {
-                if (linien[i].getName().equals(l.getName())) {
+                if (linien[i].equals(l)) {
                     x = i;
                 }
             }
-            Linie[] hilf = new Linie[anzLinien];
-            for (int i = 0; i > anzLinien; i++) {
-                hilf[i] = linien[i];
+            for (int i = x; i < anzLinien - 1; i++) {
+                linien[i] = linien[i + 1];
             }
-            for (int i = x; i > linien.length - 1; i++) {
-                hilf[i] = linien[i + 1];
-            }
-            hilf[linien.length] = null;
-            linien = hilf;
+            linien[anzLinien - 1] = null;
+            anzLinien--;
             return true;
         } else {
             return false;
@@ -199,8 +192,8 @@ public class Spielsteuerung {
      * @return
      */
     private boolean neuerBahnhof(int x, int y) {
-        if (geld - preisBhf >= maxMinus) {
-            bahnhoefe[x][y] = new Bahnhof();
+        if (geld - preisBhf >= maxMinus && bahnhoefe[x][y] == null) {
+            bahnhoefe[x][y] = new Bahnhof(x, y);
             geld = geld - preisBhf;
             return true;
         } else {
@@ -270,16 +263,16 @@ public class Spielsteuerung {
                         w = w + Math.random();
                     }
                     if (teile[h - 1][b - 1] != null) {
-                        w = w + Math.random()/2;
+                        w = w + Math.random() / 2;
                     }
                     if (teile[h - 1][b + 1] != null) {
-                        w = w + Math.random()/2;
+                        w = w + Math.random() / 2;
                     }
                     if (teile[h + 1][b + 1] != null) {
-                        w = w + Math.random()/2;
+                        w = w + Math.random() / 2;
                     }
                     if (teile[h + 1][b - 1] != null) {
-                        w = w + Math.random()/2;
+                        w = w + Math.random() / 2;
                     }
                 }
             }
@@ -399,7 +392,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugReparieren() {
-        if (werkstatt != 0 && geld - reparatur >= maxMinus) {
+        if (werkstatt >= 0 && geld - reparatur >= maxMinus) {
             werkstatt--;
             depot++;
             geld = geld - reparatur;

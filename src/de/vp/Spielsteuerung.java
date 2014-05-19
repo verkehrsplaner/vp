@@ -21,6 +21,7 @@ public class Spielsteuerung {
     private Timer timer;
     private GUITimer guiTimer;
     private StrgTimer strgTimer;
+    private boolean feldVoll; //Für Stadtteil bauen
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -10000000;
@@ -37,6 +38,7 @@ public class Spielsteuerung {
         depot = 0;
         werkstatt = 0;
         anzLinien = 0;
+        feldVoll = false;
         geld = 100000000; // 100 Mio.
         timer = new Timer();
         guiTimer = new GUITimer(panel);

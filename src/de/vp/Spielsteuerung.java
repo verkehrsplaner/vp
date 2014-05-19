@@ -242,6 +242,7 @@ public class Spielsteuerung {
      * @return true, wenn das Haus gebaut werden konnte
      */
     public boolean hausBauen() {
+        // Wenn voll, dann merks dir
         boolean gefunden = false;
         double w = 0.0;     //wahrscheinlichkeit
         double wv = 0.0;    //wahrscheinlichkeit des Vorgängers

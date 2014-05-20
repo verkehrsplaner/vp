@@ -268,10 +268,10 @@ public class Spielsteuerung {
                             if (teile[h - 1][b] != null) {
                                 w = w + Math.random();
                             }
-                            if (teile[h - 1][b].getClass() == new Haus().getClass()) {
+                            if (teile[h - 1][b] instanceof Haus) {
                                 w = w + Math.random();
                             }
-                            if (teile[h - 1][b].getClass() == new Park().getClass()) {
+                            if (teile[h - 1][b] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
                         }

@@ -408,7 +408,7 @@ public class Spielsteuerung {
                             if (teile[h - 1][b] instanceof Firma) {
                                 w = w + Math.random();
                             }
-                            if (teile[h - 1][b] instanceof Park) {
+                            if (teile[h - 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
                         }
@@ -421,7 +421,7 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random();
                             }
-                            if (teile[h + 1][b] instanceof Park) {
+                            if (teile[h + 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
                         }
@@ -434,7 +434,7 @@ public class Spielsteuerung {
                             if (teile[h][b - 1] instanceof Firma) {
                                 w = w + Math.random();
                             }
-                            if (teile[h][b - 1] instanceof Park) {
+                            if (teile[h][b - 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
                         }
@@ -447,7 +447,7 @@ public class Spielsteuerung {
                             if (teile[h][b + 1] instanceof Firma) {
                                 w = w + Math.random();
                             }
-                            if (teile[h][b + 1] instanceof Park) {
+                            if (teile[h][b + 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
                         }
@@ -505,7 +505,7 @@ public class Spielsteuerung {
             }
             if (gefunden) {
                 teile[y][x] = new Haus();
-                System.out.println("Haus gebaut!");
+                System.out.println("Firma gebaut!");
                 return true;
             } else {
                 feldVoll = true;
@@ -515,7 +515,6 @@ public class Spielsteuerung {
         } else {
             return false;
         }
-        return true;
     }
 
     /**
@@ -524,7 +523,111 @@ public class Spielsteuerung {
      * @return true, wenn der Park gebaut werden konnte
      */
     private boolean parkBauen() {
-        return true;
+        boolean gefunden = false;
+        double wv = 0.0;   //Wahrscheinlichkeit des  besten Vorgängers
+        int x = 0;
+        int y = 0;
+        if (!feldVoll) {
+            long start = System.nanoTime();
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if (teile[h][b] == null) {
+                        // \/ Standartzufälligkeit
+                        double w = Math.random();
+
+                        // \/ [h - 1][b]
+                        if (h > 0) {
+                            if (teile[h - 1][b] instanceof Haus) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h - 1][b] instanceof Park) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h + 1][b]
+                        if (h < teile.length - 1) {
+                            if (teile[h + 1][b] instanceof Haus) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h + 1][b] instanceof Park) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h][b - 1]
+                        if (b > 0) {
+                            if (teile[h][b - 1] instanceof Haus) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h][b - 1] instanceof Park) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h][b + 1]
+                        if (b < teile[h].length - 1) {
+                            if (teile[h][b + 1] instanceof Haus) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h][b + 1] instanceof Park) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h - 1][b - 1]
+                        if (h > 0 && b > 0) {
+                            if (teile[h - 1][b - 1] instanceof Haus) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h - 1][b + 1]
+                        if (h > 0 && b < teile[h].length - 1) {
+                            if (teile[h - 1][b + 1] instanceof Haus) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h + 1][b + 1]
+                        if (h < teile.length - 1 && b < teile[h].length - 1) {
+                            if (teile[h + 1][b + 1] instanceof Haus) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h + 1][b - 1]
+                        if (h < teile.length - 1 && b > 0) {
+                            if (teile[h + 1][b - 1] instanceof Haus) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ eine gute Position gefunden
+                        if (w > wv) {
+                            y = h;
+                            x = b;
+                            gefunden = true;
+                            wv = w;
+                        }
+                    }
+                }
+
+            }
+            long end = System.nanoTime();
+            long milliseconds = (end - start) / 1000000;
+            System.out.println(milliseconds);
+            if (gefunden) {
+                teile[y][x] = new Haus();
+                System.out.println("Park gebaut!");
+                return true;
+            } else {
+                feldVoll = true;
+                System.out.println("Feld voll!");
+                return false;
+            }
+        }
+        return false;
     }
 
     /**

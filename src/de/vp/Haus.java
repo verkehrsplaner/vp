@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.vp;
 
 import java.awt.Color;
@@ -12,7 +11,7 @@ import java.awt.Color;
  *
  * @author Felix
  */
-public class Haus extends Stadtteil{
+public class Haus extends Stadtteil {
 
     @Override
     public int getPersonen() {
@@ -23,5 +22,5 @@ public class Haus extends Stadtteil{
     public Color getFarbe() {
         return Color.RED;
     }
-    
+
 }

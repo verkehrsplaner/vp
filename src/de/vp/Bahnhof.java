@@ -2,8 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */ 
-
+ */
 package de.vp;
 
 /**
@@ -17,8 +16,8 @@ public class Bahnhof {
     private int Y;
     private Stadtteil[] teile;
     private int personen;
-    
-    public Bahnhof(int x, int y){
+
+    public Bahnhof(int x, int y) {
         X = x;
         Y = y;
         fahrtKosten = 3;
@@ -45,29 +44,29 @@ public class Bahnhof {
     public int getY() {
         return Y;
     }
-    
+
     /**
-     * 
-     * @return gesamter Gewinn des Bahnhofs
-     * berechnet durch alle Stadtteile im Radius
+     *
+     * @return gesamter Gewinn des Bahnhofs berechnet durch alle Stadtteile im
+     * Radius
      */
     public int gewinn() {
         int x = 0;
-        for(int i=0; i < teile.length; i++){
-            if(teile[i].getPersonen() > 0){
-            x = x + teile[i].getPersonen()*getFahrtKosten();
+        for (int i = 0; i < teile.length; i++) {
+            if (teile[i].getPersonen() > 0) {
+                x = x + teile[i].getPersonen() * getFahrtKosten();
             }
         }
         return x;
     }
 
     /**
-     * 
+     *
      * @return alle personen zusammen die ein und aussteigen
      */
     public int personenBerechnen() {
         int x = 0;
-        for(int i=0; i < teile.length; i++){
+        for (int i = 0; i < teile.length; i++) {
             x = x + teile[i].getPersonen();
         }
         personen = personen + x;
@@ -77,7 +76,7 @@ public class Bahnhof {
     public int einsteigen() {
         return 0;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (o != null && o.getClass().equals(getClass())) {
@@ -91,5 +90,5 @@ public class Bahnhof {
             return false;
         }
     }
-    
+
 }

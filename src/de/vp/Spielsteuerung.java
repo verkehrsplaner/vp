@@ -249,7 +249,7 @@ public class Spielsteuerung {
         // Wenn voll, dann merks dir
         boolean gefunden = false;
         double w = 0.0;    //wahrscheinlichkeit
-        double wv = 0.0;   //Wahrscheinlichkeit des Vorgängers
+        double wv = 0.0;   //Wahrscheinlichkeit des  besten Vorgängers
         int x = 0;
         int y = 0;
         if (!feldVoll) {
@@ -326,10 +326,7 @@ public class Spielsteuerung {
                             y = h;
                             x = b;
                             gefunden = true;
-                        }
-                        else {
                             wv = w;
-                            w = 0;
                         }
                     }
                 }

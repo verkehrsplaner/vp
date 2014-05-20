@@ -394,6 +394,7 @@ public class Spielsteuerung {
         int x = 0;
         int y = 0;
         if (!feldVoll) {
+            long start = System.nanoTime();
             for (int h = 0; h < teile.length; h++) {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
@@ -503,6 +504,9 @@ public class Spielsteuerung {
                 }
 
             }
+            long end = System.nanoTime();
+            long milliseconds = (end - start) / 1000000;
+            System.out.println(milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
                 System.out.println("Firma gebaut!");

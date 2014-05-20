@@ -28,7 +28,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jScrollPane1.getHorizontalScrollBar().setUnitIncrement(10);
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(10);
         
-        strg = new Spielsteuerung(100, 100, jPanel1);
+        strg = new Spielsteuerung(10, 10, jPanel1);
         
         //Erstellt neuen "Kalender"
         final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");

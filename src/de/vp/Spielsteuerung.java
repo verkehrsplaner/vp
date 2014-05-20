@@ -17,7 +17,7 @@ public class Spielsteuerung {
     private TestTimer testTimer;
     // ==========             ==========
 
-    private int depot, werkstatt, geld, anzLinien, hoehe, breite;
+    private int depot, werkstatt, geld, anzLinien, hoehe, breite, hauszahl;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
@@ -39,6 +39,7 @@ public class Spielsteuerung {
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int h, int b, JPanel panel) {
+        hauszahl = 0;
         hoehe = h;
         breite = b;
         depot = 0;
@@ -369,14 +370,17 @@ public class Spielsteuerung {
             }
             long end = System.nanoTime();
             long milliseconds = (end - start) / 1000000;
-            System.out.println(milliseconds);
+            System.out.println();
+            System.out.println("Nr.:" + hauszahl);
+            hauszahl++;
+            System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
-                System.out.println("Haus gebaut!");
+                System.out.println("+++ Haus gebaut! +++");
                 return true;
             } else {
                 feldVoll = true;
-                System.out.println("Feld voll!");
+                System.out.println("! Feld voll !");
                 return false;
             }
         }
@@ -506,10 +510,13 @@ public class Spielsteuerung {
             }
             long end = System.nanoTime();
             long milliseconds = (end - start) / 1000000;
-            System.out.println(milliseconds);
+            System.out.println();
+            System.out.println("Nr.:" + hauszahl);
+            hauszahl++;
+            System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
-                System.out.println("Firma gebaut!");
+                System.out.println(" +++ Firma gebaut! +++");
                 return true;
             } else {
                 feldVoll = true;
@@ -620,10 +627,13 @@ public class Spielsteuerung {
             }
             long end = System.nanoTime();
             long milliseconds = (end - start) / 1000000;
-            System.out.println(milliseconds);
+            System.out.println();
+            System.out.println("Nr.:" + hauszahl);
+            hauszahl++;
+            System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
-                System.out.println("Park gebaut!");
+                System.out.println("  +++ Park gebaut! +++");
                 return true;
             } else {
                 feldVoll = true;

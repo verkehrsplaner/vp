@@ -66,7 +66,7 @@ public class Spielsteuerung {
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
         testTimer = new TestTimer(this);
-        timer.scheduleAtFixedRate(testTimer, 0, 5000);
+        timer.scheduleAtFixedRate(testTimer, 0, 100);
     }
 
     /**
@@ -257,6 +257,7 @@ public class Spielsteuerung {
         int x = 0;
         int y = 0;
         if (!feldVoll) {
+            long start = System.nanoTime();
             for (int h = 0; h < teile.length; h++) {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
@@ -366,6 +367,9 @@ public class Spielsteuerung {
                 }
 
             }
+            long end = System.nanoTime();
+            long milliseconds = (end - start) / 1000000;
+            System.out.println(milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
                 System.out.println("Haus gebaut!");
@@ -375,10 +379,8 @@ public class Spielsteuerung {
                 System.out.println("Feld voll!");
                 return false;
             }
-        } else {
-            return false;
         }
-
+        return false;
     }
 
     /**

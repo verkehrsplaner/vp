@@ -68,7 +68,7 @@ public class Spielsteuerung {
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
         testTimer = new TestTimer(this);
-        timer.scheduleAtFixedRate(testTimer, 0, 500);
+        timer.scheduleAtFixedRate(testTimer, 0, 1000);
     }
 
     /**
@@ -725,6 +725,9 @@ public class Spielsteuerung {
         teile[mh - 4][mb] = new Haus();
         teile[mh - 4][mb + 1] = new Haus();
         teile[mh - 4][mb + 2] = new Haus();
+        System.out.println();
+        System.out.println("!! Altstadt erfolgreich gebaut !!");
+        System.out.println();
         return true;
     }
 

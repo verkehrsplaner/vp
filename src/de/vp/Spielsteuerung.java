@@ -277,7 +277,7 @@ public class Spielsteuerung {
                         }
 
                         // \/ [h + 1][b]
-                        if (h < teile.length) {
+                        if (h < teile.length - 1) {
                             if (teile[h + 1][b] != null) {
                                 w = w + Math.random();
                             }
@@ -303,7 +303,7 @@ public class Spielsteuerung {
                         }
 
                         // \/ [h][b + 1]
-                        if (b < teile[h].length) {
+                        if (b < teile[h].length - 1) {
                             if (teile[h][b + 1] != null) {
                                 w = w + Math.random();
                             }
@@ -324,9 +324,9 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                         }
-                        
+
                         // \/ [h - 1][b + 1]
-                        if (h > 0 && b < teile[h].length) {
+                        if (h > 0 && b < teile[h].length - 1) {
                             if (teile[h - 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
@@ -336,7 +336,7 @@ public class Spielsteuerung {
                         }
 
                         // \/ [h + 1][b + 1]
-                        if (h < teile.length && b < teile[h].length) {
+                        if (h < teile.length - 1 && b < teile[h].length - 1) {
                             if (teile[h + 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
@@ -346,7 +346,7 @@ public class Spielsteuerung {
                         }
 
                         // \/ [h + 1][b - 1]
-                        if (h < teile.length && b > 0) {
+                        if (h < teile.length - 1 && b > 0) {
                             if (teile[h + 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }

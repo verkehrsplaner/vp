@@ -340,6 +340,7 @@ public class Spielsteuerung {
                 return false;
             }
         }
+        else return false;
 
     }
 

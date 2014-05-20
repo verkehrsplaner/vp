@@ -21,7 +21,8 @@ public class Spielsteuerung {
     private Timer timer;
     private GUITimer guiTimer;
     private StrgTimer strgTimer;
-    private boolean feldVoll; //Für Stadtteil bauen
+    private boolean feldVoll; //Für Stadtteile bauen
+    private double wv; // Wahrscheinlichkeit des Vorgängers, für Stadtteile bauen
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -10000000;
@@ -30,6 +31,8 @@ public class Spielsteuerung {
     private final int preisBhf = 100000;
     private final int preisLinie = 10000;
     private final int reparatur = 10000;
+    private final double hausWrschl = 0.5; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
+    private final double firmaWrschl = 0.8; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int h, int b, JPanel panel) {
@@ -39,6 +42,7 @@ public class Spielsteuerung {
         werkstatt = 0;
         anzLinien = 0;
         feldVoll = false;
+        wv = 0.0;
         geld = 100000000; // 100 Mio.
         timer = new Timer();
         guiTimer = new GUITimer(panel);
@@ -229,9 +233,9 @@ public class Spielsteuerung {
      */
     public boolean stadtteilBauen() {
         double z = Math.random();
-        if (z < 0.5) {
+        if (z < hausWrschl) {
             return hausBauen();
-        } else if (z < 0.8) {
+        } else if (z < firmaWrschl) {
             return firmaBauen();
         } else {
             return parkBauen();
@@ -246,13 +250,15 @@ public class Spielsteuerung {
     public boolean hausBauen() {
         // Wenn voll, dann merks dir
         boolean gefunden = false;
-        double w = 0.0;     //wahrscheinlichkeit
-        double wv = 0.0;    //wahrscheinlichkeit des Vorgängers
+        double w = 0.0;    //wahrscheinlichkeit
         int x = 0;
         int y = 0;
         for (int h = 0; h < hoehe; h++) {
             for (int b = 0; b < breite; b++) {
                 if (teile[h][b] == null) {
+                    // \/ Standartzufälligkeit
+                    w = w + Math.random();
+                    // \/ Nachbar = Irgendein Stadtteil
                     if (teile[h - 1][b] != null) {
                         w = w + Math.random();
                     }
@@ -277,14 +283,61 @@ public class Spielsteuerung {
                     if (teile[h + 1][b - 1] != null) {
                         w = w + Math.random() / 2;
                     }
+                    // \/ Nachbar = Haus
+                    if (teile[h - 1][b].getClass() == new Haus().getClass()) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h + 1][b].getClass() == new Haus().getClass()) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h][b - 1].getClass() == new Haus().getClass()) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h][b + 1].getClass() == new Haus().getClass()) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h - 1][b - 1].getClass() == new Haus().getClass()) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h - 1][b + 1].getClass() == new Haus().getClass()) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h + 1][b + 1].getClass() == new Haus().getClass()) {
+                        w = w + Math.random();
+                    }
+                    if (teile[h + 1][b - 1].getClass() == new Haus().getClass()) {
+                        w = w + Math.random();
+                    }
+                    // \/ Nachbar = Park
+                    if (teile[h - 1][b].getClass() == new Park().getClass()) {
+                        w = w + Math.random() / 2;
+                    }
+                    if (teile[h + 1][b].getClass() == new Park().getClass()) {
+                        w = w + Math.random() / 2;
+                    }
+                    if (teile[h][b - 1].getClass() == new Park().getClass()) {
+                        w = w + Math.random() / 2;
+                    }
+                    if (teile[h][b + 1].getClass() == new Park().getClass()) {
+                        w = w + Math.random() / 2;
+                    }
+                    // \/ eine gute Position gefunden
+                    if(w > wv) {
+                        y = h;
+                        x = b;
+                        gefunden = true;
+                    }
                 }
             }
 
         }
         if (gefunden) {
             teile[y][x] = new Haus();
+            return true;
         }
-        return true;
+        else {
+            return false;
+        }
     }
 
     /**

@@ -251,72 +251,72 @@ public class Spielsteuerung {
         int x = 0;
         int y = 0;
         if (!feldVoll) {
-            for (int h = 0; h < hoehe; h++) {
-                for (int b = 0; b < breite; b++) {
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
                         double w = Math.random();
                         // \/ Nachbar = Irgendein Stadtteil
-                        if (teile[h - 1][b] != null) {
+                        if (teile[h - 1][b] != null && h>0) {
                             w = w + Math.random();
                         }
-                        if (teile[h + 1][b] != null) {
+                        if (teile[h + 1][b] != null && h<teile.length) {
                             w = w + Math.random();
                         }
-                        if (teile[h][b - 1] != null) {
+                        if (teile[h][b - 1] != null && b>0) {
                             w = w + Math.random();
                         }
-                        if (teile[h][b + 1] != null) {
+                        if (teile[h][b + 1] != null && b<teile[h].length) {
                             w = w + Math.random();
                         }
-                        if (teile[h - 1][b - 1] != null) {
+                        if (teile[h - 1][b - 1] != null && h>0 && b>0) {
                             w = w + Math.random() / 2;
                         }
-                        if (teile[h - 1][b + 1] != null) {
+                        if (teile[h - 1][b + 1] != null && h>0 && b<teile[h].length) {
                             w = w + Math.random() / 2;
                         }
-                        if (teile[h + 1][b + 1] != null) {
+                        if (teile[h + 1][b + 1] != null && h<teile.length && b<teile[h].length) {
                             w = w + Math.random() / 2;
                         }
-                        if (teile[h + 1][b - 1] != null) {
+                        if (teile[h + 1][b - 1] != null && h<teile.length && b>0) {
                             w = w + Math.random() / 2;
                         }
                         // \/ Nachbar = Haus
-                        if (teile[h - 1][b].getClass() == new Haus().getClass()) {
+                        if (teile[h - 1][b].getClass() == new Haus().getClass()  && h>0) {
                             w = w + Math.random();
                         }
-                        if (teile[h + 1][b].getClass() == new Haus().getClass()) {
+                        if (teile[h + 1][b].getClass() == new Haus().getClass()  && h<teile.length) {
                             w = w + Math.random();
                         }
-                        if (teile[h][b - 1].getClass() == new Haus().getClass()) {
+                        if (teile[h][b - 1].getClass() == new Haus().getClass()  && b>0) {
                             w = w + Math.random();
                         }
-                        if (teile[h][b + 1].getClass() == new Haus().getClass()) {
+                        if (teile[h][b + 1].getClass() == new Haus().getClass()  && b<teile[h].length) {
                             w = w + Math.random();
                         }
-                        if (teile[h - 1][b - 1].getClass() == new Haus().getClass()) {
+                        if (teile[h - 1][b - 1].getClass() == new Haus().getClass()  && h>0 && b>0) {
                             w = w + Math.random();
                         }
-                        if (teile[h - 1][b + 1].getClass() == new Haus().getClass()) {
+                        if (teile[h - 1][b + 1].getClass() == new Haus().getClass()  && h>0 && b<teile[h].length) {
                             w = w + Math.random();
                         }
-                        if (teile[h + 1][b + 1].getClass() == new Haus().getClass()) {
+                        if (teile[h + 1][b + 1].getClass() == new Haus().getClass()  && h<teile.length && b<teile[h].length) {
                             w = w + Math.random();
                         }
-                        if (teile[h + 1][b - 1].getClass() == new Haus().getClass()) {
+                        if (teile[h + 1][b - 1].getClass() == new Haus().getClass()  && h<teile.length && b>0) {
                             w = w + Math.random();
                         }
                         // \/ Nachbar = Park
-                        if (teile[h - 1][b].getClass() == new Park().getClass()) {
+                        if (teile[h - 1][b].getClass() == new Park().getClass() && h>0) {
                             w = w + Math.random() / 2;
                         }
-                        if (teile[h + 1][b].getClass() == new Park().getClass()) {
+                        if (teile[h + 1][b].getClass() == new Park().getClass() && h<teile.length) {
                             w = w + Math.random() / 2;
                         }
-                        if (teile[h][b - 1].getClass() == new Park().getClass()) {
+                        if (teile[h][b - 1].getClass() == new Park().getClass() && b>0) {
                             w = w + Math.random() / 2;
                         }
-                        if (teile[h][b + 1].getClass() == new Park().getClass()) {
+                        if (teile[h][b + 1].getClass() == new Park().getClass() && b<teile[h].length){
                             w = w + Math.random() / 2;
                         }
                         // \/ eine gute Position gefunden

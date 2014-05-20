@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  * @author Felix & Nicolai
  */
 public class Spielsteuerung {
-    
+
     // ========== Testbereich ==========
     private TestTimer testTimer;
     // ==========             ==========
@@ -262,69 +262,99 @@ public class Spielsteuerung {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
                         double w = Math.random();
-                        // \/ Nachbar = Irgendein Stadtteil
-                        if (teile[h - 1][b] != null && h>0) {
-                            w = w + Math.random();
+
+                        // \/ [h - 1][b]
+                        if (h > 0) {
+                            if (teile[h - 1][b] != null) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h - 1][b].getClass() == new Haus().getClass()) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h - 1][b].getClass() == new Park().getClass()) {
+                                w = w + Math.random() / 2;
+                            }
                         }
-                        if (teile[h + 1][b] != null && h<teile.length) {
-                            w = w + Math.random();
+
+                        // \/ [h + 1][b]
+                        if (h < teile.length) {
+                            if (teile[h + 1][b] != null) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h + 1][b].getClass() == new Haus().getClass()) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h + 1][b].getClass() == new Park().getClass()) {
+                                w = w + Math.random() / 2;
+                            }
                         }
-                        if (teile[h][b - 1] != null && b>0) {
-                            w = w + Math.random();
+
+                        // \/ [h][b - 1]
+                        if (b > 0) {
+                            if (teile[h][b - 1] != null) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b - 1].getClass() == new Haus().getClass()) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b - 1].getClass() == new Park().getClass()) {
+                                w = w + Math.random() / 2;
+                            }
                         }
-                        if (teile[h][b + 1] != null && b<teile[h].length) {
-                            w = w + Math.random();
+
+                        // \/ [h][b + 1]
+                        if (b < teile[h].length) {
+                            if (teile[h][b + 1] != null) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b + 1].getClass() == new Haus().getClass()) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b + 1].getClass() == new Park().getClass()) {
+                                w = w + Math.random() / 2;
+                            }
                         }
-                        if (teile[h - 1][b - 1] != null && h>0 && b>0) {
-                            w = w + Math.random() / 2;
+
+                        // \/ [h - 1][b - 1]
+                        if (h > 0 && b > 0) {
+                            if (teile[h - 1][b - 1] != null) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h - 1][b - 1].getClass() == new Haus().getClass()) {
+                                w = w + Math.random();
+                            }
                         }
-                        if (teile[h - 1][b + 1] != null && h>0 && b<teile[h].length) {
-                            w = w + Math.random() / 2;
+                        
+                        // \/ [h - 1][b + 1]
+                        if (h > 0 && b < teile[h].length) {
+                            if (teile[h - 1][b + 1] != null) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h - 1][b + 1].getClass() == new Haus().getClass()) {
+                                w = w + Math.random();
+                            }
                         }
-                        if (teile[h + 1][b + 1] != null && h<teile.length && b<teile[h].length) {
-                            w = w + Math.random() / 2;
+
+                        // \/ [h + 1][b + 1]
+                        if (h < teile.length && b < teile[h].length) {
+                            if (teile[h + 1][b + 1] != null) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h + 1][b + 1].getClass() == new Haus().getClass()) {
+                                w = w + Math.random();
+                            }
                         }
-                        if (teile[h + 1][b - 1] != null && h<teile.length && b>0) {
-                            w = w + Math.random() / 2;
+
+                        // \/ [h + 1][b - 1]
+                        if (h < teile.length && b > 0) {
+                            if (teile[h + 1][b - 1] != null) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h + 1][b - 1].getClass() == new Haus().getClass()) {
+                                w = w + Math.random();
+                            }
                         }
-                        // \/ Nachbar = Haus
-                        if (teile[h - 1][b].getClass() == new Haus().getClass()  && h>0) {
-                            w = w + Math.random();
-                        }
-                        if (teile[h + 1][b].getClass() == new Haus().getClass()  && h<teile.length) {
-                            w = w + Math.random();
-                        }
-                        if (teile[h][b - 1].getClass() == new Haus().getClass()  && b>0) {
-                            w = w + Math.random();
-                        }
-                        if (teile[h][b + 1].getClass() == new Haus().getClass()  && b<teile[h].length) {
-                            w = w + Math.random();
-                        }
-                        if (teile[h - 1][b - 1].getClass() == new Haus().getClass()  && h>0 && b>0) {
-                            w = w + Math.random();
-                        }
-                        if (teile[h - 1][b + 1].getClass() == new Haus().getClass()  && h>0 && b<teile[h].length) {
-                            w = w + Math.random();
-                        }
-                        if (teile[h + 1][b + 1].getClass() == new Haus().getClass()  && h<teile.length && b<teile[h].length) {
-                            w = w + Math.random();
-                        }
-                        if (teile[h + 1][b - 1].getClass() == new Haus().getClass()  && h<teile.length && b>0) {
-                            w = w + Math.random();
-                        }
-                        // \/ Nachbar = Park
-                        if (teile[h - 1][b].getClass() == new Park().getClass() && h>0) {
-                            w = w + Math.random() / 2;
-                        }
-                        if (teile[h + 1][b].getClass() == new Park().getClass() && h<teile.length) {
-                            w = w + Math.random() / 2;
-                        }
-                        if (teile[h][b - 1].getClass() == new Park().getClass() && b>0) {
-                            w = w + Math.random() / 2;
-                        }
-                        if (teile[h][b + 1].getClass() == new Park().getClass() && b<teile[h].length){
-                            w = w + Math.random() / 2;
-                        }
+
                         // \/ eine gute Position gefunden
                         if (w > wv) {
                             y = h;

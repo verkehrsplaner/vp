@@ -12,6 +12,10 @@ import javax.swing.JPanel;
  * @author Felix & Nicolai
  */
 public class Spielsteuerung {
+    
+    // ========== Testbereich ==========
+    private TestTimer testTimer;
+    // ==========             ==========
 
     private int depot, werkstatt, geld, anzLinien, hoehe, breite;
     private boolean[][] hatBahnhof;
@@ -61,6 +65,7 @@ public class Spielsteuerung {
         }
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
+        timer.scheduleAtFixedRate(testTimer, 0, 5000);
     }
 
     /**

@@ -281,10 +281,10 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] != null) {
                                 w = w + Math.random();
                             }
-                            if (teile[h + 1][b].getClass() == new Haus().getClass()) {
+                            if (teile[h + 1][b] instanceof Haus) {
                                 w = w + Math.random();
                             }
-                            if (teile[h + 1][b].getClass() == new Park().getClass()) {
+                            if (teile[h + 1][b] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
                         }
@@ -294,10 +294,10 @@ public class Spielsteuerung {
                             if (teile[h][b - 1] != null) {
                                 w = w + Math.random();
                             }
-                            if (teile[h][b - 1].getClass() == new Haus().getClass()) {
+                            if (teile[h][b - 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
-                            if (teile[h][b - 1].getClass() == new Park().getClass()) {
+                            if (teile[h][b - 1] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
                         }
@@ -307,10 +307,10 @@ public class Spielsteuerung {
                             if (teile[h][b + 1] != null) {
                                 w = w + Math.random();
                             }
-                            if (teile[h][b + 1].getClass() == new Haus().getClass()) {
+                            if (teile[h][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
-                            if (teile[h][b + 1].getClass() == new Park().getClass()) {
+                            if (teile[h][b + 1] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
                         }
@@ -320,7 +320,7 @@ public class Spielsteuerung {
                             if (teile[h - 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (teile[h - 1][b - 1].getClass() == new Haus().getClass()) {
+                            if (teile[h - 1][b - 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
@@ -330,7 +330,7 @@ public class Spielsteuerung {
                             if (teile[h - 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (teile[h - 1][b + 1].getClass() == new Haus().getClass()) {
+                            if (teile[h - 1][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
@@ -340,7 +340,7 @@ public class Spielsteuerung {
                             if (teile[h + 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (teile[h + 1][b + 1].getClass() == new Haus().getClass()) {
+                            if (teile[h + 1][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
@@ -350,7 +350,7 @@ public class Spielsteuerung {
                             if (teile[h + 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (teile[h + 1][b - 1].getClass() == new Haus().getClass()) {
+                            if (teile[h + 1][b - 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }

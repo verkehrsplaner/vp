@@ -34,8 +34,8 @@ public class Spielsteuerung {
     private final int preisBhf = 100000;
     private final int preisLinie = 10000;
     private final int reparatur = 10000;
-    private final double hausWrschl = 0.65; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
-    private final double firmaWrschl = 0.9; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
+    private final double hausWrschl = 0.75; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
+    private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int h, int b, JPanel panel) {

@@ -387,7 +387,132 @@ public class Spielsteuerung {
      * @return true, wenn die Firma gebaut werden konnte
      */
     public boolean firmaBauen() {
+        boolean gefunden = false;
+        double wv = 0.0;   //Wahrscheinlichkeit des  besten Vorgängers
+        int x = 0;
+        int y = 0;
+        if (!feldVoll) {
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if (teile[h][b] == null) {
+                        // \/ Standartzufälligkeit
+                        double w = Math.random();
 
+                        // \/ [h - 1][b]
+                        if (h > 0) {
+                            if (teile[h - 1][b] != null) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h - 1][b] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h - 1][b] instanceof Park) {
+                                w = w + Math.random() / 2;
+                            }
+                        }
+
+                        // \/ [h + 1][b]
+                        if (h < teile.length - 1) {
+                            if (teile[h + 1][b] != null) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h + 1][b] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h + 1][b] instanceof Park) {
+                                w = w + Math.random() / 2;
+                            }
+                        }
+
+                        // \/ [h][b - 1]
+                        if (b > 0) {
+                            if (teile[h][b - 1] != null) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b - 1] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b - 1] instanceof Park) {
+                                w = w + Math.random() / 2;
+                            }
+                        }
+
+                        // \/ [h][b + 1]
+                        if (b < teile[h].length - 1) {
+                            if (teile[h][b + 1] != null) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b + 1] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b + 1] instanceof Park) {
+                                w = w + Math.random() / 2;
+                            }
+                        }
+
+                        // \/ [h - 1][b - 1]
+                        if (h > 0 && b > 0) {
+                            if (teile[h - 1][b - 1] != null) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h - 1][b - 1] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h - 1][b + 1]
+                        if (h > 0 && b < teile[h].length - 1) {
+                            if (teile[h - 1][b + 1] != null) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h - 1][b + 1] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h + 1][b + 1]
+                        if (h < teile.length - 1 && b < teile[h].length - 1) {
+                            if (teile[h + 1][b + 1] != null) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h + 1][b + 1] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ [h + 1][b - 1]
+                        if (h < teile.length - 1 && b > 0) {
+                            if (teile[h + 1][b - 1] != null) {
+                                w = w + Math.random() / 2;
+                            }
+                            if (teile[h + 1][b - 1] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                        }
+
+                        // \/ eine gute Position gefunden
+                        if (w > wv) {
+                            y = h;
+                            x = b;
+                            gefunden = true;
+                            wv = w;
+                        }
+                    }
+                }
+
+            }
+            if (gefunden) {
+                teile[y][x] = new Haus();
+                System.out.println("Haus gebaut!");
+                return true;
+            } else {
+                feldVoll = true;
+                System.out.println("Feld voll!");
+                return false;
+            }
+        } else {
+            return false;
+        }
         return true;
     }
 

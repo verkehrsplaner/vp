@@ -246,9 +246,7 @@ public class Spielsteuerung {
      * @return true, wenn das Haus gebaut werden konnte
      */
     public boolean hausBauen() {
-        // Wenn voll, dann merks dir
         boolean gefunden = false;
-        double w = 0.0;    //wahrscheinlichkeit
         double wv = 0.0;   //Wahrscheinlichkeit des  besten Vorgängers
         int x = 0;
         int y = 0;
@@ -257,7 +255,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < breite; b++) {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        w = w + Math.random();
+                        double w = Math.random();
                         // \/ Nachbar = Irgendein Stadtteil
                         if (teile[h - 1][b] != null) {
                             w = w + Math.random();
@@ -339,8 +337,9 @@ public class Spielsteuerung {
                 feldVoll = true;
                 return false;
             }
+        } else {
+            return false;
         }
-        else return false;
 
     }
 

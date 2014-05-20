@@ -66,7 +66,7 @@ public class Spielsteuerung {
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
         testTimer = new TestTimer(this);
-        timer.scheduleAtFixedRate(testTimer, 0, 100);
+        timer.scheduleAtFixedRate(testTimer, 0, 1000);
     }
 
     /**

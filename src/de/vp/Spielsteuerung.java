@@ -64,6 +64,7 @@ public class Spielsteuerung {
         for (int i = 0; i < linien.length; i++) {
             linien[i] = null;
         }
+        altstadt();
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
         testTimer = new TestTimer(this);
@@ -516,7 +517,7 @@ public class Spielsteuerung {
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
-                System.out.println(" +++ Firma gebaut! +++");
+                System.out.println("+++ Firma gebaut! +++");
                 return true;
             } else {
                 feldVoll = true;
@@ -633,7 +634,7 @@ public class Spielsteuerung {
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
-                System.out.println("  +++ Park gebaut! +++");
+                System.out.println("+++ Park gebaut! +++");
                 return true;
             } else {
                 feldVoll = true;
@@ -648,6 +649,7 @@ public class Spielsteuerung {
      *
      * Baut automatisch die "Altstadt" der Karte - Als Ausgangssituation bei
      * "Spiel starten" für das weitere Spiel
+     * insgesamt 68 Stadtteile
      *
      * @return
      */

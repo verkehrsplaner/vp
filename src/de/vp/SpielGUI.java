@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.vp;
 
 import java.text.SimpleDateFormat;
@@ -27,11 +26,11 @@ public class SpielGUI extends javax.swing.JFrame {
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane1.getHorizontalScrollBar().setUnitIncrement(10);
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(10);
-        
+
         //Erstellt neuen "Kalender"
-        final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss"); 
+        final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         jLabel1.setText(format.format(Calendar.getInstance().getTime()));
-        
+
         //Timer für Uhrzeit
         Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
@@ -40,7 +39,7 @@ public class SpielGUI extends javax.swing.JFrame {
                 jLabel1.setText(format.format(Calendar.getInstance().getTime()));
             }
         }, 1000, 1000);
-        
+
         //Set Icon
         ImageIcon icon = new ImageIcon(getClass().getResource("icon.png"));
         setIconImage(icon.getImage());

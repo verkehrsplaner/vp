@@ -5,7 +5,7 @@ import java.util.Calendar;
 import javax.swing.JFrame;
 
 public class Main {
-    
+
     public static void main(String[] argv) {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         System.out.println("Build Start: " + format.format(Calendar.getInstance().getTime()));
@@ -13,5 +13,5 @@ public class Main {
         JFrame f = new SpielGUI();
         f.setVisible(true);
     }
-    
+
 }

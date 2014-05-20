@@ -22,7 +22,6 @@ public class Spielsteuerung {
     private GUITimer guiTimer;
     private StrgTimer strgTimer;
     private boolean feldVoll; //Für Stadtteile bauen
-    private double wv; // Wahrscheinlichkeit des Vorgängers, für Stadtteile bauen
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -10000000;
@@ -42,7 +41,6 @@ public class Spielsteuerung {
         werkstatt = 0;
         anzLinien = 0;
         feldVoll = false;
-        wv = 0.0;
         geld = 100000000; // 100 Mio.
         timer = new Timer();
         guiTimer = new GUITimer(panel);
@@ -251,6 +249,7 @@ public class Spielsteuerung {
         // Wenn voll, dann merks dir
         boolean gefunden = false;
         double w = 0.0;    //wahrscheinlichkeit
+        double wv = 0.0;   //Wahrscheinlichkeit des Vorgängers
         int x = 0;
         int y = 0;
         if (!feldVoll) {
@@ -327,6 +326,10 @@ public class Spielsteuerung {
                             y = h;
                             x = b;
                             gefunden = true;
+                        }
+                        else {
+                            wv = w;
+                            w = 0;
                         }
                     }
                 }

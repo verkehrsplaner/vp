@@ -16,6 +16,6 @@ public class TestTimer extends TimerTask {
     
     @Override
     public void run() {
-        strg.hausBauen();
+        strg.stadtteilBauen();
     }
 }

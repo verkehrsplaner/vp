@@ -65,6 +65,7 @@ public class Spielsteuerung {
         }
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
+        testTimer = new TestTimer(this);
         timer.scheduleAtFixedRate(testTimer, 0, 5000);
     }
 
@@ -337,9 +338,11 @@ public class Spielsteuerung {
             }
             if (gefunden) {
                 teile[y][x] = new Haus();
+                System.out.println("Haus gebaut!");
                 return true;
             } else {
                 feldVoll = true;
+                System.out.println("Feld voll!");
                 return false;
             }
         } else {

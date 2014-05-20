@@ -17,7 +17,8 @@ import javax.swing.JOptionPane;
  * @author Maxi
  */
 public class SpielGUI extends javax.swing.JFrame {
-
+    
+    Spielsteuerung strg;
     /**
      * Creates new form SpielGUI
      */
@@ -26,7 +27,9 @@ public class SpielGUI extends javax.swing.JFrame {
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane1.getHorizontalScrollBar().setUnitIncrement(10);
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(10);
-
+        
+        strg = new Spielsteuerung(10, 10, jPanel1);
+        
         //Erstellt neuen "Kalender"
         final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         jLabel1.setText(format.format(Calendar.getInstance().getTime()));

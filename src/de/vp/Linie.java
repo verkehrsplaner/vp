@@ -100,7 +100,7 @@ public class Linie {
                 }
 
             }
-            for (int i = stelle; i < bhfListe.length; i++) {
+            for (int i = stelle; i < bhfListe.length - 1; i++) {
                 bhfListe[i] = bhfListe[i + 1];
             }
             bhfListe[stelle] = bhf;

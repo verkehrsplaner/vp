@@ -264,7 +264,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < getTeile()[h].length; b++) {
                     if (getTeile()[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        double w = 80 * Math.random();
+                        double w = 40 * Math.random() + 40 * Math.random();
 
                         // \/ [h - 1][b]
                         if (h > 0) {

@@ -31,8 +31,8 @@ public class Spielsteuerung {
     private final int preisBhf = 100000;
     private final int preisLinie = 10000;
     private final int reparatur = 10000;
-    private final double hausWrschl = 0.75; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
-    private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
+    private final double hausWrschl = 0.70; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
+    private final double firmaWrschl = 0.90; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int h, int b) {
@@ -264,7 +264,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < getTeile()[h].length; b++) {
                     if (getTeile()[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        double w = Math.random();
+                        double w = Math.random() + 100 * Math.random();
 
                         // \/ [h - 1][b]
                         if (h > 0) {
@@ -657,8 +657,8 @@ public class Spielsteuerung {
         int mh = Math.round(hoehe / 2);
         int mb = Math.round(breite / 2);
         teile[mh][mb] = new Rathaus();
-        teile[mh - 1][mb] = new Park();
-        teile[mh - 2][mb] = new Park();
+        teile[mh][mb + 1] = new Park();
+        teile[mh][mb + 2] = new Park();
         teile[mh + 4][mb - 2] = new Haus();
         teile[mh + 4][mb - 1] = new Haus();
         teile[mh + 4][mb] = new Haus();
@@ -693,8 +693,8 @@ public class Spielsteuerung {
         teile[mh][mb - 3] = new Haus();
         teile[mh][mb - 2] = new Haus();
         teile[mh][mb - 1] = new Haus();
-        teile[mh][mb + 1] = new Haus();
-        teile[mh][mb + 2] = new Haus();
+        teile[mh - 1][mb] = new Haus();
+        teile[mh - 2][mb] = new Haus();
         teile[mh][mb + 3] = new Haus();
         teile[mh][mb + 4] = new Haus();
         teile[mh - 1][mb - 4] = new Haus();

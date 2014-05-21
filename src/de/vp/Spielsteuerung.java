@@ -1,8 +1,5 @@
 package de.vp;
 
-import java.awt.Color;
-import java.awt.Color;
-import java.awt.Color;
 import java.util.Date;
 import java.util.Timer;
 import javax.swing.JPanel;

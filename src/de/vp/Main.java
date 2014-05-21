@@ -7,8 +7,9 @@ import javax.swing.JFrame;
 public class Main {
 
     public static void main(String[] argv) {
-        JFrame f = new SpielGUI();
-        f.setVisible(true);
+        
+        JFrame s = new Start();
+        s.setVisible(true);
     }
 
 }

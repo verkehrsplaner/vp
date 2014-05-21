@@ -25,7 +25,7 @@ public class Bahnhof {
                               "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
                               "Platz des Bieres", "Alte Heide", "Baum" , "Geldweg", "Berg", "Hausen",
                               "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
-                              ""};
+                              "Sickergraben", "Turmstraße", };
 
     public Bahnhof(int x, int y) {
         X = x;

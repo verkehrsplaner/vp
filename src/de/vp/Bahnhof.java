@@ -7,7 +7,7 @@ package de.vp;
 
 /**
  *
- * @author Nicolai
+ * @author Nicolai & Felix
  */
 public class Bahnhof {
 
@@ -16,12 +16,23 @@ public class Bahnhof {
     private int Y;
     private Stadtteil[] teile;
     private int personen;
+    private String name;
+    private String[] bhfNamen = {"Marienplatz", "Blumenstraße", "Graf Maxi von Krause Allee", 
+                              "Nicolaiplatz", "Großer Imperator Felix Maurer Platz", "Christine Kaps Alle",
+                              "Felix der Hecker Platz", "Hofstraße", "Sonnenstraße" ,"Kirchplatz",
+                              "Javagasse", "Berglerweg", "Stiftstraße", "Unterberg", "Hauptstraße",
+                              "Feldweg", "Serviettenmarkt", "Kalter Bach", "Bürgermeister Horst Bichler Straße",
+                              "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
+                              "Platz des Bieres", "Alte Heide", "Baum" , "Geldweg", "Berg", "Hausen",
+                              "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
+                              ""};
 
     public Bahnhof(int x, int y) {
         X = x;
         Y = y;
         fahrtKosten = 3;
         teile = new Stadtteil[100];
+        name = "Test";
     }
 
     /**

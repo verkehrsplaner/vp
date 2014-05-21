@@ -12,7 +12,7 @@ import java.awt.Graphics2D;
 
 /**
  *
- * @author Felix
+ * @author Maxi
  */
 public class SpielPanel extends javax.swing.JPanel {
 

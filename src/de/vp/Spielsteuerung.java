@@ -63,7 +63,7 @@ public class Spielsteuerung {
         altstadt();
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
         testTimer = new TestTimer(this);
-        timer.scheduleAtFixedRate(testTimer, 0, 1000);
+        timer.scheduleAtFixedRate(testTimer, 0, 50); //Bau Geschwindigkeit
     }
     
     public void panelStarten(JPanel panel) {

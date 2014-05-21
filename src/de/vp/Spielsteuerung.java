@@ -102,7 +102,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugVerschrotten() {
-        if (depot > 0) {
+        if (getDepot() > 0) {
             geld = getGeld() + geldZugZurueck;
             depot--;
             return true;
@@ -119,7 +119,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugEinstellen(Linie l) {
-        if (depot > 0) {
+        if (getDepot() > 0) {
             l.zugEinstellen();
             depot--;
             return true;
@@ -810,6 +810,13 @@ public class Spielsteuerung {
      */
     public int getGeld() {
         return geld;
+    }
+
+    /**
+     * @return the depot
+     */
+    public int getDepot() {
+        return depot;
     }
 
 }

@@ -6,6 +6,7 @@
 package de.vp;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -110,6 +111,7 @@ public class Start extends javax.swing.JFrame {
         dispose();
         } catch (NumberFormatException ex) {
             System.out.println("Keine Zahl!");
+            JOptionPane.showMessageDialog(null, "Bitte eine gültige Zahl eingeben!", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

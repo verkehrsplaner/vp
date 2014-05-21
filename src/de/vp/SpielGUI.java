@@ -22,14 +22,18 @@ public class SpielGUI extends javax.swing.JFrame {
     /**
      * Erstellt das Fenster.
      * Zusätzlich wird ein Timer initialisert, welcher die Uhrzeit automatisch aktualisiert.
+     * @param h
+     * @param b
      */
-    public SpielGUI() {
+    public SpielGUI(int h, int b) {
         initComponents();
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
         final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss"); //Erstellt neuen "Kalender"
         jLabel1.setText(format.format(Calendar.getInstance().getTime()));
 
+        
+        
         //Timer für Uhrzeit
         Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
@@ -45,6 +49,7 @@ public class SpielGUI extends javax.swing.JFrame {
 //        oder
         ImageIcon icon = new ImageIcon(getClass().getResource("icon.png"));
         setIconImage(icon.getImage());
+        
         
         
          Spielsteuerung strg;

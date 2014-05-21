@@ -47,7 +47,7 @@ public class SpielGUI extends javax.swing.JFrame {
             @Override
             public void run() {
                 jLabel1.setText(format.format(strg.getTime()));
-                jLabel6.setText(Integer.toString(strg.getGeld()));
+                jLabel6.setText(Integer.toString(strg.getGeld()) + " €");
                 jLabel5.setText(Integer.toString(strg.getDepot()));
                 
             }

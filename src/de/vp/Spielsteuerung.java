@@ -86,8 +86,8 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugKaufen() {
-        if (geld - preisZug >= maxMinus) {
-            geld = geld - preisZug;
+        if (getGeld() - preisZug >= maxMinus) {
+            geld = getGeld() - preisZug;
             depot++;
             return true;
         } else {
@@ -103,7 +103,7 @@ public class Spielsteuerung {
      */
     public boolean zugVerschrotten() {
         if (depot > 0) {
-            geld = geld + geldZugZurueck;
+            geld = getGeld() + geldZugZurueck;
             depot--;
             return true;
         } else {
@@ -151,7 +151,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean neueLinie(String name) {
-        if (geld - preisLinie >= maxMinus) {
+        if (getGeld() - preisLinie >= maxMinus) {
             if (linien.length < anzLinien + 1) {
                 Linie[] hilf = new Linie[anzLinien + 10];
                 for (int i = 0; i > anzLinien; i++) {
@@ -161,7 +161,7 @@ public class Spielsteuerung {
             }
             linien[anzLinien + 1] = new Linie(name);
             anzLinien++;
-            geld = geld - preisLinie;
+            geld = getGeld() - preisLinie;
             return true;
         } else {
             return false;
@@ -204,9 +204,9 @@ public class Spielsteuerung {
      * @return
      */
     private boolean neuerBahnhof(int x, int y) {
-        if (geld - preisBhf >= maxMinus && getBahnhoefe()[x][y] == null) {
+        if (getGeld() - preisBhf >= maxMinus && getBahnhoefe()[x][y] == null) {
             bahnhoefe[x][y] = new Bahnhof(x, y);
-            geld = geld - preisBhf;
+            geld = getGeld() - preisBhf;
             return true;
         } else {
             return false;
@@ -738,10 +738,10 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugReparieren() {
-        if (werkstatt >= 0 && geld - reparatur >= maxMinus) {
+        if (werkstatt >= 0 && getGeld() - reparatur >= maxMinus) {
             werkstatt--;
             depot++;
-            geld = geld - reparatur;
+            geld = getGeld() - reparatur;
             return true;
         } else {
             return false;
@@ -803,6 +803,13 @@ public class Spielsteuerung {
      */
     public Bahnhof[][] getBahnhoefe() {
         return bahnhoefe;
+    }
+
+    /**
+     * @return the geld
+     */
+    public int getGeld() {
+        return geld;
     }
 
 }

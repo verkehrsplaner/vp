@@ -81,8 +81,32 @@ public class Linie {
     /**
      *
      * @param bhf gegebener Bhf wird in bhfListe eingefügt
+     * @param bhfVor hinter diesem Bahnhof wird der neue bhf
+     *
      */
-    public void bahnhofHinzufuegen(Bahnhof bhf) {
+    public void bahnhofHinzufuegen(Bahnhof bhf, Bahnhof bhfVor) {
+        int stelle = -1;
+        for (int i = 0; i < bhfListe.length; i++) {
+            if (bhfVor.equals(bhfListe[i])) {
+                stelle = i + 1;
+            }
+        }
+        if (stelle != -1) {
+            if (bhfListe.length > bhfs + 1) {
+                Bahnhof[] hilf2 = new Bahnhof[bhfListe.length - stelle - 1];
+                bhfListe[bhfs + 1] = bhf;
+                bhfs++;
+            } else {
+                //Bei zu kurzer Liste wird diese erweitert
+                Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
+                for (int i = 0; i < bhfListe.length; i++) {
+                    bhfHilf[i] = bhfListe[i];
+                }
+                bhfListe = bhfHilf;
+                bhfListe[bhfs + 1] = bhf;
+                bhfs++;
+            }
+        }
         if (bhfListe.length > bhfs + 1) {
             bhfListe[bhfs + 1] = bhf;
             bhfs++;

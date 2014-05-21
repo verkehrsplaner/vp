@@ -19,25 +19,36 @@ import javax.swing.JOptionPane;
  */
 public class SpielGUI extends javax.swing.JFrame {
 
+    
+    private Spielsteuerung strg;
+    private int hoehe, breite;
+    
     /**
      * Erstellt das Fenster.
      * Zusätzlich wird ein Timer initialisert, welcher die Uhrzeit automatisch aktualisiert.
+     * @param h
+     * @param b
      */
-    public SpielGUI() {
+    public SpielGUI(int h, int b) { 
+        strg = new Spielsteuerung(h, b, jPanel3);
+        hoehe = h;
+        breite = b;
         initComponents();
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
         final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss"); //Erstellt neuen "Kalender"
-        jLabel1.setText(format.format(Calendar.getInstance().getTime()));
+        jLabel1.setText(format.format(strg.getTime()));
 
+        
+        
         //Timer für Uhrzeit
         Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                jLabel1.setText(format.format(Calendar.getInstance().getTime()));
+                jLabel1.setText(format.format(strg.getTime()));
             }
-        }, 1000, 1000);
+        }, 0, 1000);
         
         //Seticon entweder
 //        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
@@ -47,8 +58,9 @@ public class SpielGUI extends javax.swing.JFrame {
         setIconImage(icon.getImage());
         
         
-         Spielsteuerung strg;
-         strg = new Spielsteuerung(10, 10, jPanel2);
+        
+         
+
     /**
     * Creates new form SpielGUI
     */
@@ -65,7 +77,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jPanel3 = new SpielPanel();
+        jPanel3 = new SpielPanel(hoehe, breite, strg);
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -82,7 +94,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("TestGUI");
+        setTitle("Verkehrsplaner");
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -101,17 +113,15 @@ public class SpielGUI extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jPanel2);
 
-        jPanel3.setPreferredSize(new java.awt.Dimension(2000, 2000));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2000, Short.MAX_VALUE)
+            .addGap(0, 851, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2000, Short.MAX_VALUE)
+            .addGap(0, 615, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(jPanel3);

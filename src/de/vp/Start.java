@@ -104,9 +104,9 @@ public class Start extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFrame f = new SpielGUI();
+        JFrame f = new SpielGUI(Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()));
         f.setVisible(true);
-        setVisible(false);
+        dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

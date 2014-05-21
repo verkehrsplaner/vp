@@ -11,12 +11,17 @@ package de.vp;
  */
 public class SpielPanel extends javax.swing.JPanel {
 
+    private Spielsteuerung strg;
     /**
      * Creates new form SpielPanel
+     * @param h
+     * @param b
+     * @param s
      */
-    public SpielPanel() {
+    public SpielPanel(int h, int b, Spielsteuerung s) {
         initComponents();
-        // Wer auch immer das hier mal schreibt: Bitte dafür sorgen, dass das Spielfeld min. 10 x 10 Felder groß ist
+        strg = s;
+        setSize(b*30, h*30);
     }
 
     /**

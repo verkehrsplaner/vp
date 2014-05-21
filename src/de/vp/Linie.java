@@ -92,27 +92,19 @@ public class Linie {
             }
         }
         if (stelle != -1) {
-            if (bhfListe.length > bhfs + 1) {
-                Bahnhof[] hilf2 = new Bahnhof[bhfListe.length - stelle - 1];
-                for (int i = stelle; i < bhfListe.length; i++) {
-                    hilf2[i] = bhfListe[i];
-                }
-                bhfListe[stelle] = bhf;
-                for (int i = stelle + 1; i < bhfListe.length; i++) {
-                    bhfListe[i] = hilf2[i];
-                }
-                bhfs++;
-            } else {
+            if (bhfListe.length < bhfs + 1) {
                 //Bei zu kurzer Liste wird diese erweitert
                 Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
                 for (int i = 0; i < bhfListe.length; i++) {
                     bhfHilf[i] = bhfListe[i];
                 }
-                bhfListe = bhfHilf;
-                bhfListe[bhfs + 1] = bhf;
-                bhfs++;
-                //hallo!;
+
             }
+            for (int i = stelle; i < bhfListe.length; i++) {
+                bhfListe[i] = bhfListe[i + 1];
+            }
+            bhfListe[stelle] = bhf;
+            bhfs++;
         }
 
     }

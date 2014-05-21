@@ -35,7 +35,7 @@ public class Spielsteuerung {
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
     // ========== Ende Spielvariablen ==========
 
-    public Spielsteuerung(int h, int b, JPanel panel) {
+    public Spielsteuerung(int h, int b) {
         hauszahl = 0;
         hoehe = h;
         breite = b;
@@ -45,7 +45,6 @@ public class Spielsteuerung {
         feldVoll = false;
         geld = 100000000; // 100 Mio.
         timer = new Timer();
-        guiTimer = new GUITimer(panel);
         strgTimer = new StrgTimer(this);
         hatBahnhof = new boolean[hoehe][breite];
         teile = new Stadtteil[hoehe][breite];
@@ -62,12 +61,16 @@ public class Spielsteuerung {
             linien[i] = null;
         }
         altstadt();
-        timer.scheduleAtFixedRate(guiTimer, 0, 40);
         timer.scheduleAtFixedRate(strgTimer, 0, 8);
         testTimer = new TestTimer(this);
         timer.scheduleAtFixedRate(testTimer, 0, 1000);
     }
-
+    
+    public void panelStarten(JPanel panel) {
+        guiTimer = new GUITimer(panel);
+        timer.scheduleAtFixedRate(guiTimer, 0, 40);      
+    }
+    
     /**
      *
      * @return Die aktuelle In-Game-Zeit als Date-Objekt

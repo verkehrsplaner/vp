@@ -30,10 +30,11 @@ public class SpielGUI extends javax.swing.JFrame {
      * @param b
      */
     public SpielGUI(int h, int b) { 
-        strg = new Spielsteuerung(h, b, jPanel3);
+        strg = new Spielsteuerung(h, b);
         hoehe = h;
         breite = b;
         initComponents();
+        strg.panelStarten(jPanel3);
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
         final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss"); //Erstellt neuen "Kalender"

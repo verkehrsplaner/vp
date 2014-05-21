@@ -38,6 +38,7 @@ public class Start extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1094, 619));
 
         jButton1.setText("Spiel Starten");
+        jButton1.setToolTipText("Startet das Spiel!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

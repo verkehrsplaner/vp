@@ -111,6 +111,7 @@ public class Linie {
                 bhfListe = bhfHilf;
                 bhfListe[bhfs + 1] = bhf;
                 bhfs++;
+                //hallo!;
             }
         }
 

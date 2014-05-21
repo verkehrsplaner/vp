@@ -101,8 +101,8 @@ public class Linie {
                 }
 
             }
-            for (int i = 0; i < bhfListe.length - 1; i++) {
-                bhfListe[i] = bhfListe[i + 1]; // so geht alles kaputt!
+            for (int i = bhfListe.length - 1; i < 0 - 1; i--) {
+                bhfListe[i + 1] = bhfListe[i];
             }
             bhfListe[0] = bhf;
             bhfs++;
@@ -118,8 +118,8 @@ public class Linie {
                     }
 
                 }
-                for (int i = stelle; i < bhfListe.length - 1; i++) {
-                    bhfListe[i] = bhfListe[i + 1];
+                for (int i = bhfListe.length - 1; i < stelle ; i--) {
+                    bhfListe[i + 1] = bhfListe[i];
                 }
                 bhfListe[stelle] = bhf;
                 bhfs++;

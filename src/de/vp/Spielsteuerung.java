@@ -516,7 +516,7 @@ public class Spielsteuerung {
             hauszahl++;
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
-                teile[y][x] = new Haus();
+                teile[y][x] = new Firma();
                 System.out.println("+++ Firma gebaut! +++");
                 return true;
             } else {
@@ -633,7 +633,7 @@ public class Spielsteuerung {
             hauszahl++;
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
-                teile[y][x] = new Haus();
+                teile[y][x] = new Park();
                 System.out.println("+++ Park gebaut! +++");
                 return true;
             } else {

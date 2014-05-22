@@ -39,8 +39,8 @@ public class SpielPanel extends javax.swing.JPanel {
 
         for (int y = 0; y < teile.length; y++) {
             for (int x = 0; x < teile[y].length; x++) {
-                if (teile[x][y] != null) {
-                    g2d.setColor(teile[x][y].getFarbe());
+                if (teile[y][x] != null) {
+                    g2d.setColor(teile[y][x].getFarbe());
                     g2d.setStroke(new BasicStroke(1));
                     g2d.fillRect(x * 30, y * 30, 30, 30);
                     g2d.setColor(Color.YELLOW);
@@ -52,8 +52,8 @@ public class SpielPanel extends javax.swing.JPanel {
 
         }
         for (int y = 0; y < bhf.length; y++) {
-            for (int x = 0; x < bhf.length; x++) {
-                if (bhf[x][y] != null) {
+            for (int x = 0; x < bhf[y].length; x++) {
+                if (bhf[y][x] != null) {
                     g2d.setColor(Color.WHITE);
                     g2d.setStroke(new BasicStroke(1));
                     g2d.fillOval(x * 30 - 10, y * 30 - 10, 20, 20);

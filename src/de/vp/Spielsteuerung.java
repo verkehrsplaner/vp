@@ -31,7 +31,7 @@ public class Spielsteuerung {
     private final int preisBhf = 100000;
     private final int preisLinie = 10000;
     private final int reparatur = 10000;
-    private final double hausWrschl = 0.75; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
+    private final double hausWrschl = 0.8; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
     // ========== Ende Spielvariablen ==========
 
@@ -412,7 +412,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (getTeile()[h - 1][b] instanceof Firma) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 1.2;
                             }
                             if (getTeile()[h - 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
@@ -425,7 +425,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (getTeile()[h + 1][b] instanceof Firma) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 1.2;
                             }
                             if (getTeile()[h + 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
@@ -438,7 +438,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (getTeile()[h][b - 1] instanceof Firma) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 1.2;
                             }
                             if (getTeile()[h][b - 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
@@ -451,7 +451,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (getTeile()[h][b + 1] instanceof Firma) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 1.2;
                             }
                             if (getTeile()[h][b + 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
@@ -463,9 +463,9 @@ public class Spielsteuerung {
                             if (getTeile()[h - 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-//                            if (getTeile()[h - 1][b - 1] instanceof Firma) {
-//                                w = w + Math.random();
-//                            }
+                            if (getTeile()[h - 1][b - 1] instanceof Firma) {
+                                w = w + Math.random() * 1.2;
+                            }
                         }
 
                         // \/ [h - 1][b + 1]
@@ -473,9 +473,9 @@ public class Spielsteuerung {
                             if (getTeile()[h - 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-//                            if (getTeile()[h - 1][b + 1] instanceof Firma) {
-//                                w = w + Math.random();
-//                            }
+                            if (getTeile()[h - 1][b + 1] instanceof Firma) {
+                                w = w + Math.random() * 1.2;
+                            }
                         }
 
                         // \/ [h + 1][b + 1]
@@ -483,9 +483,9 @@ public class Spielsteuerung {
                             if (getTeile()[h + 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-//                            if (getTeile()[h + 1][b + 1] instanceof Firma) {
-//                                w = w + Math.random();
-//                            }
+                            if (getTeile()[h + 1][b + 1] instanceof Firma) {
+                                w = w + Math.random() * 1.2;
+                            }
                         }
 
                         // \/ [h + 1][b - 1]
@@ -493,9 +493,9 @@ public class Spielsteuerung {
                             if (getTeile()[h + 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-//                            if (getTeile()[h + 1][b - 1] instanceof Firma) {
-//                                w = w + Math.random();
-//                            }
+                            if (getTeile()[h + 1][b - 1] instanceof Firma) {
+                                w = w + Math.random() * 1.2;
+                            }
                         }
 
                         // \/ eine gute Position gefunden

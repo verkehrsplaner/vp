@@ -781,7 +781,7 @@ public class Spielsteuerung {
      */
     public boolean klick(int x, int y) {
         System.out.println("Klick auf " + x + ", " + y);
-        bahnhoefe[x][y] = new Bahnhof(x, y);
+        bahnhoefe[y][x] = new Bahnhof(x, y);
         return true;
     }
 

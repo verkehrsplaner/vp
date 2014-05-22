@@ -56,10 +56,10 @@ public class SpielPanel extends javax.swing.JPanel {
                 if (bhf[x][y] != null) {
                     g2d.setColor(Color.WHITE);
                     g2d.setStroke(new BasicStroke(1));
-                    g2d.fillOval(x * 20, y * 20, 20, 20);
+                    g2d.fillOval(x * 30 - 10, y * 30 - 10, 20, 20);
                     g2d.setColor(Color.BLACK);
                     g2d.setStroke(new BasicStroke(2));
-                    g2d.drawOval(x * 20, y * 20, 20, 20);
+                    g2d.drawOval(x * 30 - 10, y * 30 - 10, 20, 20);
                 }
             }
         }

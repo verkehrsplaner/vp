@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.vp;
 
 import java.awt.BasicStroke;
@@ -17,6 +12,7 @@ import java.awt.Graphics2D;
 public class SpielPanel extends javax.swing.JPanel {
 
     private Spielsteuerung strg;
+    Listener list;
 
     /**
      * Creates new form SpielPanel
@@ -28,6 +24,9 @@ public class SpielPanel extends javax.swing.JPanel {
     public SpielPanel(int h, int b, Spielsteuerung s) {
         initComponents();
         strg = s;
+        list = new Listener();
+        this.addMouseListener(list);
+        this.addKeyListener(list);
         setSize(b * 30, h * 30);
     }
 

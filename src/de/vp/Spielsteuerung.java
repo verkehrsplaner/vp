@@ -86,8 +86,8 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugKaufen() {
-        if (getGeld() - preisZug >= maxMinus) {
-            geld = getGeld() - preisZug;
+        if (geld - preisZug >= maxMinus) {
+            geld = geld - preisZug;
             depot++;
             return true;
         } else {
@@ -102,8 +102,8 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugVerschrotten() {
-        if (getDepot() > 0) {
-            geld = getGeld() + geldZugZurueck;
+        if (depot > 0) {
+            geld = geld + geldZugZurueck;
             depot--;
             return true;
         } else {
@@ -119,7 +119,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugEinstellen(Linie l) {
-        if (getDepot() > 0) {
+        if (depot > 0) {
             l.zugEinstellen();
             depot--;
             return true;
@@ -151,7 +151,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean neueLinie(String name) {
-        if (getGeld() - preisLinie >= maxMinus) {
+        if (geld - preisLinie >= maxMinus) {
             if (linien.length < anzLinien + 1) {
                 Linie[] hilf = new Linie[anzLinien + 10];
                 for (int i = 0; i > anzLinien; i++) {
@@ -161,7 +161,7 @@ public class Spielsteuerung {
             }
             linien[anzLinien + 1] = new Linie(name);
             anzLinien++;
-            geld = getGeld() - preisLinie;
+            geld = geld - preisLinie;
             return true;
         } else {
             return false;
@@ -204,9 +204,9 @@ public class Spielsteuerung {
      * @return
      */
     private boolean neuerBahnhof(int x, int y) {
-        if (getGeld() - preisBhf >= maxMinus && getBahnhoefe()[x][y] == null) {
+        if (geld - preisBhf >= maxMinus && bahnhoefe[x][y] == null) {
             bahnhoefe[x][y] = new Bahnhof(x, y);
-            geld = getGeld() - preisBhf;
+            geld = geld - preisBhf;
             return true;
         } else {
             return false;
@@ -221,9 +221,9 @@ public class Spielsteuerung {
      * @return true
      */
     public boolean bhfEntfernen(Bahnhof bhf) {
-        for (int h = 0; h < getBahnhoefe().length; h++) {
-            for (int b = 0; b < getBahnhoefe()[h].length; b++) {
-                if (getBahnhoefe()[h][b].equals(bhf)) {
+        for (int h = 0; h < bahnhoefe.length; h++) {
+            for (int b = 0; b < bahnhoefe[h].length; b++) {
+                if (bahnhoefe[h][b].equals(bhf)) {
                     bahnhoefe[h][b] = null;
                 }
             }
@@ -260,100 +260,100 @@ public class Spielsteuerung {
         int y = 0;
         if (!feldVoll) {
             long start = System.nanoTime();
-            for (int h = 0; h < getTeile().length; h++) {
-                for (int b = 0; b < getTeile()[h].length; b++) {
-                    if (getTeile()[h][b] == null) {
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
                         double w = 50 * Math.random();
 
                         // \/ [h - 1][b]
                         if (h > 0) {
-                            if (getTeile()[h - 1][b] != null) {
+                            if (teile[h - 1][b] != null) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h - 1][b] instanceof Haus) {
+                            if (teile[h - 1][b] instanceof Haus) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h - 1][b] instanceof Park) {
+                            if (teile[h - 1][b] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
                         }
 
                         // \/ [h + 1][b]
-                        if (h < getTeile().length - 1) {
-                            if (getTeile()[h + 1][b] != null) {
+                        if (h < teile.length - 1) {
+                            if (teile[h + 1][b] != null) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h + 1][b] instanceof Haus) {
+                            if (teile[h + 1][b] instanceof Haus) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h + 1][b] instanceof Park) {
+                            if (teile[h + 1][b] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
                         }
 
                         // \/ [h][b - 1]
                         if (b > 0) {
-                            if (getTeile()[h][b - 1] != null) {
+                            if (teile[h][b - 1] != null) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h][b - 1] instanceof Haus) {
+                            if (teile[h][b - 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h][b - 1] instanceof Park) {
+                            if (teile[h][b - 1] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
                         }
 
                         // \/ [h][b + 1]
-                        if (b < getTeile()[h].length - 1) {
-                            if (getTeile()[h][b + 1] != null) {
+                        if (b < teile[h].length - 1) {
+                            if (teile[h][b + 1] != null) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h][b + 1] instanceof Haus) {
+                            if (teile[h][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h][b + 1] instanceof Park) {
+                            if (teile[h][b + 1] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
                         }
 
                         // \/ [h - 1][b - 1]
                         if (h > 0 && b > 0) {
-                            if (getTeile()[h - 1][b - 1] != null) {
+                            if (teile[h - 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h - 1][b - 1] instanceof Haus) {
+                            if (teile[h - 1][b - 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h - 1][b + 1]
-                        if (h > 0 && b < getTeile()[h].length - 1) {
-                            if (getTeile()[h - 1][b + 1] != null) {
+                        if (h > 0 && b < teile[h].length - 1) {
+                            if (teile[h - 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h - 1][b + 1] instanceof Haus) {
+                            if (teile[h - 1][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h + 1][b + 1]
-                        if (h < getTeile().length - 1 && b < getTeile()[h].length - 1) {
-                            if (getTeile()[h + 1][b + 1] != null) {
+                        if (h < teile.length - 1 && b < teile[h].length - 1) {
+                            if (teile[h + 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h + 1][b + 1] instanceof Haus) {
+                            if (teile[h + 1][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h + 1][b - 1]
-                        if (h < getTeile().length - 1 && b > 0) {
-                            if (getTeile()[h + 1][b - 1] != null) {
+                        if (h < teile.length - 1 && b > 0) {
+                            if (teile[h + 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h + 1][b - 1] instanceof Haus) {
+                            if (teile[h + 1][b - 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
@@ -400,100 +400,100 @@ public class Spielsteuerung {
         int y = 0;
         if (!feldVoll) {
             long start = System.nanoTime();
-            for (int h = 0; h < getTeile().length; h++) {
-                for (int b = 0; b < getTeile()[h].length; b++) {
-                    if (getTeile()[h][b] == null) {
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
                         double w = Math.random();
 
                         // \/ [h - 1][b]
                         if (h > 0) {
-                            if (getTeile()[h - 1][b] != null) {
+                            if (teile[h - 1][b] != null) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h - 1][b] instanceof Firma) {
+                            if (teile[h - 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.2;
                             }
-                            if (getTeile()[h - 1][b] instanceof Haus) {
+                            if (teile[h - 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
                         }
 
                         // \/ [h + 1][b]
-                        if (h < getTeile().length - 1) {
-                            if (getTeile()[h + 1][b] != null) {
+                        if (h < teile.length - 1) {
+                            if (teile[h + 1][b] != null) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h + 1][b] instanceof Firma) {
+                            if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.2;
                             }
-                            if (getTeile()[h + 1][b] instanceof Haus) {
+                            if (teile[h + 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
                         }
 
                         // \/ [h][b - 1]
                         if (b > 0) {
-                            if (getTeile()[h][b - 1] != null) {
+                            if (teile[h][b - 1] != null) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h][b - 1] instanceof Firma) {
+                            if (teile[h][b - 1] instanceof Firma) {
                                 w = w + Math.random() * 1.2;
                             }
-                            if (getTeile()[h][b - 1] instanceof Haus) {
+                            if (teile[h][b - 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
                         }
 
                         // \/ [h][b + 1]
-                        if (b < getTeile()[h].length - 1) {
-                            if (getTeile()[h][b + 1] != null) {
+                        if (b < teile[h].length - 1) {
+                            if (teile[h][b + 1] != null) {
                                 w = w + Math.random();
                             }
-                            if (getTeile()[h][b + 1] instanceof Firma) {
+                            if (teile[h][b + 1] instanceof Firma) {
                                 w = w + Math.random() * 1.2;
                             }
-                            if (getTeile()[h][b + 1] instanceof Haus) {
+                            if (teile[h][b + 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
                         }
 
                         // \/ [h - 1][b - 1]
                         if (h > 0 && b > 0) {
-                            if (getTeile()[h - 1][b - 1] != null) {
+                            if (teile[h - 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h - 1][b - 1] instanceof Firma) {
+                            if (teile[h - 1][b - 1] instanceof Firma) {
                                 w = w + Math.random() * 1.2;
                             }
                         }
 
                         // \/ [h - 1][b + 1]
-                        if (h > 0 && b < getTeile()[h].length - 1) {
-                            if (getTeile()[h - 1][b + 1] != null) {
+                        if (h > 0 && b < teile[h].length - 1) {
+                            if (teile[h - 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h - 1][b + 1] instanceof Firma) {
+                            if (teile[h - 1][b + 1] instanceof Firma) {
                                 w = w + Math.random() * 1.2;
                             }
                         }
 
                         // \/ [h + 1][b + 1]
-                        if (h < getTeile().length - 1 && b < getTeile()[h].length - 1) {
-                            if (getTeile()[h + 1][b + 1] != null) {
+                        if (h < teile.length - 1 && b < teile[h].length - 1) {
+                            if (teile[h + 1][b + 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h + 1][b + 1] instanceof Firma) {
+                            if (teile[h + 1][b + 1] instanceof Firma) {
                                 w = w + Math.random() * 1.2;
                             }
                         }
 
                         // \/ [h + 1][b - 1]
-                        if (h < getTeile().length - 1 && b > 0) {
-                            if (getTeile()[h + 1][b - 1] != null) {
+                        if (h < teile.length - 1 && b > 0) {
+                            if (teile[h + 1][b - 1] != null) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h + 1][b - 1] instanceof Firma) {
+                            if (teile[h + 1][b - 1] instanceof Firma) {
                                 w = w + Math.random() * 1.2;
                             }
                         }
@@ -541,76 +541,76 @@ public class Spielsteuerung {
         int y = 0;
         if (!feldVoll) {
             long start = System.nanoTime();
-            for (int h = 0; h < getTeile().length; h++) {
-                for (int b = 0; b < getTeile()[h].length; b++) {
-                    if (getTeile()[h][b] == null) {
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
                         double w = Math.random();
 
                         // \/ [h - 1][b]
                         if (h > 0) {
-                            if (getTeile()[h - 1][b] instanceof Haus) {
+                            if (teile[h - 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h - 1][b] instanceof Park) {
+                            if (teile[h - 1][b] instanceof Park) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h + 1][b]
-                        if (h < getTeile().length - 1) {
-                            if (getTeile()[h + 1][b] instanceof Haus) {
+                        if (h < teile.length - 1) {
+                            if (teile[h + 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h + 1][b] instanceof Park) {
+                            if (teile[h + 1][b] instanceof Park) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h][b - 1]
                         if (b > 0) {
-                            if (getTeile()[h][b - 1] instanceof Haus) {
+                            if (teile[h][b - 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h][b - 1] instanceof Park) {
+                            if (teile[h][b - 1] instanceof Park) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h][b + 1]
-                        if (b < getTeile()[h].length - 1) {
-                            if (getTeile()[h][b + 1] instanceof Haus) {
+                        if (b < teile[h].length - 1) {
+                            if (teile[h][b + 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
                             }
-                            if (getTeile()[h][b + 1] instanceof Park) {
+                            if (teile[h][b + 1] instanceof Park) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h - 1][b - 1]
                         if (h > 0 && b > 0) {
-                            if (getTeile()[h - 1][b - 1] instanceof Haus) {
+                            if (teile[h - 1][b - 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h - 1][b + 1]
-                        if (h > 0 && b < getTeile()[h].length - 1) {
-                            if (getTeile()[h - 1][b + 1] instanceof Haus) {
+                        if (h > 0 && b < teile[h].length - 1) {
+                            if (teile[h - 1][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h + 1][b + 1]
-                        if (h < getTeile().length - 1 && b < getTeile()[h].length - 1) {
-                            if (getTeile()[h + 1][b + 1] instanceof Haus) {
+                        if (h < teile.length - 1 && b < teile[h].length - 1) {
+                            if (teile[h + 1][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
 
                         // \/ [h + 1][b - 1]
-                        if (h < getTeile().length - 1 && b > 0) {
-                            if (getTeile()[h + 1][b - 1] instanceof Haus) {
+                        if (h < teile.length - 1 && b > 0) {
+                            if (teile[h + 1][b - 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                         }
@@ -738,10 +738,10 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugReparieren() {
-        if (werkstatt >= 0 && getGeld() - reparatur >= maxMinus) {
+        if (werkstatt >= 0 && geld - reparatur >= maxMinus) {
             werkstatt--;
             depot++;
-            geld = getGeld() - reparatur;
+            geld = geld - reparatur;
             return true;
         } else {
             return false;
@@ -781,6 +781,7 @@ public class Spielsteuerung {
      */
     public boolean klick(int x, int y) {
         System.out.println("Klick auf " + x + ", " + y);
+        bahnhoefe[x][y] = new Bahnhof(x, y);
         return true;
     }
 

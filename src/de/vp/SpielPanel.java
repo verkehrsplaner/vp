@@ -24,7 +24,7 @@ public class SpielPanel extends javax.swing.JPanel {
     public SpielPanel(int h, int b, Spielsteuerung s) {
         initComponents();
         strg = s;
-        list = new Listener();
+        list = new Listener(strg);
         this.addMouseListener(list);
         this.addKeyListener(list);
         setSize(b * 30, h * 30);

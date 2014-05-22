@@ -15,6 +15,11 @@ import java.awt.event.MouseEvent;
  * @author Felix
  */
 public class Listener extends MouseAdapter implements KeyListener {
+    Spielsteuerung strg;
+    
+    public Listener(Spielsteuerung s) {
+        strg = s;
+    }
     
     @Override
     public void mousePressed(MouseEvent e) {
@@ -22,6 +27,7 @@ public class Listener extends MouseAdapter implements KeyListener {
         int y = e.getY();
         double f_x = x / 30.0;
         double f_y = y / 30.0;
+        strg.klick((int)Math.round(f_x), (int)Math.round(f_y));
         System.out.println("Klick: " + x + ", " + y + "; Feld: " + Math.round(f_x) + ", " + Math.round(f_y));
     }
     

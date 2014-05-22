@@ -775,9 +775,12 @@ public class Spielsteuerung {
     /**
      * was weiß ich!
      *
+     * @param x
+     * @param y
      * @return
      */
-    public boolean klick() {
+    public boolean klick(int x, int y) {
+        System.out.println("Klick auf " + x + ", " + y);
         return true;
     }
 

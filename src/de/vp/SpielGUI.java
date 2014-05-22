@@ -38,7 +38,7 @@ public class SpielGUI extends javax.swing.JFrame {
         strg.panelStarten(jPanel3);
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
-        final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss"); //Erstellt neuen "Kalender"
+        final SimpleDateFormat format = new SimpleDateFormat("HH:mm"); //Erstellt neuen "Kalender"
         jLabel1.setText(format.format(strg.getTime()));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
@@ -84,10 +84,10 @@ public class SpielGUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new SpielPanel(hoehe, breite, strg);
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        Reparieren = new javax.swing.JButton();
+        Einstellungen = new javax.swing.JButton();
+        Minus = new javax.swing.JButton();
+        Plus = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -135,35 +135,35 @@ public class SpielGUI extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("18:37");
 
-        jButton2.setText("Zug reparieren!");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Reparieren.setText("Zug reparieren!");
+        Reparieren.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ReparierenActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Einstellungen");
-        jButton3.setToolTipText("Sicher dass du diesen Knopf drücken willst?");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Einstellungen.setText("Einstellungen");
+        Einstellungen.setToolTipText("Sicher dass du diesen Knopf drücken willst?");
+        Einstellungen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Einstellungen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EinstellungenActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setText("-");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Minus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Minus.setText("-");
+        Minus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                MinusActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton5.setText("+");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Plus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Plus.setText("+");
+        Plus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                PlusActionPerformed(evt);
             }
         });
 
@@ -192,11 +192,11 @@ public class SpielGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Reparieren, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(Einstellungen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -204,11 +204,11 @@ public class SpielGUI extends javax.swing.JFrame {
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator4)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Minus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(38, 38, 38)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Plus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -231,15 +231,15 @@ public class SpielGUI extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Plus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Minus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(Reparieren)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
@@ -247,40 +247,37 @@ public class SpielGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(Einstellungen)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println("Button 'Zug reparieren' wurde gedrückt!");
-        JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void ReparierenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReparierenActionPerformed
+        strg.zugReparieren();
+    }//GEN-LAST:event_ReparierenActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         System.out.println("Button 'Einstellungen' wurde gedrückt!");
         JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_EinstellungenActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       System.out.println("Button 'Zug entfernen' wurde gedrückt!");
-        JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);  
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void MinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusActionPerformed
+        strg.zugVerschrotten();
+    }//GEN-LAST:event_MinusActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        System.out.println("Button 'Zug hinzufügen' wurde gedrückt!");
-        JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlusActionPerformed
+        strg.zugKaufen();
+    }//GEN-LAST:event_PlusActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton Einstellungen;
+    private javax.swing.JButton Minus;
+    private javax.swing.JButton Plus;
+    private javax.swing.JButton Reparieren;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

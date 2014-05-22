@@ -6,10 +6,12 @@
  */
 package de.vp;
 
+import java.awt.Frame;
 import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,7 +40,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
         final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss"); //Erstellt neuen "Kalender"
         jLabel1.setText(format.format(strg.getTime()));
-
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         
         //Timer für Uhrzeit

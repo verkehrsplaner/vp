@@ -49,9 +49,9 @@ public class Start extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("10");
+        jTextField1.setText("50");
 
-        jTextField2.setText("10");
+        jTextField2.setText("50");
 
         jLabel1.setText("Höhe:");
 
@@ -63,18 +63,17 @@ public class Start extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(194, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,9 +105,14 @@ public class Start extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-        JFrame f = new SpielGUI(Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()));
-        f.setVisible(true);
-        dispose();
+            if (Integer.parseInt(jTextField1.getText()) < 10 && Integer.parseInt(jTextField1.getText()) < 10) {
+                System.out.println("Zahl kleiner als 10");
+                JOptionPane.showMessageDialog(null, "Das Feld muss mindestens 10x10 Felder groß sein!", "Fehler", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JFrame f = new SpielGUI(Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()));
+                f.setVisible(true);
+                dispose();
+            }
         } catch (NumberFormatException ex) {
             System.out.println("Keine Zahl!");
             JOptionPane.showMessageDialog(null, "Bitte eine gültige Zahl eingeben!", "Fehler", JOptionPane.ERROR_MESSAGE);

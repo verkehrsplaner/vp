@@ -81,20 +81,49 @@ public class Linie {
     /**
      *
      * @param bhf gegebener Bhf wird in bhfListe eingefügt
+     * @param bhfVor hinter diesem Bahnhof wird der neue bhf eingefügt
+     *
      */
-    public void bahnhofHinzufuegen(Bahnhof bhf) {
-        if (bhfListe.length > bhfs + 1) {
-            bhfListe[bhfs + 1] = bhf;
-            bhfs++;
-        } else {
-            //Bei zu kurzer Liste wird diese erweitert
-            Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
-            for (int i = 0; i < bhfListe.length; i++) {
-                bhfHilf[i] = bhfListe[i];
+    public void bahnhofHinzufuegen(Bahnhof bhf, Bahnhof bhfVor) {
+        int stelle = -1;
+        for (int i = 0; i < bhfListe.length; i++) {
+            if (bhfVor.equals(bhfListe[i])) {
+                stelle = i + 1;
             }
-            bhfListe = bhfHilf;
-            bhfListe[bhfs + 1] = bhf;
+        }
+        // \/ Bhf bei [0] eingefügt
+        if (bhfVor == null) {
+            if (bhfListe.length < bhfs + 1) {
+                //Bei zu kurzer Liste wird diese erweitert
+                Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
+                for (int i = 0; i < bhfListe.length; i++) {
+                    bhfHilf[i] = bhfListe[i];
+                }
+
+            }
+            for (int i = bhfListe.length - 1; i < 0 - 1; i--) {
+                bhfListe[i + 1] = bhfListe[i];
+            }
+            bhfListe[0] = bhf;
             bhfs++;
+
+            // \/ bhf an einer anderen Stelle eingefügt
+        } else {
+            if (stelle != -1) {
+                if (bhfListe.length < bhfs + 1) {
+                    //Bei zu kurzer Liste wird diese erweitert
+                    Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
+                    for (int i = 0; i < bhfListe.length; i++) {
+                        bhfHilf[i] = bhfListe[i];
+                    }
+
+                }
+                for (int i = bhfListe.length - 1; i < stelle ; i--) {
+                    bhfListe[i + 1] = bhfListe[i];
+                }
+                bhfListe[stelle] = bhf;
+                bhfs++;
+            }
         }
     }
 
@@ -104,7 +133,17 @@ public class Linie {
      * aus der Liste gelöscht!
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
-        bhfListe[bhfs] = null;
+        int stelle = -1;
+        for (int i = 0; i < bhfListe.length; i++) {
+            if (bhfListe[i].equals(bhf)) {
+                stelle = i;
+            }
+        }
+        if (stelle != -1) {
+        }
+        for (int i = stelle; i < bhfListe.length - 1; i++) {
+            bhfListe[i] = bhfListe[i - 1];
+        }
         bhfs--;
     }
 
@@ -160,4 +199,19 @@ public class Linie {
     public int getZuege() {
         return zuege;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && o.getClass().equals(getClass())) {
+            Linie l = (Linie) o;
+            if (name == l.name) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
 }

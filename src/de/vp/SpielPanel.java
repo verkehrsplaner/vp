@@ -29,6 +29,7 @@ public class SpielPanel extends javax.swing.JPanel {
         this.addMouseListener(list);
         this.addKeyListener(list);
         setSize(b * 30, h * 30);
+        this.setPreferredSize(this.getSize());
     }
 
     @Override

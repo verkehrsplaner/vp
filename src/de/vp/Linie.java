@@ -23,6 +23,10 @@ public class Linie {
     private int zugKapazitaet;
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
+    
+    // ========== Anfang Spielvariablen ==========
+    private final int preisStrecke = 100000;
+    // ========== Ende Spielvariablen ==========
 
     public Linie(String n) {
         zugUnterhaltungsKosten = 1000;

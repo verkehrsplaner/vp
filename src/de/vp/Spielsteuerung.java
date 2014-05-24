@@ -27,9 +27,10 @@ public class Spielsteuerung {
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -10000000;
     private final int preisZug = 1000000;
-    private final int geldZugZurueck = 50000;
-    private final int preisBhf = 100000;
+    private final int geldZugZurueck = 40000;
+    private final int preisBhf = 500000;
     private final int preisLinie = 10000;
+    //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
     private final double hausWrschl = 0.8; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit

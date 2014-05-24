@@ -65,12 +65,12 @@ public class Spielsteuerung {
         testTimer = new TestTimer(this);
         timer.scheduleAtFixedRate(testTimer, 0, 50); //Bau Geschwindigkeit
     }
-    
+
     public void panelStarten(JPanel panel) {
         guiTimer = new GUITimer(panel);
-        timer.scheduleAtFixedRate(guiTimer, 0, 40);      
+        timer.scheduleAtFixedRate(guiTimer, 0, 40);
     }
-    
+
     /**
      *
      * @return Die aktuelle In-Game-Zeit als Date-Objekt
@@ -265,6 +265,22 @@ public class Spielsteuerung {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
                         double w = 50 * Math.random();
+
+                        // \/ Is denn auch ein Bahnhöfchen in der Nähe?
+                        if (h < teile.length - 1 && b < teile[h].length - 1) {
+                            if (bahnhoefe[h][b] != null) {
+                                w = w + Math.random() / 1.5;
+                            }
+                            if (bahnhoefe[h + 1][b] != null) {
+                                w = w + Math.random() / 1.5;
+                            }
+                            if (bahnhoefe[h][b + 1] != null) {
+                                w = w + Math.random() / 1.5;
+                            }
+                            if (bahnhoefe[h + 1][b + 1] != null) {
+                                w = w + Math.random() / 1.5;
+                            }
+                        }
 
                         // \/ [h - 1][b]
                         if (h > 0) {
@@ -648,8 +664,7 @@ public class Spielsteuerung {
     /**
      *
      * Baut automatisch die "Altstadt" der Karte - Als Ausgangssituation bei
-     * "Spiel starten" für das weitere Spiel
-     * insgesamt 68 Stadtteile
+     * "Spiel starten" für das weitere Spiel insgesamt 68 Stadtteile
      *
      * @return
      */
@@ -657,8 +672,8 @@ public class Spielsteuerung {
         int mh = Math.round(hoehe / 2);
         int mb = Math.round(breite / 2);
         teile[mh][mb] = new Rathaus();
-        teile[mh][mb + 1] = new Park();
-        teile[mh][mb + 2] = new Park();
+        teile[mh + 1][mb] = new Park();
+        teile[mh + 2][mb] = new Park();
         teile[mh + 4][mb - 2] = new Haus();
         teile[mh + 4][mb - 1] = new Haus();
         teile[mh + 4][mb] = new Haus();
@@ -675,7 +690,7 @@ public class Spielsteuerung {
         teile[mh + 2][mb - 3] = new Haus();
         teile[mh + 2][mb - 2] = new Haus();
         teile[mh + 2][mb - 1] = new Haus();
-        teile[mh + 2][mb] = new Haus();
+        teile[mh][mb + 2] = new Haus();
         teile[mh + 2][mb + 1] = new Haus();
         teile[mh + 2][mb + 2] = new Haus();
         teile[mh + 2][mb + 3] = new Haus();
@@ -684,7 +699,7 @@ public class Spielsteuerung {
         teile[mh + 1][mb - 3] = new Haus();
         teile[mh + 1][mb - 2] = new Haus();
         teile[mh + 1][mb - 1] = new Haus();
-        teile[mh + 1][mb] = new Haus();
+        teile[mh][mb + 1] = new Haus();
         teile[mh + 1][mb + 1] = new Haus();
         teile[mh + 1][mb + 2] = new Haus();
         teile[mh + 1][mb + 3] = new Haus();

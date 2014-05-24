@@ -210,9 +210,25 @@ public class Spielsteuerung {
         if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null) {
             bahnhoefe[y][x] = new Bahnhof(x, y);
             geld = geld - preisBhf;
-            
+
             // Häuser zum Bahnhof
-            
+            int minX = x - 3;
+            int minY = y - 3;
+            int maxX = x + 2;
+            int maxY = y + 2;
+            for (int h_y = y - 3; h_y <= y + 2; h_y++) {
+                for (int h_x = x - 3; h_x <= x + 2; h_x++) {
+                    if (!(h_y < 0) && !(h_x < 0) && !(h_y > teile.length - 1) && !(h_x > teile[h_y].length - 1)) {
+                        if (!(h_x == minX && h_y == minY) && !(h_x == maxX && h_y == minY) && !(h_x == minX && h_y == maxY) && !(h_x == maxX && h_y == maxY)) {
+                            if (!hatBahnhof[h_y][h_x] && teile[h_y][h_x] != null) {
+                                hatBahnhof[h_y][h_x] = true;
+                                bahnhoefe[y][x].stadtteilHinzufuegen(teile[h_y][h_x]);
+                            }
+                        }
+                    }
+                }
+            }
+
             return true;
         } else {
             return false;
@@ -760,7 +776,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugReparieren() {
-        if (werkstatt >= 0 && geld - reparatur >= maxMinus) {
+        if (werkstatt > 0 && geld - reparatur >= maxMinus) {
             werkstatt--;
             depot++;
             geld = geld - reparatur;
@@ -827,7 +843,7 @@ public class Spielsteuerung {
         nextAction = a;
         return true;
     }
-    
+
     /**
      * @return the teile
      */
@@ -841,10 +857,11 @@ public class Spielsteuerung {
     public Bahnhof[][] getBahnhoefe() {
         return bahnhoefe;
     }
-    
+
     public boolean[][] getHatBahnhof() {
         return hatBahnhof;
     }
+
     /**
      * @return the geld
      */

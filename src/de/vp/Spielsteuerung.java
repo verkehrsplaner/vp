@@ -416,6 +416,9 @@ public class Spielsteuerung {
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
+                
+                // TODO: Bahnhof suchen
+                
                 System.out.println("+++ Haus gebaut! +++");
                 return true;
             } else {
@@ -556,6 +559,9 @@ public class Spielsteuerung {
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Firma();
+                
+                // TODO: Bahnhof suchen
+                
                 System.out.println("+++ Firma gebaut! +++");
                 return true;
             } else {
@@ -673,6 +679,9 @@ public class Spielsteuerung {
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Park();
+                
+                // TODO: Bahnhof suchen
+                
                 System.out.println("+++ Park gebaut! +++");
                 return true;
             } else {

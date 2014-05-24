@@ -23,6 +23,7 @@ public class Listener extends MouseAdapter implements KeyListener {
     
     @Override
     public void mousePressed(MouseEvent e) {
+        e.getComponent().requestFocusInWindow();
         int x = e.getX();
         int y = e.getY();
         double f_x = x / 30.0;

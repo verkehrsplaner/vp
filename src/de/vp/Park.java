@@ -25,7 +25,7 @@ public class Park extends Stadtteil {
     
      @Override
     public Color getDunkleFarbe() {
-        return new Color(0, 145, 4);
+        return new Color(13, 88, 17);
     }
 
 }

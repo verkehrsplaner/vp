@@ -23,4 +23,8 @@ public class Firma extends Stadtteil {
         return Color.GRAY;
     }
 
+    @Override
+    public Color getDunkleFarbe() {
+        return Color.DARK_GRAY;
+    }
 }

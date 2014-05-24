@@ -16,4 +16,5 @@ public abstract class Stadtteil {
     public abstract int getPersonen();
 
     public abstract Color getFarbe();
+    public abstract Color getDunkleFarbe();
 }

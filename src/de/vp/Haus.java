@@ -23,4 +23,8 @@ public class Haus extends Stadtteil {
         return Color.RED;
     }
 
+    @Override
+    public Color getDunkleFarbe() {
+        return new Color(175, 0, 0);
+    }
 }

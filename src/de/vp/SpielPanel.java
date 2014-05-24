@@ -38,11 +38,15 @@ public class SpielPanel extends javax.swing.JPanel {
 
         Stadtteil[][] teile = strg.getTeile();
         Bahnhof[][] bhf = strg.getBahnhoefe();
+        boolean[][] hatBhf = strg.getHatBahnhof();
 
         for (int y = 0; y < teile.length; y++) {
             for (int x = 0; x < teile[y].length; x++) {
                 if (teile[y][x] != null) {
                     g2d.setColor(teile[y][x].getFarbe());
+                    if (!hatBhf[y][x]) {
+                        g2d.setColor(teile[y][x].getDunkleFarbe());
+                    }
                     g2d.setStroke(new BasicStroke(1));
                     g2d.fillRect(x * 30, y * 30, 30, 30);
                     g2d.setColor(Color.YELLOW);

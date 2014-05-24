@@ -841,7 +841,10 @@ public class Spielsteuerung {
     public Bahnhof[][] getBahnhoefe() {
         return bahnhoefe;
     }
-
+    
+    public boolean[][] getHatBahnhof() {
+        return hatBahnhof;
+    }
     /**
      * @return the geld
      */

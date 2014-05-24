@@ -216,8 +216,8 @@ public class Spielsteuerung {
             int minY = y - 3;
             int maxX = x + 2;
             int maxY = y + 2;
-            for (int h_y = y - 3; h_y <= y + 2; h_y++) {
-                for (int h_x = x - 3; h_x <= x + 2; h_x++) {
+            for (int h_y = minY; h_y <= maxY; h_y++) {
+                for (int h_x = minX; h_x <= maxX; h_x++) {
                     if (!(h_y < 0) && !(h_x < 0) && !(h_y > teile.length - 1) && !(h_x > teile[h_y].length - 1)) {
                         if (!(h_x == minX && h_y == minY) && !(h_x == maxX && h_y == minY) && !(h_x == minX && h_y == maxY) && !(h_x == maxX && h_y == maxY)) {
                             if (!hatBahnhof[h_y][h_x] && teile[h_y][h_x] != null) {
@@ -416,9 +416,27 @@ public class Spielsteuerung {
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
-                
-                // TODO: Bahnhof suchen
-                
+
+                // Bahnhof suchen
+                int minX = x - 2;
+                int minY = y - 2;
+                int maxX = x + 3;
+                int maxY = y + 3;
+                boolean bhfGefunden = false;
+                for (int h_y = minY; h_y <= maxY && !bhfGefunden; h_y++) {
+                    for (int h_x = minX; h_x <= maxX && !bhfGefunden; h_x++) {
+                        if (!(h_y < 0) && !(h_x < 0) && !(h_y > bahnhoefe.length - 1) && !(h_x > bahnhoefe[h_y].length - 1)) {
+                            if (!(h_x == minX && h_y == minY) && !(h_x == maxX && h_y == minY) && !(h_x == minX && h_y == maxY) && !(h_x == maxX && h_y == maxY)) {
+                                if (bahnhoefe[h_y][h_x] != null) {
+                                    bhfGefunden = true;
+                                    hatBahnhof[y][x] = true;
+                                    bahnhoefe[h_y][h_x].stadtteilHinzufuegen(teile[y][x]);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 System.out.println("+++ Haus gebaut! +++");
                 return true;
             } else {
@@ -559,8 +577,26 @@ public class Spielsteuerung {
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Firma();
-                
-                // TODO: Bahnhof suchen
+
+                // Bahnhof suchen
+                int minX = x - 2;
+                int minY = y - 2;
+                int maxX = x + 3;
+                int maxY = y + 3;
+                boolean bhfGefunden = false;
+                for (int h_y = minY; h_y <= maxY && !bhfGefunden; h_y++) {
+                    for (int h_x = minX; h_x <= maxX && !bhfGefunden; h_x++) {
+                        if (!(h_y < 0) && !(h_x < 0) && !(h_y > bahnhoefe.length - 1) && !(h_x > bahnhoefe[h_y].length - 1)) {
+                            if (!(h_x == minX && h_y == minY) && !(h_x == maxX && h_y == minY) && !(h_x == minX && h_y == maxY) && !(h_x == maxX && h_y == maxY)) {
+                                if (bahnhoefe[h_y][h_x] != null) {
+                                    bhfGefunden = true;
+                                    hatBahnhof[y][x] = true;
+                                    bahnhoefe[h_y][h_x].stadtteilHinzufuegen(teile[y][x]);
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 System.out.println("+++ Firma gebaut! +++");
                 return true;
@@ -679,8 +715,26 @@ public class Spielsteuerung {
             System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Park();
-                
-                // TODO: Bahnhof suchen
+
+                // Bahnhof suchen
+                int minX = x - 2;
+                int minY = y - 2;
+                int maxX = x + 3;
+                int maxY = y + 3;
+                boolean bhfGefunden = false;
+                for (int h_y = minY; h_y <= maxY && !bhfGefunden; h_y++) {
+                    for (int h_x = minX; h_x <= maxX && !bhfGefunden; h_x++) {
+                        if (!(h_y < 0) && !(h_x < 0) && !(h_y > bahnhoefe.length - 1) && !(h_x > bahnhoefe[h_y].length - 1)) {
+                            if (!(h_x == minX && h_y == minY) && !(h_x == maxX && h_y == minY) && !(h_x == minX && h_y == maxY) && !(h_x == maxX && h_y == maxY)) {
+                                if (bahnhoefe[h_y][h_x] != null) {
+                                    bhfGefunden = true;
+                                    hatBahnhof[y][x] = true;
+                                    bahnhoefe[h_y][h_x].stadtteilHinzufuegen(teile[y][x]);
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 System.out.println("+++ Park gebaut! +++");
                 return true;

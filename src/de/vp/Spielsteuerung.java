@@ -203,14 +203,24 @@ public class Spielsteuerung {
      * @param y
      * @return
      */
-    private boolean neuerBahnhof(int x, int y) {
-        if (geld - preisBhf >= maxMinus && bahnhoefe[x][y] == null) {
-            bahnhoefe[x][y] = new Bahnhof(x, y);
+    private boolean neuerBahnhof(int h, int b) {
+        if (geld - preisBhf >= maxMinus && bahnhoefe[h][b] == null) {
+            bahnhoefe[h][b] = new Bahnhof(h, b);
             geld = geld - preisBhf;
+            if (hatBahnhof[h][b] == false) {
+                bahnhoefe[h][b].stadtteilHinzufuegen(teile[h][b]);
+            }
+            if (h - 1 > 0) {
+                if (hatBahnhof[h - 1][b] == false) {
+                    bahnhoefe[h - 1][b].stadtteilHinzufuegen(teile[h - 1][b]);
+                }
+            }
+
             return true;
         } else {
             return false;
         }
+
     }
 
     /**

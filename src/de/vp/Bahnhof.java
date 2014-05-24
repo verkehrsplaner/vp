@@ -15,23 +15,25 @@ public class Bahnhof {
     private int X;
     private int Y;
     private Stadtteil[] teile;
+    private int stadtteile;
     private int personen;
     private String name;
-    private String[] bhfNamen = {"Marienplatz", "Blumenstraße", "Graf Maxi von Krause Allee", 
-                              "Nicolaiplatz", "Großer Imperator Felix Maurer Platz", "Christine Kaps Alle",
-                              "Felix der Hecker Platz", "Hofstraße", "Sonnenstraße" ,"Kirchplatz",
-                              "Javagasse", "Berglerweg", "Stiftstraße", "Unterberg", "Hauptstraße",
-                              "Feldweg", "Serviettenmarkt", "Kalter Bach", "Bürgermeister Horst Bichler Straße",
-                              "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
-                              "Platz des Bieres", "Alte Heide", "Baum" , "Geldweg", "Berg", "Hausen",
-                              "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
-                              "Sickergraben", "Turmstraße", };
+    private Spielsteuerung strg;
+    private String[] bhfNamen = {"Marienplatz", "Blumenstraße", "Graf Maxi von Krause Allee",
+        "Nicolaiplatz", "Großer Imperator Felix Maurer Platz", "Christine Kaps Alle",
+        "Felix der Hecker Platz", "Hofstraße", "Sonnenstraße", "Kirchplatz",
+        "Javagasse", "Berglerweg", "Stiftstraße", "Unterberg", "Hauptstraße",
+        "Feldweg", "Serviettenmarkt", "Kalter Bach", "Bürgermeister Horst Bichler Straße",
+        "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
+        "Platz des Bieres", "Alte Heide", "Baum", "Geldweg", "Berg", "Hausen",
+        "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
+        "Sickergraben", "Turmstraße", "Schneckenbahn", "Rosengarten", "Humboldt-Platz",};
 
     public Bahnhof(int x, int y) {
         X = x;
         Y = y;
         fahrtKosten = 3;
-        teile = new Stadtteil[100];
+        teile = new Stadtteil[50];
         name = "Test";
     }
 
@@ -86,6 +88,23 @@ public class Bahnhof {
 
     public int einsteigen() {
         return 0;
+    }
+
+    /**
+     *
+     * @param s Stadtteil wird in die Liste des Bahnhofs hinzugefügt
+     */
+    public void stadtteilHinzufuegen(Stadtteil s) {
+        if (stadtteile < teile.length) {
+            teile[stadtteile + 1] = s;
+        } else {
+            Stadtteil[] hilf = new Stadtteil[teile.length + 10];
+            for (int i = 0; i < teile.length; i++) {
+                hilf[i] = teile[i];
+            }
+            teile = hilf;
+            teile[stadtteile + 1] = s;
+        }
     }
 
     @Override

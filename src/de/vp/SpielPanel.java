@@ -25,6 +25,7 @@ public class SpielPanel extends javax.swing.JPanel {
         initComponents();
         strg = s;
         list = new Listener(strg);
+        this.setFocusable(true);
         this.addMouseListener(list);
         this.addKeyListener(list);
         setSize(b * 30, h * 30);

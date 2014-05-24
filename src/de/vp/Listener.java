@@ -38,7 +38,11 @@ public class Listener extends MouseAdapter implements KeyListener {
     
     @Override
     public void keyPressed(KeyEvent e) {
-        
+        System.out.println("Taste gedrückt!");
+        if (e.getKeyCode() == KeyEvent.VK_B) {
+            System.out.println("B gedrückt");
+            strg.setNextAction("bhf");
+        }
     }
     
     @Override

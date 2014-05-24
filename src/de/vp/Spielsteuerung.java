@@ -23,6 +23,7 @@ public class Spielsteuerung {
     private GUITimer guiTimer;
     private StrgTimer strgTimer;
     private boolean feldVoll; //Für Stadtteile bauen
+    private String nextAction;
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -10000000;
@@ -44,6 +45,7 @@ public class Spielsteuerung {
         werkstatt = 0;
         anzLinien = 0;
         feldVoll = false;
+        nextAction = "";
         geld = 100000000; // 100 Mio.
         timer = new Timer();
         strgTimer = new StrgTimer(this);
@@ -204,19 +206,13 @@ public class Spielsteuerung {
      * @param y
      * @return
      */
-    private boolean neuerBahnhof(int h, int b) {
-        if (geld - preisBhf >= maxMinus && bahnhoefe[h][b] == null) {
-            bahnhoefe[h][b] = new Bahnhof(h, b);
+    private boolean neuerBahnhof(int x, int y) {
+        if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null) {
+            bahnhoefe[y][x] = new Bahnhof(x, y);
             geld = geld - preisBhf;
-            if (hatBahnhof[h][b] == false) {
-                bahnhoefe[h][b].stadtteilHinzufuegen(teile[h][b]);
-            }
-            if (h - 1 > 0) {
-                if (hatBahnhof[h - 1][b] == false) {
-                    bahnhoefe[h - 1][b].stadtteilHinzufuegen(teile[h - 1][b]);
-                }
-            }
-
+            
+            // Häuser zum Bahnhof
+            
             return true;
         } else {
             return false;
@@ -806,8 +802,14 @@ public class Spielsteuerung {
      * @return
      */
     public boolean klick(int x, int y) {
-        System.out.println("Klick auf " + x + ", " + y);
-        bahnhoefe[y][x] = new Bahnhof(x, y);
+        switch (nextAction) {
+            case "bhf":
+                neuerBahnhof(x, y);
+                nextAction = "";
+                break;
+            default:
+                break;
+        }
         return true;
     }
 
@@ -821,6 +823,11 @@ public class Spielsteuerung {
         return k;
     }
 
+    public boolean setNextAction(String a) {
+        nextAction = a;
+        return true;
+    }
+    
     /**
      * @return the teile
      */

@@ -53,7 +53,7 @@ public class SpielGUI extends javax.swing.JFrame {
                 jLabel5.setText(Integer.toString(strg.getDepot()));
                 
             }
-        }, 0, 1000);
+        }, 0, 100);
         
         //Seticon entweder
 //        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));

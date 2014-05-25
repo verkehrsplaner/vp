@@ -692,7 +692,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h - 1][b - 1] instanceof Park) {
-                                w = w + Math.random();
+                                w = w + Math.random() / 1.2;
                             }
                         }
 
@@ -702,7 +702,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h - 1][b + 1] instanceof Park) {
-                                w = w + Math.random();
+                                w = w + Math.random() / 1.2;
                             }
                         }
 
@@ -712,7 +712,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h + 1][b + 1] instanceof Park) {
-                                w = w + Math.random();
+                                w = w + Math.random() / 1.2;
                             }
                         }
 
@@ -722,7 +722,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h + 1][b - 1] instanceof Park) {
-                                w = w + Math.random();
+                                w = w + Math.random() / 1.2;
                             }
                         }
 

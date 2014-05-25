@@ -7,17 +7,10 @@ package de.vp;
 
 /**
  *
- * @author Felix
+ * @author Maxi
  */
 public class TickerPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TickerPanel
-     */
-    public TickerPanel() {
-        initComponents();
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always

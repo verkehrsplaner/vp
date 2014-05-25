@@ -310,7 +310,7 @@ public class Spielsteuerung {
                         // \/ [h - 1][b]
                         if (h > 0) {
                             if (teile[h - 1][b] != null) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 2.5;
                             }
                             if (teile[h - 1][b] instanceof Haus) {
                                 w = w + Math.random();
@@ -318,12 +318,18 @@ public class Spielsteuerung {
                             if (teile[h - 1][b] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
+                            if (teile[h - 1][b] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h - 1][b] instanceof Firma && teile[h - 1][b - 1] instanceof Firma && teile[h - 1][b + 1] instanceof Firma) {
+                                w = w + Math.random() * 3;
+                            }
                         }
 
                         // \/ [h + 1][b]
                         if (h < teile.length - 1) {
                             if (teile[h + 1][b] != null) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 2.5;
                             }
                             if (teile[h + 1][b] instanceof Haus) {
                                 w = w + Math.random();
@@ -331,12 +337,18 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
+                            if (teile[h + 1][b] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h + 1][b] instanceof Firma && teile[h + 1][b - 1] instanceof Firma && teile[h + 1][b + 1] instanceof Firma) {
+                                w = w + Math.random() * 3;
+                            }
                         }
 
                         // \/ [h][b - 1]
                         if (b > 0) {
                             if (teile[h][b - 1] != null) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 2.5;
                             }
                             if (teile[h][b - 1] instanceof Haus) {
                                 w = w + Math.random();
@@ -344,18 +356,30 @@ public class Spielsteuerung {
                             if (teile[h][b - 1] instanceof Park) {
                                 w = w + Math.random() / 2;
                             }
+                            if (teile[h][b - 1] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b - 1] instanceof Firma && teile[h + 1][b - 1] instanceof Firma && teile[h - 1][b - 1] instanceof Firma) {
+                                w = w + Math.random() * 3;
+                            }
                         }
 
                         // \/ [h][b + 1]
                         if (b < teile[h].length - 1) {
                             if (teile[h][b + 1] != null) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 2.5;
                             }
                             if (teile[h][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
                             if (teile[h][b + 1] instanceof Park) {
                                 w = w + Math.random() / 2;
+                            }
+                            if (teile[h][b + 1] instanceof Firma) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h][b + 1] instanceof Firma && teile[h + 1][b + 1] instanceof Firma && teile[h - 1][b + 1] instanceof Firma) {
+                                w = w + Math.random() * 3;
                             }
                         }
 
@@ -474,7 +498,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h - 1][b] instanceof Firma) {
-                                w = w + Math.random() * 1.2;
+                                w = w + Math.random() * 2;
                             }
                             if (teile[h - 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
@@ -487,7 +511,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h + 1][b] instanceof Firma) {
-                                w = w + Math.random() * 1.2;
+                                w = w + Math.random() * 2;
                             }
                             if (teile[h + 1][b] instanceof Haus) {
                                 w = w + Math.random() / 2;
@@ -500,7 +524,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h][b - 1] instanceof Firma) {
-                                w = w + Math.random() * 1.2;
+                                w = w + Math.random() * 2;
                             }
                             if (teile[h][b - 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
@@ -513,7 +537,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h][b + 1] instanceof Firma) {
-                                w = w + Math.random() * 1.2;
+                                w = w + Math.random() * 2;
                             }
                             if (teile[h][b + 1] instanceof Haus) {
                                 w = w + Math.random() / 2;
@@ -599,7 +623,7 @@ public class Spielsteuerung {
                         }
                     }
                 }
-                
+
                 System.out.println("+++ Firma gebaut! +++");
                 return true;
             } else {
@@ -636,7 +660,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h - 1][b] instanceof Park) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 2;
                             }
                         }
 
@@ -646,7 +670,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h + 1][b] instanceof Park) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 2;
                             }
                         }
 
@@ -656,7 +680,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h][b - 1] instanceof Park) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 2;
                             }
                         }
 
@@ -666,7 +690,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h][b + 1] instanceof Park) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 2;
                             }
                         }
 
@@ -737,7 +761,7 @@ public class Spielsteuerung {
                         }
                     }
                 }
-                
+
                 System.out.println("+++ Park gebaut! +++");
                 return true;
             } else {
@@ -841,7 +865,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugReparieren() {
-        if (werkstatt > 0 && geld - reparatur >= maxMinus) {
+        if (getWerkstatt() > 0 && geld - reparatur >= maxMinus) {
             werkstatt--;
             depot++;
             geld = geld - reparatur;
@@ -856,24 +880,24 @@ public class Spielsteuerung {
      */
     private int gesamtKosten() {
         int kosten = 0;
-        
+
         // \/ alle unangebundenen Stadtteile
-        for(int h=0; h < hatBahnhof.length; h++) {
-            for(int b=0; b < hatBahnhof[h].length; b++) {
-                if(teile[h][b] != null && hatBahnhof[h][b] == false) {
+        for (int h = 0; h < hatBahnhof.length; h++) {
+            for (int b = 0; b < hatBahnhof[h].length; b++) {
+                if (teile[h][b] != null && hatBahnhof[h][b] == false) {
                     kosten = kosten + beschwerde;
                 }
             }
         }
-        
+
         // \/ alle Linien
-        for(int i=0; i < anzLinien; i++) {
+        for (int i = 0; i < anzLinien; i++) {
             kosten = kosten + linien[i].kosten();
         }
-        
+
         // \/ das was immer anfällt
         kosten = kosten + betriebskosten;
-        
+
         return kosten;
 
     }
@@ -883,7 +907,7 @@ public class Spielsteuerung {
      */
     private int gesamtGewinn() {
         int gewinn = 0 - gesamtKosten();
-        for(int i=0; i < anzLinien; i++) {
+        for (int i = 0; i < anzLinien; i++) {
             gewinn = gewinn + linien[i].gewinn();
         }
         return gewinn; //genau!
@@ -963,6 +987,13 @@ public class Spielsteuerung {
      */
     public int getDepot() {
         return depot;
+    }
+
+    /**
+     * @return the werkstatt
+     */
+    public int getWerkstatt() {
+        return werkstatt;
     }
 
 }

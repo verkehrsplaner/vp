@@ -63,7 +63,7 @@ public class SpielGUI extends javax.swing.JFrame {
         setIconImage(icon.getImage());
         
         
-        
+
          
 
     /**

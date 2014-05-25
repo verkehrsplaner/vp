@@ -11,15 +11,17 @@ import java.awt.Graphics2D;
  */
 public class SpielPanel extends javax.swing.JPanel {
 
+
+
     private Spielsteuerung strg;
     Listener list;
 
     /**
      * Creates new form SpielPanel
      *
-     * @param h
-     * @param b
-     * @param s
+     * @param h Höhe
+     * @param b Breite
+     * @param s Spielsteuerung
      */
     public SpielPanel(int h, int b, Spielsteuerung s) {
         initComponents();
@@ -36,6 +38,12 @@ public class SpielPanel extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
+        //Beiger Hintergrund
+        g2d.setColor(new Color(245, 245, 220)); 
+        g2d.fillRect(0,0, 10000, 10000);
+        
+        
+        //Häuser malen
         Stadtteil[][] teile = strg.getTeile();
         Bahnhof[][] bhf = strg.getBahnhoefe();
         boolean[][] hatBhf = strg.getHatBahnhof();
@@ -57,6 +65,8 @@ public class SpielPanel extends javax.swing.JPanel {
             }
 
         }
+        
+        //Bahnhöfe malen
         for (int y = 0; y < bhf.length; y++) {
             for (int x = 0; x < bhf[y].length; x++) {
                 if (bhf[y][x] != null) {

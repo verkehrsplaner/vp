@@ -37,7 +37,7 @@ public class SpielPanel extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         //Beiger Hintergrund
-        g2d.setColor(new Color(217, 168, 143));
+        g2d.setColor(new Color(242, 226, 104));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         

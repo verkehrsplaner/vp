@@ -41,7 +41,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
         final SimpleDateFormat formatDatum = new SimpleDateFormat("HH:mm"); // Erstellt neuen "Kalender"
-        jLabel1.setText(formatDatum.format(strg.getTime()));
+        uhrzeitLabel.setText(formatDatum.format(strg.getTime()));
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen
         final NumberFormat formatGeld = DecimalFormat.getCurrencyInstance(Locale.GERMANY);
         formatGeld.setCurrency(Currency.getInstance("EUR"));
@@ -52,9 +52,9 @@ public class SpielGUI extends javax.swing.JFrame {
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                jLabel1.setText(formatDatum.format(strg.getTime()));
-                jLabel6.setText(formatGeld.format(strg.getGeld()));
-                jLabel5.setText(Integer.toString(strg.getDepot()));
+                uhrzeitLabel.setText(formatDatum.format(strg.getTime()));
+                geldLabel.setText(formatGeld.format(strg.getGeld()));
+                anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
 
             }
         }, 0, 1000);
@@ -82,20 +82,25 @@ public class SpielGUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new SpielPanel(hoehe, breite, strg);
-        jLabel1 = new javax.swing.JLabel();
-        Reparieren = new javax.swing.JButton();
         Einstellungen = new javax.swing.JButton();
-        Minus = new javax.swing.JButton();
-        Plus = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        uhrzeitLabel = new javax.swing.JLabel();
+        geldLabel = new javax.swing.JLabel();
+        depotnameLabel = new javax.swing.JLabel();
+        anzahldepotLabel = new javax.swing.JLabel();
+        minusButton = new javax.swing.JButton();
+        plusButton = new javax.swing.JButton();
+        werkstattNameLabel = new javax.swing.JLabel();
+        reparierenButton = new javax.swing.JButton();
+        linienNameLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        werkstattAnzahlLabel = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        bahnhofBauenButton = new javax.swing.JButton();
+        linieBauenButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verkehrsplaner");
@@ -125,21 +130,10 @@ public class SpielGUI extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 615, Short.MAX_VALUE)
+            .addGap(0, 678, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(jPanel3);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("18:37");
-
-        Reparieren.setText("Zug reparieren!");
-        Reparieren.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReparierenActionPerformed(evt);
-            }
-        });
 
         Einstellungen.setText("Einstellungen");
         Einstellungen.setToolTipText("Sicher dass du diesen Knopf drücken willst?");
@@ -150,41 +144,135 @@ public class SpielGUI extends javax.swing.JFrame {
             }
         });
 
-        Minus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Minus.setText("-");
-        Minus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MinusActionPerformed(evt);
-            }
-        });
+        uhrzeitLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        uhrzeitLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        uhrzeitLabel.setText("18:37");
 
-        Plus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Plus.setText("+");
-        Plus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlusActionPerformed(evt);
-            }
-        });
+        geldLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        geldLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        geldLabel.setText("100.000.000 €");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Linien");
+        depotnameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        depotnameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        depotnameLabel.setText("Depot");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Werkstatt");
+        anzahldepotLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        anzahldepotLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        anzahldepotLabel.setText("100");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Depot");
+        minusButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        minusButton.setText("-");
+        minusButton.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("100");
+        plusButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        plusButton.setText("+");
+        plusButton.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("100.000.000 €");
+        werkstattNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        werkstattNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        werkstattNameLabel.setText("Werkstatt:");
+
+        reparierenButton.setText("Zug reparieren!");
+
+        linienNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        linienNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        linienNameLabel.setText("Linien");
+
+        werkstattAnzahlLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        werkstattAnzahlLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        werkstattAnzahlLabel.setText("100");
+
+        bahnhofBauenButton.setText("Bahnhof bauen!");
+
+        linieBauenButton.setText("Neue Linie bauen!");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(reparierenButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(uhrzeitLabel))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(geldLabel))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(linienNameLabel))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(plusButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(depotnameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(anzahldepotLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(minusButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(werkstattNameLabel)
+                        .addGap(30, 30, 30)
+                        .addComponent(werkstattAnzahlLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(bahnhofBauenButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(linieBauenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(uhrzeitLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(geldLabel)
+                .addGap(5, 5, 5)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(plusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(minusButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(depotnameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(anzahldepotLabel)
+                                .addGap(19, 19, 19)))
+                        .addGap(5, 5, 5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(werkstattNameLabel)
+                    .addComponent(werkstattAnzahlLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reparierenButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bahnhofBauenButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(linieBauenButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(linienNameLabel)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,58 +282,19 @@ public class SpielGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Reparieren, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(Einstellungen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator4)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Minus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(38, 38, 38)
-                        .addComponent(Plus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addGap(9, 9, 9)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Plus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Minus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jLabel3)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Reparieren)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Einstellungen)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -253,36 +302,20 @@ public class SpielGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ReparierenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReparierenActionPerformed
-        strg.zugReparieren();
-    }//GEN-LAST:event_ReparierenActionPerformed
-
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         System.out.println("Button 'Einstellungen' wurde gedrückt!");
         JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
 
     }//GEN-LAST:event_EinstellungenActionPerformed
 
-    private void MinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusActionPerformed
-        strg.zugVerschrotten();
-    }//GEN-LAST:event_MinusActionPerformed
-
-    private void PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlusActionPerformed
-        strg.zugKaufen();
-    }//GEN-LAST:event_PlusActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Einstellungen;
-    private javax.swing.JButton Minus;
-    private javax.swing.JButton Plus;
-    private javax.swing.JButton Reparieren;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel anzahldepotLabel;
+    private javax.swing.JButton bahnhofBauenButton;
+    private javax.swing.JLabel depotnameLabel;
+    private javax.swing.JLabel geldLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
@@ -291,6 +324,15 @@ public class SpielGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JButton linieBauenButton;
+    private javax.swing.JLabel linienNameLabel;
+    private javax.swing.JButton minusButton;
+    private javax.swing.JButton plusButton;
+    private javax.swing.JButton reparierenButton;
+    private javax.swing.JLabel uhrzeitLabel;
+    private javax.swing.JLabel werkstattAnzahlLabel;
+    private javax.swing.JLabel werkstattNameLabel;
     // End of variables declaration//GEN-END:variables
 
 }

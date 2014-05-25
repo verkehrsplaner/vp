@@ -48,7 +48,7 @@ public class Spielsteuerung {
         anzLinien = 0;
         feldVoll = false;
         nextAction = "";
-        geld = 100000000; // 100 Mio.
+        geld = 0; // man fängt bei 0 an
         timer = new Timer();
         strgTimer = new StrgTimer(this);
         hatBahnhof = new boolean[hoehe][breite];

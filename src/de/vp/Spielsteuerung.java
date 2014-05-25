@@ -294,16 +294,16 @@ public class Spielsteuerung {
                         // \/ Is denn auch ein Bahnhöfchen in der Nähe?
                         if (h < teile.length - 1 && b < teile[h].length - 1) {
                             if (bahnhoefe[h][b] != null) {
-                                w = w + Math.random() / 1.5;
+                                w = w + Math.random() / 1.7;
                             }
                             if (bahnhoefe[h + 1][b] != null) {
-                                w = w + Math.random() / 1.5;
+                                w = w + Math.random() / 1.7;
                             }
                             if (bahnhoefe[h][b + 1] != null) {
-                                w = w + Math.random() / 1.5;
+                                w = w + Math.random() / 1.7;
                             }
                             if (bahnhoefe[h + 1][b + 1] != null) {
-                                w = w + Math.random() / 1.5;
+                                w = w + Math.random() / 1.7;
                             }
                         }
 

@@ -321,7 +321,7 @@ public class Spielsteuerung {
                             if (teile[h - 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            
+
                         }
 
                         // \/ [h + 1][b]
@@ -338,7 +338,7 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            
+
                         }
 
                         // \/ [h][b - 1]
@@ -355,7 +355,7 @@ public class Spielsteuerung {
                             if (teile[h][b - 1] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            
+
                         }
 
                         // \/ [h][b + 1]
@@ -372,7 +372,7 @@ public class Spielsteuerung {
                             if (teile[h][b + 1] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            
+
                         }
 
                         // \/ [h - 1][b - 1]
@@ -662,7 +662,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h + 1][b] instanceof Park) {
-                                w = w + Math.random() * 2;
+                                w = w + Math.random() * 1.8;
                             }
                         }
 
@@ -672,7 +672,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h][b - 1] instanceof Park) {
-                                w = w + Math.random() * 2;
+                                w = w + Math.random() * 1.8;
                             }
                         }
 
@@ -682,13 +682,16 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h][b + 1] instanceof Park) {
-                                w = w + Math.random() * 2;
+                                w = w + Math.random() * 1.8;
                             }
                         }
 
                         // \/ [h - 1][b - 1]
                         if (h > 0 && b > 0) {
                             if (teile[h - 1][b - 1] instanceof Haus) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h - 1][b - 1] instanceof Park) {
                                 w = w + Math.random();
                             }
                         }
@@ -698,6 +701,9 @@ public class Spielsteuerung {
                             if (teile[h - 1][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
+                            if (teile[h - 1][b + 1] instanceof Park) {
+                                w = w + Math.random();
+                            }
                         }
 
                         // \/ [h + 1][b + 1]
@@ -705,11 +711,17 @@ public class Spielsteuerung {
                             if (teile[h + 1][b + 1] instanceof Haus) {
                                 w = w + Math.random();
                             }
+                            if (teile[h + 1][b + 1] instanceof Park) {
+                                w = w + Math.random();
+                            }
                         }
 
                         // \/ [h + 1][b - 1]
                         if (h < teile.length - 1 && b > 0) {
                             if (teile[h + 1][b - 1] instanceof Haus) {
+                                w = w + Math.random();
+                            }
+                            if (teile[h + 1][b - 1] instanceof Park) {
                                 w = w + Math.random();
                             }
                         }

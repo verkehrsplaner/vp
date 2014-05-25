@@ -34,6 +34,7 @@ public class Spielsteuerung {
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
     private final int beschwerde = 100; //Kosten wenn ein Stadtteil nicht angebunden ist
+    private final int betriebskosten = 1000;
     private final double hausWrschl = 0.8; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
     // ========== Ende Spielvariablen ==========
@@ -870,6 +871,9 @@ public class Spielsteuerung {
             kosten = kosten + linien[i].kosten();
         }
         
+        // \/ das was immer anfällt
+        kosten = kosten + betriebskosten;
+        
         return kosten;
 
     }
@@ -878,7 +882,7 @@ public class Spielsteuerung {
      * berechnet den Gesamten Gewinn
      */
     private int gesamtGewinn() {
-        int gewinn = 0;
+        int gewinn = 0 - gesamtKosten();
         for(int i=0; i < anzLinien; i++) {
             gewinn = gewinn + linien[i].gewinn();
         }

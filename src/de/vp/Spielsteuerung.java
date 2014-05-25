@@ -157,7 +157,7 @@ public class Spielsteuerung {
      */
     public boolean neueLinie(String name) {
         if (geld - preisLinie >= maxMinus) {
-            if (linien.length < anzLinien + 1) {
+            if (linien.length - 1 < anzLinien + 1) {
                 Linie[] hilf = new Linie[anzLinien + 10];
                 for (int i = 0; i > anzLinien; i++) {
                     hilf[i] = linien[i];
@@ -214,10 +214,10 @@ public class Spielsteuerung {
             geld = geld - preisBhf;
 
             // Häuser zum Bahnhof
-            int minX = x - 3;
-            int minY = y - 3;
-            int maxX = x + 2;
-            int maxY = y + 2;
+            int minX = x - 4;
+            int minY = y - 4;
+            int maxX = x + 3;
+            int maxY = y + 3;
             for (int h_y = minY; h_y <= maxY; h_y++) {
                 for (int h_x = minX; h_x <= maxX; h_x++) {
                     if (!(h_y < 0) && !(h_x < 0) && !(h_y > teile.length - 1) && !(h_x > teile[h_y].length - 1)) {
@@ -420,10 +420,10 @@ public class Spielsteuerung {
                 teile[y][x] = new Haus();
 
                 // Bahnhof suchen
-                int minX = x - 2;
-                int minY = y - 2;
-                int maxX = x + 3;
-                int maxY = y + 3;
+                int minX = x - 3;
+                int minY = y - 3;
+                int maxX = x + 4;
+                int maxY = y + 4;
                 boolean bhfGefunden = false;
                 for (int h_y = minY; h_y <= maxY && !bhfGefunden; h_y++) {
                     for (int h_x = minX; h_x <= maxX && !bhfGefunden; h_x++) {
@@ -581,10 +581,10 @@ public class Spielsteuerung {
                 teile[y][x] = new Firma();
 
                 // Bahnhof suchen
-                int minX = x - 2;
-                int minY = y - 2;
-                int maxX = x + 3;
-                int maxY = y + 3;
+                int minX = x - 3;
+                int minY = y - 3;
+                int maxX = x + 4;
+                int maxY = y + 4;
                 boolean bhfGefunden = false;
                 for (int h_y = minY; h_y <= maxY && !bhfGefunden; h_y++) {
                     for (int h_x = minX; h_x <= maxX && !bhfGefunden; h_x++) {
@@ -719,10 +719,10 @@ public class Spielsteuerung {
                 teile[y][x] = new Park();
 
                 // Bahnhof suchen
-                int minX = x - 2;
-                int minY = y - 2;
-                int maxX = x + 3;
-                int maxY = y + 3;
+                int minX = x - 3;
+                int minY = y - 3;
+                int maxX = x + 4;
+                int maxY = y + 4;
                 boolean bhfGefunden = false;
                 for (int h_y = minY; h_y <= maxY && !bhfGefunden; h_y++) {
                     for (int h_x = minX; h_x <= maxX && !bhfGefunden; h_x++) {

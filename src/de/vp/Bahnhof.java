@@ -33,7 +33,7 @@ public class Bahnhof {
         X = x;
         Y = y;
         fahrtKosten = 3;
-        teile = new Stadtteil[35];
+        teile = new Stadtteil[30];
         name = bhfNamen[(int) Math.round(Math.random() * (bhfNamen.length - 1))];
     }
 
@@ -95,7 +95,7 @@ public class Bahnhof {
      * @param s Stadtteil wird in die Liste des Bahnhofs hinzugefügt
      */
     public void stadtteilHinzufuegen(Stadtteil s) {
-        if (stadtteile + 1 > teile.length) {
+        if (stadtteile + 1 > teile.length - 1) {
             Stadtteil[] hilf = new Stadtteil[teile.length + 10];
             for (int i = 0; i < teile.length; i++) {
                 hilf[i] = teile[i];

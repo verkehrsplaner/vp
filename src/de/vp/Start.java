@@ -105,7 +105,7 @@ public class Start extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            if (Integer.parseInt(jTextField1.getText()) < 10 && Integer.parseInt(jTextField1.getText()) < 10) {
+            if (Integer.parseInt(jTextField1.getText()) < 50 && Integer.parseInt(jTextField1.getText()) < 50) {
                 System.out.println("Zahl kleiner als 10");
                 JOptionPane.showMessageDialog(null, "Das Feld muss mindestens 10x10 Felder groß sein!", "Fehler", JOptionPane.ERROR_MESSAGE);
             } else {

@@ -882,7 +882,7 @@ public class Spielsteuerung {
         for(int i=0; i < anzLinien; i++) {
             gewinn = gewinn + linien[i].gewinn();
         }
-        return gewinn;
+        return gewinn; //genau!
     }
 
     /**

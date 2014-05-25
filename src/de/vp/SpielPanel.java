@@ -40,7 +40,7 @@ public class SpielPanel extends javax.swing.JPanel {
 
         //Beiger Hintergrund
         g2d.setColor(new Color(245, 245, 220)); 
-        g2d.fillRect(0,0, 10000, 10000);
+        g2d.fillRect(0,0, this.getWidth(), this.getHeight());
         
         
         //Häuser malen

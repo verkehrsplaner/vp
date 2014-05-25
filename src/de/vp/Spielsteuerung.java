@@ -33,6 +33,7 @@ public class Spielsteuerung {
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
+    private final int beschwerde = 100; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final double hausWrschl = 0.8; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
     // ========== Ende Spielvariablen ==========
@@ -852,7 +853,17 @@ public class Spielsteuerung {
     /**
      * berechnet alle Kosten, die durch Bahnhöfe, Züge, etc anfallen.
      */
-    private void gesamtKosten() {
+    private int gesamtKosten() {
+        int kosten = 0;
+        // alle unangebundenen Stadtteile
+        for(int h=0; h < hatBahnhof.length; h++) {
+            for(int b=0; b < hatBahnhof[h].length; b++) {
+                if(teile[h][b] != null && hatBahnhof[h][b] == false) {
+                    kosten = kosten + beschwerde;
+                }
+            }
+        }
+        return kosten;
 
     }
 

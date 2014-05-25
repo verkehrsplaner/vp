@@ -346,8 +346,9 @@ public class SpielGUI extends javax.swing.JFrame {
 
     private void linieBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linieBauenButtonActionPerformed
         System.out.println("Button 'Linie Bauen!' wurde gedrückt!");
-        strg.neueLinie(null);
-        JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
+        // Neues Fenster machen, um Name für Linie eingeben zu können
+        String s = JOptionPane.showInputDialog("Bitte Name für die neue Line eingeben:");
+        strg.neueLinie(s);
     }//GEN-LAST:event_linieBauenButtonActionPerformed
 
     private void bahnhofBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bahnhofBauenButtonActionPerformed

@@ -24,12 +24,11 @@ public class Listener extends MouseAdapter implements KeyListener {
     @Override
     public void mousePressed(MouseEvent e) {
         e.getComponent().requestFocusInWindow();
-        int x = e.getX();
-        int y = e.getY();
+        int x = e.getX() - 20;
+        int y = e.getY() - 20;
         double f_x = x / 30.0;
         double f_y = y / 30.0;
         strg.klick((int)Math.round(f_x), (int)Math.round(f_y));
-        System.out.println("Klick: " + x + ", " + y + "; Feld: " + Math.round(f_x) + ", " + Math.round(f_y));
     }
     
     @Override

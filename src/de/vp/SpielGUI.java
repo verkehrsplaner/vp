@@ -7,7 +7,11 @@
 package de.vp;
 
 import java.awt.Frame;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Currency;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
@@ -20,17 +24,16 @@ import javax.swing.JOptionPane;
  */
 public class SpielGUI extends javax.swing.JFrame {
 
-    
     private Spielsteuerung strg;
     private int hoehe, breite;
-    
+
     /**
-     * Erstellt das Fenster.
-     * Zusätzlich wird ein Timer initialisert, welcher die Uhrzeit automatisch aktualisiert.
+     * Erstellt das Fenster. Zusätzlich wird ein Timer initialisert, welcher die Uhrzeit automatisch aktualisiert.
+     *
      * @param h
      * @param b
      */
-    public SpielGUI(int h, int b) { 
+    public SpielGUI(int h, int b) {
         strg = new Spielsteuerung(h, b);
         hoehe = h;
         breite = b;
@@ -38,37 +41,34 @@ public class SpielGUI extends javax.swing.JFrame {
         strg.panelStarten(jPanel3);
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
-        final SimpleDateFormat format = new SimpleDateFormat("HH:mm"); //Erstellt neuen "Kalender"
-        jLabel1.setText(format.format(strg.getTime()));
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        
+        final SimpleDateFormat formatDatum = new SimpleDateFormat("HH:mm"); // Erstellt neuen "Kalender"
+        jLabel1.setText(formatDatum.format(strg.getTime()));
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen
+        final NumberFormat formatGeld = DecimalFormat.getCurrencyInstance(Locale.GERMANY);
+        formatGeld.setCurrency(Currency.getInstance("EUR"));
+        System.out.println(formatGeld.format(12345.6789));  // EUR12,345.68
+
         //Timer für Uhrzeit
         Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                jLabel1.setText(format.format(strg.getTime()));
-                jLabel6.setText(Integer.toString(strg.getGeld()) + " €");
+                jLabel1.setText(formatDatum.format(strg.getTime()));
+                jLabel6.setText(formatGeld.format(strg.getGeld()));
                 jLabel5.setText(Integer.toString(strg.getDepot()));
-                
+
             }
         }, 0, 1000);
-        
+
         //Seticon entweder
 //        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-        
 //        oder
         ImageIcon icon = new ImageIcon(getClass().getResource("icon.png"));
         setIconImage(icon.getImage());
-        
-        
 
-         
-
-    /**
-    * Creates new form SpielGUI
-    */
+        /**
+         * Creates new form SpielGUI
+         */
     }
 
     /**
@@ -261,7 +261,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         System.out.println("Button 'Einstellungen' wurde gedrückt!");
         JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
-       
+
     }//GEN-LAST:event_EinstellungenActionPerformed
 
     private void MinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusActionPerformed
@@ -272,7 +272,7 @@ public class SpielGUI extends javax.swing.JFrame {
         strg.zugKaufen();
     }//GEN-LAST:event_PlusActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Einstellungen;
     private javax.swing.JButton Minus;
@@ -294,5 +294,4 @@ public class SpielGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
 
-  
 }

@@ -865,7 +865,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugReparieren() {
-        if (werkstatt > 0 && geld - reparatur >= maxMinus) {
+        if (getWerkstatt() > 0 && geld - reparatur >= maxMinus) {
             werkstatt--;
             depot++;
             geld = geld - reparatur;
@@ -987,6 +987,13 @@ public class Spielsteuerung {
      */
     public int getDepot() {
         return depot;
+    }
+
+    /**
+     * @return the werkstatt
+     */
+    public int getWerkstatt() {
+        return werkstatt;
     }
 
 }

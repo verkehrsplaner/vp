@@ -28,7 +28,7 @@ public class SpielPanel extends javax.swing.JPanel {
         this.setFocusable(true);
         this.addMouseListener(list);
         this.addKeyListener(list);
-        setSize(b * 30, h * 30);
+        setSize(b * 30 + 40, h * 30 + 40);
         this.setPreferredSize(this.getSize());
     }
 
@@ -37,7 +37,7 @@ public class SpielPanel extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         //Beiger Hintergrund
-        g2d.setColor(new Color(245, 245, 220));
+        g2d.setColor(new Color(217, 168, 143));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         
@@ -55,10 +55,10 @@ public class SpielPanel extends javax.swing.JPanel {
                         g2d.setColor(teile[y][x].getDunkleFarbe());
                     }
                     g2d.setStroke(new BasicStroke(1));
-                    g2d.fillRect(x * 30, y * 30, 30, 30);
+                    g2d.fillRect(x * 30 + 20, y * 30 + 20, 30, 30);
                     g2d.setColor(Color.YELLOW);
                     g2d.setStroke(new BasicStroke(3));
-                    g2d.drawRect(x * 30, y * 30, 30, 30);
+                    g2d.drawRect(x * 30 + 20, y * 30 + 20, 30, 30);
                 }
 
             }
@@ -71,18 +71,18 @@ public class SpielPanel extends javax.swing.JPanel {
                 if (bhf[y][x] != null) {
                     g2d.setColor(Color.WHITE);
                     g2d.setStroke(new BasicStroke(1));
-                    g2d.fillOval(x * 30 - 10, y * 30 - 10, 20, 20);
+                    g2d.fillOval(x * 30 - 10 + 20, y * 30 - 10 + 20, 20, 20);
                     g2d.setColor(Color.BLACK);
                     g2d.setStroke(new BasicStroke(2));
-                    g2d.drawOval(x * 30 - 10, y * 30 - 10, 20, 20);
+                    g2d.drawOval(x * 30 - 10 + 20, y * 30 - 10 + 20, 20, 20);
                 }
             }
         }
         
         //Schwarzer Rahmen um Spielfeld
         g2d.setColor(Color.BLACK);
-        g2d.setStroke(new BasicStroke(20));
-        g2d.drawRect(0, 0, this.getWidth(), this.getHeight());
+        g2d.setStroke(new BasicStroke(1));
+        g2d.drawRect(20, 20, this.getWidth() - 40, this.getHeight() - 40);
 
     }
 

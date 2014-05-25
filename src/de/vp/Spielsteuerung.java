@@ -855,7 +855,8 @@ public class Spielsteuerung {
      */
     private int gesamtKosten() {
         int kosten = 0;
-        // alle unangebundenen Stadtteile
+        
+        // \/ alle unangebundenen Stadtteile
         for(int h=0; h < hatBahnhof.length; h++) {
             for(int b=0; b < hatBahnhof[h].length; b++) {
                 if(teile[h][b] != null && hatBahnhof[h][b] == false) {
@@ -863,6 +864,12 @@ public class Spielsteuerung {
                 }
             }
         }
+        
+        // \/ alle Linien
+        for(int i=0; i < anzLinien; i++) {
+            kosten = kosten + linien[i].kosten();
+        }
+        
         return kosten;
 
     }
@@ -870,8 +877,12 @@ public class Spielsteuerung {
     /**
      * berechnet den Gesamten Gewinn
      */
-    private void gesamtGewinn() {
-
+    private int gesamtGewinn() {
+        int gewinn = 0;
+        for(int i=0; i < anzLinien; i++) {
+            gewinn = gewinn + linien[i].gewinn();
+        }
+        return gewinn;
     }
 
     /**

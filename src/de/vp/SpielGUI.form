@@ -85,6 +85,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="reparierenButton" alignment="1" max="32767" attributes="0"/>
+              <Component id="Einstellungen" alignment="1" max="32767" attributes="0"/>
+              <Component id="linieBauenButton" alignment="0" max="32767" attributes="0"/>
+              <Component id="bahnhofBauenButton" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
@@ -100,13 +104,12 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="minusButton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="depotnameLabel" max="32767" attributes="0"/>
-                                      <Component id="anzahldepotLabel" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="anzahldepotLabel" min="-2" pref="54" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                   <Component id="plusButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="depotnameLabel" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -116,24 +119,14 @@
                           <Component id="werkstattAnzahlLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="geldLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                          <Component id="uhrzeitLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                           <Component id="linienNameLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="geldLabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="uhrzeitLabel" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="Einstellungen" alignment="1" max="32767" attributes="0"/>
-              <Component id="linieBauenButton" alignment="0" max="32767" attributes="0"/>
-              <Component id="bahnhofBauenButton" alignment="0" max="32767" attributes="0"/>
-              <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -243,7 +236,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="reparierenButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Zug reparieren!"/>
+            <Property name="text" type="java.lang.String" value="Zug reparieren"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reparierenButtonActionPerformed"/>
@@ -320,7 +313,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="bahnhofBauenButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Bahnhof bauen!"/>
+            <Property name="text" type="java.lang.String" value="Bahnhof bauen"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bahnhofBauenButtonActionPerformed"/>
@@ -328,7 +321,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="linieBauenButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Neue Linie bauen!"/>
+            <Property name="text" type="java.lang.String" value="Neue Linie bauen"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linieBauenButtonActionPerformed"/>

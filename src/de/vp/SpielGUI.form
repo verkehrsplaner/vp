@@ -321,7 +321,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="linieBauenButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Neue Linie bauen"/>
+            <Property name="text" type="java.lang.String" value="Neue Linie erstellen"/>
+            <Property name="actionCommand" type="java.lang.String" value="Neue Linie erstellen"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linieBauenButtonActionPerformed"/>

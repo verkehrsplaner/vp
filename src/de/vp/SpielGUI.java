@@ -198,7 +198,8 @@ public class SpielGUI extends javax.swing.JFrame {
             }
         });
 
-        linieBauenButton.setText("Neue Linie bauen");
+        linieBauenButton.setText("Neue Linie erstellen");
+        linieBauenButton.setActionCommand("Neue Linie erstellen");
         linieBauenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 linieBauenButtonActionPerformed(evt);

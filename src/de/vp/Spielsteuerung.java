@@ -289,7 +289,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        double w = 50 * Math.random();
+                        double w = 60 * Math.random();
 
                         // \/ Is denn auch ein Bahnhöfchen in der Nähe?
                         if (h < teile.length - 1 && b < teile[h].length - 1) {
@@ -313,7 +313,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() * 3;
                             }
                             if (teile[h - 1][b] instanceof Haus) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 1.2;
                             }
                             if (teile[h - 1][b] instanceof Park) {
                                 w = w + Math.random() / 2;
@@ -330,7 +330,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() * 3;
                             }
                             if (teile[h + 1][b] instanceof Haus) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 1.2;
                             }
                             if (teile[h + 1][b] instanceof Park) {
                                 w = w + Math.random() / 2;
@@ -347,7 +347,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() * 3;
                             }
                             if (teile[h][b - 1] instanceof Haus) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 1.2;
                             }
                             if (teile[h][b - 1] instanceof Park) {
                                 w = w + Math.random() / 2;
@@ -364,7 +364,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() * 3;
                             }
                             if (teile[h][b + 1] instanceof Haus) {
-                                w = w + Math.random();
+                                w = w + Math.random() * 1.2;
                             }
                             if (teile[h][b + 1] instanceof Park) {
                                 w = w + Math.random() / 2;
@@ -652,7 +652,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h - 1][b] instanceof Park) {
-                                w = w + Math.random() * 2;
+                                w = w + Math.random() * 1.6;
                             }
                         }
 
@@ -662,7 +662,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h + 1][b] instanceof Park) {
-                                w = w + Math.random() * 1.8;
+                                w = w + Math.random() * 1.6;
                             }
                         }
 
@@ -672,7 +672,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h][b - 1] instanceof Park) {
-                                w = w + Math.random() * 1.8;
+                                w = w + Math.random() * 1.6;
                             }
                         }
 
@@ -682,7 +682,7 @@ public class Spielsteuerung {
                                 w = w + Math.random() / 2;
                             }
                             if (teile[h][b + 1] instanceof Park) {
-                                w = w + Math.random() * 1.8;
+                                w = w + Math.random() * 1.6;
                             }
                         }
 
@@ -692,7 +692,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h - 1][b - 1] instanceof Park) {
-                                w = w + Math.random() / 1.2;
+                                w = w + Math.random() / 1.1;
                             }
                         }
 
@@ -702,7 +702,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h - 1][b + 1] instanceof Park) {
-                                w = w + Math.random() / 1.2;
+                                w = w + Math.random() / 1.1;
                             }
                         }
 
@@ -712,7 +712,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h + 1][b + 1] instanceof Park) {
-                                w = w + Math.random() / 1.2;
+                                w = w + Math.random() / 1.1;
                             }
                         }
 
@@ -722,7 +722,7 @@ public class Spielsteuerung {
                                 w = w + Math.random();
                             }
                             if (teile[h + 1][b - 1] instanceof Park) {
-                                w = w + Math.random() / 1.2;
+                                w = w + Math.random() / 1.1;
                             }
                         }
 

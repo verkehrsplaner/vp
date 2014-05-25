@@ -55,7 +55,7 @@ public class SpielGUI extends javax.swing.JFrame {
                 uhrzeitLabel.setText(formatDatum.format(strg.getTime()));
                 geldLabel.setText(formatGeld.format(strg.getGeld()));
                 anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
-                // werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
+                werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
             }
         }, 0, 1000);
 

@@ -33,7 +33,7 @@ public class Spielsteuerung {
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
     private final double stadtbaugeschw = 0.0;
-    private final int beschwerde = 100; //Kosten wenn ein Stadtteil nicht angebunden ist
+    private final int beschwerde = 50; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
@@ -315,7 +315,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        double w = 60 * Math.random();
+                        double w = 90 * Math.random();
 
                         // \/ Is denn auch ein Bahnhöfchen in der Nähe?
                         if (h < teile.length - 1 && b < teile[h].length - 1) {
@@ -347,6 +347,7 @@ public class Spielsteuerung {
                             if (teile[h - 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
+                            
 
                         }
 
@@ -363,6 +364,9 @@ public class Spielsteuerung {
                             }
                             if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
+                            }
+                            if(teile[h+1][b] instanceof Haus && teile[h+1][b+1] == null && teile[h-1][b] == null && teile[h-1][b+1] == null&& teile[h-1][b-1] == null && teile[h+1][b-1] == null && teile[h+2][b] == null) {
+                                w = w + Math.random() * 5;
                             }
 
                         }

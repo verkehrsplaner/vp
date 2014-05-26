@@ -66,11 +66,15 @@ public class Spielsteuerung {
         timer.scheduleAtFixedRate(strgTimer, 0, 500);
     }
 
+    /**
+     * Startet die Animation des Panels
+     * @param panel SpielPanel, in dem die Animation läuft
+     */
     public void panelStarten(JPanel panel) {
         guiTimer = new GUITimer(panel);
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
     }
-
+    
     /**
      *
      * @return Die aktuelle In-Game-Zeit als Date-Objekt

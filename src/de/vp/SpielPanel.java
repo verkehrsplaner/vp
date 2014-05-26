@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 public class SpielPanel extends javax.swing.JPanel {
 
     private Spielsteuerung strg;
+    private SpielGUI gui;
     private Listener list;
     private int zoom;
     private int[] pixel = {30, 16, 8};
@@ -25,9 +26,10 @@ public class SpielPanel extends javax.swing.JPanel {
      * @param b Breite
      * @param s Spielsteuerung
      */
-    public SpielPanel(int h, int b, Spielsteuerung s) {
+    public SpielPanel(int h, int b, Spielsteuerung s, SpielGUI g) {
         initComponents();
         strg = s;
+        gui = g;
         zoom = 0;
         list = new Listener(strg);
         this.setFocusable(true);
@@ -38,6 +40,12 @@ public class SpielPanel extends javax.swing.JPanel {
     }
     
     public void setZoom(int z) {
+        if (z < zoom) {
+            gui.zoomIn();
+        }
+        if (z > zoom) {
+            gui.zoomOut();
+        }
         zoom = z;
         list.setZoom(zoom);
         setSize(strg.getBreite() * pixel[zoom] + 40, strg.getHoehe() * pixel[zoom] + 40);

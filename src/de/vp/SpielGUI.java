@@ -40,14 +40,17 @@ public class SpielGUI extends javax.swing.JFrame {
         breite = b;
         initComponents();
         strg.panelStarten(jPanel3);
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen  
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
+        
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
-        jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum()-jScrollPane3.getHorizontalScrollBar().getMinimum())/2 /*- jScrollPane3.getWidth() / 2 - 20*/);
-        jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum() -jScrollPane3.getHorizontalScrollBar().getMinimum())/2 /*- jScrollPane3.getHeight() / 2 - 20*/);
+        jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum()) / 2);
+        jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum()) / 2);
+        
         final SimpleDateFormat formatDatum = new SimpleDateFormat("HH:mm"); // Erstellt neuen "Kalender"
         final NumberFormat formatGeld = DecimalFormat.getCurrencyInstance(Locale.GERMANY);
         formatGeld.setCurrency(Currency.getInstance("EUR"));
+        
         uhrzeitLabel.setText(formatDatum.format(strg.getTime()));
         geldLabel.setText(formatGeld.format(strg.getGeld()));
         anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
@@ -94,7 +97,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        jPanel3 = new SpielPanel(hoehe, breite, strg);
+        jPanel3 = new SpielPanel(hoehe, breite, strg, this);
         jPanel1 = new javax.swing.JPanel();
         uhrzeitLabel = new javax.swing.JLabel();
         geldLabel = new javax.swing.JLabel();
@@ -331,7 +334,7 @@ public class SpielGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -387,7 +390,18 @@ public class SpielGUI extends javax.swing.JFrame {
         System.out.println("Button 'Zug Verschrotten!' wurde gedrückt!");
         strg.zugVerschrotten();
     }//GEN-LAST:event_minusButtonActionPerformed
-
+    
+    
+    public void zoomIn() {
+        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() * 2);
+        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() * 2);
+    }
+    
+    public void zoomOut() {
+        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() / 2);
+        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() / 2);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Einstellungen;

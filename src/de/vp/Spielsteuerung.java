@@ -454,10 +454,10 @@ public class Spielsteuerung {
             }
             long end = System.nanoTime();
             long milliseconds = (end - start) / 1000000;
-            System.out.println();
-            System.out.println("Nr.:" + hauszahl);
-            hauszahl++;
-            System.out.println("Generationszeit: " + milliseconds);
+//            System.out.println();
+//            System.out.println("Nr.:" + hauszahl);
+//            hauszahl++;
+//            System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Haus();
 
@@ -481,7 +481,7 @@ public class Spielsteuerung {
                     }
                 }
 
-                System.out.println("+++ Haus gebaut! +++");
+//                System.out.println("+++ Haus gebaut! +++");
                 return true;
             } else {
                 feldVoll = true;
@@ -615,10 +615,10 @@ public class Spielsteuerung {
             }
             long end = System.nanoTime();
             long milliseconds = (end - start) / 1000000;
-            System.out.println();
-            System.out.println("Nr.:" + hauszahl);
-            hauszahl++;
-            System.out.println("Generationszeit: " + milliseconds);
+//            System.out.println();
+//            System.out.println("Nr.:" + hauszahl);
+//            hauszahl++;
+//            System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Firma();
 
@@ -642,7 +642,7 @@ public class Spielsteuerung {
                     }
                 }
 
-                System.out.println("+++ Firma gebaut! +++");
+//                System.out.println("+++ Firma gebaut! +++");
                 return true;
             } else {
                 feldVoll = true;
@@ -765,10 +765,10 @@ public class Spielsteuerung {
             }
             long end = System.nanoTime();
             long milliseconds = (end - start) / 1000000;
-            System.out.println();
-            System.out.println("Nr.:" + hauszahl);
-            hauszahl++;
-            System.out.println("Generationszeit: " + milliseconds);
+//            System.out.println();
+//            System.out.println("Nr.:" + hauszahl);
+//            hauszahl++;
+//            System.out.println("Generationszeit: " + milliseconds);
             if (gefunden) {
                 teile[y][x] = new Park();
 
@@ -792,7 +792,7 @@ public class Spielsteuerung {
                     }
                 }
 
-                System.out.println("+++ Park gebaut! +++");
+//                System.out.println("+++ Park gebaut! +++");
                 return true;
             } else {
                 feldVoll = true;

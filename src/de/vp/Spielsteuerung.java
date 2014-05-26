@@ -209,7 +209,7 @@ public class Spielsteuerung {
      * @return
      */
     private boolean neuerBahnhof(int x, int y) {
-        if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[breite].length && y < teile.length) {
+        if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length) {
             bahnhoefe[y][x] = new Bahnhof(x, y);
             geld = geld - preisBhf;
 

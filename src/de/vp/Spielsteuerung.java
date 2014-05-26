@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, geld, anzLinien, hoehe, breite, hauszahl, zeit;
+    private int depot, werkstatt, geld, neueLinien, hoehe, breite, hauszahl, zeit;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
@@ -31,7 +31,7 @@ public class Spielsteuerung {
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
-    private final int hausbaugeschw = 4;
+    private final double stadtbaugeschw = 0.66;
     private final int beschwerde = 100; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
@@ -44,7 +44,7 @@ public class Spielsteuerung {
         breite = b;
         depot = 0;
         werkstatt = 0;
-        anzLinien = 0;
+        neueLinien = 0;
         feldVoll = false;
         nextAction = "";
         verloren = false;
@@ -178,15 +178,15 @@ public class Spielsteuerung {
      */
     public boolean neueLinie(String name) {
         if (geld - preisLinie >= maxMinus) {
-            if (linien.length - 1 < anzLinien + 1) {
-                Linie[] hilf = new Linie[anzLinien + 10];
-                for (int i = 0; i > anzLinien; i++) {
+            if (linien.length - 1 < neueLinien + 1) {
+                Linie[] hilf = new Linie[neueLinien + 10];
+                for (int i = 0; i > neueLinien; i++) {
                     hilf[i] = linien[i];
                 }
                 linien = hilf;
             }
-            linien[anzLinien + 1] = new Linie(name,this);
-            anzLinien++;
+            linien[neueLinien] = new Linie(name,this);
+            neueLinien++;
             geld = geld - preisLinie;
             return true;
         } else {
@@ -202,18 +202,18 @@ public class Spielsteuerung {
      * @return
      */
     public boolean linieEntfernen(Linie l) {
-        if (anzLinien > 0) {
+        if (neueLinien > 0) {
             int x = 0;
-            for (int i = 0; i > anzLinien; i++) {
+            for (int i = 0; i > neueLinien; i++) {
                 if (linien[i].equals(l)) {
                     x = i;
                 }
             }
-            for (int i = x; i < anzLinien - 1; i++) {
+            for (int i = x; i < neueLinien - 1; i++) {
                 linien[i] = linien[i + 1];
             }
-            linien[anzLinien - 1] = null;
-            anzLinien--;
+            linien[neueLinien - 1] = null;
+            neueLinien--;
             return true;
         } else {
             return false;
@@ -806,8 +806,8 @@ public class Spielsteuerung {
      * @return
      */
     public boolean altstadt() {
-        int mh = Math.round(hoehe / 2);
-        int mb = Math.round(breite / 2);
+        int mh = Math.round(getHoehe() / 2);
+        int mb = Math.round(getBreite() / 2);
         teile[mh][mb] = new Rathaus();
         teile[mh + 1][mb] = new Park();
         teile[mh + 2][mb] = new Park();
@@ -916,7 +916,7 @@ public class Spielsteuerung {
         }
 
         // \/ alle Linien
-        for (int i = 0; i < anzLinien; i++) {
+        for (int i = 0; i < neueLinien - 1; i++) {
             kosten = kosten + linien[i].kosten();
         }
 
@@ -932,7 +932,7 @@ public class Spielsteuerung {
      */
     public int gesamtGewinn() {
         int gewinn = 0 - gesamtKosten();
-        for (int i = 0; i < anzLinien; i++) {
+        for (int i = 0; i < neueLinien - 1; i++) {
             gewinn = gewinn + linien[i].gewinn();
         }
         return gewinn; //genau!
@@ -952,12 +952,8 @@ public class Spielsteuerung {
      * @return
      */
     public boolean step() {
-        if(zeit >= hausbaugeschw) {
+        if( Math.random() > stadtbaugeschw) {
             stadtteilBauen();
-            zeit = 0;
-        }
-        else {
-            zeit++;
         }
         if(geld - gesamtGewinn() > maxMinus) {
             geld = geld + gesamtGewinn();
@@ -1046,6 +1042,20 @@ public class Spielsteuerung {
      */
     public boolean isVerloren() {
         return verloren;
+    }
+
+    /**
+     * @return the hoehe
+     */
+    public int getHoehe() {
+        return hoehe;
+    }
+
+    /**
+     * @return the breite
+     */
+    public int getBreite() {
+        return breite;
     }
 
 }

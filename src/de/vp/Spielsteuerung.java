@@ -21,6 +21,7 @@ public class Spielsteuerung {
     private boolean feldVoll; //Für Stadtteile bauen
     private String nextAction;
     private boolean verloren;
+    private int zoom;
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -50000000;
@@ -47,6 +48,7 @@ public class Spielsteuerung {
         feldVoll = false;
         nextAction = "";
         verloren = false;
+        zoom = 0;
         geld = 1000000; // 10 Mio
         timer = new Timer();
         strgTimer = new StrgTimer(this);
@@ -75,6 +77,24 @@ public class Spielsteuerung {
     public void panelStarten(JPanel panel) {
         guiTimer = new GUITimer(panel);
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
+    }
+    
+    /**
+     * Zoomt rein (Zoomstufe kleiner)
+     */
+    public void zoomIn() {
+        if (zoom > 0) {
+            zoom--;
+        }
+    }
+    
+    /**
+     * Zoomt raus (Zoomstufe größer)
+     */
+    public void zoomOut() {
+        if (zoom < 2) {
+            zoom++;
+        }
     }
     
     /**

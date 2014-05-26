@@ -12,8 +12,9 @@ import java.awt.Graphics2D;
 public class SpielPanel extends javax.swing.JPanel {
 
     private Spielsteuerung strg;
-    Listener list;
-
+    private Listener list;
+    private int zoom;
+    private int[] pixel = {30, 16, 8};
     /**
      * Creates new form SpielPanel
      *
@@ -24,14 +25,22 @@ public class SpielPanel extends javax.swing.JPanel {
     public SpielPanel(int h, int b, Spielsteuerung s) {
         initComponents();
         strg = s;
+        zoom = 0;
         list = new Listener(strg);
         this.setFocusable(true);
         this.addMouseListener(list);
         this.addKeyListener(list);
-        setSize(b * 30 + 40, h * 30 + 40);
+        setSize(b * pixel[zoom] + 40, h * pixel[zoom] + 40);
         this.setPreferredSize(this.getSize());
     }
-
+    
+    public void setZoom(int z) {
+        zoom = z;
+        setSize(strg.getBreite() * pixel[zoom] + 40, strg.getHoehe() * pixel[zoom] + 40);
+        this.setPreferredSize(this.getSize());
+        this.repaint();
+    }
+    
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -55,10 +64,10 @@ public class SpielPanel extends javax.swing.JPanel {
                         g2d.setColor(teile[y][x].getDunkleFarbe());
                     }
                     g2d.setStroke(new BasicStroke(1));
-                    g2d.fillRect(x * 30 + 20, y * 30 + 20, 30, 30);
+                    g2d.fillRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
                     g2d.setColor(Color.YELLOW);
                     g2d.setStroke(new BasicStroke(3));
-                    g2d.drawRect(x * 30 + 20, y * 30 + 20, 30, 30);
+                    g2d.drawRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
                 }
 
             }
@@ -71,10 +80,10 @@ public class SpielPanel extends javax.swing.JPanel {
                 if (bhf[y][x] != null) {
                     g2d.setColor(Color.WHITE);
                     g2d.setStroke(new BasicStroke(1));
-                    g2d.fillOval(x * 30 - 10 + 20, y * 30 - 10 + 20, 20, 20);
+                    g2d.fillOval(x * pixel[zoom] - 10 + 20, y * pixel[zoom] - 10 + 20, 20, 20);
                     g2d.setColor(Color.BLACK);
                     g2d.setStroke(new BasicStroke(2));
-                    g2d.drawOval(x * 30 - 10 + 20, y * 30 - 10 + 20, 20, 20);
+                    g2d.drawOval(x * pixel[zoom] - 10 + 20, y * pixel[zoom] - 10 + 20, 20, 20);
                 }
             }
         }

@@ -50,11 +50,12 @@ public class Listener extends MouseAdapter implements KeyListener {
             System.out.println("B gedrückt");
             strg.setNextAction("bhf");
         }
-        if (e.getKeyCode() == KeyEvent.VK_PLUS) {
+        // Das zweite ist für Maxis Mac
+        if (e.getKeyCode() == KeyEvent.VK_PLUS || e.getKeyCode() == 93) {
             System.out.println("+ gedrückt");
             strg.zoomIn();
         }
-        if (e.getKeyCode() == KeyEvent.VK_MINUS) {
+        if (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == 47) {
             System.out.println("- gedrückt");
             strg.zoomOut();
         }

@@ -29,7 +29,8 @@ public class Linie {
     private final int preisStrecke = 100000;
     // ========== Ende Spielvariablen ==========
 
-    public Linie(String n) {
+    public Linie(String n, Spielsteuerung s) {
+        strg = s;
         zugUnterhaltungsKosten = 1000;
         bhfListe = new Bahnhof[20];
         bhfUnterhaltungsKosten = 1000;
@@ -111,9 +112,11 @@ public class Linie {
             }
             bhfListe[0] = bhf;
             bhfs++;
-            
-            strg.geldNehmen(streckeBerechnen(0 , 1));
-            
+
+            if (bhfListe[1] == null) {
+                strg.geldNehmen(streckeBerechnen(0, 1));
+            }
+
             // \/ bhf an einer anderen Stelle eingefügt
         } else {
             if (stelle != -1) {
@@ -130,9 +133,13 @@ public class Linie {
                 }
                 bhfListe[stelle] = bhf;
                 bhfs++;
-                
-                strg.geldNehmen(streckeBerechnen(stelle , stelle + 1));
-                strg.geldNehmen(streckeBerechnen(stelle - 1 , stelle));
+
+                if (bhfListe[stelle + 1] != null) {
+                    strg.geldNehmen(streckeBerechnen(stelle, stelle + 1));
+                }
+                if (bhfListe[stelle - 1] != null) {
+                    strg.geldNehmen(streckeBerechnen(stelle - 1, stelle));
+                }
             }
         }
     }
@@ -212,19 +219,21 @@ public class Linie {
 
     /**
      * Berechnet die Strecke zwischen zwei gegebenen Bahnhöfen
+     *
      * @param startBhf Startbahnhof
      * @param zielBhf Zielbahnhof
      * @return strecke zwischen beiden Bahnhöfen
      */
     public int streckeBerechnen(int startBhf, int zielBhf) {
+
         int strecke = 0;
         int startX = bhfListe[startBhf].getX();
         int startY = bhfListe[startBhf].getY();
         int zielX = bhfListe[zielBhf].getX();
         int zielY = bhfListe[zielBhf].getY();
-        
+
         // Satz des Pythagoras (strecke = c)
-        strecke = (int) Math.round(Math.sqrt((zielX-startX)^2 + (zielY - startY)^2));
+        strecke = (int) Math.round(Math.sqrt((zielX - startX) ^ 2 + (zielY - startY) ^ 2));
         return strecke;
     }
 

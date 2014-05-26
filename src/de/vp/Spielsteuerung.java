@@ -29,6 +29,7 @@ public class Spielsteuerung {
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
+    private final int hausbaugeschw = 10;
     private final int beschwerde = 100; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
@@ -920,11 +921,14 @@ public class Spielsteuerung {
     }
     /**
      *
-     * ?!
+     * kümmert sich um alles was bei Zeit ausgeführt werden soll
      *
      * @return
      */
     public boolean step() {
+        for(int i = 0; i < hausbaugeschw; i++) {
+            stadtteilBauen();
+        }
         return true;
     }
 

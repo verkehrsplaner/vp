@@ -130,6 +130,9 @@ public class Linie {
                 }
                 bhfListe[stelle] = bhf;
                 bhfs++;
+                
+                strg.geldNehmen(streckeBerechnen(stelle , stelle + 1));
+                strg.geldNehmen(streckeBerechnen(stelle - 1 , stelle));
             }
         }
     }

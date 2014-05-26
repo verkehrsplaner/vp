@@ -9,8 +9,8 @@ import java.util.TimerTask;
  */
 public class StrgTimer extends TimerTask {
 
-    Date date;
-    Spielsteuerung strg;
+    private Date date;
+    private Spielsteuerung strg;
 
     public StrgTimer(Spielsteuerung s) {
         strg = s;

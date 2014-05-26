@@ -32,7 +32,7 @@ public class Spielsteuerung {
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
-    private final double stadtbaugeschw = 0.66;
+    private final double stadtbaugeschw = 0.0;
     private final int beschwerde = 100; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
@@ -73,14 +73,15 @@ public class Spielsteuerung {
 
     /**
      * Startet die Animation des Panels
+     *
      * @param panel SpielPanel, in dem die Animation läuft
      */
     public void panelStarten(JPanel panel) {
-        spielPanel = (SpielPanel)panel;
+        spielPanel = (SpielPanel) panel;
         guiTimer = new GUITimer(panel);
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
     }
-    
+
     /**
      * Zoomt rein (Zoomstufe kleiner)
      */
@@ -90,7 +91,7 @@ public class Spielsteuerung {
             spielPanel.setZoom(zoom);
         }
     }
-    
+
     /**
      * Zoomt raus (Zoomstufe größer)
      */
@@ -100,7 +101,7 @@ public class Spielsteuerung {
             spielPanel.setZoom(zoom);
         }
     }
-    
+
     /**
      *
      * @return Die aktuelle In-Game-Zeit als Date-Objekt
@@ -189,7 +190,7 @@ public class Spielsteuerung {
                 }
                 linien = hilf;
             }
-            linien[neueLinien] = new Linie(name,this);
+            linien[neueLinien] = new Linie(name, this);
             neueLinien++;
             geld = geld - preisLinie;
             return true;
@@ -941,14 +942,15 @@ public class Spielsteuerung {
         }
         return gewinn; //genau!
     }
-    
+
     /**
-     * 
+     *
      * @param betrag betrag wird von Geld abgezogen
      */
     public void geldNehmen(int betrag) {
         geld = geld - betrag;
     }
+
     /**
      *
      * kümmert sich um alles was bei Zeit ausgeführt werden soll
@@ -956,14 +958,18 @@ public class Spielsteuerung {
      * @return
      */
     public boolean step() {
-        if( Math.random() > stadtbaugeschw) {
+        if (Math.random() > stadtbaugeschw) {
             stadtteilBauen();
         }
-        if(geld - gesamtGewinn() > maxMinus) {
-            geld = geld + gesamtGewinn();
-        }
-        else {
-            verloren = true;
+        if (zeit == 2) {
+            if (geld - gesamtGewinn() > maxMinus) {
+                geld = geld + gesamtGewinn();
+                zeit = 0;
+            } else {
+                verloren = true;
+            }
+        } else {
+            zeit++;
         }
         return true;
     }

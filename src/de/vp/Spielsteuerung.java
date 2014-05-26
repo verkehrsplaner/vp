@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, geld, anzLinien, hoehe, breite, hauszahl;
+    private int depot, werkstatt, geld, anzLinien, hoehe, breite, hauszahl, zeit;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
@@ -20,16 +20,17 @@ public class Spielsteuerung {
     private StrgTimer strgTimer;
     private boolean feldVoll; //Für Stadtteile bauen
     private String nextAction;
+    private boolean verloren;
 
     // ========== Anfang Spielvariablen ==========
-    private final int maxMinus = -100000000;
+    private final int maxMinus = -50000000;
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 40000;
     private final int preisBhf = 500000;
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
-    private final int hausbaugeschw = 1;
+    private final int hausbaugeschw = 4;
     private final int beschwerde = 100; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
@@ -45,6 +46,7 @@ public class Spielsteuerung {
         anzLinien = 0;
         feldVoll = false;
         nextAction = "";
+        verloren = false;
         geld = 1000000; // 10 Mio
         timer = new Timer();
         strgTimer = new StrgTimer(this);
@@ -930,14 +932,18 @@ public class Spielsteuerung {
      * @return
      */
     public boolean step() {
-        for(int i = 0; i < hausbaugeschw; i++) {
+        if(zeit >= hausbaugeschw) {
             stadtteilBauen();
+            zeit = 0;
+        }
+        else {
+            zeit++;
         }
         if(geld - gesamtGewinn() > maxMinus) {
             geld = geld + gesamtGewinn();
         }
         else {
-            // Spiel vorbei!
+            verloren = true;
         }
         return true;
     }
@@ -1013,6 +1019,13 @@ public class Spielsteuerung {
      */
     public int getWerkstatt() {
         return werkstatt;
+    }
+
+    /**
+     * @return the verloren
+     */
+    public boolean isVerloren() {
+        return verloren;
     }
 
 }

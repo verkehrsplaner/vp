@@ -22,14 +22,14 @@ public class Spielsteuerung {
     private String nextAction;
 
     // ========== Anfang Spielvariablen ==========
-    private final int maxMinus = -150000000;
+    private final int maxMinus = -100000000;
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 40000;
     private final int preisBhf = 500000;
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
-    private final int hausbaugeschw = 10;
+    private final int hausbaugeschw = 1;
     private final int beschwerde = 100; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
@@ -45,7 +45,7 @@ public class Spielsteuerung {
         anzLinien = 0;
         feldVoll = false;
         nextAction = "";
-        geld = 0; // man fängt bei 0 an
+        geld = 1000000; // 10 Mio
         timer = new Timer();
         strgTimer = new StrgTimer(this);
         hatBahnhof = new boolean[hoehe][breite];
@@ -159,7 +159,7 @@ public class Spielsteuerung {
                 }
                 linien = hilf;
             }
-            linien[anzLinien + 1] = new Linie(name);
+            linien[anzLinien + 1] = new Linie(name,this);
             anzLinien++;
             geld = geld - preisLinie;
             return true;
@@ -928,6 +928,12 @@ public class Spielsteuerung {
     public boolean step() {
         for(int i = 0; i < hausbaugeschw; i++) {
             stadtteilBauen();
+        }
+        if(geld - gesamtGewinn() > maxMinus) {
+            geld = geld - gesamtGewinn();
+        }
+        else {
+            // Spiel vorbei!
         }
         return true;
     }

@@ -49,8 +49,7 @@ public class SpielGUI extends javax.swing.JFrame {
         anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
         werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
         bilanzLabel.setText(formatGeld.format(strg.gesamtGewinn()));
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen
-        System.out.println(formatGeld.format(12345.6789));  
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen  
 
         //Timer für Uhrzeit
         Timer t = new Timer();

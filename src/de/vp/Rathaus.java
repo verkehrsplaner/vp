@@ -25,7 +25,7 @@ public class Rathaus extends Stadtteil {
     
     @Override
     public Color getDunkleFarbe() {
-        return Color.BLACK;
+        return Color.BLUE;
     }
 
 }

@@ -36,6 +36,7 @@ public class SpielPanel extends javax.swing.JPanel {
     
     public void setZoom(int z) {
         zoom = z;
+        list.setZoom(zoom);
         setSize(strg.getBreite() * pixel[zoom] + 40, strg.getHoehe() * pixel[zoom] + 40);
         this.setPreferredSize(this.getSize());
         this.repaint();

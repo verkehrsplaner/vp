@@ -22,6 +22,7 @@ public class Spielsteuerung {
     private String nextAction;
     private boolean verloren;
     private int zoom;
+    private SpielPanel spielPanel;
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -50000000;
@@ -75,6 +76,7 @@ public class Spielsteuerung {
      * @param panel SpielPanel, in dem die Animation läuft
      */
     public void panelStarten(JPanel panel) {
+        spielPanel = (SpielPanel)panel;
         guiTimer = new GUITimer(panel);
         timer.scheduleAtFixedRate(guiTimer, 0, 40);
     }
@@ -85,6 +87,7 @@ public class Spielsteuerung {
     public void zoomIn() {
         if (zoom > 0) {
             zoom--;
+            spielPanel.setZoom(zoom);
         }
     }
     
@@ -94,6 +97,7 @@ public class Spielsteuerung {
     public void zoomOut() {
         if (zoom < 2) {
             zoom++;
+            spielPanel.setZoom(zoom);
         }
     }
     

@@ -930,7 +930,7 @@ public class Spielsteuerung {
             stadtteilBauen();
         }
         if(geld - gesamtGewinn() > maxMinus) {
-            geld = geld - gesamtGewinn();
+            geld = geld + gesamtGewinn();
         }
         else {
             // Spiel vorbei!

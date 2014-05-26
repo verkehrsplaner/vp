@@ -34,14 +34,17 @@ public class SpielGUI extends javax.swing.JFrame {
      * @param h
      * @param b
      */
-    public SpielGUI(int h, int b) {
+    public SpielGUI(int h, int b) throws InterruptedException {
         strg = new Spielsteuerung(h, b);
         hoehe = h;
         breite = b;
         initComponents();
         strg.panelStarten(jPanel3);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen  
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
+        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getMaximum()/2 - jScrollPane3.getWidth() / 2 - 20);
+        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getMaximum()/2 - jScrollPane3.getHeight() / 2 - 20);
         final SimpleDateFormat formatDatum = new SimpleDateFormat("HH:mm"); // Erstellt neuen "Kalender"
         final NumberFormat formatGeld = DecimalFormat.getCurrencyInstance(Locale.GERMANY);
         formatGeld.setCurrency(Currency.getInstance("EUR"));
@@ -50,7 +53,6 @@ public class SpielGUI extends javax.swing.JFrame {
         anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
         werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
         bilanzLabel.setText(formatGeld.format(strg.gesamtGewinn()));
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen  
 
         //Timer für Uhrzeit
         Timer t = new Timer();

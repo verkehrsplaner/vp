@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, geld, anzLinien, hoehe, breite, hauszahl;
+    private int depot, werkstatt, geld, anzLinien, hoehe, breite, hauszahl, zeit;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
@@ -20,9 +20,10 @@ public class Spielsteuerung {
     private StrgTimer strgTimer;
     private boolean feldVoll; //Für Stadtteile bauen
     private String nextAction;
+    private boolean verloren;
 
     // ========== Anfang Spielvariablen ==========
-    private final int maxMinus = -100000000;
+    private final int maxMinus = -50000000;
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 40000;
     private final int preisBhf = 500000;
@@ -45,6 +46,7 @@ public class Spielsteuerung {
         anzLinien = 0;
         feldVoll = false;
         nextAction = "";
+        verloren = false;
         geld = 1000000; // 10 Mio
         timer = new Timer();
         strgTimer = new StrgTimer(this);
@@ -933,7 +935,7 @@ public class Spielsteuerung {
             geld = geld + gesamtGewinn();
         }
         else {
-            // Spiel vorbei!
+            verloren = true;
         }
         return true;
     }
@@ -1009,6 +1011,13 @@ public class Spielsteuerung {
      */
     public int getWerkstatt() {
         return werkstatt;
+    }
+
+    /**
+     * @return the verloren
+     */
+    public boolean isVerloren() {
+        return verloren;
     }
 
 }

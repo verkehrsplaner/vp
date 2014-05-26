@@ -959,11 +959,16 @@ public class Spielsteuerung {
         if( Math.random() > stadtbaugeschw) {
             stadtteilBauen();
         }
+        if(zeit == 2) {
         if(geld - gesamtGewinn() > maxMinus) {
             geld = geld + gesamtGewinn();
+            zeit = 0;
         }
         else {
             verloren = true;
+        }
+        } else {
+            zeit++;
         }
         return true;
     }

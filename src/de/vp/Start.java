@@ -51,9 +51,9 @@ public class Start extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("50");
+        jTextField1.setText("1000");
 
-        jTextField2.setText("50");
+        jTextField2.setText("1000");
 
         jLabel1.setText("Höhe:");
 

@@ -29,7 +29,11 @@ public class StrgTimer extends TimerTask {
 
     @Override
     public void run() {
-        date.setTime(date.getTime() + 1000);
+        date.setTime(date.getTime() + 60000);
         strg.step();
+    }
+    
+    public long getTicks() {
+        return (date.getTime() % 86400000) / 3600;
     }
 }

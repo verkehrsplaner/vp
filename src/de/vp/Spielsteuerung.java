@@ -10,10 +10,6 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    // ========== Testbereich ==========
-    private TestTimer testTimer;
-    // ==========             ==========
-
     private int depot, werkstatt, geld, anzLinien, hoehe, breite, hauszahl;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
@@ -66,9 +62,7 @@ public class Spielsteuerung {
             linien[i] = null;
         }
         altstadt();
-        timer.scheduleAtFixedRate(strgTimer, 0, 8);
-        testTimer = new TestTimer(this);
-        timer.scheduleAtFixedRate(testTimer, 0, 50); //Bau Geschwindigkeit
+        timer.scheduleAtFixedRate(strgTimer, 0, 500);
     }
 
     public void panelStarten(JPanel panel) {

@@ -20,7 +20,7 @@ public class Rathaus extends Stadtteil {
 
     @Override
     public Color getFarbe() {
-        return Color.BLACK;
+        return new Color(75, 206, 250);
     }
     
     @Override

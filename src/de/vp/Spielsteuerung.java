@@ -882,7 +882,7 @@ public class Spielsteuerung {
     /**
      * berechnet alle Kosten, die durch Bahnhöfe, Züge, etc anfallen.
      */
-    private int gesamtKosten() {
+    public int gesamtKosten() {
         int kosten = 0;
 
         // \/ alle unangebundenen Stadtteile
@@ -909,7 +909,7 @@ public class Spielsteuerung {
     /**
      * berechnet den Gesamten Gewinn
      */
-    private int gesamtGewinn() {
+    public int gesamtGewinn() {
         int gewinn = 0 - gesamtKosten();
         for (int i = 0; i < anzLinien; i++) {
             gewinn = gewinn + linien[i].gewinn();

@@ -23,7 +23,8 @@ public class Linie {
     private int zugKapazitaet;
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
-    
+    private Spielsteuerung strg;
+
     // ========== Anfang Spielvariablen ==========
     private final int preisStrecke = 100000;
     // ========== Ende Spielvariablen ==========
@@ -110,7 +111,9 @@ public class Linie {
             }
             bhfListe[0] = bhf;
             bhfs++;
-
+            
+            strg.geldNehmen(streckeBerechnen(0 , 1));
+            
             // \/ bhf an einer anderen Stelle eingefügt
         } else {
             if (stelle != -1) {
@@ -122,7 +125,7 @@ public class Linie {
                     }
 
                 }
-                for (int i = bhfListe.length - 1; i < stelle ; i--) {
+                for (int i = bhfListe.length - 1; i < stelle; i--) {
                     bhfListe[i + 1] = bhfListe[i];
                 }
                 bhfListe[stelle] = bhf;
@@ -202,6 +205,24 @@ public class Linie {
      */
     public int getZuege() {
         return zuege;
+    }
+
+    /**
+     * Berechnet die Strecke zwischen zwei gegebenen Bahnhöfen
+     * @param startBhf Startbahnhof
+     * @param zielBhf Zielbahnhof
+     * @return strecke zwischen beiden Bahnhöfen
+     */
+    public int streckeBerechnen(int startBhf, int zielBhf) {
+        int strecke = 0;
+        int startX = bhfListe[startBhf].getX();
+        int startY = bhfListe[startBhf].getY();
+        int zielX = bhfListe[zielBhf].getX();
+        int zielY = bhfListe[zielBhf].getY();
+        
+        // Satz des Pythagoras (strecke = c)
+        strecke = (int) Math.round(Math.sqrt((zielX-startX)^2 + (zielY - startY)^2));
+        return strecke;
     }
 
     @Override

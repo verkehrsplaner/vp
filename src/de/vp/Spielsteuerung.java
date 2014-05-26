@@ -916,7 +916,14 @@ public class Spielsteuerung {
         }
         return gewinn; //genau!
     }
-
+    
+    /**
+     * 
+     * @param betrag betrag wird von Geld abgezogen
+     */
+    public void geldNehmen(int betrag) {
+        geld = geld - betrag;
+    }
     /**
      *
      * ?!

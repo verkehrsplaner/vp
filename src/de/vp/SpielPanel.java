@@ -15,6 +15,9 @@ public class SpielPanel extends javax.swing.JPanel {
     private Listener list;
     private int zoom;
     private int[] pixel = {30, 16, 8};
+    private int[] dicke = {3, 2, 1};
+    private int[] radius = {20, 16, 10};
+    private int[] bahnhofdicke = {2, 2, 1};
     /**
      * Creates new form SpielPanel
      *
@@ -67,7 +70,7 @@ public class SpielPanel extends javax.swing.JPanel {
                     g2d.setStroke(new BasicStroke(1));
                     g2d.fillRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
                     g2d.setColor(Color.YELLOW);
-                    g2d.setStroke(new BasicStroke(3));
+                    g2d.setStroke(new BasicStroke(dicke[zoom]));
                     g2d.drawRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
                 }
 
@@ -81,10 +84,10 @@ public class SpielPanel extends javax.swing.JPanel {
                 if (bhf[y][x] != null) {
                     g2d.setColor(Color.WHITE);
                     g2d.setStroke(new BasicStroke(1));
-                    g2d.fillOval(x * pixel[zoom] - 10 + 20, y * pixel[zoom] - 10 + 20, 20, 20);
+                    g2d.fillOval(x * pixel[zoom] - radius[zoom] / 2 + 20, y * pixel[zoom] - radius[zoom] / 2 + 20, radius[zoom], radius[zoom]);
                     g2d.setColor(Color.BLACK);
-                    g2d.setStroke(new BasicStroke(2));
-                    g2d.drawOval(x * pixel[zoom] - 10 + 20, y * pixel[zoom] - 10 + 20, 20, 20);
+                    g2d.setStroke(new BasicStroke(bahnhofdicke[zoom]));
+                    g2d.drawOval(x * pixel[zoom] - radius[zoom] / 2 + 20, y * pixel[zoom] - radius[zoom] / 2 + 20, radius[zoom], radius[zoom]);
                 }
             }
         }

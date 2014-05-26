@@ -34,7 +34,7 @@ public class SpielGUI extends javax.swing.JFrame {
      * @param h
      * @param b
      */
-    public SpielGUI(int h, int b) throws InterruptedException {
+    public SpielGUI(int h, int b) {
         strg = new Spielsteuerung(h, b);
         hoehe = h;
         breite = b;

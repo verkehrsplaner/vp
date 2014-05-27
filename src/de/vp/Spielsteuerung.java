@@ -347,7 +347,6 @@ public class Spielsteuerung {
                             if (teile[h - 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            
 
                         }
 
@@ -365,7 +364,7 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            if(teile[h+1][b] instanceof Haus && teile[h+1][b+1] == null && teile[h-1][b] == null && teile[h-1][b+1] == null&& teile[h-1][b-1] == null && teile[h+1][b-1] == null && teile[h+2][b] == null) {
+                            if (0 < b && b < teile[h].length - 1 && 0 < h && h < teile.length && teile[h + 1][b] instanceof Haus && teile[h + 1][b + 1] == null && teile[h - 1][b] == null && teile[h - 1][b + 1] == null && teile[h - 1][b - 1] == null && teile[h + 1][b - 1] == null && teile[h + 2][b] == null) {
                                 w = w + Math.random() * 5;
                             }
 
@@ -1070,6 +1069,11 @@ public class Spielsteuerung {
      */
     public int getBreite() {
         return breite;
+    }
+
+    public void geldCheat() {
+        geld = geld + 10000;
+    
     }
 
 }

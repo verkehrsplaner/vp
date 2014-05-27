@@ -29,6 +29,7 @@ public class Spielsteuerung {
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 40000;
     private final int preisBhf = 500000;
+    private final int bhfUnterhalt = 500;
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
@@ -931,6 +932,14 @@ public class Spielsteuerung {
         // \/ das was immer anfällt
         kosten = kosten + betriebskosten;
 
+        // \/ alle Bahnhöfe
+        for (int h = 0; h < bahnhoefe.length; h++) {
+            for (int b = 0; b < bahnhoefe[h].length; b++) {
+                if (bahnhoefe[h][b] != null) {
+                    kosten = kosten + bhfUnterhalt;
+                }
+            }
+        }
         return kosten;
 
     }
@@ -1073,7 +1082,7 @@ public class Spielsteuerung {
 
     public void geldCheat() {
         geld = geld + 10000;
-    
+
     }
 
 }

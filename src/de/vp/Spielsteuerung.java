@@ -33,7 +33,7 @@ public class Spielsteuerung {
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
-    private final double stadtbaugeschw = 0.0;
+    private final double stadtbaugeschw = 0.0; // je weniger umso mehr!
     private final int beschwerde = 50; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
@@ -69,7 +69,7 @@ public class Spielsteuerung {
             linien[i] = null;
         }
         altstadt();
-        timer.scheduleAtFixedRate(strgTimer, 0, 500);
+        timer.scheduleAtFixedRate(strgTimer, 0, 200);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Spielsteuerung {
     public void panelStarten(JPanel panel) {
         spielPanel = (SpielPanel) panel;
         guiTimer = new GUITimer(panel);
-        timer.scheduleAtFixedRate(guiTimer, 0, 40);
+        timer.scheduleAtFixedRate(guiTimer, 0, 10);
     }
 
     /**
@@ -365,8 +365,10 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            if (0 < b && b < teile[h].length - 1 && 0 < h && h < teile.length && teile[h + 1][b] instanceof Haus && teile[h + 1][b + 1] == null && teile[h - 1][b] == null && teile[h - 1][b + 1] == null && teile[h - 1][b - 1] == null && teile[h + 1][b - 1] == null && teile[h + 2][b] == null) {
+                            if(h < teile.length - 2 && b > 0 && b < teile[h].length -1 ) {
+                            if (teile[h + 1][b] instanceof Haus && teile[h + 1][b + 1] == null && teile[h - 1][b] == null && teile[h - 1][b + 1] == null && teile[h - 1][b - 1] == null && teile[h + 1][b - 1] == null && teile[h + 2][b] == null) {
                                 w = w + Math.random() * 5;
+                            }
                             }
 
                         }

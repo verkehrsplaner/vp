@@ -61,7 +61,10 @@ public class SpielPanel extends javax.swing.JPanel {
         g2d.setColor(new Color(192, 219, 154));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-        
+         //Schwarzer Rahmen um Spielfeld
+        g2d.setColor(Color.BLACK);
+        g2d.setStroke(new BasicStroke(1));
+        g2d.drawRect(20, 20, this.getWidth() - 40, this.getHeight() - 40);
 
         //Häuser malen
         Stadtteil[][] teile = strg.getTeile();
@@ -100,10 +103,7 @@ public class SpielPanel extends javax.swing.JPanel {
             }
         }
         
-        //Schwarzer Rahmen um Spielfeld
-        g2d.setColor(Color.BLACK);
-        g2d.setStroke(new BasicStroke(1));
-        g2d.drawRect(20, 20, this.getWidth() - 40, this.getHeight() - 40);
+       
 
     }
 

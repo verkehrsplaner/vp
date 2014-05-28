@@ -15,10 +15,10 @@ public class SpielPanel extends javax.swing.JPanel {
     private SpielGUI gui;
     private Listener list;
     private int zoom;
-    private int[] pixel = {32, 16, 8, 4, 2};
-    private int[] dicke = {3, 2, 1, 0, 0};
-    private int[] radius = {20, 16, 10, 6, 4};
-    private int[] bahnhofdicke = {2, 2, 1, 1, 0};
+    private int[] pixel = {32, 16, 8, 4, 2, 1};
+    private int[] dicke = {3, 2, 1, 0, 0, 0};
+    private int[] radius = {20, 16, 10, 6, 4, 2};
+    private int[] bahnhofdicke = {2, 2, 1, 1, 0, 0};
 
     /**
      * Creates new form SpielPanel
@@ -63,10 +63,10 @@ public class SpielPanel extends javax.swing.JPanel {
         g2d.setColor(new Color(192, 219, 154));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-         //Schwarzer Rahmen um Spielfeld
+        //Schwarzer Rahmen um Spielfeld
         g2d.setColor(Color.BLACK);
         g2d.setStroke(new BasicStroke(1));
-        g2d.drawRect(20, 20, this.getWidth() - 40, this.getHeight() - 40);
+        g2d.drawRect(20, 20, strg.getBreite() * pixel[zoom], strg.getHoehe() * pixel[zoom]);
 
         //Häuser malen
         Stadtteil[][] teile = strg.getTeile();
@@ -100,14 +100,14 @@ public class SpielPanel extends javax.swing.JPanel {
                     g2d.setColor(Color.WHITE);
                     g2d.setStroke(new BasicStroke(1));
                     g2d.fillOval(x * pixel[zoom] - radius[zoom] / 2 + 20, y * pixel[zoom] - radius[zoom] / 2 + 20, radius[zoom], radius[zoom]);
-                    g2d.setColor(Color.BLACK);
-                    g2d.setStroke(new BasicStroke(bahnhofdicke[zoom]));
-                    g2d.drawOval(x * pixel[zoom] - radius[zoom] / 2 + 20, y * pixel[zoom] - radius[zoom] / 2 + 20, radius[zoom], radius[zoom]);
+                    if (bahnhofdicke[zoom] > 0) {
+                        g2d.setColor(Color.BLACK);
+                        g2d.setStroke(new BasicStroke(bahnhofdicke[zoom]));
+                        g2d.drawOval(x * pixel[zoom] - radius[zoom] / 2 + 20, y * pixel[zoom] - radius[zoom] / 2 + 20, radius[zoom], radius[zoom]);
+                    }
                 }
             }
         }
-        
-       
 
     }
 

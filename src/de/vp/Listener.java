@@ -16,7 +16,7 @@ import java.awt.event.MouseEvent;
  */
 public class Listener extends MouseAdapter implements KeyListener {
     private Spielsteuerung strg;
-    private double[] pixel = {32.0, 16.0, 8.0, 4.0, 2.0};
+    private double[] pixel = {32.0, 16.0, 8.0, 4.0, 2.0, 1.0};
     private int zoom;
     
     public Listener(Spielsteuerung s) {

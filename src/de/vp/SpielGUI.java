@@ -81,11 +81,14 @@ public class SpielGUI extends javax.swing.JFrame {
                     bilanzLabel.setForeground(Color.GREEN);
                 }
                 bilanzLabel.setText(formatGeld.format(bilanz));
+                jPanel3.requestFocus();
             }
         }, 0, 40);
 
         ImageIcon icon = new ImageIcon(getClass().getResource("icon.png"));
         setIconImage(icon.getImage());
+        
+        jPanel3.requestFocus();
     }
 
     /**

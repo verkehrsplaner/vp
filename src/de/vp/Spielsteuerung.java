@@ -317,7 +317,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        double w = 110 * Math.random();
+                        double w = 150 * Math.random();
 
                         // \/ Is denn auch ein Bahnhöfchen in der Nähe?
                         if (h < teile.length - 1 && b < teile[h].length - 1) {
@@ -1084,8 +1084,9 @@ public class Spielsteuerung {
     }
 
     public void geldCheat() {
-        geld = geld + 1000000;
-
+        if (geld + 1000000 < Long.MAX_VALUE) {
+            geld = geld + 1000000;
+        }
     }
 
 }

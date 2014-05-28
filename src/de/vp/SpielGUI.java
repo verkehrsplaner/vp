@@ -40,7 +40,10 @@ public class SpielGUI extends javax.swing.JFrame {
         breite = b;
         initComponents();
         strg.panelStarten(jPanel3);
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
+//        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
+        
+        jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum() - jScrollPane3.getViewport().getWidth()) / 2);
+        jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum() - jScrollPane3.getViewport().getHeight()) / 2);
         
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
@@ -76,9 +79,6 @@ public class SpielGUI extends javax.swing.JFrame {
 
         ImageIcon icon = new ImageIcon(getClass().getResource("icon.png"));
         setIconImage(icon.getImage());
-        
-        jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum()) / 2 - jScrollPane3.getViewport().getWidth());
-        jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum()) / 2 - jScrollPane3.getViewport().getHeight() * 2/3);
     }
 
     /**
@@ -353,12 +353,7 @@ public class SpielGUI extends javax.swing.JFrame {
 
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         System.out.println("Button 'Einstellungen' wurde gedrückt!");
-        System.out.println("Minimum: " + jScrollPane3.getVerticalScrollBar().getMinimum() + ",Maximum: " + jScrollPane3.getVerticalScrollBar().getMaximum());
-        System.out.println("Position: " + jScrollPane3.getVerticalScrollBar().getValue());
-        System.out.println("Höhe: " + jScrollPane3.getViewport().getHeight());
-        System.out.println("Unterschied: " + (jScrollPane3.getVerticalScrollBar().getMaximum() - jScrollPane3.getVerticalScrollBar().getValue()));
-        System.out.println();
-//        JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_EinstellungenActionPerformed
 
     private void linieBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linieBauenButtonActionPerformed
@@ -392,13 +387,13 @@ public class SpielGUI extends javax.swing.JFrame {
     
     
     public void zoomIn() {
-        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() * 2);
-        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() * 2);
+        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() * 2 + jScrollPane3.getViewport().getWidth());
+        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() * 2 + jScrollPane3.getViewport().getHeight());
     }
     
     public void zoomOut() {
-        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() / 2);
-        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() / 2);
+        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() / 2 - jScrollPane3.getViewport().getWidth() / 4);
+        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() / 2 - jScrollPane3.getViewport().getHeight() / 4);
     }
     
 

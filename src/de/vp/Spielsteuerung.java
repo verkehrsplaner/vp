@@ -316,7 +316,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        double w = 90 * Math.random();
+                        double w = 100 * Math.random();
 
                         // \/ Is denn auch ein Bahnhöfchen in der Nähe?
                         if (h < teile.length - 1 && b < teile[h].length - 1) {

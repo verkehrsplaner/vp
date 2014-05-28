@@ -96,7 +96,7 @@ public class Spielsteuerung {
      * Zoomt raus (Zoomstufe größer)
      */
     public void zoomOut() {
-        if (zoom < 2) {
+        if (zoom < 4) {
             zoom++;
             spielPanel.setZoom(zoom);
         }

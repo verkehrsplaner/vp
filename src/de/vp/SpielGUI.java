@@ -26,6 +26,7 @@ public class SpielGUI extends javax.swing.JFrame {
 
     private Spielsteuerung strg;
     private int hoehe, breite;
+    private int hPos, vPos, hView, vView;
 
     /**
      * Erstellt das Fenster. Zusätzlich wird ein Timer initialisert, welcher die
@@ -42,8 +43,14 @@ public class SpielGUI extends javax.swing.JFrame {
         strg.panelStarten(jPanel3);
 //        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
         
-        jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum() - jScrollPane3.getViewport().getWidth()) / 2);
-        jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum() - jScrollPane3.getViewport().getHeight()) / 2);
+        hView = jScrollPane3.getViewport().getWidth();
+        vView = jScrollPane3.getViewport().getHeight();
+        
+        jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum() - hView) / 2);
+        jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum() - vView) / 2);
+        
+        hPos = jScrollPane3.getHorizontalScrollBar().getValue();
+        vPos = jScrollPane3.getVerticalScrollBar().getValue();
         
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
@@ -385,15 +392,27 @@ public class SpielGUI extends javax.swing.JFrame {
         strg.zugVerschrotten();
     }//GEN-LAST:event_minusButtonActionPerformed
     
+    public void saveScrollValues() {
+        hPos = jScrollPane3.getHorizontalScrollBar().getValue();
+        vPos = jScrollPane3.getVerticalScrollBar().getValue();
+        hView = jScrollPane3.getViewport().getWidth();
+        vView = jScrollPane3.getViewport().getHeight();
+        System.out.println(hPos + ", " + vPos + " View: " + hView + ", " + vView);
+    }
     
     public void zoomIn() {
-        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() * 2 + jScrollPane3.getViewport().getWidth());
-        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() * 2 + jScrollPane3.getViewport().getHeight());
+        jScrollPane3.getVerticalScrollBar().setValue(0);
+        jScrollPane3.getVerticalScrollBar().setValue(vPos * 2 + vView / 2);
+        jScrollPane3.getHorizontalScrollBar().setValue(hPos * 2 + hView / 2);
+        System.out.println("Zoom In!");
+        this.saveScrollValues();
     }
     
     public void zoomOut() {
-        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() / 2 - jScrollPane3.getViewport().getWidth() / 4);
-        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() / 2 - jScrollPane3.getViewport().getHeight() / 4);
+        jScrollPane3.getHorizontalScrollBar().setValue(hPos / 2 - hView / 4);
+        jScrollPane3.getVerticalScrollBar().setValue(vPos / 2 - vView / 4);
+        System.out.println("Zoom Out!");
+        this.saveScrollValues();
     }
     
 

@@ -41,6 +41,11 @@ public class SpielPanel extends javax.swing.JPanel {
     }
 
     public void setZoom(int z) {
+        gui.saveScrollValues();
+        list.setZoom(z);
+        this.setSize(strg.getBreite() * pixel[z] + 40, strg.getHoehe() * pixel[z] + 40);
+        this.setPreferredSize(this.getSize());
+        this.repaint();
         if (z < zoom) {
             gui.zoomIn();
         }
@@ -48,10 +53,6 @@ public class SpielPanel extends javax.swing.JPanel {
             gui.zoomOut();
         }
         zoom = z;
-        list.setZoom(zoom);
-        this.setSize(strg.getBreite() * pixel[zoom] + 40, strg.getHoehe() * pixel[zoom] + 40);
-        this.setPreferredSize(this.getSize());
-        this.repaint();
     }
 
     @Override

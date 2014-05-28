@@ -10,7 +10,8 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, geld, neueLinien, hoehe, breite, hauszahl, zeit;
+    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit;
+    private long geld;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
@@ -33,7 +34,7 @@ public class Spielsteuerung {
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
-    private final double stadtbaugeschw = 0.0;
+    private final double stadtbaugeschw = 0.0; // je weniger umso mehr!
     private final int beschwerde = 50; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
@@ -69,7 +70,7 @@ public class Spielsteuerung {
             linien[i] = null;
         }
         altstadt();
-        timer.scheduleAtFixedRate(strgTimer, 0, 500);
+        timer.scheduleAtFixedRate(strgTimer, 0, 200);
     }
 
     /**
@@ -80,7 +81,7 @@ public class Spielsteuerung {
     public void panelStarten(JPanel panel) {
         spielPanel = (SpielPanel) panel;
         guiTimer = new GUITimer(panel);
-        timer.scheduleAtFixedRate(guiTimer, 0, 40);
+        timer.scheduleAtFixedRate(guiTimer, 0, 10);
     }
 
     /**
@@ -316,7 +317,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        double w = 100 * Math.random();
+                        double w = 110 * Math.random();
 
                         // \/ Is denn auch ein Bahnhöfchen in der Nähe?
                         if (h < teile.length - 1 && b < teile[h].length - 1) {
@@ -365,8 +366,10 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            if (0 < b && b < teile[h].length - 1 && 0 < h && h < teile.length && teile[h + 1][b] instanceof Haus && teile[h + 1][b + 1] == null && teile[h - 1][b] == null && teile[h - 1][b + 1] == null && teile[h - 1][b - 1] == null && teile[h + 1][b - 1] == null && teile[h + 2][b] == null) {
-                                w = w + Math.random() * 5;
+                            if (h < teile.length - 2 && b > 1 && b < teile[h].length - 1 && h > 1) {
+                                if (teile[h + 1][b] instanceof Haus && teile[h + 1][b + 1] == null && teile[h - 1][b] == null && teile[h - 1][b + 1] == null && teile[h - 1][b - 1] == null && teile[h + 1][b - 1] == null && teile[h + 2][b] == null) {
+                                    w = w + Math.random() * 5;
+                                }
                             }
 
                         }
@@ -912,8 +915,8 @@ public class Spielsteuerung {
     /**
      * berechnet alle Kosten, die durch Bahnhöfe, Züge, etc anfallen.
      */
-    public int gesamtKosten() {
-        int kosten = 0;
+    public long gesamtKosten() {
+        long kosten = 0;
 
         // \/ alle unangebundenen Stadtteile
         for (int h = 0; h < hatBahnhof.length; h++) {
@@ -947,8 +950,8 @@ public class Spielsteuerung {
     /**
      * berechnet den Gesamten Gewinn
      */
-    public int gesamtGewinn() {
-        int gewinn = 0 - gesamtKosten();
+    public long gesamtGewinn() {
+        long gewinn = 0 - gesamtKosten();
         for (int i = 0; i < neueLinien - 1; i++) {
             gewinn = gewinn + linien[i].gewinn();
         }
@@ -1041,7 +1044,7 @@ public class Spielsteuerung {
     /**
      * @return the geld
      */
-    public int getGeld() {
+    public long getGeld() {
         return geld;
     }
 
@@ -1081,7 +1084,7 @@ public class Spielsteuerung {
     }
 
     public void geldCheat() {
-        geld = geld + 100000;
+        geld = geld + 1000000;
 
     }
 

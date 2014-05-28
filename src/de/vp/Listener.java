@@ -16,7 +16,7 @@ import java.awt.event.MouseEvent;
  */
 public class Listener extends MouseAdapter implements KeyListener {
     private Spielsteuerung strg;
-    private double[] pixel = {30.0, 16.0, 8.0};
+    private double[] pixel = {32.0, 16.0, 8.0, 4.0, 2.0};
     private int zoom;
     
     public Listener(Spielsteuerung s) {
@@ -45,18 +45,22 @@ public class Listener extends MouseAdapter implements KeyListener {
     
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Taste gedrückt! " + e.getKeyCode() + ", Minus: " + KeyEvent.VK_PLUS);
+//        System.out.println("Taste gedrückt! " + e.getKeyCode());
         if (e.getKeyCode() == KeyEvent.VK_B) {
-            System.out.println("B gedrückt");
+//            System.out.println("B gedrückt");
             strg.setNextAction("bhf");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_C) {       
+//            System.out.println("C gedrückt");
+            strg.geldCheat();
         }
         // Das zweite ist für Maxis Mac
         if (e.getKeyCode() == KeyEvent.VK_PLUS || e.getKeyCode() == 93) {
-            System.out.println("+ gedrückt");
+//            System.out.println("+ gedrückt");
             strg.zoomIn();
         }
         if (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == 47) {
-            System.out.println("- gedrückt");
+//            System.out.println("- gedrückt");
             strg.zoomOut();
         }
     }

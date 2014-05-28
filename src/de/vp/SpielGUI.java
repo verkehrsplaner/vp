@@ -40,12 +40,13 @@ public class SpielGUI extends javax.swing.JFrame {
         breite = b;
         initComponents();
         strg.panelStarten(jPanel3);
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
+//        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
+        
+        jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum() - jScrollPane3.getViewport().getWidth()) / 2);
+        jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum() - jScrollPane3.getViewport().getHeight()) / 2);
         
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
-        jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum()) / 2);
-        jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum()) / 2);
         
         final SimpleDateFormat formatDatum = new SimpleDateFormat("HH:mm"); // Erstellt neuen "Kalender"
         final NumberFormat formatGeld = DecimalFormat.getCurrencyInstance(Locale.GERMANY);
@@ -76,15 +77,8 @@ public class SpielGUI extends javax.swing.JFrame {
             }
         }, 0, 40);
 
-        //Seticon entweder
-//        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-//        oder
         ImageIcon icon = new ImageIcon(getClass().getResource("icon.png"));
         setIconImage(icon.getImage());
-
-        /**
-         * Creates new form SpielGUI
-         */
     }
 
     /**
@@ -393,13 +387,13 @@ public class SpielGUI extends javax.swing.JFrame {
     
     
     public void zoomIn() {
-        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() * 2);
-        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() * 2);
+        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() * 2 + jScrollPane3.getViewport().getWidth());
+        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() * 2 + jScrollPane3.getViewport().getHeight());
     }
     
     public void zoomOut() {
-        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() / 2);
-        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() / 2);
+        jScrollPane3.getHorizontalScrollBar().setValue(jScrollPane3.getHorizontalScrollBar().getValue() / 2 - jScrollPane3.getViewport().getWidth() / 4);
+        jScrollPane3.getVerticalScrollBar().setValue(jScrollPane3.getVerticalScrollBar().getValue() / 2 - jScrollPane3.getViewport().getHeight() / 4);
     }
     
 

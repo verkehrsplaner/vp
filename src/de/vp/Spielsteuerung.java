@@ -29,6 +29,7 @@ public class Spielsteuerung {
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 40000;
     private final int preisBhf = 500000;
+    private final int bhfUnterhalt = 500;
     private final int preisLinie = 10000;
     //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
@@ -315,7 +316,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (teile[h][b] == null) {
                         // \/ Standartzufälligkeit
-                        double w = 90 * Math.random();
+                        double w = 100 * Math.random();
 
                         // \/ Is denn auch ein Bahnhöfchen in der Nähe?
                         if (h < teile.length - 1 && b < teile[h].length - 1) {
@@ -347,7 +348,6 @@ public class Spielsteuerung {
                             if (teile[h - 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            
 
                         }
 
@@ -365,7 +365,7 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            if(teile[h+1][b] instanceof Haus && teile[h+1][b+1] == null && teile[h-1][b] == null && teile[h-1][b+1] == null&& teile[h-1][b-1] == null && teile[h+1][b-1] == null && teile[h+2][b] == null) {
+                            if (0 < b && b < teile[h].length - 1 && 0 < h && h < teile.length && teile[h + 1][b] instanceof Haus && teile[h + 1][b + 1] == null && teile[h - 1][b] == null && teile[h - 1][b + 1] == null && teile[h - 1][b - 1] == null && teile[h + 1][b - 1] == null && teile[h + 2][b] == null) {
                                 w = w + Math.random() * 5;
                             }
 
@@ -932,6 +932,14 @@ public class Spielsteuerung {
         // \/ das was immer anfällt
         kosten = kosten + betriebskosten;
 
+        // \/ alle Bahnhöfe
+        for (int h = 0; h < bahnhoefe.length; h++) {
+            for (int b = 0; b < bahnhoefe[h].length; b++) {
+                if (bahnhoefe[h][b] != null) {
+                    kosten = kosten + bhfUnterhalt;
+                }
+            }
+        }
         return kosten;
 
     }
@@ -1070,6 +1078,11 @@ public class Spielsteuerung {
      */
     public int getBreite() {
         return breite;
+    }
+
+    public void geldCheat() {
+        geld = geld + 10000;
+
     }
 
 }

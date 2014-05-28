@@ -16,10 +16,8 @@ public class Linie {
     private String name;
     private Color farbe;
     private int zuege;
-    private int zugUnterhaltungsKosten;
     private Bahnhof[] bhfListe;
     private int bhfs;
-    private int bhfUnterhaltungsKosten;
     private int zugKapazitaet;
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
@@ -27,13 +25,13 @@ public class Linie {
 
     // ========== Anfang Spielvariablen ==========
     private final int preisStrecke = 100000;
+    private final int bhfUnterhaltungsKosten = 500;
+    private final int zugUnterhaltungsKosten = 1000;
     // ========== Ende Spielvariablen ==========
 
     public Linie(String n, Spielsteuerung s) {
         strg = s;
-        zugUnterhaltungsKosten = 1000;
         bhfListe = new Bahnhof[20];
-        bhfUnterhaltungsKosten = 1000;
         name = n;
     }
 

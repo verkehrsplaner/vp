@@ -366,10 +366,10 @@ public class Spielsteuerung {
                             if (teile[h + 1][b] instanceof Firma) {
                                 w = w + Math.random() * 1.5;
                             }
-                            if(h < teile.length - 2 && b > 0 && b < teile[h].length -1 ) {
-                            if (teile[h + 1][b] instanceof Haus && teile[h + 1][b + 1] == null && teile[h - 1][b] == null && teile[h - 1][b + 1] == null && teile[h - 1][b - 1] == null && teile[h + 1][b - 1] == null && teile[h + 2][b] == null) {
-                                w = w + Math.random() * 5;
-                            }
+                            if (h < teile.length - 2 && b > 1 && b < teile[h].length - 1 && h > 1) {
+                                if (teile[h + 1][b] instanceof Haus && teile[h + 1][b + 1] == null && teile[h - 1][b] == null && teile[h - 1][b + 1] == null && teile[h - 1][b - 1] == null && teile[h + 1][b - 1] == null && teile[h + 2][b] == null) {
+                                    w = w + Math.random() * 5;
+                                }
                             }
 
                         }

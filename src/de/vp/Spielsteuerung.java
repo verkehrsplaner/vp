@@ -886,9 +886,9 @@ public class Spielsteuerung {
         teile[mh - 4][mb] = new Haus();
         teile[mh - 4][mb + 1] = new Haus();
         teile[mh - 4][mb + 2] = new Haus();
-        System.out.println();
-        System.out.println("!! Altstadt erfolgreich gebaut !!");
-        System.out.println();
+//        System.out.println();
+//        System.out.println("!! Altstadt erfolgreich gebaut !!");
+//        System.out.println();
         return true;
     }
 
@@ -1081,7 +1081,7 @@ public class Spielsteuerung {
     }
 
     public void geldCheat() {
-        geld = geld + 10000;
+        geld = geld + 100000;
 
     }
 

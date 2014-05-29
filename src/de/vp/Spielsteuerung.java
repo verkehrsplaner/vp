@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit, strgPause;
+    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit, strgPause, bhfs;
     private long geld;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
@@ -52,6 +52,7 @@ public class Spielsteuerung {
         nextAction = "";
         verloren = false;
         zoom = 0;
+        bhfs = 0;
         geld = 1000000; // 10 Mio
         timer = new Timer();
         timerS = new Timer();
@@ -85,7 +86,7 @@ public class Spielsteuerung {
         guiTimer = new GUITimer(panel);
         timer.scheduleAtFixedRate(guiTimer, 0, 20);
     }
-    
+
     /**
      * Erhöht die Spielgeschwindigkeit
      */
@@ -96,7 +97,7 @@ public class Spielsteuerung {
 //        timerS = new Timer();
 //        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
     }
-    
+
     /**
      * Verringert die Spielgeschwindigkeit
      */
@@ -106,7 +107,7 @@ public class Spielsteuerung {
 //        timerS = new Timer();
 //        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
     }
-    
+
     /**
      * Zoomt rein (Zoomstufe kleiner)
      */
@@ -281,7 +282,7 @@ public class Spielsteuerung {
                     }
                 }
             }
-
+            bhfs++;
             return true;
         } else {
             return false;
@@ -1111,7 +1112,7 @@ public class Spielsteuerung {
             geld = geld + 1000000;
         }
     }
-    
+
     public Linie[] getLinien() {
         Linie[] retLinie = new Linie[neueLinien];
         for (int i = 0; i < retLinie.length; i++) {
@@ -1119,9 +1120,19 @@ public class Spielsteuerung {
         }
         return retLinie;
     }
-    
+
     public Bahnhof[] getBahnhofListe() {
-        return bahnhoefe[0];
+        Bahnhof[] liste = new Bahnhof[bhfs];
+        int zahl = 0;
+        for (int h = 0; h < bahnhoefe.length; h++) {
+            for (int b = 0; b < bahnhoefe[h].length; b++) {
+                if (bahnhoefe[h][b] != null) {
+                    liste[zahl] = bahnhoefe[h][b];
+                    zahl++;
+                }
+            }
+        }
+        return liste;
     }
 
 }

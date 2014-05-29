@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.vp;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Felix
  */
 public class LinienGUI extends javax.swing.JFrame {
-    
+
     private Linie linie;
     private Spielsteuerung strg;
     private DefaultListModel bhfListe;
@@ -26,6 +26,7 @@ public class LinienGUI extends javax.swing.JFrame {
         linie = l;
         bhfListe = new DefaultListModel();
         bhf = linie.getBahnhof();
+        bhfListe.addElement("<Anfang>");
         for (int i = 0; i < bhf.length; i++) {
             bhfListe.addElement(bhf[i].getName());
         }
@@ -52,21 +53,27 @@ public class LinienGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jList1.setModel(bhfListe);
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jButtonBahnhof.setText("Bahnhof hinzufügen");
+        jButtonBahnhof.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBahnhofActionPerformed(evt);
+            }
+        });
 
         jLabelName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelName.setText(linie.getName());
 
         jButtonBahnhofWeg.setText("Bahnhof entfernen");
+        jButtonBahnhofWeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBahnhofWegActionPerformed(evt);
+            }
+        });
 
         jButtonLöschen.setText("Linie löschen");
         jButtonLöschen.addActionListener(new java.awt.event.ActionListener() {
@@ -113,17 +120,42 @@ public class LinienGUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonLöschenActionPerformed
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+    private void jButtonBahnhofActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofActionPerformed
+        int pos = jList1.getSelectedIndex();
+        if (pos <= 0) {
+            Bahnhof[] liste = strg.getBahnhofListe();
+            if (liste.length > 0) {
+                JOptionPane.showInputDialog(liste, liste[0]);
+//                linie.bahnhofHinzufuegen(new Bahnhof(), null);
+            }
+        } else if (pos > 0) {
+            pos = pos - 1;
+            Bahnhof[] liste = strg.getBahnhofListe();
+            if (liste.length > 0) {
+                JOptionPane.showInputDialog(liste, liste[0]);
+//                linie.bahnhofHinzufuegen(null, linie.getBahnhof()[pos]);
+            }
+        }
+        bhfListe.clear();
+        bhfListe.addElement("<Anfang>");
+        bhf = linie.getBahnhof();
+        for (int i = 0; i < bhf.length; i++) {
+            bhfListe.addElement(bhf[i].getName());
+        }
+    }//GEN-LAST:event_jButtonBahnhofActionPerformed
+
+    private void jButtonBahnhofWegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofWegActionPerformed
         int pos = jList1.getSelectedIndex();
         if (pos >= 0) {
             linie.bahnhofEntfernen(bhf[pos]);
         }
         bhfListe.clear();
+        bhfListe.addElement("<Anfang>");
         bhf = linie.getBahnhof();
         for (int i = 0; i < bhf.length; i++) {
             bhfListe.addElement(bhf[i].getName());
         }
-    }//GEN-LAST:event_jList1MouseClicked
+    }//GEN-LAST:event_jButtonBahnhofWegActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBahnhof;

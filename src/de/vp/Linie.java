@@ -36,7 +36,11 @@ public class Linie {
     }
 
     public Bahnhof[] getBahnhof() {
-        return bhfListe;
+        Bahnhof[] ret = new Bahnhof[bhfs];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = bhfListe[i];
+        }
+        return ret;
     }
     
     /**

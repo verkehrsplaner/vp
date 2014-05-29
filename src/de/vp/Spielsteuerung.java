@@ -1119,5 +1119,9 @@ public class Spielsteuerung {
         }
         return retLinie;
     }
+    
+    public Bahnhof[] getBahnhofListe() {
+        return bahnhoefe[0];
+    }
 
 }

@@ -50,6 +50,12 @@ public class Listener extends MouseAdapter implements KeyListener {
 //            System.out.println("B gedrückt");
             strg.setNextAction("bhf");
         }
+        if (e.getKeyCode() == KeyEvent.VK_J) {
+            strg.langsamer();
+        }
+        if (e.getKeyCode() == KeyEvent.VK_L) {
+            strg.schneller();
+        }
         if (e.getKeyCode() == KeyEvent.VK_C) {       
 //            System.out.println("C gedrückt");
             strg.geldCheat();

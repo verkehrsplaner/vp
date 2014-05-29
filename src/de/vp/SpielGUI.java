@@ -36,12 +36,12 @@ public class SpielGUI extends javax.swing.JFrame {
      * @param b
      */
     public SpielGUI(int h, int b) {
+//        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
         strg = new Spielsteuerung(h, b);
         hoehe = h;
         breite = b;
         initComponents();
         strg.panelStarten(jPanel3);
-//        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
         
         hView = jScrollPane3.getViewport().getWidth();
         vView = jScrollPane3.getViewport().getHeight();

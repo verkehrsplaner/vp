@@ -10,13 +10,13 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit;
+    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit, strgPause;
     private long geld;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
     private Linie[] linien;
-    private Timer timer;
+    private Timer timer, timerS;
     private GUITimer guiTimer;
     private StrgTimer strgTimer;
     private boolean feldVoll; //Für Stadtteile bauen
@@ -54,6 +54,8 @@ public class Spielsteuerung {
         zoom = 0;
         geld = 1000000; // 10 Mio
         timer = new Timer();
+        timerS = new Timer();
+        strgPause = 200; // Timer-Rate
         strgTimer = new StrgTimer(this);
         hatBahnhof = new boolean[hoehe][breite];
         teile = new Stadtteil[hoehe][breite];
@@ -70,7 +72,7 @@ public class Spielsteuerung {
             linien[i] = null;
         }
         altstadt();
-        timer.scheduleAtFixedRate(strgTimer, 0, 200);
+        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
     }
 
     /**
@@ -81,9 +83,30 @@ public class Spielsteuerung {
     public void panelStarten(JPanel panel) {
         spielPanel = (SpielPanel) panel;
         guiTimer = new GUITimer(panel);
-        timer.scheduleAtFixedRate(guiTimer, 0, 10);
+        timer.scheduleAtFixedRate(guiTimer, 0, 20);
     }
-
+    
+    /**
+     * Erhöht die Spielgeschwindigkeit
+     */
+    public void schneller() {
+//        strgPause = strgPause / 2;
+//        timerS.cancel();
+//        timerS.purge();
+//        timerS = new Timer();
+//        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+    }
+    
+    /**
+     * Verringert die Spielgeschwindigkeit
+     */
+    public void langsamer() {
+//        strgPause = strgPause / 2;
+//        timerS.cancel();
+//        timerS = new Timer();
+//        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+    }
+    
     /**
      * Zoomt rein (Zoomstufe kleiner)
      */

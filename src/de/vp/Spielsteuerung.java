@@ -1,5 +1,6 @@
 package de.vp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
 import javax.swing.JPanel;
@@ -24,6 +25,7 @@ public class Spielsteuerung {
     private boolean verloren;
     private int zoom;
     private SpielPanel spielPanel;
+    ArrayList<String> bhfNamen;
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -50000000;
@@ -62,6 +64,7 @@ public class Spielsteuerung {
         teile = new Stadtteil[hoehe][breite];
         bahnhoefe = new Bahnhof[hoehe][breite];
         linien = new Linie[20];
+
         for (int y = 0; y < hoehe; y++) {
             for (int x = 0; x < breite; x++) {
                 hatBahnhof[y][x] = false;
@@ -69,11 +72,29 @@ public class Spielsteuerung {
                 bahnhoefe[y][x] = null;
             }
         }
+
         for (int i = 0; i < linien.length; i++) {
             linien[i] = null;
         }
+
+        String[] bhfNamenTmp = {"Marienplatz", "Blumenstraße", "Graf Maxi von Krause Allee",
+            "Nicolaiplatz", "Großer Imperator Felix Maurer Platz", "Christine Kaps Allee",
+            "Felix der Hecker Platz", "Hofstraße", "Sonnenstraße", "Kirchplatz",
+            "Javagasse", "Berglerweg", "Stiftstraße", "Unterberg", "Hauptstraße",
+            "Feldweg", "Serviettenmarkt", "Kalter Bach", "Bürgermeister Horst Bichler Straße",
+            "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
+            "Platz des Bieres", "Alte Heide", "Baum", "Geldweg", "Berg", "Hausen",
+            "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
+            "Sickergraben", "Turmstraße", "Schneckenbahn", "Rosengarten", "Humboldt-Platz"};
+
+        for (int i = 0; i < bhfNamenTmp.length; i++) {
+            bhfNamen.add(bhfNamenTmp[i]);
+        }
+
         altstadt();
-        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+
+        timerS.scheduleAtFixedRate(strgTimer,
+                0, strgPause);
     }
 
     /**
@@ -261,7 +282,7 @@ public class Spielsteuerung {
      * @return
      */
     private boolean neuerBahnhof(int x, int y) {
-        if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length) {
+        if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {
             bahnhoefe[y][x] = new Bahnhof(x, y);
             geld = geld - preisBhf;
 
@@ -282,6 +303,7 @@ public class Spielsteuerung {
                     }
                 }
             }
+
             bhfs++;
             return true;
         } else {

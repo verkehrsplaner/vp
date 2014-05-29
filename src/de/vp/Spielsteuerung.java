@@ -234,7 +234,7 @@ public class Spielsteuerung {
     public boolean linieEntfernen(Linie l) {
         if (neueLinien > 0) {
             int x = 0;
-            for (int i = 0; i > neueLinien; i++) {
+            for (int i = 0; i < neueLinien; i++) {
                 if (linien[i].equals(l)) {
                     x = i;
                 }
@@ -1110,6 +1110,14 @@ public class Spielsteuerung {
         if (geld + 1000000 < Long.MAX_VALUE) {
             geld = geld + 1000000;
         }
+    }
+    
+    public Linie[] getLinien() {
+        Linie[] retLinie = new Linie[neueLinien];
+        for (int i = 0; i < retLinie.length; i++) {
+            retLinie[i] = linien[i];
+        }
+        return retLinie;
     }
 
 }

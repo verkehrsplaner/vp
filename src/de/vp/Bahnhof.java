@@ -19,22 +19,19 @@ public class Bahnhof {
     private int personen;
     private String name;
     private Spielsteuerung strg;
-    private String[] bhfNamen = {"Marienplatz", "Blumenstraße", "Graf Maxi von Krause Allee",
-        "Nicolaiplatz", "Großer Imperator Felix Maurer Platz", "Christine Kaps Allee",
-        "Felix der Hecker Platz", "Hofstraße", "Sonnenstraße", "Kirchplatz",
-        "Javagasse", "Berglerweg", "Stiftstraße", "Unterberg", "Hauptstraße",
-        "Feldweg", "Serviettenmarkt", "Kalter Bach", "Bürgermeister Horst Bichler Straße",
-        "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
-        "Platz des Bieres", "Alte Heide", "Baum", "Geldweg", "Berg", "Hausen",
-        "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
-        "Sickergraben", "Turmstraße", "Schneckenbahn", "Rosengarten", "Humboldt-Platz"};
-
-    public Bahnhof(int x, int y) {
+    
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param n Name des Bahnhofs
+     */
+    public Bahnhof(int x, int y, String n) {
         X = x;
         Y = y;
+        name = n;
         fahrtKosten = 3;
         teile = new Stadtteil[30];
-        name = bhfNamen[(int) Math.round(Math.random() * (bhfNamen.length - 1))];
     }
 
     /**

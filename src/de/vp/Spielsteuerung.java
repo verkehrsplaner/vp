@@ -1156,5 +1156,16 @@ public class Spielsteuerung {
         }
         return liste;
     }
+    
+    public Bahnhof getBahnhof(String bahnhof) {
+        Bahnhof[] liste = new Bahnhof[bhfs];
+        Bahnhof bhf = null;
+        for(int i=0; i < getBahnhofListe().length; i++) {
+            if(liste[i].getName().equals(bahnhof)) {
+                bhf = liste[i];
+            }
+        }
+        return bhf;
+    }
 
 }

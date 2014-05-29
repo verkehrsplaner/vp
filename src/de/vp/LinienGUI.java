@@ -157,7 +157,7 @@ public class LinienGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBahnhofActionPerformed
 
     private void jButtonBahnhofWegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofWegActionPerformed
-        int pos = jList1.getSelectedIndex();
+        int pos = jList1.getSelectedIndex() - 1;
         if (pos >= 0) {
             linie.bahnhofEntfernen(bhf[pos]);
         }

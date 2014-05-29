@@ -97,54 +97,40 @@ public class Linie {
      *
      */
     public void bahnhofHinzufuegen(Bahnhof bhf, Bahnhof bhfVor) {
-        // \/ Bhf bei [0] eingefügt
+        int stelle = -1;
+        for (int i = 0; i < bhfs; i++) {
+            if (bhfListe[i].equals(bhfVor)) {
+                stelle = i + 1;
+            }
+        }
+        // Wenn am Anfang eingefügt werden soll
         if (bhfVor == null) {
+            stelle = 0;
+        }
+
+        if (stelle > -1) {
             if (bhfListe.length < bhfs + 1) {
                 //Bei zu kurzer Liste wird diese erweitert
                 Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
                 for (int i = 0; i < bhfListe.length; i++) {
                     bhfHilf[i] = bhfListe[i];
                 }
-
+                bhfListe = bhfHilf;
             }
-            for (int i = bhfListe.length - 2; i > 0 - 1; i--) {
+            for (int i = bhfListe.length - 2; i >= stelle; i--) {
                 bhfListe[i + 1] = bhfListe[i];
             }
-            bhfListe[0] = bhf;
+            bhfListe[stelle] = bhf;
             bhfs++;
-
-            if (bhfListe[1] != null) {
-                strg.geldNehmen(streckeBerechnen(0, 1));
-            }
-
-            // \/ bhf an einer anderen Stelle eingefügt
-        } else {
-            int stelle = -1;
-            for (int i = 0; i < bhfListe.length; i++) {
-                if (bhfVor.equals(bhfListe[i])) {
-                    stelle = i + 1;
-                }
-            }
-            if (stelle != -1) {
-                if (bhfListe.length < bhfs + 1) {
-                    //Bei zu kurzer Liste wird diese erweitert
-                    Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
-                    for (int i = 0; i < bhfListe.length; i++) {
-                        bhfHilf[i] = bhfListe[i];
-                    }
-
-                }
-                for (int i = bhfListe.length - 2; i > stelle; i--) {
-                    bhfListe[i + 1] = bhfListe[i];
-                }
-                bhfListe[stelle] = bhf;
-                bhfs++;
-
+            if (stelle < bhfListe.length) {
                 if (bhfListe[stelle + 1] != null) {
                     strg.geldNehmen(streckeBerechnen(stelle, stelle + 1));
                 }
+            }
+            if (stelle > 0) {
                 if (bhfListe[stelle - 1] != null) {
                     strg.geldNehmen(streckeBerechnen(stelle - 1, stelle));
+
                 }
             }
         }

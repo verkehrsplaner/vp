@@ -225,8 +225,8 @@ public class SpielGUI extends javax.swing.JFrame {
             }
         });
 
-        Einstellungen.setText("Einstellungen");
-        Einstellungen.setToolTipText("Sicher dass du diesen Knopf drücken willst?");
+        Einstellungen.setText("Menü");
+        Einstellungen.setToolTipText("Menü");
         Einstellungen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Einstellungen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,8 +374,9 @@ public class SpielGUI extends javax.swing.JFrame {
 
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         System.out.println("Button 'Einstellungen' wurde gedrückt!");
-        JOptionPane.showMessageDialog(null, "Diese Funktion ist noch nicht verfügbar.", "Fehler", JOptionPane.ERROR_MESSAGE);
         jPanel3.requestFocus();
+        JFrame f = new EinstellungsGUI();
+        f.setVisible(true);
     }//GEN-LAST:event_EinstellungenActionPerformed
 
     private void linieBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linieBauenButtonActionPerformed

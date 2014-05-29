@@ -125,14 +125,16 @@ public class LinienGUI extends javax.swing.JFrame {
         if (pos <= 0) {
             Bahnhof[] liste = strg.getBahnhofListe();
             if (liste.length > 0) {
-                JOptionPane.showInputDialog(liste, liste[0]);
+                String out = JOptionPane.showInputDialog(liste, liste[0]);
+                System.out.println(out);
 //                linie.bahnhofHinzufuegen(new Bahnhof(), null);
             }
         } else if (pos > 0) {
             pos = pos - 1;
             Bahnhof[] liste = strg.getBahnhofListe();
             if (liste.length > 0) {
-                JOptionPane.showInputDialog(liste, liste[0]);
+                String out = JOptionPane.showInputDialog(liste, liste[0]);
+                System.out.println(out);
 //                linie.bahnhofHinzufuegen(null, linie.getBahnhof()[pos]);
             }
         }

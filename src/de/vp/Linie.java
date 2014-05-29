@@ -42,7 +42,7 @@ public class Linie {
         }
         return ret;
     }
-    
+
     /**
      * @return the name
      */
@@ -97,12 +97,6 @@ public class Linie {
      *
      */
     public void bahnhofHinzufuegen(Bahnhof bhf, Bahnhof bhfVor) {
-        int stelle = -1;
-        for (int i = 0; i < bhfListe.length; i++) {
-            if (bhfVor.equals(bhfListe[i])) {
-                stelle = i + 1;
-            }
-        }
         // \/ Bhf bei [0] eingefügt
         if (bhfVor == null) {
             if (bhfListe.length < bhfs + 1) {
@@ -113,18 +107,24 @@ public class Linie {
                 }
 
             }
-            for (int i = bhfListe.length - 1; i < 0 - 1; i--) {
+            for (int i = bhfListe.length - 2; i > 0 - 1; i--) {
                 bhfListe[i + 1] = bhfListe[i];
             }
             bhfListe[0] = bhf;
             bhfs++;
 
-            if (bhfListe[1] == null) {
+            if (bhfListe[1] != null) {
                 strg.geldNehmen(streckeBerechnen(0, 1));
             }
 
             // \/ bhf an einer anderen Stelle eingefügt
         } else {
+            int stelle = -1;
+            for (int i = 0; i < bhfListe.length; i++) {
+                if (bhfVor.equals(bhfListe[i])) {
+                    stelle = i + 1;
+                }
+            }
             if (stelle != -1) {
                 if (bhfListe.length < bhfs + 1) {
                     //Bei zu kurzer Liste wird diese erweitert
@@ -134,7 +134,7 @@ public class Linie {
                     }
 
                 }
-                for (int i = bhfListe.length - 1; i < stelle; i--) {
+                for (int i = bhfListe.length - 2; i > stelle; i--) {
                     bhfListe[i + 1] = bhfListe[i];
                 }
                 bhfListe[stelle] = bhf;
@@ -157,17 +157,17 @@ public class Linie {
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
         int stelle = -1;
-        for (int i = 0; i < bhfListe.length; i++) {
+        for (int i = 0; i < bhfs; i++) {
             if (bhfListe[i].equals(bhf)) {
                 stelle = i;
             }
         }
         if (stelle != -1) {
+            for (int i = stelle; i < bhfListe.length - 1; i++) {
+                bhfListe[i] = bhfListe[i + 1];
+            }
+            bhfs--;
         }
-        for (int i = stelle; i < bhfListe.length - 1; i++) {
-            bhfListe[i] = bhfListe[i - 1];
-        }
-        bhfs--;
     }
 
     /**
@@ -231,16 +231,19 @@ public class Linie {
      * @return strecke zwischen beiden Bahnhöfen
      */
     public int streckeBerechnen(int startBhf, int zielBhf) {
+        if (startBhf < bhfs && zielBhf < bhfs) {
+            int strecke = 0;
+            int startX = bhfListe[startBhf].getX();
+            int startY = bhfListe[startBhf].getY();
+            int zielX = bhfListe[zielBhf].getX();
+            int zielY = bhfListe[zielBhf].getY();
 
-        int strecke = 0;
-        int startX = bhfListe[startBhf].getX();
-        int startY = bhfListe[startBhf].getY();
-        int zielX = bhfListe[zielBhf].getX();
-        int zielY = bhfListe[zielBhf].getY();
-
-        // Satz des Pythagoras (strecke = c)
-        strecke = (int) Math.round(Math.sqrt((zielX - startX) ^ 2 + (zielY - startY) ^ 2));
-        return strecke;
+            // Satz des Pythagoras (strecke = c)
+            strecke = (int) Math.round(Math.sqrt((zielX - startX) ^ 2 + (zielY - startY) ^ 2));
+            return strecke;
+        } else {
+            return 0;
+        }
     }
 
     @Override

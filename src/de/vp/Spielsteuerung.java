@@ -86,7 +86,8 @@ public class Spielsteuerung {
             "Platz des Bieres", "Alte Heide", "Baum", "Geldweg", "Berg", "Hausen",
             "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
             "Sickergraben", "Turmstraße", "Schneckenbahn", "Rosengarten", "Humboldt-Platz"};
-
+        
+        bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {
             bhfNamen.add(bhfNamenTmp[i]);
         }
@@ -283,7 +284,7 @@ public class Spielsteuerung {
      */
     private boolean neuerBahnhof(int x, int y) {
         if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {
-            bahnhoefe[y][x] = new Bahnhof(x, y);
+            bahnhoefe[y][x] = new Bahnhof(x, y, bhfNamen.remove((int)Math.round(Math.random() * (bhfNamen.size() - 1))));
             geld = geld - preisBhf;
 
             // Häuser zum Bahnhof

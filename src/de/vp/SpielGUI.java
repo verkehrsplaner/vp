@@ -415,8 +415,8 @@ public class SpielGUI extends javax.swing.JFrame {
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         int pos = jList1.getSelectedIndex();
         if (pos >= 0) {
-        JFrame f = new LinienGUI(linien[pos], strg);
-        f.setVisible(true);
+            JFrame f = new LinienGUI(linien[pos], strg);
+            f.setVisible(true);
         }
     }//GEN-LAST:event_jList1MouseClicked
 

@@ -35,6 +35,10 @@ public class Linie {
         name = n;
     }
 
+    public Bahnhof[] getBahnhof() {
+        return bhfListe;
+    }
+    
     /**
      * @return the name
      */

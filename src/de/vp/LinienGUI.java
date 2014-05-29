@@ -6,20 +6,29 @@
 
 package de.vp;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Felix
  */
 public class LinienGUI extends javax.swing.JFrame {
-
+    
     private Linie linie;
     private Spielsteuerung strg;
-    
+    private DefaultListModel bhfListe;
+    private Bahnhof[] bhf;
+
     /**
      * Creates new form LinienGUI
      */
     public LinienGUI(Linie l, Spielsteuerung s) {
         linie = l;
+        bhfListe = new DefaultListModel();
+        bhf = linie.getBahnhof();
+        for (int i = 0; i < bhf.length; i++) {
+            bhfListe.addElement(bhf[i].getName());
+        }
         this.setTitle(linie.getName());
         strg = s;
         initComponents();
@@ -44,6 +53,11 @@ public class LinienGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButtonBahnhof.setText("Bahnhof hinzufügen");
@@ -98,6 +112,18 @@ public class LinienGUI extends javax.swing.JFrame {
         strg.linieEntfernen(linie);
         dispose();
     }//GEN-LAST:event_jButtonLöschenActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        int pos = jList1.getSelectedIndex();
+        if (pos >= 0) {
+            linie.bahnhofEntfernen(bhf[pos]);
+        }
+        bhfListe.clear();
+        bhf = linie.getBahnhof();
+        for (int i = 0; i < bhf.length; i++) {
+            bhfListe.addElement(bhf[i].getName());
+        }
+    }//GEN-LAST:event_jList1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBahnhof;

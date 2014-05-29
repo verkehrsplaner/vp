@@ -94,7 +94,7 @@ public class Spielsteuerung {
             "Saftladen", "Gullygasse", "Kassettenweg", "Egelstraße", "Wurmstraße", "Wasserweg",
             "{return null;}-Platz", "Rinderstraße", "Maulwurfstraße", "Eckpunkt", 
             "Kleiberstraße", "Paragraphenweg", "Kabelbrücke", "Roter Weg", "Geisterbahn",
-            "Gartenstraße", "Lilienstraße", "Pöppelstraße", "Stadttraße", "Jägerweg",
+            "Gartenstraße", "Lilienstraße", "Pöppelstraße", "Stadtstraße", "Jägerweg",
             "Parrweg", "Bayerstraße", "Baderstraße", "Fichtenweg", "Birkenstraße",
             "Buchenweg", "Kastanienweg", "Kellergasse", "Himmelspforte", "Auberginenweg",
             "Jedermannsweg", "Ladenstraße", "Exilstraße", "Wegstraße", "Kepplerstraße",

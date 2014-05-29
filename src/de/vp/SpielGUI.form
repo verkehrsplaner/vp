@@ -304,8 +304,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="Einstellungen">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Einstellungen"/>
-            <Property name="toolTipText" type="java.lang.String" value="Sicher dass du diesen Knopf dr&#xfc;cken willst?"/>
+            <Property name="text" type="java.lang.String" value="Men&#xfc;"/>
+            <Property name="toolTipText" type="java.lang.String" value="Men&#xfc;"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Standardcursor"/>
             </Property>

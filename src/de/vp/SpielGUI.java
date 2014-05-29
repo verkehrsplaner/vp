@@ -374,9 +374,9 @@ public class SpielGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
-        System.out.println("Button 'Einstellungen' wurde gedrückt!");
+        System.out.println("Button 'Menü' wurde gedrückt!");
         jPanel3.requestFocus();
-        JDialog f = new EinstellungsGUI();
+        JDialog f = new MenuGUI();
         f.setModal(true);
         f.setVisible(true);
     }//GEN-LAST:event_EinstellungenActionPerformed

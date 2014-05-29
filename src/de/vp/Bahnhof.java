@@ -19,16 +19,7 @@ public class Bahnhof {
     private int personen;
     private String name;
     private Spielsteuerung strg;
-    private String[] bhfNamen = {"Marienplatz", "Blumenstraße", "Graf Maxi von Krause Allee",
-        "Nicolaiplatz", "Großer Imperator Felix Maurer Platz", "Christine Kaps Allee",
-        "Felix der Hecker Platz", "Hofstraße", "Sonnenstraße", "Kirchplatz",
-        "Javagasse", "Berglerweg", "Stiftstraße", "Unterberg", "Hauptstraße",
-        "Feldweg", "Serviettenmarkt", "Kalter Bach", "Bürgermeister Horst Bichler Straße",
-        "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
-        "Platz des Bieres", "Alte Heide", "Baum", "Geldweg", "Berg", "Hausen",
-        "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
-        "Sickergraben", "Turmstraße", "Schneckenbahn", "Rosengarten", "Humboldt-Platz"};
-
+    
     public Bahnhof(int x, int y) {
         X = x;
         Y = y;

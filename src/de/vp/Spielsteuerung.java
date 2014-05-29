@@ -24,6 +24,17 @@ public class Spielsteuerung {
     private boolean verloren;
     private int zoom;
     private SpielPanel spielPanel;
+    private String[] bhfNamen = {"Marienplatz", "Blumenstraße", "Graf Maxi von Krause Allee",
+        "Nicolaiplatz", "Großer Imperator Felix Maurer Platz", "Christine Kaps Allee",
+        "Felix der Hecker Platz", "Hofstraße", "Sonnenstraße", "Kirchplatz",
+        "Javagasse", "Berglerweg", "Stiftstraße", "Unterberg", "Hauptstraße",
+        "Feldweg", "Serviettenmarkt", "Kalter Bach", "Bürgermeister Horst Bichler Straße",
+        "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
+        "Platz des Bieres", "Alte Heide", "Baum", "Geldweg", "Berg", "Hausen",
+        "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
+        "Sickergraben", "Turmstraße", "Schneckenbahn", "Rosengarten", "Humboldt-Platz", 
+        "Hofstraße", "Halle"};
+
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -50000000;
@@ -1133,6 +1144,17 @@ public class Spielsteuerung {
             }
         }
         return liste;
+    }
+    
+    public Bahnhof getBahnhof(String bahnhof) {
+        Bahnhof[] liste = new Bahnhof[bhfs];
+        Bahnhof bhf = null;
+        for(int i=0; i < getBahnhofListe().length; i++) {
+            if(liste[i].getName().equals(bahnhof)) {
+                bhf = liste[i];
+            }
+        }
+        return bhf;
     }
 
 }

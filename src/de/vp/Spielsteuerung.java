@@ -93,7 +93,16 @@ public class Spielsteuerung {
             "Steinstraße", "Pfauenstraße", "Bergstraße", "Bürgersteig", "Schorlenplatz",
             "Saftladen", "Gullygasse", "Kassettenweg", "Egelstraße", "Wurmstraße", "Wasserweg",
             "{return null;}-Platz", "Rinderstraße", "Maulwurfstraße", "Eckpunkt", 
-            "Kleiberstraße", "Paragraphenweg", "Kabelbrücke"};
+            "Kleiberstraße", "Paragraphenweg", "Kabelbrücke", "Roter Weg", "Geisterbahn",
+            "Gartenstraße", "Lilienstraße", "Pöppelstraße", "Stadttraße", "Jägerweg",
+            "Parrweg", "Bayerstraße", "Baderstraße", "Fichtenweg", "Birkenstraße",
+            "Buchenweg", "Kastanienweg", "Kellergasse", "Himmelspforte", "Auberginenweg",
+            "Jedermannsweg", "Ladenstraße", "Exilstraße", "Wegstraße", "Kepplerstraße",
+            "Hammerweg", "Spitzweg", "Lötstraße", "Weinstraße", "Waldmeisterstraße",
+            "Primelstraße", "Kamillenweg", "Balkenweg", "Farnweg", "Konfettiwerk",
+            "Weckerwerk", "Kürbisstraße", "Pralinenalle", "Lindenstraße", "Autobahn",
+            "Straße der Liebe", "Straße des Hass", "Zunftplatz", "Glaserviertel", "Gerberviertel",
+            "Rotlichtviertel", "Platz der Arbeiter"};
         
         bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {

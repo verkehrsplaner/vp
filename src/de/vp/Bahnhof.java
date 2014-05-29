@@ -119,6 +119,11 @@ public class Bahnhof {
             return false;
         }
     }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 
     /**
      * @return the name

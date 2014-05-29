@@ -6,11 +6,13 @@
 
 package de.vp;
 
+import javax.swing.JDialog;
+
 /**
  *
  * @author Hecker
  */
-public class EinstellungsGUI extends javax.swing.JFrame {
+public class EinstellungsGUI extends JDialog {
 
     /**
      * Creates new form EinstellungsGUI

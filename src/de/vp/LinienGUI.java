@@ -6,13 +6,14 @@
 package de.vp;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Felix
  */
-public class LinienGUI extends javax.swing.JFrame {
+public class LinienGUI extends JDialog {
 
     private Linie linie;
     private Spielsteuerung strg;

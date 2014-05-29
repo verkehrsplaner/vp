@@ -19,6 +19,7 @@ import java.util.TimerTask;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -375,7 +376,8 @@ public class SpielGUI extends javax.swing.JFrame {
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         System.out.println("Button 'Einstellungen' wurde gedrückt!");
         jPanel3.requestFocus();
-        JFrame f = new EinstellungsGUI();
+        JDialog f = new EinstellungsGUI();
+        f.setModal(true);
         f.setVisible(true);
     }//GEN-LAST:event_EinstellungenActionPerformed
 
@@ -416,7 +418,8 @@ public class SpielGUI extends javax.swing.JFrame {
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         int pos = jList1.getSelectedIndex();
         if (pos >= 0) {
-            JFrame f = new LinienGUI(linien[pos], strg);
+            JDialog f = new LinienGUI(linien[pos], strg);
+            f.setModal(true);
             f.setVisible(true);
         }
     }//GEN-LAST:event_jList1MouseClicked

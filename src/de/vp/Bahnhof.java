@@ -20,12 +20,18 @@ public class Bahnhof {
     private String name;
     private Spielsteuerung strg;
     
-    public Bahnhof(int x, int y) {
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param n Name des Bahnhofs
+     */
+    public Bahnhof(int x, int y, String n) {
         X = x;
         Y = y;
+        name = n;
         fahrtKosten = 3;
         teile = new Stadtteil[30];
-        name = bhfNamen[(int) Math.round(Math.random() * (bhfNamen.length - 1))];
     }
 
     /**

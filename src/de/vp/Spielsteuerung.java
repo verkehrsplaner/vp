@@ -81,11 +81,19 @@ public class Spielsteuerung {
             "Nicolaiplatz", "Großer Imperator Felix Maurer Platz", "Christine Kaps Allee",
             "Felix der Hecker Platz", "Hofstraße", "Sonnenstraße", "Kirchplatz",
             "Javagasse", "Berglerweg", "Stiftstraße", "Unterberg", "Hauptstraße",
-            "Feldweg", "Serviettenmarkt", "Kalter Bach", "Bürgermeister Horst Bichler Straße",
+            "Feldweg", "Serviettenmarkt", "Kalterbach", "Bürgermeister Horst Bichler Straße",
             "Laaange Straße", "Weit-Weit-Weg", "Waschstraße", "Schnitzelstraße",
-            "Platz des Bieres", "Alte Heide", "Baum", "Geldweg", "Berg", "Hausen",
+            "Platz des Bieres", "Alte Heide", "Baumhausen", "Geldweg", "Berg", "Hausen",
             "Schneiderei", "Alte Weberei", "Brauereigasse", "Färbergraben", "H-Brücke",
-            "Sickergraben", "Turmstraße", "Schneckenbahn", "Rosengarten", "Humboldt-Platz"};
+            "Sickergraben", "Turmstraße", "Schneckenbahn", "Rosengarten", "Humboldt-Platz",
+            "Wurzelplatz", "Adlerstraße", "Flamingostraße", "Taubenweg", "Spechtweg",
+            "Sperberstraße", "Schlosstraße", "Friedensstraße", "Sackgasse", "Platz der Partei",
+            "Keksweg", "Börsenplatz", "Gleisweg", "Dateipfad", "Milchstraße", "Qwertzweg",
+            "Holzweg", "Heringsberger Straße", "Ausfallstraße", "Bahnhofstraße", "Finkenweg",
+            "Steinstraße", "Pfauenstraße", "Bergstraße", "Bürgersteig", "Schorlenplatz",
+            "Saftladen", "Gullygasse", "Kassettenweg", "Egelstraße", "Wurmstraße", "Wasserweg",
+            "{return null;}-Platz", "Rinderstraße", "Maulwurfstraße", "Eckpunkt", 
+            "Kleiberstraße", "Paragraphenweg", "Kabelbrücke"};
         
         bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {

@@ -19,7 +19,7 @@ public class SpielPanel extends javax.swing.JPanel {
     private int[] dicke = {3, 2, 1, 0, 0, 0};
     private int[] radius = {20, 16, 10, 6, 4, 2};
     private int[] bahnhofdicke = {2, 2, 1, 1, 0, 0};
-    private int[] liniendicke = {5, 5, 4, 4, 3, 2};
+    private int[] liniendicke = {7, 5, 4, 4, 3, 2};
 
     /**
      * Creates new form SpielPanel

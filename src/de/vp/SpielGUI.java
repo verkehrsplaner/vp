@@ -88,7 +88,7 @@ public class SpielGUI extends javax.swing.JFrame {
                 if (bilanz < 0) {
                     bilanzLabel.setForeground(Color.RED);
                 } else {
-                    bilanzLabel.setForeground(Color.GREEN);
+                    bilanzLabel.setForeground(new Color(50, 158, 0));
                 }
                 bilanzLabel.setText(formatGeld.format(bilanz));
                 Linie[] linienTemp = strg.getLinien();

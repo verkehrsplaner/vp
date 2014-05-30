@@ -33,6 +33,7 @@ public class Linie {
         strg = s;
         bhfListe = new Bahnhof[20];
         name = n;
+        farbe = Color.WHITE;
     }
 
     public Bahnhof[] getBahnhof() {

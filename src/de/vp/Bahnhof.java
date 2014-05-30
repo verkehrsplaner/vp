@@ -19,9 +19,9 @@ public class Bahnhof {
     private int personen;
     private String name;
     private Spielsteuerung strg;
-    
+
     /**
-     * 
+     *
      * @param x
      * @param y
      * @param n Name des Bahnhofs
@@ -57,14 +57,15 @@ public class Bahnhof {
 
     /**
      *
-     * @return gesamter Gewinn des Bahnhofs berechnet durch alle Stadtteile im
-     * Radius
+     * @return gesamter Gewinn des Bahnhofs berechnet durch alle Stadtteile im Radius
      */
     public int gewinn() {
         int x = 0;
         for (int i = 0; i < teile.length; i++) {
-            if (teile[i].getPersonen() > 0) {
-                x = x + teile[i].getPersonen() * getFahrtKosten();
+            if (teile[i] != null) {
+                if (teile[i].getPersonen() > 0) {
+                    x = x + teile[i].getPersonen() * getFahrtKosten();
+                }
             }
         }
         return x;
@@ -116,7 +117,7 @@ public class Bahnhof {
             return false;
         }
     }
-    
+
     @Override
     public String toString() {
         return name;

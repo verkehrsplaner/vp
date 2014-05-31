@@ -100,10 +100,22 @@ public class Spielsteuerung {
             "Jedermannsweg", "Ladenstraße", "Exilstraße", "Wegstraße", "Kepplerstraße",
             "Hammerweg", "Spitzweg", "Lötstraße", "Weinstraße", "Waldmeisterstraße",
             "Primelstraße", "Kamillenweg", "Balkenweg", "Farnweg", "Konfettiwerk",
-            "Weckerwerk", "Kürbisstraße", "Pralinenalle", "Lindenstraße", "Autobahn",
+            "Weckerwerk", "Kürbisstraße", "Pralinenallee", "Lindenstraße", "Autobahn",
             "Straße der Liebe", "Straße des Hass", "Zunftplatz", "Glaserviertel", "Gerberviertel",
-            "Rotlichtviertel", "Platz der Arbeiter"};
-        
+            "Rotlichtviertel", "Platz der Arbeiter", "Fluchtweg", "Papierstraße", "Rennbahn",
+            "Prangerviertel", "Henkerweg", "Peterplatz", "Staufenallee", "Besenallee", "Schaufelstraße",
+            "Kugelbahn", "Genitivgasse", "Scharfe Kurve", "Ausweg", "Schulstraße",
+            "Universität", "Bibliothek", "Rettungsweg", "Melinaplatz", "Zeigerkurve",
+            "Südkurve", "Kurvenstraße", "Federweg", "Kreidebahn", "Dunkle Gasse", "Letzter Weg",
+            "Zustellweg", "Unterer Marktplatz", "Oberer Marktplatz", "Sitzplatz", "Am Feld",
+            "Oberweg", "Meyerstraße", "Frühlingsstraße", "Herbststraße", "Winterstraße",
+            "Löwengrube", "Am Galgenberg", "Maistraße", "Februarstraße", "Augustusweg",
+            "Kartoffelring", "Lederring", "Kohlstraße", "Museumstraße", "Zeppelinstraße", 
+            "Röhrenstraße", "Pixelstraße", "Herzogstraße", "Königsplatz", "Wallstraße", 
+            "Ohmstraße", "Schnorrerstraße", "Ackerstraße", "Winzergasse", "Panzerstraße",
+            "Abtstraße", "Albrechtstraße", "Alte Allee", "Messeplatz", "Blütenanger",
+            "Anhalterstraße", "Barabarenstraße", "Benediktinerstraße", "Bernsteinweg",
+            "Poststraße", "Clemensstraße", "Delphinstraße", "Drosselweg"};
         bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {
             bhfNamen.add(bhfNamenTmp[i]);

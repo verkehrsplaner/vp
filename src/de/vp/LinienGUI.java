@@ -36,6 +36,7 @@ public class LinienGUI extends JDialog {
         this.setTitle(linie.getName());
         strg = s;
         initComponents();
+        jLabelName.setForeground(linie.getFarbe());
     }
 
     /**

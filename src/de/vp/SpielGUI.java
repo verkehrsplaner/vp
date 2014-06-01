@@ -33,6 +33,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private int hoehe, breite;
     private int hPos, vPos, hView, vView;
     private DefaultListModel linienListe;
+    private LinienCellRenderer linienRenderer;
     private Linie[] linien;
 
     /**
@@ -49,6 +50,10 @@ public class SpielGUI extends javax.swing.JFrame {
         hoehe = h;
         breite = b;
         initComponents();
+        
+        linienRenderer = new LinienCellRenderer();
+        jList1.setCellRenderer(linienRenderer);
+        
         strg.panelStarten(jPanel3);
 
         hView = jScrollPane3.getViewport().getWidth();
@@ -96,8 +101,7 @@ public class SpielGUI extends javax.swing.JFrame {
                     linien = linienTemp;
                     linienListe.clear();
                     for (int i = 0; i < linien.length; i++) {
-                        final Linie l = linien[i];
-                        linienListe.addElement(l.getName());
+                        linienListe.addElement(linien[i]);
                     }
                 }
             }
@@ -444,6 +448,9 @@ public class SpielGUI extends javax.swing.JFrame {
         this.saveScrollValues();
     }
 
+    public int getLinienNr() {
+        return jList1.getSelectedIndex();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Einstellungen;

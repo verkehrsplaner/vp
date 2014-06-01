@@ -101,12 +101,23 @@ public class SpielPanel extends javax.swing.JPanel {
         for (int i = 0; i < linien.length; i++) {
 
             Bahnhof[] linienBahnhof = linien[i].getBahnhof();
+            g2d.setColor(linien[i].getFarbe());
+            g2d.setStroke(new BasicStroke(liniendicke[zoom]));
             for (int j = 0; j < linienBahnhof.length - 1; j++) {
-                g2d.setColor(linien[i].getFarbe());
-                g2d.setStroke(new BasicStroke(liniendicke[zoom]));
                 g2d.drawLine(linienBahnhof[j].getX() * pixel[zoom] + 20, linienBahnhof[j].getY() * pixel[zoom] + 20, linienBahnhof[j + 1].getX() * pixel[zoom] + 20, linienBahnhof[j + 1].getY() * pixel[zoom] + 20);
             }
 
+        }
+
+        // Aktuelle Linie oben zeichnen
+        int aktLinie = gui.getLinienNr();
+        if (aktLinie >= 0) {
+            Bahnhof[] linienBahnhof = linien[aktLinie].getBahnhof();
+            g2d.setColor(linien[aktLinie].getFarbe());
+            g2d.setStroke(new BasicStroke(liniendicke[zoom]));
+            for (int j = 0; j < linienBahnhof.length - 1; j++) {
+                g2d.drawLine(linienBahnhof[j].getX() * pixel[zoom] + 20, linienBahnhof[j].getY() * pixel[zoom] + 20, linienBahnhof[j + 1].getX() * pixel[zoom] + 20, linienBahnhof[j + 1].getY() * pixel[zoom] + 20);
+            }
         }
 
         //Bahnhöfe malen

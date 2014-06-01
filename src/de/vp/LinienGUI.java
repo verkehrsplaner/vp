@@ -140,27 +140,31 @@ public class LinienGUI extends JDialog {
         if (pos <= 0) {
             Bahnhof[] liste = strg.getBahnhofListe();
             if (liste.length > 0) {
-                Bahnhof bhf = (Bahnhof)JOptionPane.showInputDialog(this,
+                Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
                         "Bahnhof auswählen:",
                         "Bahnhof",
                         JOptionPane.QUESTION_MESSAGE,
                         null,
                         liste,
                         liste[0]);
-                linie.bahnhofHinzufuegen(bhf, null);
+                if (bhf != null) {
+                    linie.bahnhofHinzufuegen(bhf, null);
+                }
             }
         } else if (pos > 0) {
             pos = pos - 1;
             Bahnhof[] liste = strg.getBahnhofListe();
             if (liste.length > 0) {
-                Bahnhof bhf = (Bahnhof)JOptionPane.showInputDialog(this,
+                Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
                         "Bahnhof auswählen:",
                         "Bahnhof",
                         JOptionPane.QUESTION_MESSAGE,
                         null,
                         liste,
                         liste[0]);
-                linie.bahnhofHinzufuegen(bhf, linie.getBahnhof()[pos]);
+                if (bhf != null) {
+                    linie.bahnhofHinzufuegen(bhf, linie.getBahnhof()[pos]);
+                }
             }
         }
         bhfListe.clear();

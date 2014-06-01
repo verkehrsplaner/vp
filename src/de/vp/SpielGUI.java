@@ -106,7 +106,11 @@ public class SpielGUI extends javax.swing.JFrame {
                 }
             }
         }, 0, 40);
-
+        
+        tickerPanel.getPixel();
+        Thread th = new Thread(tickerPanel);
+        th.start();
+        
         ImageIcon icon = new ImageIcon(getClass().getResource("icon.png"));
         setIconImage(icon.getImage());
 
@@ -145,7 +149,7 @@ public class SpielGUI extends javax.swing.JFrame {
         bilanzLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jPanel4 = new TickerPanel();
+        tickerPanel = new TickerPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verkehrsplaner");
@@ -337,14 +341,16 @@ public class SpielGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tickerPanel.setOpaque(false);
+
+        javax.swing.GroupLayout tickerPanelLayout = new javax.swing.GroupLayout(tickerPanel);
+        tickerPanel.setLayout(tickerPanelLayout);
+        tickerPanelLayout.setHorizontalGroup(
+            tickerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 809, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tickerPanelLayout.setVerticalGroup(
+            tickerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 22, Short.MAX_VALUE)
         );
 
@@ -357,7 +363,7 @@ public class SpielGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tickerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -368,7 +374,7 @@ public class SpielGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tickerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -462,7 +468,6 @@ public class SpielGUI extends javax.swing.JFrame {
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
@@ -474,6 +479,10 @@ public class SpielGUI extends javax.swing.JFrame {
     private javax.swing.JButton minusButton;
     private javax.swing.JButton plusButton;
     private javax.swing.JButton reparierenButton;
+    /*
+    private javax.swing.JPanel tickerPanel;
+    */
+    private TickerPanel tickerPanel;
     private javax.swing.JLabel uhrzeitLabel;
     private javax.swing.JLabel werkstattAnzahlLabel;
     private javax.swing.JLabel werkstattNameLabel;

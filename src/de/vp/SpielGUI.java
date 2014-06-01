@@ -429,21 +429,18 @@ public class SpielGUI extends javax.swing.JFrame {
         vPos = jScrollPane3.getVerticalScrollBar().getValue();
         hView = jScrollPane3.getViewport().getWidth();
         vView = jScrollPane3.getViewport().getHeight();
-        System.out.println(hPos + ", " + vPos + " View: " + hView + ", " + vView);
     }
 
     public void zoomIn() {
         jScrollPane3.getVerticalScrollBar().setValue(0);
         jScrollPane3.getVerticalScrollBar().setValue(vPos * 2 + vView / 2);
         jScrollPane3.getHorizontalScrollBar().setValue(hPos * 2 + hView / 2);
-        System.out.println("Zoom In!");
         this.saveScrollValues();
     }
 
     public void zoomOut() {
         jScrollPane3.getHorizontalScrollBar().setValue(hPos / 2 - hView / 4);
         jScrollPane3.getVerticalScrollBar().setValue(vPos / 2 - vView / 4);
-        System.out.println("Zoom Out!");
         this.saveScrollValues();
     }
 

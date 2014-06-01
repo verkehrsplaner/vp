@@ -60,13 +60,19 @@ public class Listener extends MouseAdapter implements KeyListener {
 //            System.out.println("C gedrückt");
             strg.geldCheat();
         }
-        // Das zweite ist für Maxis Mac
+        // Das zweite ist für Maxis Mac und insgesamt gehts hier um Zoomen
         if (e.getKeyCode() == KeyEvent.VK_PLUS || e.getKeyCode() == 93) {
 //            System.out.println("+ gedrückt");
             strg.zoomIn();
         }
         if (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == 47) {
 //            System.out.println("- gedrückt");
+            strg.zoomOut();
+        }
+        if (e.getKeyCode() == KeyEvent.VK_Y || e.getKeyCode() == 89) {
+            strg.zoomIn();
+        }
+        if (e.getKeyCode() == KeyEvent.VK_X || e.getKeyCode() == 88) {
             strg.zoomOut();
         }
     }

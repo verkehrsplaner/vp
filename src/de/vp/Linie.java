@@ -131,7 +131,7 @@ public class Linie {
             bhfs++;
             if (stelle < bhfListe.length) {
                 if (bhfListe[stelle + 1] != null) {
-                    strg.geldNehmen(streckeBerechnen(stelle, stelle + 1));
+                    strg.geldNehmen(streckeBerechnen(stelle, stelle + 1)* preisStrecke);
                 }
             }
             if (stelle > 0) {

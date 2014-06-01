@@ -33,7 +33,8 @@ public class Linie {
         strg = s;
         bhfListe = new Bahnhof[20];
         name = n;
-        farbe = Color.WHITE;
+        Color[] farben = {Color.WHITE, Color.ORANGE, Color.CYAN};
+        farbe = farben[(int)Math.round(Math.random() * (farben.length - 1))];
     }
 
     public Bahnhof[] getBahnhof() {

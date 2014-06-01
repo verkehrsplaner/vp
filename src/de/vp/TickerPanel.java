@@ -5,6 +5,7 @@
  */
 package de.vp;
 
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,9 +17,9 @@ import java.awt.Graphics2D;
 public class TickerPanel extends javax.swing.JPanel implements Runnable {
 
     private boolean run;
-    private int breite, pos, textlaenge;
+    private int breite, pos, textlaenge, y;
     private String text;
-
+    private Font font;
     private final String trenn = "   +++   ";
     private final String[] nachrichten = {"Test!",
         "Das ist ein Test!",
@@ -26,6 +27,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
 
     public TickerPanel() {
         text = "Hallo, das ist ein Test!";
+        font = this.getFont();
         getPixel();
     }
 
@@ -54,13 +56,15 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawString(text, pos, 20);
-        pos = pos - 2;
 
         // Daten sammeln
-        FontMetrics fm = g2d.getFontMetrics();
+        FontMetrics fm = g2d.getFontMetrics(font);
+        y = (this.getHeight() + fm.getAscent() + fm.getDescent()) / 2;
         textlaenge = fm.stringWidth(text);
         breite = this.getWidth();
+
+        g2d.drawString(text, pos, y);
+        pos = pos - 2;
 
         // Text verlängern, wenn nötig
         if (pos + textlaenge < breite + 20) {

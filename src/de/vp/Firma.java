@@ -15,7 +15,7 @@ public class Firma extends Stadtteil {
 
     @Override
     public int getPersonen() {
-        return -100;
+        return -20;
     }
 
     @Override

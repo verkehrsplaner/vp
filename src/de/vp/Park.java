@@ -15,7 +15,7 @@ public class Park extends Stadtteil {
 
     @Override
     public int getPersonen() {
-        return -50;
+        return -8;
     }
 
     @Override

@@ -115,7 +115,10 @@ public class Spielsteuerung {
             "Ohmstraße", "Schnorrerstraße", "Ackerstraße", "Winzergasse", "Panzerstraße",
             "Abtstraße", "Albrechtstraße", "Alte Allee", "Messeplatz", "Blütenanger",
             "Anhalterstraße", "Barabarenstraße", "Benediktinerstraße", "Bernsteinweg",
-            "Poststraße", "Clemensstraße", "Delphinstraße", "Drosselweg"};
+            "Poststraße", "Clemensstraße", "Delphinstraße", "Drosselweg", "Münchner Straße",
+            "Berliner Straße", "Stuttgarter Straße", "Hamburger Straße", "Dresdner Straße",
+            "Frankfurter Straße", "Bremer Straße", "Promenade", "Wiener Straße", "Berner Straße",
+            "Bozen Ring", "Ehe Ring", "Kryptographenheim"};
         bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {
             bhfNamen.add(bhfNamenTmp[i]);

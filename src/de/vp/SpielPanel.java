@@ -120,6 +120,9 @@ public class SpielPanel extends javax.swing.JPanel {
                         g2d.setStroke(new BasicStroke(bahnhofdicke[zoom]));
                         g2d.drawOval(x * pixel[zoom] - radius[zoom] / 2 + 20, y * pixel[zoom] - radius[zoom] / 2 + 20, radius[zoom], radius[zoom]);
                     }
+                    if(zoom < 3) {
+                        g2d.drawString(bhf[y][x].getName(), x* pixel[zoom], y*pixel[zoom]);
+                    }
                 }
             }
         }

@@ -23,7 +23,8 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
     private final String trenn = "   +++   ";
     private final String[] nachrichten = {"Test!",
         "Das ist ein Test!",
-        "Dackel Waldi ist tot!"};
+        "Dackel Waldi ist tot!",
+        "In China ist ein Sack Reiß umgefallen!"};
 
     public TickerPanel() {
         text = "Hallo, das ist ein Test!";
@@ -82,7 +83,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
         text = text + trenn + nachrichten[(int) Math.round(Math.random() * (nachrichten.length - 1))];
     }
 
-    private void neueNachricht(String n) {
+    public void neueNachricht(String n) {
         text = text + trenn + n;
     }
 

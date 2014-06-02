@@ -974,6 +974,13 @@ public class Spielsteuerung {
         return true;
     }
 
+    public void zugKaputten() {
+        int x = 1;
+        if(linien[x] != null && linien[x].getZuege() > 0){
+        linien[x].zugEntfernen();
+        werkstatt++;
+        }
+    }
     /**
      *
      * verschiebt einen Zug für Geld von werkstatt zu depot
@@ -1054,6 +1061,9 @@ public class Spielsteuerung {
     public boolean step() {
         if (Math.random() > stadtbaugeschw) {
             stadtteilBauen();
+        }
+        if (Math.random() > 0.70) {
+            zugKaputten();
         }
         if (zeit == 2) {
             if (geld - gesamtGewinn() > maxMinus) {

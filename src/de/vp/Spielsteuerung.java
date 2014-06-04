@@ -208,6 +208,7 @@ public class Spielsteuerung {
         if (geld - preisZug >= maxMinus) {
             geld = geld - preisZug;
             depot++;
+            ticker.neueNachricht("Ein neuer Zug erweitert den städtischen Fuhrhpark!");
             return true;
         } else {
             return false;
@@ -241,6 +242,7 @@ public class Spielsteuerung {
         if (depot > 0) {
             l.zugEinstellen();
             depot--;
+            ticker.neueNachricht("Verstärkter Takt auf Linie " + l.getName() + "!");
             return true;
         } else {
             return false;
@@ -258,6 +260,7 @@ public class Spielsteuerung {
         boolean b = l.zugEntfernen();
         if (b) {
             depot++;
+            ticker.neueNachricht("Wird Linie " + l.getName()+ " vernachlässigt?");
             return true;
         } else {
             return false;
@@ -281,6 +284,7 @@ public class Spielsteuerung {
             linien[neueLinien] = new Linie(name, this);
             neueLinien++;
             geld = geld - preisLinie;
+            ticker.neueNachricht("Linie " + name + " wurde feierlich eröffnet!");
             return true;
         } else {
             return false;
@@ -307,6 +311,7 @@ public class Spielsteuerung {
             }
             linien[neueLinien - 1] = null;
             neueLinien--;
+            ticker.neueNachricht("Ende einer Ära: Linie " + l.getName()+ " eingestellt!");
             return true;
         } else {
             return false;
@@ -370,6 +375,7 @@ public class Spielsteuerung {
                 }
             }
         }
+        ticker.neueNachricht("Endgültiges Aus für " + bhf.getName());
         return true;
     }
 
@@ -988,7 +994,7 @@ public class Spielsteuerung {
         int x = (int)Math.round(Math.random() * neueLinien);
         if (linien[x] != null && linien[x].getZuege() > 0) {
             linien[x].zugEntfernen();
-            ticker.neueNachricht("Auf der Linie " + linien[x].getName() + " ist ein Zug ausgefallen!");
+            ticker.neueNachricht("Auf Linie " + linien[x].getName() + " ist ein Zug ausgefallen!");
             werkstatt++;
         }
     }
@@ -1076,7 +1082,7 @@ public class Spielsteuerung {
             stadtteilBauen();
         }
         // \/ Zug per Zufall schrotten
-        if (Math.random() < 0.30) {
+        if (Math.random() < 0.0001) {
             zugKaputten();
         }
         // \/ Abrechnung
@@ -1113,6 +1119,10 @@ public class Spielsteuerung {
             zeitL = 0;
         }else {
             zeitL++;
+        }
+        // \{ Tickernachricht bei Pleite
+        if(verloren) {
+            ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
         }
             return true;
         }
@@ -1215,6 +1225,7 @@ public class Spielsteuerung {
     public void geldCheat() {
         if (geld + 1000000 < Long.MAX_VALUE) {
             geld = geld + 1000000;
+            ticker.neueNachricht("Korruptionsverdacht bei Stadtwerken!");
         }
     }
 

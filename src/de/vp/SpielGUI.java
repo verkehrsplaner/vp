@@ -114,7 +114,7 @@ public class SpielGUI extends javax.swing.JFrame {
         Thread th = new Thread(tickerPanel);
         th.start();
         
-        ImageIcon icon = new ImageIcon(getClass().getResource("icon.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
         setIconImage(icon.getImage());
 
         jPanel3.requestFocus();

@@ -178,7 +178,7 @@ public class Linie {
      * Teilgewinne jedes Bhfs
      */
     public int gewinn() {
-        int k = 0;
+        int k = 0 - kosten();
         for (int i = 0; i < bhfs; i++) {
             k = k + bhfListe[i].gewinn();
         }

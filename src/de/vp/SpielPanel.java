@@ -136,6 +136,10 @@ public class SpielPanel extends javax.swing.JPanel {
                         g2d.setFont(new Font("Arial", Font.BOLD, 16));
                         g2d.drawString(bhf[y][x].getName(), x * pixel[zoom] - 10, y * pixel[zoom] + 5);
                     }
+                    if (zoom < 3) {
+                        g2d.setFont(new Font("Arial", Font.BOLD, 16));
+                        g2d.drawString(Integer.toString(bhf[y][x].getBahnsteig()), x * pixel[zoom], y * pixel[zoom] + 50);
+                    }
                 }
             }
         }

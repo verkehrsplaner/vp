@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit, zeitB, zeitL, strgPause, bhfs;
+    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit, zeitB, zeitS, zeitL, strgPause, bhfs;
     private long geld;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
@@ -35,16 +35,17 @@ public class Spielsteuerung {
     private final int preisBhf = 500000;
     private final int bhfUnterhalt = 500;
     private final int preisLinie = 10000;
-    //private final int preisStrecke = 100000;
     private final int reparatur = 10000;
     private final double stadtbaugeschw = 0.0; // je weniger umso mehr!
     private final int beschwerde = 50; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
+        // step() wird 2x pro sek aufgerufen!
     private final int abrechnungsIntervall = 60;
-    private final int bahnsteigIntervall = 180;
-    private final int LinienEinstiegIntervall = 180;
+    private final int bahnsteigIntervall = 24;
+    private final int LinienEinstiegIntervall = 24;
+    private final int stadtbauIntervall = 7;
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int h, int b) {
@@ -142,7 +143,7 @@ public class Spielsteuerung {
     public void panelStarten(JPanel panel) {
         spielPanel = (SpielPanel) panel;
         guiTimer = new GUITimer(panel);
-        timer.scheduleAtFixedRate(guiTimer, 0, 20);
+        timer.scheduleAtFixedRate(guiTimer, 0, 500);
     }
     
     public void setTicker(TickerPanel p) {
@@ -1056,7 +1057,7 @@ public class Spielsteuerung {
      */
     public long gesamtGewinn() {
         long gewinn = 0 - gesamtKosten();
-        for (int i = 0; i < neueLinien - 1; i++) {
+        for (int i = 0; i < neueLinien; i++) {
             gewinn = gewinn + linien[i].gewinn();
         }
         return gewinn; //genau!
@@ -1078,11 +1079,14 @@ public class Spielsteuerung {
      */
     public boolean step() {
         // \/ Stadtteil bauen
-        if (Math.random() > stadtbaugeschw) {
-            stadtteilBauen();
-        }
+//        if (zeitS == stadtbauIntervall && Math.random() > stadtbaugeschw) {
+//            stadtteilBauen();
+//            zeitS = 0;
+//        } else {
+//            zeitS++;
+//        }
         // \/ Zug per Zufall schrotten
-        if (Math.random() < 0.0001) {
+        if (Math.random() < 0.001) {
             zugKaputten();
         }
         // \/ Abrechnung

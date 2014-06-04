@@ -206,7 +206,11 @@ public class Linie {
      * @return auslastung
      */
     public double auslastung() {
-        return auslastung / kapazitaet();
+        if (kapazitaet() == 0) {
+            return 0;
+        } else {
+            return ((double) auslastung) / kapazitaet();
+        }
     }
 
     public void einsteigen() {

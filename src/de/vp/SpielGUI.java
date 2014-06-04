@@ -55,6 +55,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jList1.setCellRenderer(linienRenderer);
         
         strg.panelStarten(jPanel3);
+        strg.setTicker(tickerPanel);
 
         hView = jScrollPane3.getViewport().getWidth();
         vView = jScrollPane3.getViewport().getHeight();

@@ -6,6 +6,8 @@
 package de.vp;
 
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
@@ -37,7 +39,15 @@ public class LinienGUI extends JDialog {
         strg = s;
         initComponents();
         jLabelName.setForeground(linie.getFarbe());
-        anzahlZuege.setText(String.valueOf(linie.getZuege()));
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                anzahlZuege.setText(Integer.toString(linie.getZuege()));
+                kapazitaet.setText(Integer.toString(linie.kapazitaet()));
+                auslastung.setText(Double.toString(linie.auslastung()));
+            }
+        }, 0, 40);
     }
 
     /**
@@ -120,7 +130,7 @@ public class LinienGUI extends JDialog {
         });
 
         anzahlZuege.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        anzahlZuege.setText("0");
+        anzahlZuege.setText(Integer.toString(linie.getZuege()));
 
         jLabel2.setText("Züge im Einsatz:");
 
@@ -128,9 +138,12 @@ public class LinienGUI extends JDialog {
 
         jLabel3.setText("Kapazität:");
 
+        kapazitaet.setText(Integer.toString(linie.kapazitaet()));
         kapazitaet.setName("kapazitaet"); // NOI18N
 
         jLabel4.setText("Auslastung:");
+
+        auslastung.setText(Double.toString(linie.auslastung()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,7 +178,7 @@ public class LinienGUI extends JDialog {
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(kapazitaet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(auslastung))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)

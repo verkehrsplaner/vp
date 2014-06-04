@@ -25,6 +25,7 @@ public class Spielsteuerung {
     private boolean verloren;
     private int zoom;
     private SpielPanel spielPanel;
+    private TickerPanel ticker;
     ArrayList<String> bhfNamen;
 
     // ========== Anfang Spielvariablen ==========
@@ -142,6 +143,10 @@ public class Spielsteuerung {
         spielPanel = (SpielPanel) panel;
         guiTimer = new GUITimer(panel);
         timer.scheduleAtFixedRate(guiTimer, 0, 20);
+    }
+    
+    public void setTicker(TickerPanel p) {
+        ticker = p;
     }
 
     /**
@@ -319,8 +324,10 @@ public class Spielsteuerung {
      */
     private boolean neuerBahnhof(int x, int y) {
         if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {
-            bahnhoefe[y][x] = new Bahnhof(x, y, bhfNamen.remove((int) Math.round(Math.random() * (bhfNamen.size() - 1))));
+            String name = bhfNamen.remove((int) Math.round(Math.random() * (bhfNamen.size() - 1)));
+            bahnhoefe[y][x] = new Bahnhof(x, y, name);
             geld = geld - preisBhf;
+            ticker.neueNachricht("Bahnhof " + name + " wurde feierlich eröffnet!");
 
             // Häuser zum Bahnhof
             int minX = x - 4;
@@ -978,9 +985,10 @@ public class Spielsteuerung {
     }
 
     public void zugKaputten() {
-        int x = 1;
+        int x = (int)Math.round(Math.random() * neueLinien);
         if (linien[x] != null && linien[x].getZuege() > 0) {
             linien[x].zugEntfernen();
+            ticker.neueNachricht("Auf der Linie " + linien[x].getName() + " ist ein Zug ausgefallen!");
             werkstatt++;
         }
     }
@@ -1068,7 +1076,7 @@ public class Spielsteuerung {
             stadtteilBauen();
         }
         // \/ Zug per Zufall schrotten
-        if (Math.random() > 0.70) {
+        if (Math.random() < 0.30) {
             zugKaputten();
         }
         // \/ Abrechnung

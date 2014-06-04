@@ -18,6 +18,7 @@ public class Bahnhof {
     private int stadtteile;
     private int personen;
     private int bahnsteig; // Leute die auf einen Zug warten
+    private int kasse; // Eingenommenes Geld für abgeholte Personen
     private String name;
     private Spielsteuerung strg;
 
@@ -63,14 +64,8 @@ public class Bahnhof {
      * Radius
      */
     public int gewinn() {
-        int x = 0;
-        for (int i = 0; i < teile.length; i++) {
-            if (teile[i] != null) {
-                if (teile[i].getPersonen() > 0) {
-                    x = x + teile[i].getPersonen() * getFahrtKosten();
-                }
-            }
-        }
+        int x = kasse;
+        kasse = 0;
         return x;
     }
 
@@ -93,11 +88,21 @@ public class Bahnhof {
         bahnsteig = getBahnsteig() + personenBerechnen();
     }
 
-    public int einsteigen(int frei) {
-        if (getBahnsteig() - frei > 0) {
+    /**
+     * 
+     * @param frei freie Sitzplätze in der Linie
+     * @param auslastung die aktuelle Auslastung der Linie
+     * @return 
+     */
+    public int einsteigen(int frei, int auslastung) {
+        if (getBahnsteig() > 0 && getBahnsteig() - frei > 0) {
             bahnsteig = getBahnsteig() - frei;
+            kasse = kasse + frei * fahrtKosten;
             return frei;
-        } else {
+        } else if(getBahnsteig() < 0 && auslastung > getBahnsteig()) {
+            bahnsteig = getBahnsteig() + auslastung;
+            return auslastung;
+        }else {
             return 0;
         }
     }

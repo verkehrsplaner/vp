@@ -15,7 +15,7 @@ public class Haus extends Stadtteil {
 
     @Override
     public int getPersonen() {
-        return 10;
+        return 3;
     }
 
     @Override

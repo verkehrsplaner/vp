@@ -15,7 +15,7 @@ public class Rathaus extends Stadtteil {
 
     @Override
     public int getPersonen() {
-        return -10;
+        return -100;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Linie {
     private final int preisStrecke = 100000;
     private final int bhfUnterhaltungsKosten = 500;
     private final int zugUnterhaltungsKosten = 1000;
-    private final int zugKapazitaet = 100;
+    private final int zugKapazitaet = 500;
     // ========== Ende Spielvariablen ==========
 
     public Linie(String n, Spielsteuerung s) {
@@ -178,7 +178,7 @@ public class Linie {
      * Teilgewinne jedes Bhfs
      */
     public int gewinn() {
-        int k = 0;
+        int k = 0 - kosten();
         for (int i = 0; i < bhfs; i++) {
             k = k + bhfListe[i].gewinn();
         }
@@ -212,11 +212,15 @@ public class Linie {
             return ((double) auslastung) / kapazitaet();
         }
     }
+    
+    public int getAuslastung() {
+        return auslastung;
+    }
 
     public void einsteigen() {
         for (int i = 0; i < bhfs; i++) {
             if (bhfListe[i] != null) {
-                auslastung = auslastung + bhfListe[i].einsteigen(kapazitaet() - auslastung);
+                auslastung = auslastung + bhfListe[i].einsteigen(kapazitaet() - auslastung, auslastung);
             }
         }
     }

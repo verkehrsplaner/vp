@@ -21,13 +21,26 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
     private String text;
     private Font font;
     private final String trenn = "   +++   ";
-    private final String[] nachrichten = {"Test!",
-        "Das ist ein Test!",
+    private final String[] nachrichten = {
+        "Sinn im Unsinn entdeckt!",
         "Dackel Waldi ist tot!",
-        "In China ist ein Sack Reiß umgefallen!"};
+        "In China ist ein Sack Reiß umgefallen!",
+        "Igor der Schreckliche, König von Lampukistan dankt ab!",
+        "Sport ist Mord: Neue Studie erschüttert Welt!",
+        "Augenarzt verändert Weltanschauung: Viereckige Augen gibt es nicht!",
+        "Zombieangriffe schockieren Randbezirke!",
+        "Langzeitstudie: Planeten können durchschnittlich älter werden als Mensch!",
+        "Neue Farbe entdeckt: Lila-blassblau!",
+        "Dies ist ein News-Ticker!",
+        "Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaallo!",
+        "Wer hat den Keks aus der Dose geklaut?",
+        "Hier könnte ihre Werbung stehen!",
+        "Hecker hat nen kleinen!",
+        "!",
+        "Wer hat an der Uhr gedreht?"};
 
     public TickerPanel() {
-        text = "Hallo, das ist ein Test!";
+        text = "Bürgermeister eröffnet feierlich neue Stadtwerke!";
         font = this.getFont();
         getPixel();
     }

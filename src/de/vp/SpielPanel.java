@@ -62,8 +62,8 @@ public class SpielPanel extends javax.swing.JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        blink++;
-        if(blink == 2){ //Blinkrate, abhänig von kommender if-Funktion
+
+        if (blink == 2) { //Blinkrate, abhänig von kommender if-Funktion
             blink = 0;
         }
         //Beiger Hintergrund
@@ -79,48 +79,31 @@ public class SpielPanel extends javax.swing.JPanel {
         Stadtteil[][] teile = strg.getTeile();
         Bahnhof[][] bhf = strg.getBahnhoefe();
         boolean[][] hatBhf = strg.getHatBahnhof();
-        if (blink < 1) {
-            for (int y = 0; y < teile.length; y++) {
-                for (int x = 0; x < teile[y].length; x++) {
-                    if (teile[y][x] != null) {
-                        g2d.setColor(teile[y][x].getFarbe());
-                        if (!hatBhf[y][x]) {
+
+        for (int y = 0; y < teile.length; y++) {
+            for (int x = 0; x < teile[y].length; x++) {
+                if (teile[y][x] != null) {
+                    g2d.setColor(teile[y][x].getFarbe());
+                    if (!hatBhf[y][x]) {
+                        if (blink < 1) {
                             g2d.setColor(teile[y][x].getDunkleFarbe());
-                        }
-                        g2d.setStroke(new BasicStroke(1));
-                        g2d.fillRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
-                        if (dicke[zoom] > 0) {
-                            g2d.setColor(Color.YELLOW);
-                            g2d.setStroke(new BasicStroke(dicke[zoom]));
-                            g2d.drawRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
-                        }
-                    }
-
-                }
-            }
-
-        } else {
-            for (int y = 0; y < teile.length; y++) {
-                for (int x = 0; x < teile[y].length; x++) {
-                    if (teile[y][x] != null) {
-                        g2d.setColor(teile[y][x].getFarbe());
-                        if (!hatBhf[y][x]) {
+                        } else {
                             g2d.setColor(teile[y][x].getFarbe());
                         }
-                        g2d.setStroke(new BasicStroke(1));
-                        g2d.fillRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
-                        if (dicke[zoom] > 0) {
-                            g2d.setColor(Color.YELLOW);
-                            g2d.setStroke(new BasicStroke(dicke[zoom]));
-                            g2d.drawRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
-                        }
                     }
-
+                    g2d.setStroke(new BasicStroke(1));
+                    g2d.fillRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
+                    if (dicke[zoom] > 0) {
+                        g2d.setColor(Color.YELLOW);
+                        g2d.setStroke(new BasicStroke(dicke[zoom]));
+                        g2d.drawRect(x * pixel[zoom] + 20, y * pixel[zoom] + 20, pixel[zoom], pixel[zoom]);
+                    }
                 }
-            }
-            
-        }
 
+            }
+
+        }
+        blink++;
         //Linien Zeichnen
         Linie[] linien = strg.getLinien();
 

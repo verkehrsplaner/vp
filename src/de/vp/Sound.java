@@ -7,8 +7,6 @@ package de.vp;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -88,22 +86,16 @@ public class Sound {
         musikAn = false;
         if (musikClip != null) {
             musikClip.stop();
-            musikClip.close();
-            try {
-                musikStreams[musikPlayed] = AudioSystem.getAudioInputStream(musikFiles[musikPlayed]);
-            } catch (UnsupportedAudioFileException ex) {
-                System.err.println("Unbekanntes Audio-Format!");
-            } catch (IOException ex) {
-                System.err.println("Fehler an Musik-Datei!");
-            }
         }
+        System.out.println("Ende!");
     }
 
     private class MusikListener implements LineListener {
 
         @Override
         public void update(LineEvent event) {
-            if (event.getType() == LineEvent.Type.STOP && musikAn) {
+            System.out.println("LineEvent! (" + event.getType() + ")");
+            if (event.getType() == LineEvent.Type.STOP) {
                 musikClip.close();
                 try {
                     musikStreams[musikPlayed] = AudioSystem.getAudioInputStream(musikFiles[musikPlayed]);
@@ -112,7 +104,9 @@ public class Sound {
                 } catch (IOException ex) {
                     System.err.println("Fehler an Musik-Datei!");
                 }
-                musikSpielen();
+                if (musikAn) {
+                    musikSpielen();
+                }
             }
         }
     }

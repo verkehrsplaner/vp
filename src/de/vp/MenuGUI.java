@@ -42,7 +42,6 @@ public class MenuGUI extends JDialog {
         jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
 
         hMusik.setText("Hintergrundmusik");
@@ -65,6 +64,11 @@ public class MenuGUI extends JDialog {
         });
 
         spielSpeichern.setText("Spiel speichern");
+        spielSpeichern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spielSpeichernActionPerformed(evt);
+            }
+        });
 
         jToggleButton1.setText("Spiel pausieren");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -135,8 +139,12 @@ public class MenuGUI extends JDialog {
     }//GEN-LAST:event_spielBeendenActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
+        sound.musikAus();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void spielSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielSpeichernActionPerformed
+        sound.musikAn();
+    }//GEN-LAST:event_spielSpeichernActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Menü;

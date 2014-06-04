@@ -111,7 +111,7 @@ public class MenuGUI extends JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(soundeffekte)
                             .addComponent(hMusik))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,11 +145,11 @@ public class MenuGUI extends JDialog {
     }//GEN-LAST:event_spielBeendenActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        sound.musikAus();
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void spielSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielSpeichernActionPerformed
-        sound.musikAn();
+        
     }//GEN-LAST:event_spielSpeichernActionPerformed
 
     private void hMusikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hMusikActionPerformed

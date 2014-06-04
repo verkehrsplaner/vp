@@ -63,7 +63,7 @@ public class SpielPanel extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         blink++;
-        if(blink == 2){
+        if(blink == 2){ //Blinkrate, abhänig von kommender if-Funktion
             blink = 0;
         }
         //Beiger Hintergrund

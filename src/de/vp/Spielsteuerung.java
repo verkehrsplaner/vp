@@ -1100,7 +1100,6 @@ public class Spielsteuerung {
                     }
                 }
             }
-            System.out.println("---------------");
             zeitB = 0;
         } else {
             zeitB++;

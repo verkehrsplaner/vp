@@ -30,13 +30,13 @@ public class Sound {
     private Line musikLine, atmoLine, fxLine;
     private Clip musikClip, atmoClip, fxClip;
     private boolean musikAn, atmoAn, fxAn;
-
-    public Sound() {
-        URL[] musikFiles = {this.getClass().getResource("sound/Nerviger_Song.aiff"), 
-        this.getClass().getResource("sound/Action.aiff"), 
-        this.getClass().getResource("sound/Orgel.aiff"), 
+    private int musikPlayed;
+    private URL[] musikFiles = {this.getClass().getResource("sound/Nerviger_Song.aiff"),
+        this.getClass().getResource("sound/Action.aiff"),
+        this.getClass().getResource("sound/Orgel.aiff"),
         this.getClass().getResource("sound/M_Style.aiff")};
 
+    public Sound() {
         musikStreams = new AudioInputStream[musikFiles.length];
         for (int i = 0; i < musikFiles.length; i++) {
             try {
@@ -44,7 +44,7 @@ public class Sound {
             } catch (UnsupportedAudioFileException ex) {
                 System.err.println("Unbekanntes Audio-Format!");
             } catch (IOException ex) {
-                Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Fehler an Musik-Datei!");
             }
         }
     }
@@ -59,6 +59,11 @@ public class Sound {
     private void musikSpielen() {
         try {
             int rand = (int) Math.round(Math.random() * (musikStreams.length - 1));
+            // Nicht zweilmal hintereinnander spielen
+            while (rand == musikPlayed) {
+                rand = (int) Math.round(Math.random() * (musikStreams.length - 1));
+            }
+            musikPlayed = rand;
             System.out.println("Song " + rand + " wird gespielt!");
             AudioInputStream musik = musikStreams[rand];
             AudioFormat format = musik.getFormat();
@@ -84,6 +89,13 @@ public class Sound {
         if (musikClip != null) {
             musikClip.stop();
             musikClip.close();
+            try {
+                musikStreams[musikPlayed] = AudioSystem.getAudioInputStream(musikFiles[musikPlayed]);
+            } catch (UnsupportedAudioFileException ex) {
+                System.err.println("Unbekanntes Audio-Format!");
+            } catch (IOException ex) {
+                System.err.println("Fehler an Musik-Datei!");
+            }
         }
     }
 
@@ -92,6 +104,14 @@ public class Sound {
         @Override
         public void update(LineEvent event) {
             if (event.getType() == LineEvent.Type.STOP && musikAn) {
+                musikClip.close();
+                try {
+                    musikStreams[musikPlayed] = AudioSystem.getAudioInputStream(musikFiles[musikPlayed]);
+                } catch (UnsupportedAudioFileException ex) {
+                    System.err.println("Unbekanntes Audio-Format!");
+                } catch (IOException ex) {
+                    System.err.println("Fehler an Musik-Datei!");
+                }
                 musikSpielen();
             }
         }

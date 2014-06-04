@@ -46,7 +46,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="spielSpeichern" pref="121" max="32767" attributes="0"/>
+                                  <Component id="spielSpeichern" pref="0" max="32767" attributes="0"/>
                                   <Component id="spielBeenden" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -89,8 +89,12 @@
   <SubComponents>
     <Component class="javax.swing.JCheckBox" name="hMusik">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Hintergrundmusik"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hMusikActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="soundeffekte">
       <Properties>

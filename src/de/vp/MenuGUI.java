@@ -44,7 +44,13 @@ public class MenuGUI extends JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(getPreferredSize());
 
+        hMusik.setSelected(true);
         hMusik.setText("Hintergrundmusik");
+        hMusik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hMusikActionPerformed(evt);
+            }
+        });
 
         soundeffekte.setText("Soundeffekte");
         soundeffekte.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +104,7 @@ public class MenuGUI extends JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(166, 166, 166)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(spielSpeichern, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                                    .addComponent(spielSpeichern, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                     .addComponent(spielBeenden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(169, 169, 169)
@@ -145,6 +151,15 @@ public class MenuGUI extends JDialog {
     private void spielSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielSpeichernActionPerformed
         sound.musikAn();
     }//GEN-LAST:event_spielSpeichernActionPerformed
+
+    private void hMusikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hMusikActionPerformed
+        if(hMusik.isSelected()==true) {
+            sound.musikAn();
+        }
+        else {
+            sound.musikAus();
+        }
+    }//GEN-LAST:event_hMusikActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Menü;

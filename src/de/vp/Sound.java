@@ -32,7 +32,10 @@ public class Sound {
     private boolean musikAn, atmoAn, fxAn;
 
     public Sound() {
-        URL[] musikFiles = {this.getClass().getResource("sound/nerviger_song.aiff")};
+        URL[] musikFiles = {this.getClass().getResource("sound/Nerviger_Song.aiff"), 
+        this.getClass().getResource("sound/Action.aiff"), 
+        this.getClass().getResource("sound/Orgel.aiff"), 
+        this.getClass().getResource("sound/M_Style.aiff")};
 
         musikStreams = new AudioInputStream[musikFiles.length];
         for (int i = 0; i < musikFiles.length; i++) {
@@ -55,7 +58,9 @@ public class Sound {
 
     private void musikSpielen() {
         try {
-            AudioInputStream musik = musikStreams[(int) Math.round(Math.random() * (musikStreams.length - 1))];
+            int rand = (int) Math.round(Math.random() * (musikStreams.length - 1));
+            System.out.println("Song " + rand + " wird gespielt!");
+            AudioInputStream musik = musikStreams[rand];
             AudioFormat format = musik.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
             musikClip = (Clip) AudioSystem.getLine(info);

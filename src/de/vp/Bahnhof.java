@@ -17,6 +17,7 @@ public class Bahnhof {
     private Stadtteil[] teile;
     private int stadtteile;
     private int personen;
+    private int bahnsteig; // Leute die auf einen Zug warten
     private String name;
     private Spielsteuerung strg;
 
@@ -47,6 +48,7 @@ public class Bahnhof {
     public int getX() {
         return X;
     }
+    
 
     /**
      * @return the Y
@@ -57,7 +59,8 @@ public class Bahnhof {
 
     /**
      *
-     * @return gesamter Gewinn des Bahnhofs berechnet durch alle Stadtteile im Radius
+     * @return gesamter Gewinn des Bahnhofs berechnet durch alle Stadtteile im
+     * Radius
      */
     public int gewinn() {
         int x = 0;
@@ -78,14 +81,25 @@ public class Bahnhof {
     public int personenBerechnen() {
         int x = 0;
         for (int i = 0; i < teile.length; i++) {
+            if(teile[i] != null){
             x = x + teile[i].getPersonen();
+            }
         }
         personen = personen + x;
         return x;
     }
 
-    public int einsteigen() {
-        return 0;
+    public void bahnsteigFuellen() {
+        bahnsteig = getBahnsteig() + personenBerechnen();
+    }
+
+    public int einsteigen(int frei) {
+        if (getBahnsteig() - frei > 0) {
+            bahnsteig = getBahnsteig() - frei;
+            return frei;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -135,6 +149,13 @@ public class Bahnhof {
      */
     public void setName(String name) {
         name = name;
+    }
+
+    /**
+     * @return the bahnsteig
+     */
+    public int getBahnsteig() {
+        return bahnsteig;
     }
 
 }

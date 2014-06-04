@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  */
 public class Spielsteuerung {
 
-    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit, strgPause, bhfs;
+    private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit, zeitB, zeitL, strgPause, bhfs;
     private long geld;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
@@ -41,6 +41,9 @@ public class Spielsteuerung {
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
+    private final int abrechnungsIntervall = 60;
+    private final int bahnsteigIntervall = 180;
+    private final int LinienEinstiegIntervall = 180;
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int h, int b) {
@@ -92,7 +95,7 @@ public class Spielsteuerung {
             "Holzweg", "Heringsberger Straße", "Ausfallstraße", "Bahnhofstraße", "Finkenweg",
             "Steinstraße", "Pfauenstraße", "Bergstraße", "Bürgersteig", "Schorlenplatz",
             "Saftladen", "Gullygasse", "Kassettenweg", "Egelstraße", "Wurmstraße", "Wasserweg",
-            "{return null;}-Platz", "Rinderstraße", "Maulwurfstraße", "Eckpunkt", 
+            "{return null;}-Platz", "Rinderstraße", "Maulwurfstraße", "Eckpunkt",
             "Kleiberstraße", "Paragraphenweg", "Kabelbrücke", "Roter Weg", "Geisterbahn",
             "Gartenstraße", "Lilienstraße", "Pöppelstraße", "Stadtstraße", "Jägerweg",
             "Parrweg", "Bayerstraße", "Baderstraße", "Fichtenweg", "Birkenstraße",
@@ -110,8 +113,8 @@ public class Spielsteuerung {
             "Zustellweg", "Unterer Marktplatz", "Oberer Marktplatz", "Sitzplatz", "Am Feld",
             "Oberweg", "Meyerstraße", "Frühlingsstraße", "Herbststraße", "Winterstraße",
             "Löwengrube", "Am Galgenberg", "Maistraße", "Februarstraße", "Augustusweg",
-            "Kartoffelring", "Lederring", "Kohlstraße", "Museumstraße", "Zeppelinstraße", 
-            "Röhrenstraße", "Pixelstraße", "Herzogstraße", "Königsplatz", "Wallstraße", 
+            "Kartoffelring", "Lederring", "Kohlstraße", "Museumstraße", "Zeppelinstraße",
+            "Röhrenstraße", "Pixelstraße", "Herzogstraße", "Königsplatz", "Wallstraße",
             "Ohmstraße", "Schnorrerstraße", "Ackerstraße", "Winzergasse", "Panzerstraße",
             "Abtstraße", "Albrechtstraße", "Alte Allee", "Messeplatz", "Blütenanger",
             "Anhalterstraße", "Barabarenstraße", "Benediktinerstraße", "Bernsteinweg",
@@ -316,7 +319,7 @@ public class Spielsteuerung {
      */
     private boolean neuerBahnhof(int x, int y) {
         if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {
-            bahnhoefe[y][x] = new Bahnhof(x, y, bhfNamen.remove((int)Math.round(Math.random() * (bhfNamen.size() - 1))));
+            bahnhoefe[y][x] = new Bahnhof(x, y, bhfNamen.remove((int) Math.round(Math.random() * (bhfNamen.size() - 1))));
             geld = geld - preisBhf;
 
             // Häuser zum Bahnhof
@@ -976,11 +979,12 @@ public class Spielsteuerung {
 
     public void zugKaputten() {
         int x = 1;
-        if(linien[x] != null && linien[x].getZuege() > 0){
-        linien[x].zugEntfernen();
-        werkstatt++;
+        if (linien[x] != null && linien[x].getZuege() > 0) {
+            linien[x].zugEntfernen();
+            werkstatt++;
         }
     }
+
     /**
      *
      * verschiebt einen Zug für Geld von werkstatt zu depot
@@ -1059,13 +1063,16 @@ public class Spielsteuerung {
      * @return
      */
     public boolean step() {
+        // \/ Stadtteil bauen
         if (Math.random() > stadtbaugeschw) {
             stadtteilBauen();
         }
+        // \/ Zug per Zufall schrotten
         if (Math.random() > 0.70) {
             zugKaputten();
         }
-        if (zeit == 2) {
+        // \/ Abrechnung
+        if (zeit == abrechnungsIntervall) {
             if (geld - gesamtGewinn() > maxMinus) {
                 geld = geld + gesamtGewinn();
                 zeit = 0;
@@ -1075,8 +1082,33 @@ public class Spielsteuerung {
         } else {
             zeit++;
         }
-        return true;
-    }
+        // \/ Bahnhöfe mit Personen füllen
+        if (zeitB == bahnsteigIntervall) {
+            for (int h = 0; h < bahnhoefe.length; h++) {
+                for (int b = 0; b < bahnhoefe[h].length; b++) {
+                    if (bahnhoefe[h][b] != null) {
+                        bahnhoefe[h][b].bahnsteigFuellen();
+                        System.out.println("Bahnhof " + bahnhoefe[h][b].getName() + " gefüllt!");
+                    }
+                }
+            }
+            System.out.println("---------------");
+            zeitB = 0;
+        } else {
+            zeitB++;
+        }
+        // \/ Linien füllen
+        if (zeitL == LinienEinstiegIntervall) {
+            for(int i=0; i < neueLinien; i++) {
+                linien[i].einsteigen();
+            }
+            zeitL = 0;
+        }else {
+            zeitL++;
+        }
+            return true;
+        }
+    
 
     /**
      * was weiß ich!
@@ -1199,12 +1231,12 @@ public class Spielsteuerung {
         }
         return liste;
     }
-    
+
     public Bahnhof getBahnhof(String bahnhof) {
         Bahnhof[] liste = new Bahnhof[bhfs];
         Bahnhof bhf = null;
-        for(int i=0; i < getBahnhofListe().length; i++) {
-            if(liste[i].getName().equals(bahnhof)) {
+        for (int i = 0; i < getBahnhofListe().length; i++) {
+            if (liste[i].getName().equals(bahnhof)) {
                 bhf = liste[i];
             }
         }

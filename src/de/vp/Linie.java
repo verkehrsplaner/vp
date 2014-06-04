@@ -18,28 +18,29 @@ public class Linie {
     private int zuege;
     private Bahnhof[] bhfListe;
     private int bhfs;
-    private int zugKapazitaet;
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
+    private int potential;
     private Spielsteuerung strg;
 
     // ========== Anfang Spielvariablen ==========
     private final int preisStrecke = 100000;
     private final int bhfUnterhaltungsKosten = 500;
     private final int zugUnterhaltungsKosten = 1000;
+    private final int zugKapazitaet = 100;
     // ========== Ende Spielvariablen ==========
 
     public Linie(String n, Spielsteuerung s) {
         strg = s;
         bhfListe = new Bahnhof[20];
         name = n;
-        Color[] farben =   {new Color(255,140,0)/* Orange */, new Color(47,255,0)/*hellgrün*/,
-                            new Color(4,115,0)/* dunkelgrün */, new Color(212,0,0)/*rot*/,
-                            new Color(61,77,255)/*blau*/, new Color(151,175,222)/*hellblau*/,
-                            new Color(135,0,106)/*lila*/, new Color(0,234,255)/*türkis*/,
-                            new Color(117,71,15)/*braun*/, new Color(255,0,170)/*rosa*/,
-                            new Color(61,77,255)/*blau*/,};
-        farbe = farben[(int)Math.round(Math.random() * (farben.length - 1))];
+        Color[] farben = {new Color(255, 140, 0)/* Orange */, new Color(47, 255, 0)/*hellgrün*/,
+            new Color(4, 115, 0)/* dunkelgrün */, new Color(212, 0, 0)/*rot*/,
+            new Color(61, 77, 255)/*blau*/, new Color(151, 175, 222)/*hellblau*/,
+            new Color(135, 0, 106)/*lila*/, new Color(0, 234, 255)/*türkis*/,
+            new Color(117, 71, 15)/*braun*/, new Color(255, 0, 170)/*rosa*/,
+            new Color(61, 77, 255)/*blau*/,};
+        farbe = farben[(int) Math.round(Math.random() * (farben.length - 1))];
     }
 
     public Bahnhof[] getBahnhof() {
@@ -131,7 +132,7 @@ public class Linie {
             bhfs++;
             if (stelle < bhfListe.length) {
                 if (bhfListe[stelle + 1] != null) {
-                    strg.geldNehmen(streckeBerechnen(stelle, stelle + 1)* preisStrecke);
+                    strg.geldNehmen(streckeBerechnen(stelle, stelle + 1) * preisStrecke);
                 }
             }
             if (stelle > 0) {
@@ -189,15 +190,31 @@ public class Linie {
      * @return Kapazität der Linie Berechnet durch alle Personen die in allen
      * Bhfs einsteigen
      */
-    public int auslastung() {
+    public int potential() {
         int k = 0;
         for (int i = 0; i < bhfs; i++) {
             if (k < kapazitaet()) {
-                k = k + bhfListe[i].personenBerechnen();
+                k = k + bhfListe[i].getBahnsteig();
             }
         }
-        auslastung = k;
+        potential = k;
         return k;
+    }
+
+    /**
+     *
+     * @return auslastung
+     */
+    public double auslastung() {
+        return auslastung / kapazitaet();
+    }
+
+    public void einsteigen() {
+        for (int i = 0; i < bhfs; i++) {
+            if (bhfListe[i] != null) {
+                auslastung = auslastung + bhfListe[i].einsteigen(kapazitaet() - auslastung);
+            }
+        }
     }
 
     /**

@@ -88,12 +88,21 @@ public class Bahnhof {
         bahnsteig = getBahnsteig() + personenBerechnen();
     }
 
-    public int einsteigen(int frei) {
-        if (getBahnsteig() - frei > 0) {
+    /**
+     * 
+     * @param frei freie Sitzplätze in der Linie
+     * @param auslastung die aktuelle Auslastung der Linie
+     * @return 
+     */
+    public int einsteigen(int frei, int auslastung) {
+        if (getBahnsteig() > 0 && getBahnsteig() - frei > 0) {
             bahnsteig = getBahnsteig() - frei;
             kasse = kasse + frei * fahrtKosten;
             return frei;
-        } else {
+        } else if(getBahnsteig() < 0 && auslastung > getBahnsteig()) {
+            bahnsteig = getBahnsteig() + auslastung;
+            return auslastung;
+        }else {
             return 0;
         }
     }

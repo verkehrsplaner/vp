@@ -1079,13 +1079,13 @@ public class Spielsteuerung {
      */
     public boolean step() {
         // \/ Stadtteil bauen
-//        if (zeitS == stadtbauIntervall && Math.random() > stadtbaugeschw) {
-//            stadtteilBauen();
-//            zeitS = 0;
-//        } else {
-//            zeitS++;
-//        }
-        // \/ Zug per Zufall schrotten
+        if (zeitS == stadtbauIntervall && Math.random() > stadtbaugeschw) {
+            stadtteilBauen();
+            zeitS = 0;
+        } else {
+            zeitS++;
+        }
+        //\/ Zug per Zufall schrotten
         if (Math.random() < 0.001) {
             zugKaputten();
         }

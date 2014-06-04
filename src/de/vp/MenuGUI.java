@@ -13,7 +13,7 @@ import javax.swing.JDialog;
  * @author Hecker
  */
 public class MenuGUI extends JDialog {
-
+    public boolean b;
     private Sound sound;
     
     /**
@@ -40,6 +40,7 @@ public class MenuGUI extends JDialog {
         spielBeenden = new javax.swing.JButton();
         spielSpeichern = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        blinken = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(getPreferredSize());
@@ -83,6 +84,13 @@ public class MenuGUI extends JDialog {
             }
         });
 
+        blinken.setText("Nicht versorgte Bahnhöfe blinken");
+        blinken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blinkenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,7 +118,8 @@ public class MenuGUI extends JDialog {
                         .addGap(169, 169, 169)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(soundeffekte)
-                            .addComponent(hMusik))))
+                            .addComponent(hMusik)
+                            .addComponent(blinken))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -122,7 +131,9 @@ public class MenuGUI extends JDialog {
                 .addComponent(hMusik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(soundeffekte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(blinken)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton1)
@@ -161,8 +172,18 @@ public class MenuGUI extends JDialog {
         }
     }//GEN-LAST:event_hMusikActionPerformed
 
+    private void blinkenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blinkenActionPerformed
+        if(blinken.isSelected() == true) {
+             b = true;
+        }
+        else {
+            b = false;
+        }
+    }//GEN-LAST:event_blinkenActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Menü;
+    public javax.swing.JCheckBox blinken;
     private javax.swing.JCheckBox hMusik;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;

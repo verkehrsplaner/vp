@@ -63,7 +63,7 @@ public class SpielPanel extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
-        if (blink == 2) { //Blinkrate, abhänig von kommender if-Funktion
+        if (blink == 2) {       //Blinkrate, abhänig von kommender if-Funktion
             blink = 0;
         }
         //Beiger Hintergrund
@@ -85,7 +85,7 @@ public class SpielPanel extends javax.swing.JPanel {
                 if (teile[y][x] != null) {
                     g2d.setColor(teile[y][x].getFarbe());
                     if (!hatBhf[y][x]) {
-                        if (blink < 1) {
+                        if (blink < 1) {        //Hier wird die Blinkrate weiter eingestellt
                             g2d.setColor(teile[y][x].getDunkleFarbe());
                         } else {
                             g2d.setColor(teile[y][x].getFarbe());
@@ -103,6 +103,7 @@ public class SpielPanel extends javax.swing.JPanel {
             }
 
         }
+        
         blink++;
         //Linien Zeichnen
         Linie[] linien = strg.getLinien();

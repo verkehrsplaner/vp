@@ -35,6 +35,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private DefaultListModel linienListe;
     private LinienCellRenderer linienRenderer;
     private Linie[] linien;
+    private Sound sound;
 
     /**
      * Erstellt das Fenster. Zusätzlich wird ein Timer initialisert, welcher die
@@ -49,13 +50,14 @@ public class SpielGUI extends javax.swing.JFrame {
         linienListe = new DefaultListModel();
         hoehe = h;
         breite = b;
-        initComponents();
-        
         linienRenderer = new LinienCellRenderer();
-        jList1.setCellRenderer(linienRenderer);
+        sound = new Sound();
+        initComponents();
         
         strg.panelStarten(jPanel3);
         strg.setTicker(tickerPanel);
+        
+        sound.musikAn();
 
         hView = jScrollPane3.getViewport().getWidth();
         vView = jScrollPane3.getViewport().getHeight();
@@ -251,6 +253,7 @@ public class SpielGUI extends javax.swing.JFrame {
 
         jList1.setModel(linienListe);
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setCellRenderer(linienRenderer);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jList1MouseClicked(evt);
@@ -387,7 +390,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         System.out.println("Button 'Menü' wurde gedrückt!");
         jPanel3.requestFocus();
-        JDialog f = new MenuGUI();
+        JDialog f = new MenuGUI(sound);
         f.setModal(true);
         f.setVisible(true);
     }//GEN-LAST:event_EinstellungenActionPerformed

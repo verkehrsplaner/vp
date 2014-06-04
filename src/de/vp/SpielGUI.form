@@ -336,6 +336,9 @@
                   <Connection code="linienListe" type="code"/>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
+                <Property name="cellRenderer" type="javax.swing.ListCellRenderer" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="linienRenderer" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jList1MouseClicked"/>

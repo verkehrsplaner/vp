@@ -14,10 +14,13 @@ import javax.swing.JDialog;
  */
 public class MenuGUI extends JDialog {
 
+    private Sound sound;
+    
     /**
      * Creates new form EinstellungsGUI
      */
-    public MenuGUI() {
+    public MenuGUI(Sound s) {
+        sound = s;
         initComponents();
     }
 

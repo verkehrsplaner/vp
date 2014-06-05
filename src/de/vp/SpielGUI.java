@@ -68,9 +68,11 @@ public class SpielGUI extends javax.swing.JFrame {
         hPos = jScrollPane3.getHorizontalScrollBar().getValue();
         vPos = jScrollPane3.getVerticalScrollBar().getValue();
 
+        //Stellt die Scrollgeschwindigkeit ein
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
 
+        // ========== Formatiert verschiedene Variabeln ==========
         final SimpleDateFormat formatDatum = new SimpleDateFormat("HH:mm"); // Erstellt neuen "Kalender"
         final NumberFormat formatGeld = DecimalFormat.getCurrencyInstance(Locale.GERMANY);
         formatGeld.setCurrency(Currency.getInstance("EUR"));
@@ -80,7 +82,9 @@ public class SpielGUI extends javax.swing.JFrame {
         anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
         werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
         bilanzLabel.setText(formatGeld.format(strg.gesamtGewinn()));
-
+        // ========== Ende Formatierung ==========
+        
+        
         linien = strg.getLinien();
 
         //Timer für Uhrzeit
@@ -114,16 +118,25 @@ public class SpielGUI extends javax.swing.JFrame {
         Thread th = new Thread(tickerPanel);
         th.start();
         
+        //Setzt das Programm Icon
         ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
         setIconImage(icon.getImage());
 
         jPanel3.requestFocus();
         
+        //Button Abfrage
         if (strg.getDepot() == 0) {
             minusButton.setEnabled(false);
         }
         else{
             minusButton.setEnabled(true);
+        }
+        
+        if (strg.getWerkstatt() == 0) {
+            reparierenButton.setEnabled(false);
+        }
+        else{
+            reparierenButton.setEnabled(true);
         }
     }
 
@@ -434,6 +447,12 @@ public class SpielGUI extends javax.swing.JFrame {
         System.out.println("Button 'Zug Reparieren!' wurde gedrückt!");
         strg.zugReparieren();
         jPanel3.requestFocus();
+        if (strg.getWerkstatt() == 0) {
+            reparierenButton.setEnabled(false);
+        }
+        else{
+            reparierenButton.setEnabled(true);
+        }
     }//GEN-LAST:event_reparierenButtonActionPerformed
 
     private void minusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusButtonActionPerformed

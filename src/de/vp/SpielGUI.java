@@ -118,6 +118,13 @@ public class SpielGUI extends javax.swing.JFrame {
         setIconImage(icon.getImage());
 
         jPanel3.requestFocus();
+        
+        if (strg.getDepot() == 0) {
+            minusButton.setEnabled(false);
+        }
+        else{
+            minusButton.setEnabled(true);
+        }
     }
 
     /**
@@ -415,6 +422,12 @@ public class SpielGUI extends javax.swing.JFrame {
         System.out.println("Button 'Zug Kaufen!' wurde gedrückt!");
         strg.zugKaufen();
         jPanel3.requestFocus();
+        if (strg.getDepot() == 0) {
+            minusButton.setEnabled(false);
+        }
+        else{
+            minusButton.setEnabled(true);
+        }
     }//GEN-LAST:event_plusButtonActionPerformed
 
     private void reparierenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparierenButtonActionPerformed
@@ -427,6 +440,12 @@ public class SpielGUI extends javax.swing.JFrame {
         System.out.println("Button 'Zug Verschrotten!' wurde gedrückt!");
         strg.zugVerschrotten();
         jPanel3.requestFocus();
+        if (strg.getDepot() == 0) {
+            minusButton.setEnabled(false);
+        }
+        else{
+            minusButton.setEnabled(true);
+        }
     }//GEN-LAST:event_minusButtonActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked

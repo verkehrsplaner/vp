@@ -292,9 +292,7 @@ public class Linie {
      *
      */
     public void step() {
-        System.out.println(zeitFahrt);
         if (zeitFahrt <= zeitStep && bhfs > 0 && zeitFahrt > 0) {
-            System.out.println("Alles einsteigen bitte!!");
             // Aussteigen aus Zug
             int wollenRaus = auslastung;
             int bhfsAussteigen = 0;

@@ -111,7 +111,8 @@ public class Start extends javax.swing.JFrame {
                 System.out.println("Zahl kleiner als 10");
                 JOptionPane.showMessageDialog(null, "Das Feld muss mindestens 10x10 Felder groß sein!", "Fehler", JOptionPane.ERROR_MESSAGE);
             } else {
-                JFrame f = new PrologGUI(Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()));
+//                JFrame f = new PrologGUI(Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()));
+                JFrame f = new SpielGUI(Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()));
                 f.setVisible(true);
                 dispose();
             }

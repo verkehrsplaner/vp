@@ -104,6 +104,7 @@ public class Bahnhof {
         }
         
         System.out.println(eingestiegen + " in " + name + " eingestiegen!");
+        kasse += eingestiegen * fahrtKosten;
         return eingestiegen;
     }
 

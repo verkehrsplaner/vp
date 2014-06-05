@@ -66,7 +66,7 @@ public class Sound {
                 rand = (int) Math.round(Math.random() * (musikStreams.length - 1));
             }
             musikPlayed = rand;
-            System.out.println("Song " + rand + " wird gespielt!");
+//            System.out.println("Song " + rand + " wird gespielt!");
             AudioInputStream musik = musikStreams[rand];
             AudioFormat format = musik.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
@@ -98,7 +98,7 @@ public class Sound {
 
         @Override
         public void update(LineEvent event) {
-            System.out.println("LineEvent! (" + event.getType() + ")");
+//            System.out.println("LineEvent! (" + event.getType() + ")");
             if (event.getType() == LineEvent.Type.STOP) {
                 musikClip.close();
                 try {

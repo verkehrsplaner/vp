@@ -21,6 +21,7 @@ public class Linie {
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
     private int potential;
+    private int gesamtLaenge, zeitFahrt, zeitStep;
     private Spielsteuerung strg;
 
     // ========== Anfang Spielvariablen ==========
@@ -28,12 +29,14 @@ public class Linie {
     private final int bhfUnterhaltungsKosten = 500;
     private final int zugUnterhaltungsKosten = 1000;
     private final int zugKapazitaet = 500;
+    private final int fahrtZeit = 10; // Fahrtzeit pro Block
     // ========== Ende Spielvariablen ==========
 
     public Linie(String n, Spielsteuerung s) {
         strg = s;
         bhfListe = new Bahnhof[20];
         name = n;
+        gesamtLaenge = 0;
         Color[] farben = {new Color(255, 140, 0)/* Orange */, new Color(47, 255, 0)/*hellgrün*/,
             new Color(4, 115, 0)/* dunkelgrün */, new Color(212, 0, 0)/*rot*/,
             new Color(61, 77, 255)/*blau*/, new Color(151, 175, 222)/*hellblau*/,
@@ -84,6 +87,7 @@ public class Linie {
      */
     public void zugEinstellen() {
         zuege++;
+        this.setZeitFahrt();
     }
 
     /**
@@ -92,6 +96,7 @@ public class Linie {
     public boolean zugEntfernen() {
         if (zuege > 0) {
             zuege--;
+            this.setZeitFahrt();
             return true;
         } else {
             return false;
@@ -130,6 +135,8 @@ public class Linie {
             }
             bhfListe[stelle] = bhf;
             bhfs++;
+            gesamtLaenge();
+            // Strecke bezahlen
             if (stelle < bhfListe.length) {
                 if (bhfListe[stelle + 1] != null) {
                     strg.geldNehmen(streckeBerechnen(stelle, stelle + 1) * preisStrecke);
@@ -142,6 +149,7 @@ public class Linie {
                 }
             }
         }
+        this.setZeitFahrt();
     }
 
     /**
@@ -162,6 +170,19 @@ public class Linie {
             }
             bhfs--;
         }
+        this.setZeitFahrt();
+    }
+
+    /**
+     *
+     * @return gesamte Länge der Linie
+     */
+    public int gesamtLaenge() {
+        gesamtLaenge = 0;
+        for (int i = 0; i < bhfs - 1; i++) {
+            gesamtLaenge += streckeBerechnen(i, i + 1);
+        }
+        return gesamtLaenge;
     }
 
     /**
@@ -212,27 +233,11 @@ public class Linie {
             return ((double) auslastung) / kapazitaet();
         }
     }
-    
+
     public int getAuslastung() {
         return auslastung;
     }
 
-    /**
-     * Personen auf jeder Linie steigen ein und oder aus
-     */
-    public void einsteigen() {
-        System.out.println("Einsteigen gestartet:");
-        for (int i = 0; i < bhfs; i++) {
-            if (bhfListe[i] != null && bhfListe[i].getBahnsteig() > 0) {
-                auslastung = auslastung + bhfListe[i].einsteigen(kapazitaet() - auslastung);
-            }
-            if (bhfListe[i] != null && bhfListe[i].getBahnsteig() < 0) {
-                auslastung = auslastung - bhfListe[i].aussteigen(auslastung);
-            }
-        }
-        System.out.println("Einsteigen beendet!");
-    }
-    
     /**
      *
      * @return maximale Kapazität
@@ -265,11 +270,68 @@ public class Linie {
             int zielY = bhfListe[zielBhf].getY();
 
             // Satz des Pythagoras (strecke = c)
-            strecke = (int) Math.round(Math.sqrt((zielX - startX) ^ 2 + (zielY - startY) ^ 2));
+            strecke = (int) Math.round(Math.sqrt(Math.pow((zielX - startX), 2) + Math.pow((zielY - startY), 2)));
             return strecke;
         } else {
             return 0;
         }
+    }
+
+    /**
+     * berechnet die Gesamtfahrtzeit der Linie
+     */
+    public void setZeitFahrt() {
+        if (zuege != 0) {
+            zeitFahrt = (gesamtLaenge * fahrtZeit) / zuege;
+        } else {
+            zeitFahrt = -1;
+        }
+    }
+
+    /**
+     *
+     */
+    public void step() {
+        System.out.println(zeitFahrt);
+        if (zeitFahrt <= zeitStep && bhfs > 0 && zeitFahrt > 0) {
+            System.out.println("Alles einsteigen bitte!!");
+            // Aussteigen aus Zug
+            int wollenRaus = auslastung;
+            int bhfsAussteigen = 0;
+            for (int i = 0; i < bhfs; i++) {
+                if (bhfListe[i].getBahnsteig() < 0) {
+                    bhfsAussteigen++;
+                }
+            }
+            int personenProBhfRaus = wollenRaus / bhfs;
+            for (int i = 0; i < bhfs; i++) {
+                if (bhfListe[i].getBahnsteig() < 0) {
+                    int ausgestiegen = bhfListe[i].aussteigen(personenProBhfRaus);
+                    auslastung -= ausgestiegen;
+                }
+            }
+
+            // Einsteigen in Zug
+            int plaetzeFrei = kapazitaet() - auslastung;
+            int bhfsEinsteigen = 0;
+            for (int i = 0; i < bhfs; i++) {
+                if (bhfListe[i].getBahnsteig() > 0) {
+                    bhfsEinsteigen++;
+                }
+            }
+            int personenProBhfRein = plaetzeFrei / bhfs;
+            for (int i = 0; i < bhfs; i++) {
+                if (bhfListe[i].getBahnsteig() > 0) {
+                    int eingestiegen = bhfListe[i].einsteigen(personenProBhfRein);
+                    auslastung += eingestiegen;
+                }
+            }
+
+            // Zeit zurücksetzen
+            zeitStep = -1;
+        }
+        zeitStep++;
+
     }
 
     @Override

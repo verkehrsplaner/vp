@@ -39,8 +39,8 @@ public class Spielsteuerung {
     private final double stadtbaugeschw = 0.0; // je weniger umso mehr!
     private final int beschwerde = 50; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 1000;
-    private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
-    private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
+    private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 85%
+    private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl% bis 95% | Rest von 95% bis 100% ist Parkwahrscheinlichkeit
     // step() wird 2x pro sek aufgerufen!
     private final int abrechnungsIntervall = 120;
     private final int bahnsteigIntervall = 120;
@@ -1130,14 +1130,9 @@ public class Spielsteuerung {
         } else {
             zeitB++;
         }
-        // \/ Linien füllen
-        if (zeitL == LinienEinstiegIntervall) {
-            for (int i = 0; i < neueLinien; i++) {
-                linien[i].einsteigen();
-            }
-            zeitL = 0;
-        } else {
-            zeitL++;
+        // \/ Linien-Step
+        for (int i = 0; i < neueLinien; i++) {
+            linien[i].step();
         }
         // \{ Tickernachricht bei Pleite
         if (verloren) {

@@ -89,48 +89,40 @@ public class Bahnhof {
 
     /**
      *
-     * @param frei freie Sitzplätze in der Linie
-     * @param auslastung die aktuelle Auslastung der Linie
+     * @param personen freie Sitzplätze in der Linie
      * @return
      */
-    public int einsteigen(int frei) {
+    public int einsteigen(int personen) {
         int eingestiegen = 0;
-        int platz = frei;
-        if (platz != 0) {
-            while (bahnsteig > 0) {
-                while (platz > 0) {
-                    eingestiegen++;
-                    platz--;
-                    bahnsteig--;
-                }
-            }
+        
+        if (bahnsteig < personen && bahnsteig >= 0) {
+            eingestiegen = bahnsteig;
+            bahnsteig = 0;
+        } else {
+            eingestiegen = personen;
+            bahnsteig -= personen;
         }
-//        if (getBahnsteig() > 0 && getBahnsteig() - frei > 0) {
-//            bahnsteig = getBahnsteig() - frei;
-//            kasse = kasse + frei * fahrtKosten;
-//            return frei;
-//        } else if(getBahnsteig() > 0) {
-//            bahnsteig = 
-//            return frei;
-//        } else {
-//            return 0;
-//        }
+        
         System.out.println(eingestiegen + " in " + name + " eingestiegen!");
         return eingestiegen;
     }
 
-    public int aussteigen(int auslastung) {
+    /**
+     * 
+     * @param auslastung wie viele Personen in der Linie sitzen
+     * @return 
+     */
+    public int aussteigen(int personen) {
         int ausgestiegen = 0;
-        int platz = auslastung;
-        if (platz != 0) {
-            while (bahnsteig < 0) {
-                while (platz > 0) {
-                    bahnsteig--;
-                    platz--;
-                    ausgestiegen++;
-                }
-            }
+        
+        if (-bahnsteig < personen && bahnsteig <= 0) {
+            ausgestiegen = -bahnsteig;
+            bahnsteig = 0;
+        } else {
+            ausgestiegen = personen;
+            bahnsteig += personen;
         }
+        
         System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
         return ausgestiegen;
     }

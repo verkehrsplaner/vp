@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 
 /**
  *
- * @author Hecker
+ * @author Hecker & Maxi
  */
 public class MenuGUI extends JDialog {
     public boolean b;
@@ -21,6 +21,7 @@ public class MenuGUI extends JDialog {
      */
     public MenuGUI(Sound s) {
         sound = s;
+        b = true;
         initComponents();
     }
 
@@ -181,6 +182,10 @@ public class MenuGUI extends JDialog {
         }
     }//GEN-LAST:event_blinkenActionPerformed
 
+    public boolean getBlinken() {
+        return b;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Menü;
     public javax.swing.JCheckBox blinken;

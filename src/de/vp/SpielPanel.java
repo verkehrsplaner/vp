@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 public class SpielPanel extends javax.swing.JPanel {
 
     private Spielsteuerung strg;
+    private MenuGUI menu;
     private SpielGUI gui;
     private Listener list;
     private int zoom;
@@ -103,8 +104,10 @@ public class SpielPanel extends javax.swing.JPanel {
             }
 
         }
-        
-        blink++;
+//        if (!menu.getBlinken() == false) {
+            blink++;
+ //       }
+
         //Linien Zeichnen
         Linie[] linien = strg.getLinien();
 

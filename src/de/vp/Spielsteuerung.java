@@ -26,7 +26,8 @@ public class Spielsteuerung {
     private int zoom;
     private SpielPanel spielPanel;
     private TickerPanel ticker;
-    ArrayList<String> bhfNamen;
+    private ArrayList<String> bhfNamen;
+    private boolean nacht;
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -50000000;
@@ -1098,6 +1099,35 @@ public class Spielsteuerung {
                 zeitS++;
             }
         }
+
+        // Tag/Nacht setzen
+        if ((strgTimer.getTicks() < 6000 || strgTimer.getTicks() > 18000) && !nacht) {
+            nacht = true;
+            if(ticker != null) {
+            ticker.neueNachricht("Nachtwächter spricht: Hört, Ihr Leut´ und lasst Euch sagen, unsre Glock´ hat 6 geschlagen!");
+            ticker.neueNachricht("Nachtwächter wegen Ruhestörung vor Gericht!");
+            }
+            for (int y = 0; y < hoehe; y++) {
+                for (int x = 0; x < breite; x++) {
+                    if (teile[y][x] != null) {
+                        teile[y][x].tageszeitAendern(nacht);
+                    }
+                }
+            }
+        } else if ((strgTimer.getTicks() > 6000 && strgTimer.getTicks() < 18000) && nacht) {
+            nacht = false;
+            if(ticker != null) {
+            ticker.neueNachricht("Die Sonne geht auf, ein neuer Tag bricht an!");
+            }
+            for (int y = 0; y < hoehe; y++) {
+                for (int x = 0; x < breite; x++) {
+                    if (teile[y][x] != null) {
+                        teile[y][x].tageszeitAendern(nacht);
+                    }
+                }
+            }
+        }
+
         //\/ Zug per Zufall schrotten
         if (Math.random() < 0.0001) {
             zugKaputten();

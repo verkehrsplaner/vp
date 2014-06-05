@@ -14,6 +14,7 @@ import java.awt.Color;
 public abstract class Stadtteil {
 
     public abstract int getPersonen();
+    public abstract void tageszeitAendern(boolean nacht);
 
     public abstract Color getFarbe();
     public abstract Color getDunkleFarbe();

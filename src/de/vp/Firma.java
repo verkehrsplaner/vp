@@ -13,9 +13,16 @@ import java.awt.Color;
  */
 public class Firma extends Stadtteil {
 
+    private int personen = -38;
+    private boolean nacht = false;
+    
     @Override
     public int getPersonen() {
-        return -38;
+        if (nacht) {
+        return -personen;
+        } else {
+        return personen;
+        }
     }
 
     @Override
@@ -26,5 +33,11 @@ public class Firma extends Stadtteil {
     @Override
     public Color getDunkleFarbe() {
         return Color.DARK_GRAY;
+    }
+
+
+    @Override
+    public void tageszeitAendern(boolean nacht) {
+        this.nacht = nacht;
     }
 }

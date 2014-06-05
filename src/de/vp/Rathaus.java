@@ -13,9 +13,16 @@ import java.awt.Color;
  */
 public class Rathaus extends Stadtteil {
 
+    private int personen = -250;
+    private boolean nacht = false;
+    
     @Override
     public int getPersonen() {
-        return -100;
+        if (nacht) {
+        return -personen;
+        } else {
+        return personen;
+        }
     }
 
     @Override
@@ -26,6 +33,11 @@ public class Rathaus extends Stadtteil {
     @Override
     public Color getDunkleFarbe() {
         return Color.BLUE;
+    }
+
+    @Override
+    public void tageszeitAendern(boolean nacht) {
+        this.nacht = nacht;
     }
 
 }

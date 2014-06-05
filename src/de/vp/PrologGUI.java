@@ -10,14 +10,19 @@ import javax.swing.JFrame;
 /**
  *
  * @author Felix
- */
-public class PrologGUI extends javax.swing.JFrame {
+ **/
 
+public class PrologGUI extends javax.swing.JFrame {
+private int hoehe;
+private int breite;
     /**
      * Creates new form PrologGUI
      */
-    public PrologGUI() {
+    public PrologGUI(int h, int b) {
         initComponents();
+        breite = b;
+        hoehe = h;
+        
     }
 
     /**
@@ -73,8 +78,8 @@ public class PrologGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(155, 155, 155)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -88,7 +93,11 @@ public class PrologGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt){
+    JFrame  f = new SpielGUI(hoehe,breite); 
+    f.setVisible(true);
+    dispose();
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -24,7 +24,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
     private final String[] nachrichten = {
         "Sinn im Unsinn entdeckt!",
         "Dackel Waldi ist tot!",
-        "In China ist ein Sack Reiß umgefallen!",
+        "In China ist ein Sack Reis umgefallen!",
         "Igor der Schreckliche, König von Lampukistan dankt ab!",
         "Sport ist Mord: Neue Studie erschüttert Welt!",
         "Augenarzt verändert Weltanschauung: Viereckige Augen gibt es nicht!",

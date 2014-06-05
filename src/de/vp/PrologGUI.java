@@ -6,6 +6,10 @@
 package de.vp;
 
 import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 /**
@@ -18,18 +22,25 @@ public class PrologGUI extends javax.swing.JFrame {
     private int hoehe;
     private int breite;
     private String[] text = {"Hallo!","Herzlich willkommen","Hier ist unser Leiter für das Zuglinienprojekt!"};
-   // private Image[] bild = {new Image(this.getClass().getResource("images/icon.png"))};
+    private Image[] bild;
     private int nummer;
 
     /**
      * Creates new form PrologGUI
      */
     public PrologGUI(int h, int b) {
+        try {
+            this.bild = new Image[]{ImageIO.read(this.getClass().getResource("images/uno.png")),
+            ImageIO.read(this.getClass().getResource("images/icon.png"))};
+        } catch (IOException ex) {
+           System.err.println("Prolog konnte nicht geladen werden!");
+        }
         initComponents();
         breite = b;
         hoehe = h;
         nummer = 0;
-       
+       monolog.setText(text[nummer]);
+       hintergrund.getGraphics().drawImage(bild[nummer], 0, 0, null);
 
     }
 
@@ -45,11 +56,14 @@ public class PrologGUI extends javax.swing.JFrame {
 
         vor = new javax.swing.JButton();
         zurueck = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        monolog = new javax.swing.JTextPane();
         skip = new javax.swing.JButton();
+        hintergrund = new javax.swing.JPanel();
+        monolog = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(600, 300));
+        setMinimumSize(new java.awt.Dimension(600, 300));
+        setPreferredSize(new java.awt.Dimension(600, 600));
 
         vor.setText(">");
         vor.addActionListener(new java.awt.event.ActionListener() {
@@ -59,10 +73,11 @@ public class PrologGUI extends javax.swing.JFrame {
         });
 
         zurueck.setText("<");
-
-        monolog.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 255), null, null));
-        monolog.setText("+++MONOLOG DES BÜRGERMEISTERS+++");
-        jScrollPane1.setViewportView(monolog);
+        zurueck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zurueckActionPerformed(evt);
+            }
+        });
 
         skip.setText("Skip");
         skip.addActionListener(new java.awt.event.ActionListener() {
@@ -71,30 +86,52 @@ public class PrologGUI extends javax.swing.JFrame {
             }
         });
 
+        hintergrund.setMaximumSize(getPreferredSize());
+        hintergrund.setPreferredSize(new java.awt.Dimension(512, 288));
+
+        javax.swing.GroupLayout hintergrundLayout = new javax.swing.GroupLayout(hintergrund);
+        hintergrund.setLayout(hintergrundLayout);
+        hintergrundLayout.setHorizontalGroup(
+            hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 512, Short.MAX_VALUE)
+        );
+        hintergrundLayout.setVerticalGroup(
+            hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
+
+        monolog.setText("jLabel1");
+        monolog.setMaximumSize(new java.awt.Dimension(512, 200));
+        monolog.setMinimumSize(new java.awt.Dimension(512, 200));
+        monolog.setPreferredSize(new java.awt.Dimension(512, 200));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(zurueck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
-                        .addComponent(vor)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(skip))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(monolog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hintergrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(zurueck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(vor)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(skip, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hintergrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(monolog, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vor)
                     .addComponent(zurueck))
@@ -106,7 +143,13 @@ public class PrologGUI extends javax.swing.JFrame {
 
     private void vorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vorActionPerformed
      nummer ++;
+     if(nummer<text.length){
      monolog.setText(text[nummer]);
+     hintergrund.getGraphics().drawImage(bild[nummer], 0, 0, null);
+     }
+     else {JFrame f = new SpielGUI(hoehe,breite);
+        f.setVisible(true);
+        dispose();}
     }//GEN-LAST:event_vorActionPerformed
 
     private void skipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipActionPerformed
@@ -115,12 +158,19 @@ public class PrologGUI extends javax.swing.JFrame {
     dispose();
     }//GEN-LAST:event_skipActionPerformed
 
+    private void zurueckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zurueckActionPerformed
+        if(nummer-1>= 0){
+        nummer --;
+        monolog.setText(text[nummer]);
+        }
+    }//GEN-LAST:event_zurueckActionPerformed
+
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane monolog;
+    private javax.swing.JPanel hintergrund;
+    private javax.swing.JLabel monolog;
     private javax.swing.JButton skip;
     private javax.swing.JButton vor;
     private javax.swing.JButton zurueck;

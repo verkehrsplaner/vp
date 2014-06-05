@@ -91,7 +91,7 @@ public class Sound {
         if (musikClip != null) {
             musikClip.stop();
         }
-        System.out.println("Ende!");
+        System.out.println("Musik Aus!");
     }
 
     private class MusikListener implements LineListener {

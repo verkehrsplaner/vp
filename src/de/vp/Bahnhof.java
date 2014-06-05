@@ -94,15 +94,20 @@ public class Bahnhof {
      * @param auslastung die aktuelle Auslastung der Linie
      * @return 
      */
-    public int einsteigen(int frei, int auslastung) {
+    public int einsteigen(int frei) {
         if (getBahnsteig() > 0 && getBahnsteig() - frei > 0) {
             bahnsteig = getBahnsteig() - frei;
             kasse = kasse + frei * fahrtKosten;
             return frei;
-        } else if(getBahnsteig() < 0 && auslastung > getBahnsteig()) {
-            bahnsteig = getBahnsteig() + auslastung;
-            return auslastung;
         }else {
+            return 0;
+        }
+    }
+    
+    public int aussteigen(int auslastung) {
+        if(auslastung > 0) {
+            return 0;
+        } else {
             return 0;
         }
     }

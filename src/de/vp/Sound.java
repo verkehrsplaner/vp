@@ -54,6 +54,10 @@ public class Sound {
         }
     }
 
+    public boolean getMusikAn() {
+        return musikAn;
+    }
+    
     private void musikSpielen() {
         try {
             int rand = (int) Math.round(Math.random() * (musikStreams.length - 1));

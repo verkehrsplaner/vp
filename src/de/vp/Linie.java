@@ -217,14 +217,22 @@ public class Linie {
         return auslastung;
     }
 
+    /**
+     * Personen auf jeder Linie steigen ein und oder aus
+     */
     public void einsteigen() {
+        System.out.println("Einsteigen gestartet:");
         for (int i = 0; i < bhfs; i++) {
-            if (bhfListe[i] != null) {
-                auslastung = auslastung + bhfListe[i].einsteigen(kapazitaet() - auslastung, auslastung);
+            if (bhfListe[i] != null && bhfListe[i].getBahnsteig() > 0) {
+                auslastung = auslastung + bhfListe[i].einsteigen(kapazitaet() - auslastung);
+            }
+            if (bhfListe[i] != null && bhfListe[i].getBahnsteig() < 0) {
+                auslastung = auslastung - bhfListe[i].aussteigen(auslastung);
             }
         }
+        System.out.println("Einsteigen beendet!");
     }
-
+    
     /**
      *
      * @return maximale Kapazität

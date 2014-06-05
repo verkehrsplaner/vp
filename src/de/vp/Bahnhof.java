@@ -49,7 +49,6 @@ public class Bahnhof {
     public int getX() {
         return X;
     }
-    
 
     /**
      * @return the Y
@@ -76,8 +75,8 @@ public class Bahnhof {
     public int personenBerechnen() {
         int x = 0;
         for (int i = 0; i < teile.length; i++) {
-            if(teile[i] != null){
-            x = x + teile[i].getPersonen();
+            if (teile[i] != null) {
+                x = x + teile[i].getPersonen();
             }
         }
         personen = personen + x;
@@ -89,27 +88,51 @@ public class Bahnhof {
     }
 
     /**
-     * 
+     *
      * @param frei freie Sitzplätze in der Linie
      * @param auslastung die aktuelle Auslastung der Linie
-     * @return 
+     * @return
      */
     public int einsteigen(int frei) {
-        if (getBahnsteig() > 0 && getBahnsteig() - frei > 0) {
-            bahnsteig = getBahnsteig() - frei;
-            kasse = kasse + frei * fahrtKosten;
-            return frei;
-        }else {
-            return 0;
+        int eingestiegen = 0;
+        int platz = frei;
+        if (platz != 0) {
+            while (bahnsteig > 0) {
+                while (platz > 0) {
+                    eingestiegen++;
+                    platz--;
+                    bahnsteig--;
+                }
+            }
         }
+//        if (getBahnsteig() > 0 && getBahnsteig() - frei > 0) {
+//            bahnsteig = getBahnsteig() - frei;
+//            kasse = kasse + frei * fahrtKosten;
+//            return frei;
+//        } else if(getBahnsteig() > 0) {
+//            bahnsteig = 
+//            return frei;
+//        } else {
+//            return 0;
+//        }
+        System.out.println(eingestiegen + " in " + name + " eingestiegen!");
+        return eingestiegen;
     }
-    
+
     public int aussteigen(int auslastung) {
-        if(auslastung > 0) {
-            return 0;
-        } else {
-            return 0;
+        int ausgestiegen = 0;
+        int platz = auslastung;
+        if (platz != 0) {
+            while (bahnsteig < 0) {
+                while (platz > 0) {
+                    bahnsteig--;
+                    platz--;
+                    ausgestiegen++;
+                }
+            }
         }
+        System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
+        return ausgestiegen;
     }
 
     /**

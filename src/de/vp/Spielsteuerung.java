@@ -41,11 +41,12 @@ public class Spielsteuerung {
     private final int betriebskosten = 1000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 50%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl bis 80% | Rest von 80% bis 100% ist Parkwahrscheinlichkeit
-        // step() wird 2x pro sek aufgerufen!
-    private final int abrechnungsIntervall = 60;
-    private final int bahnsteigIntervall = 24;
-    private final int LinienEinstiegIntervall = 24;
-    private final int stadtbauIntervall = 7;
+    // step() wird 2x pro sek aufgerufen!
+    private final int abrechnungsIntervall = 120;
+    private final int bahnsteigIntervall = 120;
+    private final int LinienEinstiegIntervall = 120;
+    private final int stadtbauIntervall = 12;
+    private final boolean stadtbauen = false; // Stadt erweiterter sich oder auch nicht.
     // ========== Ende Spielvariablen ==========
 
     public Spielsteuerung(int h, int b) {
@@ -123,7 +124,18 @@ public class Spielsteuerung {
             "Poststraße", "Clemensstraße", "Delphinstraße", "Drosselweg", "Münchner Straße",
             "Berliner Straße", "Stuttgarter Straße", "Hamburger Straße", "Dresdner Straße",
             "Frankfurter Straße", "Bremer Straße", "Promenade", "Wiener Straße", "Berner Straße",
-            "Bozen Ring", "Ehe Ring", "Kryptographenheim"};
+            "Bozen Ring", "Ehe Ring", "Kryptographenheim", "Blutweg", "Rosinenstraße",
+            "Fassring", "Grüngarten", "Gärtnerstraße", "Kanzlerstraße", "Streicherholz",
+            "Katzenweg", "Hundeweg", "Luxweg", "Gänsemarsch", "Marderweg", "Giraffenplatz",
+            "Elephantenstrße", "Beuteltierstraße", "Schnabeltierstraße", "Mäuseweg",
+            "Nashornstraße", "Schmetterlingsweg", "Wanzenweg", "Krokodilstraße", "Licht",
+            "Hemdstraße", "Jeansstraße", "Hutstraße", "Regengasse", "Donnerweg",
+            "Blitzstraße", "Schuhstraße", "Glücksleiter", "Kleestraße", "Anemonenstraße",
+            "Rehweg", "Ameisenbärstraße", "Pandastraße", "Antilopenweg", "Analphabetenstraße",
+            "Platz der Geometrie", "Volksstraße", "Bajuwarenstraße", "Ameisenstraße",
+            "Apfelstraße", "Birnenstraße", "Pampelmusenstraße", "Melonenstraße", "Himbeerweg",
+            "Brombeerweg", "Erdbeerweg", "Stinktierstraße", "Mangostraße", "Walnussstraße",
+            "Sehr Seriöse Straße", "Wegweiser"};
         bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {
             bhfNamen.add(bhfNamenTmp[i]);
@@ -145,7 +157,7 @@ public class Spielsteuerung {
         guiTimer = new GUITimer(panel);
         timer.scheduleAtFixedRate(guiTimer, 0, 500);
     }
-    
+
     public void setTicker(TickerPanel p) {
         ticker = p;
     }
@@ -261,7 +273,7 @@ public class Spielsteuerung {
         boolean b = l.zugEntfernen();
         if (b) {
             depot++;
-            ticker.neueNachricht("Wird Linie " + l.getName()+ " vernachlässigt?");
+            ticker.neueNachricht("Wird Linie " + l.getName() + " vernachlässigt?");
             return true;
         } else {
             return false;
@@ -312,7 +324,7 @@ public class Spielsteuerung {
             }
             linien[neueLinien - 1] = null;
             neueLinien--;
-            ticker.neueNachricht("Ende einer Ära: Linie " + l.getName()+ " eingestellt!");
+            ticker.neueNachricht("Ende einer Ära: Linie " + l.getName() + " eingestellt!");
             return true;
         } else {
             return false;
@@ -992,7 +1004,7 @@ public class Spielsteuerung {
     }
 
     public void zugKaputten() {
-        int x = (int)Math.round(Math.random() * neueLinien);
+        int x = (int) Math.round(Math.random() * neueLinien);
         if (linien[x] != null && linien[x].getZuege() > 0) {
             linien[x].zugEntfernen();
             ticker.neueNachricht("Auf Linie " + linien[x].getName() + " ist ein Zug ausgefallen!");
@@ -1079,11 +1091,13 @@ public class Spielsteuerung {
      */
     public boolean step() {
         // \/ Stadtteil bauen
-        if (zeitS == stadtbauIntervall && Math.random() > stadtbaugeschw) {
-            stadtteilBauen();
-            zeitS = 0;
-        } else {
-            zeitS++;
+        if (stadtbauen) {
+            if (zeitS == stadtbauIntervall && Math.random() > stadtbaugeschw) {
+                stadtteilBauen();
+                zeitS = 0;
+            } else {
+                zeitS++;
+            }
         }
         //\/ Zug per Zufall schrotten
         if (Math.random() < 0.0001) {
@@ -1102,6 +1116,7 @@ public class Spielsteuerung {
         }
         // \/ Bahnhöfe mit Personen füllen
         if (zeitB == bahnsteigIntervall) {
+            System.out.println("---------------------");
             for (int h = 0; h < bahnhoefe.length; h++) {
                 for (int b = 0; b < bahnhoefe[h].length; b++) {
                     if (bahnhoefe[h][b] != null) {
@@ -1110,26 +1125,26 @@ public class Spielsteuerung {
                     }
                 }
             }
+            System.out.println("---------------------");
             zeitB = 0;
         } else {
             zeitB++;
         }
         // \/ Linien füllen
         if (zeitL == LinienEinstiegIntervall) {
-            for(int i=0; i < neueLinien; i++) {
+            for (int i = 0; i < neueLinien; i++) {
                 linien[i].einsteigen();
             }
             zeitL = 0;
-        }else {
+        } else {
             zeitL++;
         }
         // \{ Tickernachricht bei Pleite
-        if(verloren) {
+        if (verloren) {
             ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
         }
-            return true;
-        }
-    
+        return true;
+    }
 
     /**
      * was weiß ich!

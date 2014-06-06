@@ -13,15 +13,15 @@ import javax.swing.JDialog;
  * @author Hecker & Maxi
  */
 public class MenuGUI extends JDialog {
-    public boolean b;
     private Sound sound;
+    private SpielPanel panel;
     
     /**
      * Creates new form EinstellungsGUI
      */
-    public MenuGUI(Sound s) {
+    public MenuGUI(Sound s, SpielPanel p) {
         sound = s;
-        b = true;
+        panel = p;
         initComponents();
     }
 
@@ -42,6 +42,7 @@ public class MenuGUI extends JDialog {
         spielSpeichern = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         blinken = new javax.swing.JCheckBox();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menü");
@@ -88,6 +89,7 @@ public class MenuGUI extends JDialog {
             }
         });
 
+        blinken.setSelected(panel.getBlinken());
         blinken.setText("Nicht versorgte Bahnhöfe blinken");
         blinken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,22 +97,12 @@ public class MenuGUI extends JDialog {
             }
         });
 
+        jCheckBox1.setText("Atmosphäre");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 160, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hMusik)
-                            .addComponent(soundeffekte)
-                            .addComponent(blinken))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(254, 254, 254)
                 .addComponent(Menü)
@@ -122,13 +114,31 @@ public class MenuGUI extends JDialog {
                     .addComponent(spielSpeichern, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 160, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hMusik)
+                            .addComponent(soundeffekte)
+                            .addComponent(blinken))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Menü)
-                .addGap(93, 93, 93)
+                .addGap(64, 64, 64)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hMusik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(soundeffekte)
@@ -175,21 +185,20 @@ public class MenuGUI extends JDialog {
 
     private void blinkenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blinkenActionPerformed
         if(blinken.isSelected() == true) {
-             b = true;
+            panel.setBlinken(true);
         }
         else {
-            b = false;
+            panel.setBlinken(false);
         }
     }//GEN-LAST:event_blinkenActionPerformed
 
-    public boolean getBlinken() {
-        return b;
-    }
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Menü;
     public javax.swing.JCheckBox blinken;
     private javax.swing.JCheckBox hMusik;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JCheckBox soundeffekte;

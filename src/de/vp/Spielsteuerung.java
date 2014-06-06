@@ -64,7 +64,7 @@ public class Spielsteuerung {
         geld = 1000000; // 10 Mio
         timer = new Timer();
         timerS = new Timer();
-        strgPause = 200; // Timer-Rate
+        strgPause = 500; // Timer-Rate
         strgTimer = new StrgTimer(this);
         hatBahnhof = new boolean[hoehe][breite];
         teile = new Stadtteil[hoehe][breite];
@@ -143,8 +143,7 @@ public class Spielsteuerung {
 
         altstadt();
 
-        timerS.scheduleAtFixedRate(strgTimer,
-                0, strgPause);
+        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
     }
 
     /**
@@ -155,7 +154,7 @@ public class Spielsteuerung {
     public void panelStarten(JPanel panel) {
         spielPanel = (SpielPanel) panel;
         guiTimer = new GUITimer(panel);
-        timer.scheduleAtFixedRate(guiTimer, 0, 500);
+        timer.scheduleAtFixedRate(guiTimer, 0, 40);
     }
 
     public void setTicker(TickerPanel p) {

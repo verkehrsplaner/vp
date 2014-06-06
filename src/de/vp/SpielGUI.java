@@ -410,7 +410,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         System.out.println("Button 'Menü' wurde gedrückt!");
         jPanel3.requestFocus();
-        JDialog f = new MenuGUI(sound);
+        JDialog f = new MenuGUI(sound, (SpielPanel)jPanel3);
         f.setModal(true);
         f.setVisible(true);
     }//GEN-LAST:event_EinstellungenActionPerformed

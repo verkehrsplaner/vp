@@ -61,7 +61,7 @@ public class Spielsteuerung {
         verloren = false;
         zoom = 0;
         bhfs = 0;
-        geld = 1000000; // 10 Mio
+        geld = 10000000; // 10 Mio
         timer = new Timer();
         timerS = new Timer();
         strgPause = 500; // Timer-Rate

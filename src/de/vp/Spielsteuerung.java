@@ -404,8 +404,37 @@ public class Spielsteuerung {
                 }
             }
         }
+        stadtteileNeuZuordnen();
         ticker.neueNachricht("Endgültiges Aus für " + bhf.getName());
+        bhfs--;
         return true;
+    }
+
+    /**
+     *
+     */
+    private void stadtteileNeuZuordnen() {
+        Bahnhof[] b = getBahnhofListe();
+        for (int i = 0; i < bhfs; i++) {
+            if (b[i] != null) {
+                int minX = b[i].getX() - 4;
+                int minY = b[i].getY() - 4;
+                int maxX = b[i].getX() + 3;
+                int maxY = b[i].getY() + 3;
+                for (int h_y = minY; h_y <= maxY; h_y++) {
+                    for (int h_x = minX; h_x <= maxX; h_x++) {
+                        if (!(h_y < 0) && !(h_x < 0) && !(h_y > teile.length - 1) && !(h_x > teile[h_y].length - 1)) {
+                            if (!(h_x == minX && h_y == minY) && !(h_x == maxX && h_y == minY) && !(h_x == minX && h_y == maxY) && !(h_x == maxX && h_y == maxY)) {
+                                if (!hatBahnhof[h_y][h_x] && teile[h_y][h_x] != null) {
+                                    hatBahnhof[h_y][h_x] = true;
+                                    b[i].stadtteilHinzufuegen(teile[h_y][h_x]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**

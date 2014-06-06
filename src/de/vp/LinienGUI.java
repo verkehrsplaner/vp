@@ -46,6 +46,7 @@ public class LinienGUI extends JDialog {
                 anzahlZuege.setText(Integer.toString(linie.getZuege()));
                 kapazitaet.setText(Integer.toString(linie.kapazitaet()));
                 auslastung.setText(Double.toString(linie.auslastung()));
+                gesamtLaenge.setText(Integer.toString(linie.gesamtLaenge()));
             }
         }, 0, 40);
     }
@@ -76,6 +77,8 @@ public class LinienGUI extends JDialog {
         kapazitaet = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         auslastung = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        gesamtLaenge = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -145,6 +148,8 @@ public class LinienGUI extends JDialog {
 
         auslastung.setText(Double.toString(linie.auslastung()));
 
+        jLabel5.setText("Länge:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,7 +182,9 @@ public class LinienGUI extends JDialog {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(kapazitaet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(auslastung))))
+                                    .addComponent(auslastung)
+                                    .addComponent(jLabel5)
+                                    .addComponent(gesamtLaenge))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -211,7 +218,11 @@ public class LinienGUI extends JDialog {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(auslastung)
-                        .addGap(125, 125, 125))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gesamtLaenge)
+                        .addGap(73, 73, 73))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator1)
@@ -335,6 +346,7 @@ public class LinienGUI extends JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anzahlZuege;
     private javax.swing.JLabel auslastung;
+    private javax.swing.JLabel gesamtLaenge;
     private javax.swing.JButton jButtonBahnhof;
     private javax.swing.JButton jButtonBahnhofWeg;
     private javax.swing.JButton jButtonFarbe;
@@ -343,6 +355,7 @@ public class LinienGUI extends JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -10,7 +10,7 @@ package de.vp;
  * @author Nicolai & Felix
  */
 public class Bahnhof {
-
+    
     private int fahrtKosten;
     private int X;
     private int Y;
@@ -19,7 +19,8 @@ public class Bahnhof {
     private int personen;
     private int bahnsteig; // Leute die auf einen Zug warten
     private int kasse; // Eingenommenes Geld für abgeholte Personen
-    private int anschlussLinien; //Wie viele Linien bedienen diesen Bahnhof
+    private Linie[] anschlussLinien; //Wie viele Linien bedienen diesen Bahnhof
+    private int anzahlLinien;
     private String name;
     private Spielsteuerung strg;
 
@@ -35,6 +36,7 @@ public class Bahnhof {
         name = n;
         fahrtKosten = 5;
         teile = new Stadtteil[30];
+        anschlussLinien = new Linie[10];
     }
 
     /**
@@ -83,7 +85,7 @@ public class Bahnhof {
         personen = personen + x;
         return x;
     }
-
+    
     public void bahnsteigFuellen() {
         bahnsteig = getBahnsteig() + personenBerechnen();
     }
@@ -110,9 +112,9 @@ public class Bahnhof {
     }
 
     /**
-     * 
+     *
      * @param auslastung wie viele Personen in der Linie sitzen
-     * @return 
+     * @return
      */
     public int aussteigen(int personen) {
         int ausgestiegen = 0;
@@ -144,7 +146,7 @@ public class Bahnhof {
         teile[stadtteile + 1] = s;
         stadtteile++;
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (o != null && o.getClass().equals(getClass())) {
@@ -158,7 +160,7 @@ public class Bahnhof {
             return false;
         }
     }
-
+    
     @Override
     public String toString() {
         return name;
@@ -186,16 +188,58 @@ public class Bahnhof {
     }
 
     /**
-     * @return the anschlussLinien
+     * @return the anzahlLinien
      */
-    public int getAnschlussLinien() {
-        return anschlussLinien;
+    public int getAnzahlLinien() {
+        return anzahlLinien;
     }
 
     /**
-     * @param plusMinus entweder +1 oder -1
+     *
+     * @param l die Linie die den Bahnhof ab jetzt erreichen soll
      */
-    public void setAnschlussLinien(int plusMinus) {
-        anschlussLinien = anschlussLinien + plusMinus;
+    public void linieHinzu(Linie l) {
+        if (anzahlLinien < anschlussLinien.length) {
+            anschlussLinien[anzahlLinien] = l;
+        } else {
+            Linie[] li = new Linie[anzahlLinien + 10];
+            for (int i = 0; i < anschlussLinien.length; i++) {
+                li[i] = anschlussLinien[i];
+            }
+            anschlussLinien = li;
+        }
+        anzahlLinien++;
     }
+    
+    /**
+     * 
+     * @param l die Linie die nicht mehr den Bhf ansteuert
+     */
+    public void linieWeg(Linie l) {
+        if (anzahlLinien > 0) {
+            int x = 0;
+            for (int i = 0; i < anzahlLinien; i++) {
+                if (l.equals(anschlussLinien[i])) {
+                } else {
+                    x = i;
+                }
+            }
+            for (int q = x; q < anzahlLinien - 1; q++) {
+                anschlussLinien[q] = anschlussLinien[q + 1];
+            }
+            anschlussLinien[anzahlLinien] = null;
+            anzahlLinien--;
+        }
+    }
+    
+    /**
+     * räumt auf wenn die Linie gelöscht werden soll
+     */
+    public void letzterSchritt() {
+        // alle Linien verabschieden sich von dem Bhf
+        for(int i=0; i <anzahlLinien; i++) {
+            anschlussLinien[i].bahnhofEntfernen(this);
+        }
+    }
+    
 }

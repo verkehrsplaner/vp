@@ -30,7 +30,7 @@ public class BahnhofGUI extends javax.swing.JDialog {
             @Override
             public void run() {
                 bahnsteig.setText(Integer.toString(bhf.getBahnsteig()));
-                anzahlLinien.setText(Integer.toString(bhf.getAnschlussLinien()));
+                anzahlLinien.setText(Integer.toString(bhf.getAnzahlLinien()));
             }
         }, 0, 40);
     }
@@ -118,6 +118,7 @@ public class BahnhofGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bhfAbreissenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhfAbreissenActionPerformed
+        bhf.letzterSchritt();
         strg.bhfEntfernen(bhf);
         dispose();
     }//GEN-LAST:event_bhfAbreissenActionPerformed

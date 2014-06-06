@@ -150,7 +150,7 @@ public class Linie {
                 }
             }
         }
-        bhf.setAnschlussLinien(+1);
+        bhf.linieHinzu(this);
         this.setZeitFahrt();
     }
 
@@ -160,7 +160,7 @@ public class Linie {
      * aus der Liste gelöscht!
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
-        bhf.setAnschlussLinien(-1);
+        bhf.linieWeg(this);
         int stelle = -1;
         for (int i = 0; i < bhfs; i++) {
             if (bhfListe[i].equals(bhf)) {
@@ -288,6 +288,17 @@ public class Linie {
             zeitFahrt = (gesamtLaenge * fahrtZeit) / zuege;
         } else {
             zeitFahrt = -1;
+        }
+    }
+    
+    /**
+     * räumt auf wenn die Linie gelöscht werden soll
+     * zB allen Bahnhöfen bescheid geben
+     */
+    public void letzterSchritt(){
+        // bei allen Bhfs die Linie löschen
+        for(int i=0; i < bhfs; i++){
+            bhfListe[i].linieWeg(this);
         }
     }
 

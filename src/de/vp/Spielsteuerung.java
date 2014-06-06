@@ -312,6 +312,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean linieEntfernen(Linie l) {
+        l.letzterSchritt();
         if (neueLinien > 0) {
             int x = 0;
             for (int i = 0; i < neueLinien; i++) {

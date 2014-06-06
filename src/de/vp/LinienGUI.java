@@ -251,7 +251,7 @@ public class LinienGUI extends JDialog {
         int pos = jList1.getSelectedIndex();
         int x = -1;
         if (pos <= 0) {
-            Bahnhof[] liste = strg.getBahnhofListe();
+            Bahnhof[] liste = strg.getBahnhofListe(linie.getBahnhof());
 //            for(int i=0; i < liste.length; i++) {
 //                for(int o=0; o < bhf.length; o++) {
 //                if(liste[i] == bhf[o]) {

@@ -1344,6 +1344,31 @@ public class Spielsteuerung {
         return liste;
     }
 
+    public Bahnhof[] getBahnhofListe(Bahnhof[] geg) {
+        Bahnhof[] liste = new Bahnhof[bhfs - geg.length];
+        int zahl = 0;
+        for (int h = 0; h < bahnhoefe.length; h++) {
+            for (int b = 0; b < bahnhoefe[h].length; b++) {
+                if (bahnhoefe[h][b] != null) {
+                    Bahnhof bhf = bahnhoefe[h][b];
+
+                    // Ist der Bahnhof schon in der Liste drin?
+                    boolean drin = false;
+                    for (int i = 0; i < geg.length && !drin; i++) {
+                        if (bhf.equals(geg[i])) {
+                            drin = true;
+                        }
+                    }
+                    if (!drin) {
+                        liste[zahl] = bahnhoefe[h][b];
+                        zahl++;
+                    }
+                }
+            }
+        }
+        return liste;
+    }
+
     public Bahnhof getBahnhof(String bahnhof) {
         Bahnhof[] liste = new Bahnhof[bhfs];
         Bahnhof bhf = null;

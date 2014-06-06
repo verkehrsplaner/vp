@@ -43,8 +43,8 @@ public class Spielsteuerung {
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 85%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl% bis 95% | Rest von 95% bis 100% ist Parkwahrscheinlichkeit
     // step() wird 2x pro sek aufgerufen!
-    private final int abrechnungsIntervall = 30;
-    private final int bahnsteigIntervall = 12;
+    private final int abrechnungsIntervall = 60;
+    private final int bahnsteigIntervall = 3;
     private final int stadtbauIntervall = 2;
     private final boolean stadtbauen = true; // Stadt erweiterter sich oder auch nicht.
     // ========== Ende Spielvariablen ==========
@@ -127,7 +127,7 @@ public class Spielsteuerung {
             "Bozen Ring", "Ehe Ring", "Kryptographenheim", "Blutweg", "Rosinenstraße",
             "Fassring", "Grüngarten", "Gärtnerstraße", "Kanzlerstraße", "Streicherholz",
             "Katzenweg", "Hundeweg", "Luxweg", "Gänsemarsch", "Marderweg", "Giraffenplatz",
-            "Elephantenstrße", "Beuteltierstraße", "Schnabeltierstraße", "Mäuseweg",
+            "Elephantenstraße", "Beuteltierstraße", "Schnabeltierstraße", "Mäuseweg",
             "Nashornstraße", "Schmetterlingsweg", "Wanzenweg", "Krokodilstraße", "Licht",
             "Hemdstraße", "Jeansstraße", "Hutstraße", "Regengasse", "Donnerweg",
             "Blitzstraße", "Schuhstraße", "Glücksleiter", "Kleestraße", "Anemonenstraße",

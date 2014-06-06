@@ -19,6 +19,7 @@ public class Bahnhof {
     private int personen;
     private int bahnsteig; // Leute die auf einen Zug warten
     private int kasse; // Eingenommenes Geld für abgeholte Personen
+    private int anschlussLinien; //Wie viele Linien bedienen diesen Bahnhof
     private String name;
     private Spielsteuerung strg;
 
@@ -32,7 +33,7 @@ public class Bahnhof {
         X = x;
         Y = y;
         name = n;
-        fahrtKosten = 3;
+        fahrtKosten = 5;
         teile = new Stadtteil[30];
     }
 
@@ -182,6 +183,20 @@ public class Bahnhof {
      */
     public int getBahnsteig() {
         return bahnsteig;
+    }
+
+    /**
+     * @return the anschlussLinien
+     */
+    public int getAnschlussLinien() {
+        return anschlussLinien;
+    }
+
+    /**
+     * @param plusMinus entweder +1 oder -1
+     */
+    public void setAnschlussLinien(int plusMinus) {
+        anschlussLinien = anschlussLinien + plusMinus;
     }
 
 }

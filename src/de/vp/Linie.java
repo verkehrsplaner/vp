@@ -22,13 +22,14 @@ public class Linie {
     private int auslastung;
     private int potential;
     private int gesamtLaenge, zeitFahrt, zeitStep;
+    private int[] zug; //Liste von Zügen und derren Auslastung
     private Spielsteuerung strg;
 
     // ========== Anfang Spielvariablen ==========
     private final int preisStrecke = 100000;
     private final int bhfUnterhaltungsKosten = 500;
     private final int zugUnterhaltungsKosten = 1000;
-    private final int zugKapazitaet = 500;
+    private final int zugKapazitaet = 350;
     private final int fahrtZeit = 2; // Fahrtzeit pro Block
     // ========== Ende Spielvariablen ==========
 
@@ -149,6 +150,7 @@ public class Linie {
                 }
             }
         }
+        bhf.setAnschlussLinien(+1);
         this.setZeitFahrt();
     }
 
@@ -171,6 +173,7 @@ public class Linie {
             bhfs--;
         }
         this.setZeitFahrt();
+        bhf.setAnschlussLinien(-1);
     }
 
     /**
@@ -292,7 +295,7 @@ public class Linie {
      *
      */
     public void step() {
-        System.out.println(zeitFahrt);
+        System.out.println(name + ": " + zeitFahrt);
         if (zeitFahrt <= zeitStep && bhfs > 0 && zeitFahrt > 0) {
             // Aussteigen aus Zug
             System.out.println("Ein und Aussteigen wird ausgeführt!");
@@ -332,6 +335,10 @@ public class Linie {
         }
         zeitStep++;
 
+    }
+    
+    public void zugFahren() {
+        
     }
 
     @Override

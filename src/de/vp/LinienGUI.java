@@ -250,19 +250,30 @@ public class LinienGUI extends JDialog {
     private void jButtonBahnhofActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofActionPerformed
         int pos = jList1.getSelectedIndex();
         int x = -1;
-        if (pos <= 0) {
-            Bahnhof[] liste = strg.getBahnhofListe(linie.getBahnhof());
-//            for(int i=0; i < liste.length; i++) {
-//                for(int o=0; o < bhf.length; o++) {
-//                if(liste[i] == bhf[o]) {
-//                    x = i;
-//                    for(int p=x; p < liste.length-1; p++) {
-//                        liste[p] = liste[p+1];
-//                    }
-//                    liste[liste.length] = null;
-//                }
-//                }
-//            }
+        if (pos < 0) {
+            Bahnhof[] inLinie = linie.getBahnhof();
+            Bahnhof[] liste = strg.getBahnhofListe(inLinie);
+            
+            if (liste.length > 0) {
+                Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
+                        "Bahnhof auswählen:",
+                        "Bahnhof",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        liste,
+                        liste[0]);
+                if (bhf != null) {
+                    if (inLinie.length > 0) {
+                        linie.bahnhofHinzufuegen(bhf, inLinie[inLinie.length - 1]);
+                    } else {
+                    linie.bahnhofHinzufuegen(bhf, null);
+                    }
+                }
+            }
+        } else if (pos == 0) {
+            Bahnhof[] inLinie = linie.getBahnhof();
+            Bahnhof[] liste = strg.getBahnhofListe(inLinie);
+            
             if (liste.length > 0) {
                 Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
                         "Bahnhof auswählen:",
@@ -277,7 +288,9 @@ public class LinienGUI extends JDialog {
             }
         } else if (pos > 0) {
             pos = pos - 1;
-            Bahnhof[] liste = strg.getBahnhofListe();
+            Bahnhof[] inLinie = linie.getBahnhof();
+            Bahnhof[] liste = strg.getBahnhofListe(inLinie);
+            
             if (liste.length > 0) {
                 Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
                         "Bahnhof auswählen:",
@@ -287,7 +300,7 @@ public class LinienGUI extends JDialog {
                         liste,
                         liste[0]);
                 if (bhf != null) {
-                    linie.bahnhofHinzufuegen(bhf, linie.getBahnhof()[pos]);
+                    linie.bahnhofHinzufuegen(bhf, inLinie[pos]);
                 }
             }
         }

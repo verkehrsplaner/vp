@@ -238,8 +238,20 @@ public class LinienGUI extends JDialog {
 
     private void jButtonBahnhofActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofActionPerformed
         int pos = jList1.getSelectedIndex();
+        int x = -1;
         if (pos <= 0) {
             Bahnhof[] liste = strg.getBahnhofListe();
+//            for(int i=0; i < liste.length; i++) {
+//                for(int o=0; o < bhf.length; o++) {
+//                if(liste[i] == bhf[o]) {
+//                    x = i;
+//                    for(int p=x; p < liste.length-1; p++) {
+//                        liste[p] = liste[p+1];
+//                    }
+//                    liste[liste.length] = null;
+//                }
+//                }
+//            }
             if (liste.length > 0) {
                 Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
                         "Bahnhof auswählen:",

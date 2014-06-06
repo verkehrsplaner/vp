@@ -61,10 +61,10 @@ public class Listener extends MouseAdapter implements KeyListener {
             strg.geldCheat();
         }
         // Das zweite ist für Maxis Mac und insgesamt gehts hier um Zoomen
-        if (e.getKeyCode() == KeyEvent.VK_PLUS || e.getKeyCode() == 93 || e.getKeyCode() == KeyEvent.VK_Y) {
+        if (e.getKeyCode() == KeyEvent.VK_PLUS || e.getKeyCode() == 93 || e.getKeyCode() == KeyEvent.VK_X) {
             strg.zoomIn();
         }
-        if (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == 47 || e.getKeyCode() == KeyEvent.VK_X) {
+        if (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == 47 || e.getKeyCode() == KeyEvent.VK_Y) {
             strg.zoomOut();
         }
     }

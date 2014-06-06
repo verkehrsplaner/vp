@@ -43,9 +43,9 @@ public class Spielsteuerung {
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 85%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl% bis 95% | Rest von 95% bis 100% ist Parkwahrscheinlichkeit
     // step() wird 2x pro sek aufgerufen!
-    private final int abrechnungsIntervall = 120;
-    private final int bahnsteigIntervall = 60;
-    private final int stadtbauIntervall = 12;
+    private final int abrechnungsIntervall = 30;
+    private final int bahnsteigIntervall = 12;
+    private final int stadtbauIntervall = 2;
     private final boolean stadtbauen = true; // Stadt erweiterter sich oder auch nicht.
     // ========== Ende Spielvariablen ==========
 

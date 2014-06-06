@@ -13,7 +13,7 @@ import java.awt.Color;
  */
 public class Firma extends Stadtteil {
 
-    private int personen = -38;
+    private int personen = -4;
     private boolean nacht = false;
     
     @Override

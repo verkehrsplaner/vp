@@ -13,7 +13,7 @@ import java.awt.Color;
  */
 public class Rathaus extends Stadtteil {
 
-    private int personen = -250;
+    private int personen = -100;
     private boolean nacht = false;
     
     @Override

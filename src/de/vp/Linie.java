@@ -29,7 +29,7 @@ public class Linie {
     private final int bhfUnterhaltungsKosten = 500;
     private final int zugUnterhaltungsKosten = 1000;
     private final int zugKapazitaet = 500;
-    private final int fahrtZeit = 10; // Fahrtzeit pro Block
+    private final int fahrtZeit = 2; // Fahrtzeit pro Block
     // ========== Ende Spielvariablen ==========
 
     public Linie(String n, Spielsteuerung s) {
@@ -292,8 +292,10 @@ public class Linie {
      *
      */
     public void step() {
+        System.out.println(zeitFahrt);
         if (zeitFahrt <= zeitStep && bhfs > 0 && zeitFahrt > 0) {
             // Aussteigen aus Zug
+            System.out.println("Ein und Aussteigen wird ausgeführt!");
             int wollenRaus = auslastung;
             int bhfsAussteigen = 0;
             for (int i = 0; i < bhfs; i++) {

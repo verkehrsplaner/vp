@@ -13,7 +13,7 @@ import java.awt.Color;
  */
 public class Park extends Stadtteil {
 
-    private int personen = -19;
+    private int personen = -2;
     private boolean nacht = false;
     
     @Override

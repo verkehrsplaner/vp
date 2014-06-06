@@ -13,7 +13,7 @@ import java.awt.Color;
  */
 public class Haus extends Stadtteil {
 
-    private int personen = 10;
+    private int personen = 1;
     private boolean nacht = false;
     
     @Override

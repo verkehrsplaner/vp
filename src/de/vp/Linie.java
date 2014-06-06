@@ -160,6 +160,7 @@ public class Linie {
      * aus der Liste gelöscht!
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
+        bhf.setAnschlussLinien(-1);
         int stelle = -1;
         for (int i = 0; i < bhfs; i++) {
             if (bhfListe[i].equals(bhf)) {
@@ -173,7 +174,6 @@ public class Linie {
             bhfs--;
         }
         this.setZeitFahrt();
-        bhf.setAnschlussLinien(-1);
     }
 
     /**

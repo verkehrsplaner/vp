@@ -6,17 +6,33 @@
 
 package de.vp;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  *
  * @author hecker
  */
 public class BahnhofGUI extends javax.swing.JDialog {
     
+    private Bahnhof bhf;
+    private Spielsteuerung strg;
     /**
      * Creates new form BahnhofGUI
      */
     public BahnhofGUI(Bahnhof b, Spielsteuerung s) {
+        bhf = b;
+        strg = s;
         initComponents();
+        name.setText(b.getName());
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                bahnsteig.setText(Integer.toString(bhf.getBahnsteig()));
+                anzahlLinien.setText(Integer.toString(bhf.getAnschlussLinien()));
+            }
+        }, 0, 40);
     }
 
     /**
@@ -28,23 +44,32 @@ public class BahnhofGUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
         bhfAbreissen = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        bahnsteig = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        anzahlLinien = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Bahnhof");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Informationen:");
-
-        jLabel3.setText("Blabla hier kommen Informationen rein");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        name.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        name.setText("Bahnhof");
 
         bhfAbreissen.setText("Bahnhof abreißen");
+        bhfAbreissen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhfAbreissenActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Wartende Passagiere:");
+
+        bahnsteig.setText("jLabel4");
+
+        jLabel2.setText("Angebundene Linien:");
+
+        anzahlLinien.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,43 +78,56 @@ public class BahnhofGUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(171, 171, 171)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)))
-                        .addGap(0, 167, Short.MAX_VALUE))
+                        .addGap(82, 82, 82)
+                        .addComponent(name))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(bhfAbreissen)))
-                .addContainerGap())
+                        .addGap(53, 53, 53)
+                        .addComponent(bhfAbreissen))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(bahnsteig))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(anzahlLinien)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(name)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bahnsteig)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(anzahlLinien)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(bhfAbreissen)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bhfAbreissenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhfAbreissenActionPerformed
+        strg.bhfEntfernen(bhf);
+        dispose();
+    }//GEN-LAST:event_bhfAbreissenActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel anzahlLinien;
+    private javax.swing.JLabel bahnsteig;
     private javax.swing.JButton bhfAbreissen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }

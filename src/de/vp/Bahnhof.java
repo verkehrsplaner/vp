@@ -198,5 +198,4 @@ public class Bahnhof {
     public void setAnschlussLinien(int plusMinus) {
         anschlussLinien = anschlussLinien + plusMinus;
     }
-
 }

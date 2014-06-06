@@ -381,9 +381,25 @@ public class Spielsteuerung {
      * @return true
      */
     public boolean bhfEntfernen(Bahnhof bhf) {
+        // Häuser vom Bahnhof wieder freigeben
+        int minX = bhf.getX() - 4;
+        int minY = bhf.getY() - 4;
+        int maxX = bhf.getX() + 3;
+        int maxY = bhf.getY() + 3;
+        for (int h_y = minY; h_y <= maxY; h_y++) {
+            for (int h_x = minX; h_x <= maxX; h_x++) {
+                if (!(h_y < 0) && !(h_x < 0) && !(h_y > teile.length - 1) && !(h_x > teile[h_y].length - 1)) {
+                    if (!(h_x == minX && h_y == minY) && !(h_x == maxX && h_y == minY) && !(h_x == minX && h_y == maxY) && !(h_x == maxX && h_y == maxY)) {
+                        if (hatBahnhof[h_y][h_x]) {
+                            hatBahnhof[h_y][h_x] = false;
+                        }
+                    }
+                }
+            }
+        }
         for (int h = 0; h < bahnhoefe.length; h++) {
             for (int b = 0; b < bahnhoefe[h].length; b++) {
-                if (bahnhoefe[h][b].equals(bhf)) {
+                if (bhf.equals(bahnhoefe[h][b])) {
                     bahnhoefe[h][b] = null;
                 }
             }
@@ -1103,9 +1119,9 @@ public class Spielsteuerung {
         // Tag/Nacht setzen
         if ((strgTimer.getTicks() < 6000 || strgTimer.getTicks() > 18000) && !nacht) {
             nacht = true;
-            if(ticker != null) {
-            ticker.neueNachricht("Nachtwächter spricht: Hört, Ihr Leut´ und lasst Euch sagen, unsre Glock´ hat 6 geschlagen!");
-            ticker.neueNachricht("Nachtwächter wegen Ruhestörung vor Gericht!");
+            if (ticker != null) {
+                ticker.neueNachricht("Nachtwächter spricht: Hört, Ihr Leut´ und lasst Euch sagen, unsre Glock´ hat 6 geschlagen!");
+                ticker.neueNachricht("Nachtwächter wegen Ruhestörung vor Gericht!");
             }
             for (int y = 0; y < hoehe; y++) {
                 for (int x = 0; x < breite; x++) {
@@ -1116,8 +1132,8 @@ public class Spielsteuerung {
             }
         } else if ((strgTimer.getTicks() > 6000 && strgTimer.getTicks() < 18000) && nacht) {
             nacht = false;
-            if(ticker != null) {
-            ticker.neueNachricht("Die Sonne geht auf, ein neuer Tag bricht an!");
+            if (ticker != null) {
+                ticker.neueNachricht("Die Sonne geht auf, ein neuer Tag bricht an!");
             }
             for (int y = 0; y < hoehe; y++) {
                 for (int x = 0; x < breite; x++) {

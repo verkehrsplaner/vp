@@ -10,12 +10,12 @@ package de.vp;
  *
  * @author hecker
  */
-public class BahnhofGUI extends javax.swing.JFrame {
-
+public class BahnhofGUI extends javax.swing.JDialog {
+    
     /**
      * Creates new form BahnhofGUI
      */
-    public BahnhofGUI() {
+    public BahnhofGUI(Bahnhof b, Spielsteuerung s) {
         initComponents();
     }
 

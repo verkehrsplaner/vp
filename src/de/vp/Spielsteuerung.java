@@ -3,6 +3,7 @@ package de.vp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 /**
@@ -1183,6 +1184,11 @@ public class Spielsteuerung {
                 nextAction = "";
                 break;
             default:
+                if (bahnhoefe[y][x] != null) {
+                    JDialog d = new BahnhofGUI(bahnhoefe[y][x], this);
+                    d.setModal(true);
+                    d.setVisible(true);
+                }
                 break;
         }
         return true;

@@ -351,9 +351,7 @@ public class Linie {
     }
     
     public void zugFahren() {
-        if(){
-            
-        }
+        
     }
 
     @Override

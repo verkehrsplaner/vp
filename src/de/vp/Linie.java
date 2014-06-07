@@ -21,7 +21,9 @@ public class Linie {
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
     private int potential;
-    private int gesamtLaenge, zeitFahrt, zeitStep;
+    private int gesamtLaenge, zeitFahrt, zeitStep, zeitZug, gesFahrt;
+    private int[] strecke;
+    private boolean[] istBhf;
     private int[] zug; //Liste von Zügen und derren Auslastung
     private Spielsteuerung strg;
 
@@ -349,7 +351,9 @@ public class Linie {
     }
     
     public void zugFahren() {
-        
+        if(){
+            
+        }
     }
 
     @Override

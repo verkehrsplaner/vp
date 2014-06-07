@@ -21,7 +21,13 @@ public class PrologGUI extends javax.swing.JFrame {
 
     private int hoehe;
     private int breite;
-    private String[] text = {"Hallo!","Herzlich willkommen","Hier ist unser Leiter für das Zuglinienprojekt!"};
+    private String[] text = {/*Müll*/"Müll",
+        /*Text 1*/"Hallo!",
+        /*Text 2*/"Herzlich willkommen",
+        /*Text 3*/"Hier ist unser Leiter für das Zuglinienprojekt!",
+        /*Text 4*/"Text",
+        /*Text 5*/"Text",
+        /*Text 6*/"Text"};
     private Image[] bild;
     private int nummer;
 
@@ -30,15 +36,20 @@ public class PrologGUI extends javax.swing.JFrame {
      */
     public PrologGUI(int h, int b) {
         try {
-            this.bild = new Image[]{ImageIO.read(this.getClass().getResource("images/pink.jpg")),
-            ImageIO.read(this.getClass().getResource("images/icon.png"))};
+            this.bild = new Image[]{/*Müll*/ ImageIO.read(this.getClass().getResource("images/pink.jpg")),
+            /*Bild 1*/ImageIO.read(this.getClass().getResource("images/pink.jpg")),
+            /*Bild 2*/ImageIO.read(this.getClass().getResource("images/ni.jpg")),
+            /*Bild 3*/ImageIO.read(this.getClass().getResource("images/icon.png")),
+            /*Bild 4*/ImageIO.read(this.getClass().getResource("images/ichi.png")),
+            /*Bild 5*/ImageIO.read(this.getClass().getResource("images/pink.jpg")),
+            /*Bild 6*/ImageIO.read(this.getClass().getResource("images/pink.jpg"))};
         } catch (IOException ex) {
            System.err.println("Prolog konnte nicht geladen werden!");
         }
         initComponents();
         breite = b;
         hoehe = h;
-        nummer = 0;
+        nummer = 1;
        monolog.setText(text[nummer]);
        hintergrund.getGraphics().drawImage(bild[nummer], 0, 0, null);
 

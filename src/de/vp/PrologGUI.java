@@ -30,7 +30,7 @@ public class PrologGUI extends javax.swing.JFrame {
      */
     public PrologGUI(int h, int b) {
         try {
-            this.bild = new Image[]{ImageIO.read(this.getClass().getResource("images/uno.png")),
+            this.bild = new Image[]{ImageIO.read(this.getClass().getResource("images/ni.jpg")),
             ImageIO.read(this.getClass().getResource("images/icon.png"))};
         } catch (IOException ex) {
            System.err.println("Prolog konnte nicht geladen werden!");

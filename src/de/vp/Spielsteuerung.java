@@ -22,6 +22,7 @@ public class Spielsteuerung {
     private GUITimer guiTimer;
     private StrgTimer strgTimer;
     private boolean feldVoll; //Für Stadtteile bauen
+    private boolean pause;
     private String nextAction;
     private boolean verloren;
     private int zoom;
@@ -58,6 +59,7 @@ public class Spielsteuerung {
         werkstatt = 0;
         neueLinien = 0;
         feldVoll = false;
+        pause = false;
         nextAction = "";
         verloren = false;
         zoom = 0;
@@ -160,6 +162,22 @@ public class Spielsteuerung {
 
     public void setTicker(TickerPanel p) {
         ticker = p;
+    }
+
+    public void setPause(boolean p) {
+        pause = p;
+        if (pause) {
+            timerS.cancel();
+            System.out.println("Pause!");
+        } else if (!pause) {
+            timerS = new Timer();
+            System.out.println("Weiter!");
+            timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+        }
+    }
+
+    public boolean getPause() {
+        return pause;
     }
 
     /**

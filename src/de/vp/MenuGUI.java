@@ -15,13 +15,15 @@ import javax.swing.JDialog;
 public class MenuGUI extends JDialog {
     private Sound sound;
     private SpielPanel panel;
+    Spielsteuerung strg;
     
     /**
      * Creates new form EinstellungsGUI
      */
-    public MenuGUI(Sound s, SpielPanel p) {
+    public MenuGUI(Sound s, SpielPanel p, Spielsteuerung ss) {
         sound = s;
         panel = p;
+        strg = ss;
         initComponents();
     }
 
@@ -167,7 +169,11 @@ public class MenuGUI extends JDialog {
     }//GEN-LAST:event_spielBeendenActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        
+        if(jToggleButton1.isSelected()) {
+            strg.setPause(true);
+        } else {
+            strg.setPause(false);
+        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void spielSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielSpeichernActionPerformed

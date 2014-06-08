@@ -92,7 +92,7 @@ public class Bahnhof {
 
     /**
      *
-     * @param personen freie Sitzplätze in der Linie
+     * @param personen freie Sitzplätze im Zug
      * @return
      */
     public int einsteigen(int personen) {
@@ -129,6 +129,11 @@ public class Bahnhof {
         
         System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
         return ausgestiegen;
+    }
+    
+    public int allesAussteigen(int personen) {
+        bahnsteig += personen;
+        return personen;
     }
 
     /**

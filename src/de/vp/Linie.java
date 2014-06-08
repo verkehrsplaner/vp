@@ -21,12 +21,11 @@ public class Linie {
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
     private int potential;
-    private int gesamtLaenge, zeitFahrt, zeitStep, zeitZug, gesFahrt;
+    private int gesamtLaenge, zeitStep, zeitZug;
     private int[] strecke;
     private int[] streckeZurueck;
-    private boolean[] istBhf; //sozusagen die Abschnitte der Linie
-    private int[] zug; //Liste von Zügen und derren Auslastung
-    private int[] depot;
+    private int[] istBhf; //sozusagen die Abschnitte der Linie
+    private int depot;
     private Spielsteuerung strg;
 
     // ========== Anfang Spielvariablen ==========
@@ -91,9 +90,9 @@ public class Linie {
      * einen Zug hinzufügen
      */
     public void zugEinstellen() {
-        if(strecke.length < zuege) {
-        zuege++;
-        this.setZeitFahrt();
+        if (strecke.length < zuege) {
+            zuege++;
+            this.setZeitZug();
         }
     }
 
@@ -103,7 +102,7 @@ public class Linie {
     public boolean zugEntfernen() {
         if (zuege > 0) {
             zuege--;
-            this.setZeitFahrt();
+            this.setZeitZug();
             return true;
         } else {
             return false;
@@ -157,7 +156,7 @@ public class Linie {
             }
         }
         bhf.linieHinzu(this);
-        this.setZeitFahrt();
+        this.setZeitZug();
     }
 
     /**
@@ -179,7 +178,7 @@ public class Linie {
             }
             bhfs--;
         }
-        this.setZeitFahrt();
+        this.setZeitZug();
     }
 
     /**
@@ -289,21 +288,21 @@ public class Linie {
     /**
      * berechnet die Gesamtfahrtzeit der Linie
      */
-    public void setZeitFahrt() {
+    public void setZeitZug() {
         if (zuege != 0) {
-            zeitFahrt = (gesamtLaenge * fahrtZeit) / zuege;
+            zeitZug = Math.round(strecke.length / zuege);
         } else {
-            zeitFahrt = -1;
+            zeitZug = -1;
         }
     }
-    
+
     /**
-     * räumt auf wenn die Linie gelöscht werden soll
-     * zB allen Bahnhöfen bescheid geben
+     * räumt auf wenn die Linie gelöscht werden soll zB allen Bahnhöfen bescheid
+     * geben
      */
-    public void letzterSchritt(){
+    public void letzterSchritt() {
         // bei allen Bhfs die Linie löschen
-        for(int i=0; i < bhfs; i++){
+        for (int i = 0; i < bhfs; i++) {
             bhfListe[i].linieWeg(this);
         }
     }
@@ -312,50 +311,27 @@ public class Linie {
      *
      */
     public void step() {
-        System.out.println(name + ": " + zeitFahrt);
-        if (zeitFahrt <= zeitStep && bhfs > 0 && zeitFahrt > 0) {
-            // Aussteigen aus Zug
-            System.out.println("Ein und Aussteigen wird ausgeführt!");
-            int wollenRaus = auslastung;
-            int bhfsAussteigen = 0;
-            for (int i = 0; i < bhfs; i++) {
-                if (bhfListe[i].getBahnsteig() < 0) {
-                    bhfsAussteigen++;
-                }
-            }
-            int personenProBhfRaus = wollenRaus / bhfs;
-            for (int i = 0; i < bhfs; i++) {
-                if (bhfListe[i].getBahnsteig() < 0) {
-                    int ausgestiegen = bhfListe[i].aussteigen(personenProBhfRaus);
-                    auslastung -= ausgestiegen;
-                }
-            }
-
-            // Einsteigen in Zug
-            int plaetzeFrei = kapazitaet() - auslastung;
-            int bhfsEinsteigen = 0;
-            for (int i = 0; i < bhfs; i++) {
-                if (bhfListe[i].getBahnsteig() > 0) {
-                    bhfsEinsteigen++;
-                }
-            }
-            int personenProBhfRein = plaetzeFrei / bhfs;
-            for (int i = 0; i < bhfs; i++) {
-                if (bhfListe[i].getBahnsteig() > 0) {
-                    int eingestiegen = bhfListe[i].einsteigen(personenProBhfRein);
-                    auslastung += eingestiegen;
-                }
-            }
-
-            // Zeit zurücksetzen
-            zeitStep = -1;
+        // Fahren
+        //     Den jeweils letzten Zug bearbeiten
+        int streckeEnde = strecke[strecke.length - 1];
+        if (streckeZurueck[streckeZurueck.length - 1] > -1) {
+            depot++;
         }
-        zeitStep++;
+        //     Auf der Linie weiterfahren
+        for (int i = strecke.length - 1; i > 0; i++) {
+            strecke[i] = strecke[i - 1];
+            streckeZurueck[i] = streckeZurueck[i - 1];
+        }
+        //     Den ersten Zug bearbeiten
+        streckeZurueck[0] = streckeEnde;
+        if (depot > 0 && zeitStep >= zeitZug) {
+            strecke[0] = 0;
+            zeitStep = -1;
+        } else {
+            strecke[0] = -1;
+        }
 
-    }
-    
-    public void zugFahren() {
-        
+        zeitStep++;
     }
 
     @Override

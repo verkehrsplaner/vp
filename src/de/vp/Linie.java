@@ -23,8 +23,10 @@ public class Linie {
     private int potential;
     private int gesamtLaenge, zeitFahrt, zeitStep, zeitZug, gesFahrt;
     private int[] strecke;
-    private boolean[] istBhf;
+    private int[] streckeZurueck;
+    private boolean[] istBhf; //sozusagen die Abschnitte der Linie
     private int[] zug; //Liste von Zügen und derren Auslastung
+    private int[] depot;
     private Spielsteuerung strg;
 
     // ========== Anfang Spielvariablen ==========
@@ -89,8 +91,10 @@ public class Linie {
      * einen Zug hinzufügen
      */
     public void zugEinstellen() {
+        if(strecke.length < zuege) {
         zuege++;
         this.setZeitFahrt();
+        }
     }
 
     /**

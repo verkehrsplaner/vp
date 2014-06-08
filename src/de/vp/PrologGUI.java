@@ -21,8 +21,6 @@ public class PrologGUI extends javax.swing.JFrame {
 
     private int hoehe;
     private int breite;
-    private String[] text = {"Hallo!","Herzlich willkommen zur Eröffnung unseres Zuglinienprojekts!"
-            ,"Ich hoffe,unsere Stadt wird bald komplett vernetzt sein!"};
 
     private Image[] bild;
     private int nummer;
@@ -32,17 +30,19 @@ public class PrologGUI extends javax.swing.JFrame {
      */
     public PrologGUI(int h, int b) {
         try {
+
             this.bild = new Image[]{ImageIO.read(this.getClass().getResource("images/pink.jpg")),
             ImageIO.read(this.getClass().getResource("images/mayor.png")),
             ImageIO.read(this.getClass().getResource("images/linien.png"))};
             
+
         } catch (IOException ex) {
            System.err.println("Prolog konnte nicht geladen werden!");
         }
         initComponents();
         breite = b;
         hoehe = h;
-        nummer = 0;
+        nummer = 1;
        monolog.setText(text[nummer]);
        hintergrund.getGraphics().drawImage(bild[nummer], 0, 0, null);
 

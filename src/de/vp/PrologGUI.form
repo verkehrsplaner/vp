@@ -97,6 +97,9 @@
           <Dimension value="[512, 288]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BildPanel()"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

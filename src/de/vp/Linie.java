@@ -13,6 +13,7 @@ import java.awt.Color;
  */
 public class Linie {
     //HAAAAAAAAAAAAAAAAAAAAAAAAAAAAALLLO!
+    private He he;
     private Hallo Penis;
     private String name;
     private Color farbe;

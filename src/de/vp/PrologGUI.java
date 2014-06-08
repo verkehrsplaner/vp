@@ -22,6 +22,8 @@ public class PrologGUI extends javax.swing.JFrame {
     private int hoehe;
     private int breite;
 
+    private String[] text = {"Hallo!","Herzlich willkommen zur Eröffnung unseres Zuglinienprojekts!"
+            ,"Ich hoffe,unsere Stadt wird bald komplett vernetzt sein!"};
     private Image[] bild;
     private int nummer;
 

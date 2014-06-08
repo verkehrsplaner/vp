@@ -12,9 +12,7 @@ import java.awt.Color;
  * @author Nicolai
  */
 public class Linie {
-    //HAAAAAAAAAAAAAAAAAAAAAAAAAAAAALLLO!
-    private He he;
-    private Hallo Penis;
+
     private String name;
     private Color farbe;
     private int zuege;
@@ -315,6 +313,16 @@ public class Linie {
     public void step() {
         // Fahren
         //     Den jeweils letzten Zug bearbeiten
+        //     Aussteigen
+        if (streckeZurueck[streckeZurueck.length - 1] > 0) {
+            bhfListe[0].allesAussteigen(streckeZurueck[streckeZurueck.length - 1]);
+            streckeZurueck[streckeZurueck.length - 1] = 0;
+        }
+        if (strecke[strecke.length - 1] > 0) {
+            bhfListe[bhfs - 1].allesAussteigen(strecke[strecke.length - 1]);
+            strecke[strecke.length - 1] = 0;
+        }
+        //     Umdrehen
         int streckeEnde = strecke[strecke.length - 1];
         if (streckeZurueck[streckeZurueck.length - 1] > -1) {
             depot++;
@@ -333,6 +341,24 @@ public class Linie {
             strecke[0] = -1;
         }
 
+        // Aus- / Einsteigen
+        for (int i = 0; i < istBhf.length; i++) {
+            // Es ist ein Bahnhof da
+            if (istBhf[i] > -1) { 
+                // Zug am Bahnhof auf Strecke
+                if (strecke[i] > -1) { 
+                    bhfListe[istBhf[i]].aussteigen(strecke[i]);
+                    bhfListe[istBhf[i]].einsteigen(strecke[i]);
+                }
+                // Zug am Bahnhof auf StreckeZurück
+                int j = streckeZurueck.length - i - 1;
+                if (streckeZurueck[j] > -1) {
+                    bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
+                    bhfListe[istBhf[i]].einsteigen(streckeZurueck[j]);
+                }               
+            }
+        }
+        
         zeitStep++;
     }
 

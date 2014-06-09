@@ -91,10 +91,8 @@ public class Linie {
      * einen Zug hinzufügen
      */
     public void zugEinstellen() {
-        if(strecke.length < zuege) {
         zuege++;
         this.setZeitFahrt();
-        }
     }
 
     /**
@@ -296,14 +294,14 @@ public class Linie {
             zeitFahrt = -1;
         }
     }
-    
+
     /**
-     * räumt auf wenn die Linie gelöscht werden soll
-     * zB allen Bahnhöfen bescheid geben
+     * räumt auf wenn die Linie gelöscht werden soll zB allen Bahnhöfen bescheid
+     * geben
      */
-    public void letzterSchritt(){
+    public void letzterSchritt() {
         // bei allen Bhfs die Linie löschen
-        for(int i=0; i < bhfs; i++){
+        for (int i = 0; i < bhfs; i++) {
             bhfListe[i].linieWeg(this);
         }
     }
@@ -353,9 +351,9 @@ public class Linie {
         zeitStep++;
 
     }
-    
+
     public void zugFahren() {
-        
+
     }
 
     @Override

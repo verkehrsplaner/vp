@@ -190,9 +190,35 @@ public class Linie {
                 streckeZurueck = tmpStreckeZurueck;
                 istBhf = tmpIstBhf;
             } else if (stelle == bhfs - 1) {
+                int entf = 0;
+                if (stelle > 0) {
+                    entf = streckeBerechnen(stelle - 1, stelle);
+                }
+                int[] tmpIstBhf = new int[istBhf.length + entf + 1];
+                int[] tmpStrecke = new int[strecke.length + entf + 1];
+                int[] tmpStreckeZurueck = new int[streckeZurueck.length + entf + 1];
+                for (int i = 0; i < tmpIstBhf.length; i++) {
+                    // Strecke + IstBhf verlängern
+                    if (i < istBhf.length) {
+                        tmpIstBhf[i] = istBhf[i];
+                        tmpStrecke[i] = strecke[i];
+                    } else {
+                        tmpIstBhf[i] = -1;
+                        tmpStrecke[i] = -1;
+                    }
+                    if (i < entf + 1) {
+                        tmpStreckeZurueck[i] = -1;
+                    } else {
+                        tmpStreckeZurueck[i] = streckeZurueck[i - (entf + 1)];
+                    }
+                }
+                tmpIstBhf[tmpIstBhf.length - 1] = bhfs - 1;
 
+                strecke = tmpStrecke;
+                streckeZurueck = tmpStreckeZurueck;
+                istBhf = tmpIstBhf;
             } else {
-
+                // TODO: Bahnhof in der Mitte einfügen 
             }
 
         }

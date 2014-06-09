@@ -39,6 +39,9 @@ public class Linie {
     public Linie(String n, Spielsteuerung s) {
         strg = s;
         bhfListe = new Bahnhof[20];
+        strecke = new int[0];
+        streckeZurueck = new int[0];
+        istBhf = new int[0];
         name = n;
         gesamtLaenge = 0;
         Color[] farben = {new Color(255, 140, 0)/* Orange */, new Color(47, 255, 0)/*hellgrün*/,
@@ -90,8 +93,9 @@ public class Linie {
      * einen Zug hinzufügen
      */
     public void zugEinstellen() {
-        if (strecke.length < zuege) {
+        if (zuege < strecke.length) {
             zuege++;
+            depot++;
             this.setZeitZug();
         }
     }
@@ -150,10 +154,47 @@ public class Linie {
             }
             if (stelle > 0) {
                 if (bhfListe[stelle - 1] != null) {
-                    strg.geldNehmen(streckeBerechnen(stelle - 1, stelle));
+                    strg.geldNehmen(streckeBerechnen(stelle - 1, stelle) * preisStrecke);
 
                 }
             }
+
+            // Strecken bauen
+            if (stelle == 0) {
+                int entf = 0;
+                if (bhfListe[1] != null) {
+                    entf = streckeBerechnen(0, 1);
+                }
+                int[] tmpIstBhf = new int[istBhf.length + entf + 1];
+                int[] tmpStrecke = new int[strecke.length + entf + 1];
+                int[] tmpStreckeZurueck = new int[streckeZurueck.length + entf + 1];
+                for (int i = 0; i < tmpIstBhf.length; i++) {
+                    // Strecke + IstBhf verlängern
+                    if (i < entf + 1) {
+                        tmpStrecke[i] = -1;
+                        if (i == 0) {
+                            tmpIstBhf[0] = 0;
+                        } else {
+                            tmpIstBhf[i] = -1;
+                        }
+                    } else {
+                        tmpStrecke[i] = strecke[i - (entf + 1)];
+                        if (istBhf[i - (entf + 1)] > -1) {
+                            tmpIstBhf[i] = istBhf[i - (entf + 1)] + 1;
+                        } else {
+                            tmpIstBhf[i] = -1;
+                        }
+                    }
+                }
+                strecke = tmpStrecke;
+                streckeZurueck = tmpStreckeZurueck;
+                istBhf = tmpIstBhf;
+            } else if (stelle == bhfs - 1) {
+
+            } else {
+
+            }
+
         }
         bhf.linieHinzu(this);
         this.setZeitZug();
@@ -312,41 +353,42 @@ public class Linie {
      */
     public void step() {
         // Fahren
-        //     Den jeweils letzten Zug bearbeiten
-        //     Aussteigen
-        if (streckeZurueck[streckeZurueck.length - 1] > 0) {
-            bhfListe[0].allesAussteigen(streckeZurueck[streckeZurueck.length - 1]);
-            streckeZurueck[streckeZurueck.length - 1] = 0;
+        if (strecke.length > 0) {
+            // Den jeweils letzten Zug bearbeiten
+            // Aussteigen
+            if (streckeZurueck[streckeZurueck.length - 1] > 0) {
+                bhfListe[0].allesAussteigen(streckeZurueck[streckeZurueck.length - 1]);
+                streckeZurueck[streckeZurueck.length - 1] = 0;
+            }
+            if (strecke[strecke.length - 1] > 0) {
+                bhfListe[bhfs - 1].allesAussteigen(strecke[strecke.length - 1]);
+                strecke[strecke.length - 1] = 0;
+            }
+            // Umdrehen
+            int streckeEnde = strecke[strecke.length - 1];
+            if (streckeZurueck[streckeZurueck.length - 1] > -1) {
+                depot++;
+            }
+            // Auf der Linie weiterfahren
+            for (int i = strecke.length - 1; i > 0; i--) {
+                strecke[i] = strecke[i - 1];
+                streckeZurueck[i] = streckeZurueck[i - 1];
+            }
+            // Den ersten Zug bearbeiten
+            streckeZurueck[0] = streckeEnde;
+            if (depot > 0 && zeitStep >= zeitZug) {
+                strecke[0] = 0;
+                zeitStep = -1;
+            } else {
+                strecke[0] = -1;
+            }
         }
-        if (strecke[strecke.length - 1] > 0) {
-            bhfListe[bhfs - 1].allesAussteigen(strecke[strecke.length - 1]);
-            strecke[strecke.length - 1] = 0;
-        }
-        //     Umdrehen
-        int streckeEnde = strecke[strecke.length - 1];
-        if (streckeZurueck[streckeZurueck.length - 1] > -1) {
-            depot++;
-        }
-        //     Auf der Linie weiterfahren
-        for (int i = strecke.length - 1; i > 0; i++) {
-            strecke[i] = strecke[i - 1];
-            streckeZurueck[i] = streckeZurueck[i - 1];
-        }
-        //     Den ersten Zug bearbeiten
-        streckeZurueck[0] = streckeEnde;
-        if (depot > 0 && zeitStep >= zeitZug) {
-            strecke[0] = 0;
-            zeitStep = -1;
-        } else {
-            strecke[0] = -1;
-        }
-
         // Aus- / Einsteigen
         for (int i = 0; i < istBhf.length; i++) {
             // Es ist ein Bahnhof da
-            if (istBhf[i] > -1) { 
+            if (istBhf[i] > -1) {
                 // Zug am Bahnhof auf Strecke
-                if (strecke[i] > -1) { 
+                if (strecke[i] > -1) {
                     bhfListe[istBhf[i]].aussteigen(strecke[i]);
                     bhfListe[istBhf[i]].einsteigen(strecke[i]);
                 }
@@ -355,10 +397,10 @@ public class Linie {
                 if (streckeZurueck[j] > -1) {
                     bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
                     bhfListe[istBhf[i]].einsteigen(streckeZurueck[j]);
-                }               
+                }
             }
         }
-        
+
         zeitStep++;
     }
 

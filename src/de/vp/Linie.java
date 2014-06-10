@@ -160,70 +160,10 @@ public class Linie {
             }
 
             // Strecken bauen
-            if (stelle == 0) {
-                int entf = 0;
-                if (bhfListe[1] != null) {
-                    entf = streckeBerechnen(0, 1);
-                }
-                int[] tmpIstBhf = new int[istBhf.length + entf + 1];
-                int[] tmpStrecke = new int[strecke.length + entf + 1];
-                int[] tmpStreckeZurueck = new int[streckeZurueck.length + entf + 1];
-                for (int i = 0; i < tmpIstBhf.length; i++) {
-                    // Strecke + IstBhf verlängern
-                    if (i < entf + 1) {
-                        tmpStrecke[i] = -1;
-                        if (i == 0) {
-                            tmpIstBhf[0] = 0;
-                        } else {
-                            tmpIstBhf[i] = -1;
-                        }
-                    } else {
-                        tmpStrecke[i] = strecke[i - (entf + 1)];
-                        if (istBhf[i - (entf + 1)] > -1) {
-                            tmpIstBhf[i] = istBhf[i - (entf + 1)] + 1;
-                        } else {
-                            tmpIstBhf[i] = -1;
-                        }
-                    }
-                }
-                strecke = tmpStrecke;
-                streckeZurueck = tmpStreckeZurueck;
-                istBhf = tmpIstBhf;
-            } else if (stelle == bhfs - 1) {
-                int entf = 0;
-                if (stelle > 0) {
-                    entf = streckeBerechnen(stelle - 1, stelle);
-                }
-                int[] tmpIstBhf = new int[istBhf.length + entf + 1];
-                int[] tmpStrecke = new int[strecke.length + entf + 1];
-                int[] tmpStreckeZurueck = new int[streckeZurueck.length + entf + 1];
-                for (int i = 0; i < tmpIstBhf.length; i++) {
-                    // Strecke + IstBhf verlängern
-                    if (i < istBhf.length) {
-                        tmpIstBhf[i] = istBhf[i];
-                        tmpStrecke[i] = strecke[i];
-                    } else {
-                        tmpIstBhf[i] = -1;
-                        tmpStrecke[i] = -1;
-                    }
-                    if (i < entf + 1) {
-                        tmpStreckeZurueck[i] = -1;
-                    } else {
-                        tmpStreckeZurueck[i] = streckeZurueck[i - (entf + 1)];
-                    }
-                }
-                tmpIstBhf[tmpIstBhf.length - 1] = bhfs - 1;
-
-                strecke = tmpStrecke;
-                streckeZurueck = tmpStreckeZurueck;
-                istBhf = tmpIstBhf;
-            } else {
-                // TODO: Bahnhof in der Mitte einfügen 
-            }
-
         }
         bhf.linieHinzu(this);
         this.setZeitZug();
+        this.streckenBauen();
     }
 
     /**
@@ -245,7 +185,41 @@ public class Linie {
             }
             bhfs--;
         }
+        this.streckenBauen();
         this.setZeitZug();
+    }
+
+    private void streckenBauen() {
+        int[] tmpIstBhf = new int[gesamtLaenge() + bhfs];
+        int[] tmpStrecke = new int[gesamtLaenge() + bhfs];
+        int[] tmpStreckeZurueck = new int[gesamtLaenge() + bhfs];
+
+        // Alle Strecken zurücksetzen
+        for (int i = 0; i < tmpIstBhf.length; i++) {
+            tmpIstBhf[i] = -1;
+            tmpStrecke[i] = -1;
+            tmpStreckeZurueck[i] = -1;
+        }
+        // Bahnhöfe einfügen
+        tmpIstBhf[0] = 0;
+        if (bhfs > 1) {
+            // Bahnhöfe durchgehen
+            for (int i = 1; i < bhfs; i++) {
+                // Entfernung bis zum Bahnhof
+                int entf = 0;
+                for (int x = 0; x < i; x++) {
+                    entf += streckeBerechnen(x, x + 1);
+                }
+                entf += i;
+                // Bahnhof nach der Entfernung einfügen
+                tmpIstBhf[entf] = i;
+            }
+            tmpIstBhf[tmpIstBhf.length - 1] = bhfs - 1;
+        }
+        depot = zuege;
+        strecke = tmpStrecke;
+        streckeZurueck = tmpStreckeZurueck;
+        istBhf = tmpIstBhf;
     }
 
     /**

@@ -318,7 +318,7 @@ public class Linie {
      * @return maximale Kapazität
      */
     public int kapazitaet() {
-        return zuege * zugKapazitaet;
+        return zuege * getZugKapazitaet();
     }
 
     /**
@@ -416,13 +416,13 @@ public class Linie {
                 // Zug am Bahnhof auf Strecke
                 if (strecke[i] > -1) {
                     bhfListe[istBhf[i]].aussteigen(strecke[i]);
-                    bhfListe[istBhf[i]].einsteigen(strecke[i]);
+                    bhfListe[istBhf[i]].einsteigen(getZugKapazitaet() - strecke[i]);
                 }
                 // Zug am Bahnhof auf StreckeZurück
                 int j = streckeZurueck.length - i - 1;
                 if (streckeZurueck[j] > -1) {
                     bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
-                    bhfListe[istBhf[i]].einsteigen(streckeZurueck[j]);
+                    bhfListe[istBhf[i]].einsteigen(getZugKapazitaet() - streckeZurueck[j]);
                 }
             }
         }
@@ -442,6 +442,13 @@ public class Linie {
         } else {
             return false;
         }
+    }
+
+    /**
+     * @return the zugKapazitaet
+     */
+    public int getZugKapazitaet() {
+        return zugKapazitaet;
     }
 
 }

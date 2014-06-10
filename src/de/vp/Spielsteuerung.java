@@ -172,6 +172,7 @@ public class Spielsteuerung {
         } else if (!pause) {
             timerS = new Timer();
             System.out.println("Weiter!");
+            strgTimer = new StrgTimer(this, strgTimer.getTime());
             timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
         }
     }
@@ -184,21 +185,24 @@ public class Spielsteuerung {
      * Erhöht die Spielgeschwindigkeit
      */
     public void schneller() {
-//        strgPause = strgPause / 2;
-//        timerS.cancel();
-//        timerS.purge();
-//        timerS = new Timer();
-//        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+        strgPause = strgPause / 2;
+        System.out.println("Schneller!");
+        timerS.cancel();
+        timerS = new Timer();
+        strgTimer = new StrgTimer(this, strgTimer.getTime());
+        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
     }
 
     /**
      * Verringert die Spielgeschwindigkeit
      */
     public void langsamer() {
-//        strgPause = strgPause / 2;
-//        timerS.cancel();
-//        timerS = new Timer();
-//        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+        strgPause = strgPause * 2;
+        System.out.println("Langsamer!");
+        timerS.cancel();
+        timerS = new Timer();
+        strgTimer = new StrgTimer(this, strgTimer.getTime());
+        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
     }
 
     /**

@@ -56,9 +56,9 @@ public class LinienGUI extends JDialog {
 
         boolean istgruen = linie.getGruenesLicht();
         if (istgruen) {
-            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/gruen transparent.png")));
+            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelgreen.png")));
         } else {
-            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/red transparent.png")));
+            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelred.png")));
         }
 
         ImageIcon icon = new ImageIcon(getClass().getResource("images/linie bauen transparent.png"));
@@ -393,10 +393,10 @@ public class LinienGUI extends JDialog {
     private void ampelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ampelButtonActionPerformed
         boolean istgruen = linie.getGruenesLicht();
         if (istgruen) {
-            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/gruen transparent.png")));
+            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelgreen.png")));
             linie.setGruenesLicht(false);
         } else {
-            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/red transparent.png")));
+            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelred.png")));
             linie.setGruenesLicht(true);
         }
     }//GEN-LAST:event_ampelButtonActionPerformed

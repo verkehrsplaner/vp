@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -45,10 +46,16 @@ public class LinienGUI extends JDialog {
             public void run() {
                 anzahlZuege.setText(Integer.toString(linie.getZuege()));
                 kapazitaet.setText(Integer.toString(linie.kapazitaet()));
-                auslastung.setText(Double.toString(linie.auslastung()));
+                int last = linie.getAuslastung();
+                double last2 = Math.round(last * 1000)/10.0;      
+                auslastung.setText(Double.toString(last2));
                 gesamtLaenge.setText(Integer.toString(linie.gesamtLaenge()));
             }
         }, 0, 40);
+        
+        
+        ImageIcon icon = new ImageIcon(getClass().getResource("images/linie bauen transparent.png"));
+        setIconImage(icon.getImage());
     }
 
     /**
@@ -81,6 +88,7 @@ public class LinienGUI extends JDialog {
         gesamtLaenge = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Linien Konfiguration");
 
         jList1.setModel(bhfListe);
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -149,6 +157,8 @@ public class LinienGUI extends JDialog {
         auslastung.setText(Double.toString(linie.auslastung()));
 
         jLabel5.setText("Länge:");
+
+        gesamtLaenge.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -85,8 +85,6 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="Einstellungen" alignment="1" max="32767" attributes="0"/>
-              <Component id="linieBauenButton" alignment="0" max="32767" attributes="0"/>
-              <Component id="bahnhofBauenButton" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jSeparator3" alignment="1" max="32767" attributes="0"/>
@@ -131,6 +129,11 @@
                   <Component id="plusButton" min="-2" pref="61" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="bahnhofBauenButton" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="linieBauenButton" min="-2" pref="124" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -149,10 +152,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="depotnameLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="minusButton" alignment="1" min="-2" pref="58" max="-2" attributes="0"/>
                       <Component id="plusButton" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                      <Component id="anzahldepotLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="anzahldepotLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
@@ -168,11 +171,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="linienNameLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="258" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="242" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="bahnhofBauenButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="linieBauenButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="linieBauenButton" max="32767" attributes="0"/>
+                      <Component id="bahnhofBauenButton" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Einstellungen" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -294,7 +298,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="bahnhofBauenButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Bahnhof bauen"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/de/vp/images/bahnhof bauen transparent.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bahnhofBauenButtonActionPerformed"/>
@@ -302,7 +308,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="linieBauenButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Neue Linie erstellen"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/de/vp/images/linie bauen transparent.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linieBauenButtonActionPerformed"/>

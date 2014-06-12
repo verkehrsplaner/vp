@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -44,6 +45,9 @@ public class PrologGUI extends javax.swing.JFrame {
         nummer = 0;
         initComponents();
         monolog.setText(text[nummer]);
+        
+        ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
+        setIconImage(icon.getImage());
     }
 
     /**
@@ -62,6 +66,7 @@ public class PrologGUI extends javax.swing.JFrame {
         monolog = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Prolog");
         setMinimumSize(new java.awt.Dimension(600, 300));
 
         vor.setText(">");

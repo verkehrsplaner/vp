@@ -6,6 +6,7 @@
 
 package de.vp;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 
 /**
@@ -25,6 +26,9 @@ public class MenuGUI extends JDialog {
         panel = p;
         strg = ss;
         initComponents();
+        
+        ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
+        setIconImage(icon.getImage());
     }
 
     /**

@@ -7,6 +7,7 @@ package de.vp;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -21,6 +22,8 @@ public class Start extends javax.swing.JFrame {
      */
     public Start() {
         initComponents();
+        ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
+        setIconImage(icon.getImage());
     }
 
     /**
@@ -40,6 +43,7 @@ public class Start extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Verkehrsplaner");
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1094, 619));
 

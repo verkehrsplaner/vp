@@ -48,13 +48,19 @@ public class LinienGUI extends JDialog {
                 anzahlZuege.setText(Integer.toString(linie.getZuege()));
                 kapazitaet.setText(Integer.toString(linie.kapazitaet()));
                 int last = linie.getAuslastung();
-                double last2 = Math.round(last * 1000)/10.0;      
+                double last2 = Math.round(last * 1000) / 10.0;
                 auslastung.setText(Double.toString(last2));
                 gesamtLaenge.setText(Integer.toString(linie.gesamtLaenge()));
             }
         }, 0, 40);
-        
+
         boolean istgruen = linie.getGruenesLicht();
+        if (istgruen) {
+            rotButton.setIcon(new ImageIcon(getClass().getResource("images/reddisabled.png")));
+        } else {
+            gruenButton.setIcon(new ImageIcon(getClass().getResource("images/greendisabled.png")));
+        }
+
         
         ImageIcon icon = new ImageIcon(getClass().getResource("images/linie bauen transparent.png"));
         setIconImage(icon.getImage());
@@ -299,7 +305,7 @@ public class LinienGUI extends JDialog {
         if (pos < 0) {
             Bahnhof[] inLinie = linie.getBahnhof();
             Bahnhof[] liste = strg.getBahnhofListe(inLinie);
-            
+
             if (liste.length > 0) {
                 Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
                         "Bahnhof auswählen:",
@@ -312,14 +318,14 @@ public class LinienGUI extends JDialog {
                     if (inLinie.length > 0) {
                         linie.bahnhofHinzufuegen(bhf, inLinie[inLinie.length - 1]);
                     } else {
-                    linie.bahnhofHinzufuegen(bhf, null);
+                        linie.bahnhofHinzufuegen(bhf, null);
                     }
                 }
             }
         } else if (pos == 0) {
             Bahnhof[] inLinie = linie.getBahnhof();
             Bahnhof[] liste = strg.getBahnhofListe(inLinie);
-            
+
             if (liste.length > 0) {
                 Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
                         "Bahnhof auswählen:",
@@ -336,7 +342,7 @@ public class LinienGUI extends JDialog {
             pos = pos - 1;
             Bahnhof[] inLinie = linie.getBahnhof();
             Bahnhof[] liste = strg.getBahnhofListe(inLinie);
-            
+
             if (liste.length > 0) {
                 Bahnhof bhf = (Bahnhof) JOptionPane.showInputDialog(this,
                         "Bahnhof auswählen:",
@@ -404,14 +410,14 @@ public class LinienGUI extends JDialog {
 
     private void gruenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gruenButtonActionPerformed
         linie.setGruenesLicht(true);
-        rotButton.setIcon(new ImageIcon (getClass().getResource("images/reddisabled.png")));
-        gruenButton.setIcon(new ImageIcon (getClass().getResource("images/gruen transparent.png")));
+        rotButton.setIcon(new ImageIcon(getClass().getResource("images/reddisabled.png")));
+        gruenButton.setIcon(new ImageIcon(getClass().getResource("images/gruen transparent.png")));
     }//GEN-LAST:event_gruenButtonActionPerformed
 
     private void rotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotButtonActionPerformed
         linie.setGruenesLicht(false);
-        gruenButton.setIcon(new ImageIcon (getClass().getResource("images/greendisabled.png")));
-        rotButton.setIcon(new ImageIcon (getClass().getResource("images/red transparent.png")));
+        gruenButton.setIcon(new ImageIcon(getClass().getResource("images/greendisabled.png")));
+        rotButton.setIcon(new ImageIcon(getClass().getResource("images/red transparent.png")));
     }//GEN-LAST:event_rotButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

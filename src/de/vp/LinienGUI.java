@@ -52,10 +52,17 @@ public class LinienGUI extends JDialog {
                 auslastung.setText(Double.toString(last));
                 gesamtLaenge.setText(Integer.toString(linie.gesamtLaenge()));
                 System.out.println(last);
+
+                if (!linie.getBaubar()) {
+                    jButtonBahnhof.setEnabled(false);
+                    jButtonBahnhofWeg.setEnabled(false);
+                } else {
+                    jButtonBahnhof.setEnabled(true);
+                    jButtonBahnhofWeg.setEnabled(true);
+                }
             }
         }, 0, 40);
 
-        
         boolean istgruen = linie.getGruenesLicht();
         System.out.println(istgruen);
         if (istgruen) {

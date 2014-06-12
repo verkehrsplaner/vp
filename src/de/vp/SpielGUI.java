@@ -243,7 +243,7 @@ public class SpielGUI extends javax.swing.JFrame {
             }
         });
 
-        bahnhofBauenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bahnhof bauen transparent.png"))); // NOI18N
+        bahnhofBauenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bahnhof bauen transparent neu.png"))); // NOI18N
         bahnhofBauenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bahnhofBauenButtonActionPerformed(evt);

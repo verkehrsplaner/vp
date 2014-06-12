@@ -305,7 +305,7 @@
         <Component class="javax.swing.JButton" name="bahnhofBauenButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/de/vp/images/bahnhof bauen transparent.png"/>
+              <Image iconType="3" name="/de/vp/images/bahnhof bauen transparent neu.png"/>
             </Property>
           </Properties>
           <Events>

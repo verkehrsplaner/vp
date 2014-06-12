@@ -16,8 +16,11 @@ public class Linie {
     private String name;
     private Color farbe;
     private int zuege;
+    private int zuegeRaus; // Zuege, die noch aus der Linie entfernt werden müssen
     private Bahnhof[] bhfListe;
     private int bhfs;
+    private boolean gruenesLicht; // Dürfen Züge aus dem Depot fahren?
+    private boolean baubar; // Darf an der Linie gebaut werden?
     private int personen; // Personen die gerade auf der Linie unterwegs sind.
     private int auslastung;
     private int potential;
@@ -44,6 +47,7 @@ public class Linie {
         istBhf = new int[0];
         name = n;
         gesamtLaenge = 0;
+        gruenesLicht = false;
         Color[] farben = {new Color(255, 140, 0)/* Orange */, new Color(47, 255, 0)/*hellgrün*/,
             new Color(4, 115, 0)/* dunkelgrün */, new Color(212, 0, 0)/*rot*/,
             new Color(61, 77, 255)/*blau*/, new Color(151, 175, 222)/*hellblau*/,
@@ -104,9 +108,8 @@ public class Linie {
      * einen Zug aus der Linie löschen
      */
     public boolean zugEntfernen() {
-        if (zuege > 0) {
-            zuege--;
-            this.setZeitZug();
+        if (zuege - zuegeRaus > 0) {
+            zuegeRaus++;
             return true;
         } else {
             return false;
@@ -120,50 +123,52 @@ public class Linie {
      *
      */
     public void bahnhofHinzufuegen(Bahnhof bhf, Bahnhof bhfVor) {
-        int stelle = -1;
-        for (int i = 0; i < bhfs; i++) {
-            if (bhfListe[i].equals(bhfVor)) {
-                stelle = i + 1;
-            }
-        }
-        // Wenn am Anfang eingefügt werden soll
-        if (bhfVor == null) {
-            stelle = 0;
-        }
-
-        if (stelle > -1) {
-            if (bhfListe.length < bhfs + 1) {
-                //Bei zu kurzer Liste wird diese erweitert
-                Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
-                for (int i = 0; i < bhfListe.length; i++) {
-                    bhfHilf[i] = bhfListe[i];
-                }
-                bhfListe = bhfHilf;
-            }
-            for (int i = bhfListe.length - 2; i >= stelle; i--) {
-                bhfListe[i + 1] = bhfListe[i];
-            }
-            bhfListe[stelle] = bhf;
-            bhfs++;
-            gesamtLaenge();
-            // Strecke bezahlen
-            if (stelle < bhfListe.length) {
-                if (bhfListe[stelle + 1] != null) {
-                    strg.geldNehmen(streckeBerechnen(stelle, stelle + 1) * preisStrecke);
+        if (baubar) {
+            int stelle = -1;
+            for (int i = 0; i < bhfs; i++) {
+                if (bhfListe[i].equals(bhfVor)) {
+                    stelle = i + 1;
                 }
             }
-            if (stelle > 0) {
-                if (bhfListe[stelle - 1] != null) {
-                    strg.geldNehmen(streckeBerechnen(stelle - 1, stelle) * preisStrecke);
-
-                }
+            // Wenn am Anfang eingefügt werden soll
+            if (bhfVor == null) {
+                stelle = 0;
             }
 
-            // Strecken bauen
+            if (stelle > -1) {
+                if (bhfListe.length < bhfs + 1) {
+                    //Bei zu kurzer Liste wird diese erweitert
+                    Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
+                    for (int i = 0; i < bhfListe.length; i++) {
+                        bhfHilf[i] = bhfListe[i];
+                    }
+                    bhfListe = bhfHilf;
+                }
+                for (int i = bhfListe.length - 2; i >= stelle; i--) {
+                    bhfListe[i + 1] = bhfListe[i];
+                }
+                bhfListe[stelle] = bhf;
+                bhfs++;
+                gesamtLaenge();
+                // Strecke bezahlen
+                if (stelle < bhfListe.length) {
+                    if (bhfListe[stelle + 1] != null) {
+                        strg.geldNehmen(streckeBerechnen(stelle, stelle + 1) * preisStrecke);
+                    }
+                }
+                if (stelle > 0) {
+                    if (bhfListe[stelle - 1] != null) {
+                        strg.geldNehmen(streckeBerechnen(stelle - 1, stelle) * preisStrecke);
+
+                    }
+                }
+
+                // Strecken bauen
+            }
+            bhf.linieHinzu(this);
+            this.setZeitZug();
+            this.streckenBauen();
         }
-        bhf.linieHinzu(this);
-        this.setZeitZug();
-        this.streckenBauen();
     }
 
     /**
@@ -172,21 +177,23 @@ public class Linie {
      * aus der Liste gelöscht!
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
-        bhf.linieWeg(this);
-        int stelle = -1;
-        for (int i = 0; i < bhfs; i++) {
-            if (bhfListe[i].equals(bhf)) {
-                stelle = i;
+        if (baubar) {
+            bhf.linieWeg(this);
+            int stelle = -1;
+            for (int i = 0; i < bhfs; i++) {
+                if (bhfListe[i].equals(bhf)) {
+                    stelle = i;
+                }
             }
-        }
-        if (stelle != -1) {
-            for (int i = stelle; i < bhfListe.length - 1; i++) {
-                bhfListe[i] = bhfListe[i + 1];
+            if (stelle != -1) {
+                for (int i = stelle; i < bhfListe.length - 1; i++) {
+                    bhfListe[i] = bhfListe[i + 1];
+                }
+                bhfs--;
             }
-            bhfs--;
+            this.streckenBauen();
+            this.setZeitZug();
         }
-        this.streckenBauen();
-        this.setZeitZug();
     }
 
     private void streckenBauen() {
@@ -216,7 +223,6 @@ public class Linie {
             }
             tmpIstBhf[tmpIstBhf.length - 1] = bhfs - 1;
         }
-        depot = zuege;
         strecke = tmpStrecke;
         streckeZurueck = tmpStreckeZurueck;
         istBhf = tmpIstBhf;
@@ -303,6 +309,18 @@ public class Linie {
         return zuege;
     }
 
+    public boolean getGruenesLicht() {
+        return gruenesLicht;
+    }
+
+    public void setGruenesLicht(boolean signal) {
+        gruenesLicht = signal;
+    }
+
+    public boolean getBaubar() {
+        return baubar;
+    }
+
     /**
      * Berechnet die Strecke zwischen zwei gegebenen Bahnhöfen
      *
@@ -352,8 +370,14 @@ public class Linie {
      *
      */
     public void step() {
+        // Baubar setzen
+        if (!gruenesLicht && depot == zuege) {
+            baubar = true;
+        } else {
+            baubar = false;
+        }
         // Fahren
-        if (strecke.length > 0) {
+        if (strecke.length > 0 && baubar) {
             // Den jeweils letzten Zug bearbeiten
             // Aussteigen
             if (streckeZurueck[streckeZurueck.length - 1] > 0) {
@@ -364,7 +388,7 @@ public class Linie {
                 bhfListe[bhfs - 1].allesAussteigen(strecke[strecke.length - 1]);
                 strecke[strecke.length - 1] = 0;
             }
-            // Umdrehen
+            // Umdrehen am Ende
             int streckeEnde = strecke[strecke.length - 1];
             if (streckeZurueck[streckeZurueck.length - 1] > -1) {
                 depot++;
@@ -374,10 +398,17 @@ public class Linie {
                 strecke[i] = strecke[i - 1];
                 streckeZurueck[i] = streckeZurueck[i - 1];
             }
+            // Züge aus Linie
+            while (zuegeRaus > 0 && depot > 0) {
+                depot--;
+                zuegeRaus--;
+                strg.zugInsDepot();
+            }
             // Den ersten Zug bearbeiten
             streckeZurueck[0] = streckeEnde;
-            if (depot > 0 && zeitStep >= zeitZug) {
+            if (depot > 0 && zeitStep >= zeitZug && gruenesLicht) {
                 strecke[0] = 0;
+                depot--;
                 zeitStep = -1;
             } else {
                 strecke[0] = -1;

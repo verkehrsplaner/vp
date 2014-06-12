@@ -395,10 +395,10 @@ public class LinienGUI extends JDialog {
     private void ampelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ampelButtonActionPerformed
         boolean istgruen = linie.getGruenesLicht();
         if (istgruen) {
-            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelgreen.png")));
+            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelred.png")));
             linie.setGruenesLicht(false);
         } else {
-            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelred.png")));
+            ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelgreen.png")));
             linie.setGruenesLicht(true);
         }
     }//GEN-LAST:event_ampelButtonActionPerformed

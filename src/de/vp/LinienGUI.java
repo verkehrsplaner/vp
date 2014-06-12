@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
@@ -53,6 +54,7 @@ public class LinienGUI extends JDialog {
             }
         }, 0, 40);
         
+        boolean istgruen = linie.getGruenesLicht();
         
         ImageIcon icon = new ImageIcon(getClass().getResource("images/linie bauen transparent.png"));
         setIconImage(icon.getImage());
@@ -86,6 +88,8 @@ public class LinienGUI extends JDialog {
         auslastung = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         gesamtLaenge = new javax.swing.JLabel();
+        gruenButton = new javax.swing.JButton();
+        rotButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linien Konfiguration");
@@ -160,6 +164,20 @@ public class LinienGUI extends JDialog {
 
         gesamtLaenge.setText("jLabel6");
 
+        gruenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/gruen transparent.png"))); // NOI18N
+        gruenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gruenButtonActionPerformed(evt);
+            }
+        });
+
+        rotButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/red transparent.png"))); // NOI18N
+        rotButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,25 +195,37 @@ public class LinienGUI extends JDialog {
                     .addComponent(jButtonLöschen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonFarbe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
                                 .addComponent(minus)
                                 .addGap(50, 50, 50)
                                 .addComponent(anzahlZuege)
                                 .addGap(27, 27, 27)
-                                .addComponent(plus))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(kapazitaet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(auslastung)
-                                    .addComponent(jLabel5)
-                                    .addComponent(gesamtLaenge))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(plus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(auslastung)
+                                            .addComponent(jLabel5)
+                                            .addComponent(gesamtLaenge))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(rotButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 23, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addGap(53, 53, 53))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(kapazitaet))
+                                                .addGap(47, 47, 47)))
+                                        .addComponent(gruenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(27, 27, 27)))
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -220,19 +250,25 @@ public class LinienGUI extends JDialog {
                             .addComponent(minus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(plus, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                             .addComponent(anzahlZuege))
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(kapazitaet)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(16, 16, 16)
+                                .addComponent(kapazitaet)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4))
+                            .addComponent(gruenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(auslastung)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gesamtLaenge)
-                        .addGap(73, 73, 73))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(auslastung)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gesamtLaenge))
+                            .addComponent(rotButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                        .addGap(72, 72, 72))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator1)
@@ -366,10 +402,23 @@ public class LinienGUI extends JDialog {
         auslastung.setText(String.valueOf(linie.auslastung()));
     }//GEN-LAST:event_plusActionPerformed
 
+    private void gruenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gruenButtonActionPerformed
+        linie.setGruenesLicht(true);
+        rotButton.setIcon(new ImageIcon (getClass().getResource("images/reddisabled.png")));
+        gruenButton.setIcon(new ImageIcon (getClass().getResource("images/gruen transparent.png")));
+    }//GEN-LAST:event_gruenButtonActionPerformed
+
+    private void rotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotButtonActionPerformed
+        linie.setGruenesLicht(false);
+        gruenButton.setIcon(new ImageIcon (getClass().getResource("images/greendisabled.png")));
+        rotButton.setIcon(new ImageIcon (getClass().getResource("images/red transparent.png")));
+    }//GEN-LAST:event_rotButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anzahlZuege;
     private javax.swing.JLabel auslastung;
     private javax.swing.JLabel gesamtLaenge;
+    private javax.swing.JButton gruenButton;
     private javax.swing.JButton jButtonBahnhof;
     private javax.swing.JButton jButtonBahnhofWeg;
     private javax.swing.JButton jButtonFarbe;
@@ -386,5 +435,6 @@ public class LinienGUI extends JDialog {
     private javax.swing.JLabel kapazitaet;
     private javax.swing.JButton minus;
     private javax.swing.JButton plus;
+    private javax.swing.JButton rotButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -47,9 +47,9 @@ public class LinienGUI extends JDialog {
             public void run() {
                 anzahlZuege.setText(Integer.toString(linie.getZuege()));
                 kapazitaet.setText(Integer.toString(linie.kapazitaet()));
-                int last = linie.getAuslastung();
-                double last2 = Math.round(last * 1000) / 10.0;
-                auslastung.setText(Double.toString(last2));
+                double last = linie.auslastung();
+                last = Math.round(last * 1000) / 10.0;
+                auslastung.setText(Double.toString(last));
                 gesamtLaenge.setText(Integer.toString(linie.gesamtLaenge()));
             }
         }, 0, 40);

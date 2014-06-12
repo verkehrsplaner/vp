@@ -10,7 +10,7 @@ package de.vp;
  * @author Nicolai & Felix
  */
 public class Bahnhof {
-    
+
     private int fahrtKosten;
     private int X;
     private int Y;
@@ -85,27 +85,43 @@ public class Bahnhof {
         personen = personen + x;
         return x;
     }
-    
+
     public void bahnsteigFuellen() {
         bahnsteig = getBahnsteig() + personenBerechnen();
     }
 
     /**
      *
-     * @param personen freie Sitzplätze in der Linie
-     * @return
+     * @param frei freie Sitzplätze im Zug
+     * @return eingestiege Personen
      */
-    public int einsteigen(int personen) {
+    public int einsteigen(int frei) {
+        int f = frei;
         int eingestiegen = 0;
-        
-        if (bahnsteig < personen && bahnsteig >= 0) {
-            eingestiegen = bahnsteig;
-            bahnsteig = 0;
-        } else {
-            eingestiegen = personen;
-            bahnsteig -= personen;
+        int x = 0;
+        if (bahnsteig > 0) {
+            if (anzahlLinien == 1) {
+                // Wenn nur eine Linie den Bahnhof bedient
+                if (frei > bahnsteig) {
+                    eingestiegen = bahnsteig;
+                    bahnsteig = 0;
+                } else if (bahnsteig > frei) {
+                    eingestiegen = frei;
+                    bahnsteig = bahnsteig - frei;
+                }
+            } else {
+                // Wenn mehrere Linien den Bahnhof bedienen
+                x = Math.round(bahnsteig * anzahlLinien);
+                if (frei > x) {
+                    eingestiegen = x;
+                    bahnsteig = bahnsteig - x;
+                } else if (x > frei) {
+                    eingestiegen = frei;
+                    bahnsteig = bahnsteig - frei;
+                }
+            }
         }
-        
+
         System.out.println(eingestiegen + " in " + name + " eingestiegen!");
         kasse += eingestiegen * fahrtKosten;
         return eingestiegen;
@@ -113,22 +129,48 @@ public class Bahnhof {
 
     /**
      *
-     * @param auslastung wie viele Personen in der Linie sitzen
-     * @return
+     * @param personen wie viele Personen in der Linie sitzen
+     * @return Personen, die Aussteigen wollen
      */
     public int aussteigen(int personen) {
         int ausgestiegen = 0;
-        
-        if (-bahnsteig < personen && bahnsteig <= 0) {
-            ausgestiegen = -bahnsteig;
-            bahnsteig = 0;
-        } else {
-            ausgestiegen = personen;
-            bahnsteig += personen;
+        int p = personen;
+        int x = 0;
+
+        if (bahnsteig < 0) {
+            if (anzahlLinien == 1) {
+                // Wenn nur eine Linie den Bahnhof bedient
+                if (p < bahnsteig) {
+                    ausgestiegen = p;
+                    bahnsteig = bahnsteig + p;
+                } else {
+                    ausgestiegen = bahnsteig;
+                    bahnsteig = 0;
+                }
+            }
+            if (anzahlLinien == 1) {
+                // Wenn mehrere Linien den Bahnhof bedienen
+                x = personen;
+                if(p > 250) {
+                    //Aussteigen wegen überfüllung
+                    x = x + (p-250);
+                }
+                if (p < bahnsteig) {
+                    ausgestiegen = p;
+                    bahnsteig = bahnsteig + p;
+                } else {
+                    ausgestiegen = bahnsteig;
+                    bahnsteig = 0;
+                }
+            }
         }
-        
         System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
         return ausgestiegen;
+    }
+
+    public int allesAussteigen(int personen) {
+        bahnsteig += personen;
+        return personen;
     }
 
     /**
@@ -146,7 +188,7 @@ public class Bahnhof {
         teile[stadtteile + 1] = s;
         stadtteile++;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (o != null && o.getClass().equals(getClass())) {
@@ -160,7 +202,7 @@ public class Bahnhof {
             return false;
         }
     }
-    
+
     @Override
     public String toString() {
         return name;
@@ -210,9 +252,9 @@ public class Bahnhof {
         }
         anzahlLinien++;
     }
-    
+
     /**
-     * 
+     *
      * @param l die Linie die nicht mehr den Bhf ansteuert
      */
     public void linieWeg(Linie l) {
@@ -231,15 +273,15 @@ public class Bahnhof {
             anzahlLinien--;
         }
     }
-    
+
     /**
      * räumt auf wenn die Linie gelöscht werden soll
      */
     public void letzterSchritt() {
         // alle Linien verabschieden sich von dem Bhf
-        for(int i=0; i < anzahlLinien + 1; i++) {
+        for (int i = 0; i < anzahlLinien + 1; i++) {
             anschlussLinien[i].bahnhofEntfernen(this);
         }
     }
-    
+
 }

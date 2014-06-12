@@ -348,7 +348,7 @@ public class LinienGUI extends JDialog {
      * @param evt
      */
     private void minusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusActionPerformed
-        strg.zugInsDepot(linie);
+        strg.zugRausnehmen(linie);
         anzahlZuege.setText(String.valueOf(linie.getZuege()));
         kapazitaet.setText(String.valueOf(linie.kapazitaet()));
         auslastung.setText(String.valueOf(linie.auslastung()));

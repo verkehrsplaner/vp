@@ -291,15 +291,18 @@ public class Spielsteuerung {
      * @param l Linie
      * @return
      */
-    public boolean zugInsDepot(Linie l) {
+    public boolean zugRausnehmen(Linie l) {
         boolean b = l.zugEntfernen();
         if (b) {
-            depot++;
             ticker.neueNachricht("Wird Linie " + l.getName() + " vernachlässigt?");
             return true;
         } else {
             return false;
         }
+    }
+    
+    public void zugInsDepot() {
+        depot++;
     }
 
     /**

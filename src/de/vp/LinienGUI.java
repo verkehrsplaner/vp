@@ -47,11 +47,13 @@ public class LinienGUI extends JDialog {
             public void run() {
                 anzahlZuege.setText(Integer.toString(linie.getZuege()));
                 kapazitaet.setText(Integer.toString(linie.kapazitaet()));
+                double eigentlichelast = linie.auslastung();
+                System.out.print("Eigentliche Auslastung: " + eigentlichelast + "      ");
                 double last = linie.auslastung();
                 last = Math.round(last * 1000) / 10.0;
                 auslastung.setText(Double.toString(last));
                 gesamtLaenge.setText(Integer.toString(linie.gesamtLaenge()));
-                System.out.println(last);
+                System.out.println("Gerundete Auslastung: " + last);
 
                 if (!linie.getBaubar()) {
                     jButtonBahnhof.setEnabled(false);

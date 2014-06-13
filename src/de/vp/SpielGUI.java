@@ -415,7 +415,7 @@ public class SpielGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setBounds(0, 0, 1093, 736);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed

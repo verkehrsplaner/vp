@@ -142,7 +142,7 @@ public class PrologGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pack();
+        setBounds(0, 0, 524, 491);
     }// </editor-fold>//GEN-END:initComponents
 
     private void vorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vorActionPerformed

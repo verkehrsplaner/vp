@@ -46,6 +46,7 @@ public class Linie {
         streckeZurueck = new int[0];
         istBhf = new int[0];
         name = n;
+        personen = 0;
         gesamtLaenge = 0;
         gruenesLicht = false;
         Color[] farben = {new Color(255, 140, 0)/* Orange */, new Color(47, 255, 0)/*hellgrün*/,
@@ -282,15 +283,17 @@ public class Linie {
      * @return auslastung
      */
     public double auslastung() {
+        double x = 0;
         if (kapazitaet() == 0) {
-            return 0;
+            x = 0;
         } else {
-            return ((double) auslastung) / kapazitaet();
+            x = ((double) personen) / kapazitaet();  
         }
-    }
-
-    public int getAuslastung() {
-        return auslastung;
+        x = auslastung;
+        if(zeitStep == 5){
+        System.out.println("Linie " + name + ": " + x);
+        }
+        return x;
     }
 
     /**
@@ -377,7 +380,7 @@ public class Linie {
             baubar = false;
         }
         // Fahren
-        if (strecke.length > 0 && baubar) {
+        if (strecke.length > 0 && !baubar) {
             // Den jeweils letzten Zug bearbeiten
             // Aussteigen
             if (streckeZurueck[streckeZurueck.length - 1] > 0) {
@@ -420,14 +423,14 @@ public class Linie {
             if (istBhf[i] > -1) {
                 // Zug am Bahnhof auf Strecke
                 if (strecke[i] > -1) {
-                    bhfListe[istBhf[i]].aussteigen(strecke[i]);
-                    bhfListe[istBhf[i]].einsteigen(getZugKapazitaet() - strecke[i]);
+                    personen = personen - bhfListe[istBhf[i]].aussteigen(strecke[i]);
+                    personen = personen + bhfListe[istBhf[i]].einsteigen(zugKapazitaet - strecke[i]);
                 }
                 // Zug am Bahnhof auf StreckeZurück
                 int j = streckeZurueck.length - i - 1;
                 if (streckeZurueck[j] > -1) {
-                    bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
-                    bhfListe[istBhf[i]].einsteigen(getZugKapazitaet() - streckeZurueck[j]);
+                    personen = personen - bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
+                    personen = personen + bhfListe[istBhf[i]].einsteigen(zugKapazitaet - streckeZurueck[j]);
                 }
             }
         }
@@ -454,6 +457,14 @@ public class Linie {
      */
     public int getZugKapazitaet() {
         return zugKapazitaet;
+    }
+
+    /**
+     *
+     * @return Anzahl der Züge im depot
+     */
+    public int getDepot() {
+        return depot;
     }
 
 }

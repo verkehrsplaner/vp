@@ -53,7 +53,7 @@ public class SpielGUI extends javax.swing.JFrame {
         strg.panelStarten(jPanel3);
         strg.setTicker(tickerPanel);
         
-        sound.musikAn();
+        sound.musikAus();
 
         hView = jScrollPane3.getViewport().getWidth();
         vView = jScrollPane3.getViewport().getHeight();

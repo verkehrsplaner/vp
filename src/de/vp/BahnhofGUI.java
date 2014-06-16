@@ -31,6 +31,8 @@ public class BahnhofGUI extends javax.swing.JDialog {
             public void run() {
                 bahnsteig.setText(Integer.toString(bhf.getBahnsteig()));
                 anzahlLinien.setText(Integer.toString(bhf.getAnzahlLinien()));
+                ein.setText(Integer.toString(bhf.getEingestiegen()));
+                aus.setText(Integer.toString(bhf.getAusgestiegen()));
             }
         }, 0, 40);
     }
@@ -50,6 +52,11 @@ public class BahnhofGUI extends javax.swing.JDialog {
         bahnsteig = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         anzahlLinien = new javax.swing.JLabel();
+        ein = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        aus = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,6 +78,16 @@ public class BahnhofGUI extends javax.swing.JDialog {
 
         anzahlLinien.setText("jLabel3");
 
+        ein.setText("ein");
+
+        jLabel3.setText("Verlauf:");
+
+        jLabel4.setText("eingestiegen");
+
+        aus.setText("aus");
+
+        jLabel5.setText("ausgestiegen");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,8 +106,18 @@ public class BahnhofGUI extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ein)
+                                        .addComponent(aus))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(anzahlLinien)))
@@ -109,7 +136,17 @@ public class BahnhofGUI extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(anzahlLinien)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ein)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aus)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(bhfAbreissen)
                 .addContainerGap())
         );
@@ -125,10 +162,15 @@ public class BahnhofGUI extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anzahlLinien;
+    private javax.swing.JLabel aus;
     private javax.swing.JLabel bahnsteig;
     private javax.swing.JButton bhfAbreissen;
+    private javax.swing.JLabel ein;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }

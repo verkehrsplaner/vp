@@ -16,7 +16,7 @@ public class Bahnhof {
     private int Y;
     private Stadtteil[] teile;
     private int stadtteile;
-    private int personen;
+    private int personen, eingestiegen, ausgestiegen;
     private int bahnsteig; // Leute die auf einen Zug warten
     private int kasse; // Eingenommenes Geld für abgeholte Personen
     private Linie[] anschlussLinien; //Wie viele Linien bedienen diesen Bahnhof
@@ -87,7 +87,7 @@ public class Bahnhof {
     }
 
     public void bahnsteigFuellen() {
-        bahnsteig = getBahnsteig() + personenBerechnen();
+        bahnsteig = bahnsteig + personenBerechnen();
     }
 
     /**
@@ -97,7 +97,7 @@ public class Bahnhof {
      */
     public int einsteigen(int frei) {
         int f = frei;
-        int eingestiegen = 0;
+        eingestiegen = 0;
         int x = 0;
         if (bahnsteig > 0) {
             if (anzahlLinien == 1) {
@@ -122,9 +122,9 @@ public class Bahnhof {
             }
         }
 
-        System.out.println(eingestiegen + " in " + name + " eingestiegen!");
-        kasse += eingestiegen * fahrtKosten;
-        return eingestiegen;
+        System.out.println(getEingestiegen() + " in " + name + " eingestiegen!");
+        kasse += getEingestiegen() * fahrtKosten;
+        return getEingestiegen();
     }
 
     /**
@@ -133,7 +133,7 @@ public class Bahnhof {
      * @return Personen, die Aussteigen wollen
      */
     public int aussteigen(int personen) {
-        int ausgestiegen = 0;
+        ausgestiegen = 0;
         int p = personen;
         int x = 0;
 
@@ -164,8 +164,8 @@ public class Bahnhof {
                 }
             }
         }
-        System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
-        return ausgestiegen;
+        System.out.println(getAusgestiegen() + " in " + name + " ausgestiegen!");
+        return getAusgestiegen();
     }
 
     public int allesAussteigen(int personen) {
@@ -282,6 +282,20 @@ public class Bahnhof {
         for (int i = 0; i < anzahlLinien + 1; i++) {
             anschlussLinien[i].bahnhofEntfernen(this);
         }
+    }
+
+    /**
+     * @return the eingestiegen
+     */
+    public int getEingestiegen() {
+        return eingestiegen;
+    }
+
+    /**
+     * @return the ausgestiegen
+     */
+    public int getAusgestiegen() {
+        return ausgestiegen;
     }
 
 }

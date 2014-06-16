@@ -25,7 +25,7 @@ public class Linie {
     private int auslastung;
     private int potential;
     private int gesamtLaenge, zeitStep, zeitZug;
-    private int[] strecke;
+    private int[] strecke; //jede Stelle ist ein Zug wenn "[i] != -1" und die Zahl ist gleichzeitig die Personenanzahl im Zug
     private int[] streckeZurueck;
     private int[] istBhf; //sozusagen die Abschnitte der Linie
     private int depot;
@@ -283,16 +283,12 @@ public class Linie {
      * @return auslastung
      */
     public double auslastung() {
-//        double x = 0.0;
-//        if (kapazitaet() == 0) {
-//            x = 0.0; 
-//        } else {
-//            x = ((double)personen) / kapazitaet();  
-//        }
-//        x = auslastung;
-//        //System.out.println("Linie " + name + ": " + x);
-//        return x;
-        return ((double)personen) / kapazitaet();
+        if(kapazitaet() == 0){
+            return 0;
+        } else {
+            return ((double)personen) / kapazitaet();
+        }
+
     }
 
     /**
@@ -372,6 +368,8 @@ public class Linie {
      *
      */
     public void step() {
+        int quak = 0;
+        int blub = 0;
         // Baubar setzen
         if (!gruenesLicht && depot == zuege) {
             baubar = true;
@@ -428,14 +426,18 @@ public class Linie {
             if (istBhf[i] > -1) {
                 // Zug am Bahnhof auf Strecke
                 if (strecke[i] > -1) {
-                    personen = personen - bhfListe[istBhf[i]].aussteigen(strecke[i]);
-                    personen = personen + bhfListe[istBhf[i]].einsteigen(zugKapazitaet - strecke[i]);
+                    quak = bhfListe[istBhf[i]].aussteigen(strecke[i]);
+                    blub = bhfListe[istBhf[i]].einsteigen(zugKapazitaet - strecke[i]);
+                    personen += quak + blub;
+                    strecke[i] += quak + blub;
                 }
                 // Zug am Bahnhof auf StreckeZurück
                 int j = streckeZurueck.length - i - 1;
                 if (streckeZurueck[j] > -1) {
-                    personen = personen - bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
-                    personen = personen + bhfListe[istBhf[i]].einsteigen(zugKapazitaet - streckeZurueck[j]);
+                    quak = bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
+                    blub = bhfListe[istBhf[i]].einsteigen(zugKapazitaet - streckeZurueck[j]);
+                    personen += quak + blub;
+                    strecke[j] += quak + blub;
                 }
             }
         }

@@ -158,13 +158,22 @@ public class SpielPanel extends javax.swing.JPanel {
                         g2d.drawString(bhf[y][x].getName(), x * pixel[zoom] - 10, y * pixel[zoom] + 5);
                     }
                     if (zoom < 3) {
+                        //einsteigen
                         g2d.setFont(new Font("Arial", Font.BOLD, 16));
                         if(bhf[y][x].getBahnsteig() > 0) {
-                        g2d.drawString(Integer.toString(bhf[y][x].getBahnsteig()), x * pixel[zoom], y * pixel[zoom] + 50);
+                        g2d.drawString(Integer.toString(bhf[y][x].getEinsteigen()), x * pixel[zoom], y * pixel[zoom] + 50);
                         } else {
                         g2d.drawString(Integer.toString(0), x * pixel[zoom], y * pixel[zoom] + 50);    
                         }
+                        //aussteigen
+                        g2d.setFont(new Font("Arial", Font.BOLD, 16));
+                        if(bhf[y][x].getBahnsteig() > 0) {
+                        g2d.drawString(Integer.toString(bhf[y][x].getAussteigen()), x * pixel[zoom], y * pixel[zoom] + 70);
+                        } else {
+                        g2d.drawString(Integer.toString(0), x * pixel[zoom], y * pixel[zoom] + 70);    
+                        }
                     }
+                    
                 }
             }
         }

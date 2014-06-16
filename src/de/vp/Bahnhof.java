@@ -16,7 +16,7 @@ public class Bahnhof {
     private int Y;
     private Stadtteil[] teile;
     private int stadtteile;
-    private int personen, eingestiegen, ausgestiegen;
+    private int personen, einsteigen, aussteigen, eingestiegen, ausgestiegen;
     private int bahnsteig; // Leute die auf einen Zug warten
     private int kasse; // Eingenommenes Geld für abgeholte Personen
     private Linie[] anschlussLinien; //Wie viele Linien bedienen diesen Bahnhof
@@ -75,19 +75,31 @@ public class Bahnhof {
      *
      * @return alle personen zusammen die ein und aussteigen
      */
-    public int personenBerechnen() {
+    public int einsteigenBerechnen() {
         int x = 0;
         for (int i = 0; i < teile.length; i++) {
-            if (teile[i] != null) {
+            if (teile[i] != null && teile[i].getPersonen() > 0) {
                 x = x + teile[i].getPersonen();
             }
         }
-        personen = personen + x;
+        einsteigen += x;
+        return x;
+    }
+
+    public int aussteigenBerechnen() {
+        int x = 0;
+        for (int i = 0; i < teile.length; i++) {
+            if (teile[i] != null && teile[i].getPersonen() < 0) {
+                x = x + teile[i].getPersonen();
+            }
+        }
+        aussteigen += x;
         return x;
     }
 
     public void bahnsteigFuellen() {
-        bahnsteig = bahnsteig + personenBerechnen();
+        bahnsteig = bahnsteig + einsteigenBerechnen();
+        aussteigenBerechnen();
     }
 
     /**
@@ -99,28 +111,26 @@ public class Bahnhof {
         int f = frei;
         eingestiegen = 0;
         int x = 0;
-        if (bahnsteig > 0) {
             if (anzahlLinien == 1) {
                 // Wenn nur eine Linie den Bahnhof bedient
-                if (frei > bahnsteig) {
-                    eingestiegen = bahnsteig;
-                    bahnsteig = 0;
-                } else if (bahnsteig > frei) {
+                if (frei > getEinsteigen()) {
+                    eingestiegen = getEinsteigen();
+                    einsteigen = 0;
+                } else if (getEinsteigen() > frei) {
                     eingestiegen = frei;
-                    bahnsteig = bahnsteig - frei;
+                    einsteigen -= frei;
                 }
             } else {
                 // Wenn mehrere Linien den Bahnhof bedienen
-                x = Math.round(bahnsteig * anzahlLinien);
+                x = Math.round(getEinsteigen() * anzahlLinien);
                 if (frei > x) {
                     eingestiegen = x;
-                    bahnsteig = bahnsteig - x;
+                    einsteigen -= x;
                 } else if (x > frei) {
                     eingestiegen = frei;
-                    bahnsteig = bahnsteig - frei;
+                    einsteigen-= frei;
                 }
             }
-        }
 
         System.out.println(getEingestiegen() + " in " + name + " eingestiegen!");
         kasse += getEingestiegen() * fahrtKosten;
@@ -136,40 +146,37 @@ public class Bahnhof {
         ausgestiegen = 0;
         int p = personen;
         int x = 0;
-
-        if (bahnsteig < 0) {
             if (anzahlLinien == 1) {
                 // Wenn nur eine Linie den Bahnhof bedient
-                if (p < bahnsteig) {
+                if (p < aussteigen) {
                     ausgestiegen = p;
-                    bahnsteig = bahnsteig + p;
+                    aussteigen += (-1)*p;
                 } else {
-                    ausgestiegen = bahnsteig;
-                    bahnsteig = 0;
+                    ausgestiegen = aussteigen;
+                    aussteigen = 0;
                 }
             }
-            if (anzahlLinien == 1) {
+            if (anzahlLinien > 1) {
                 // Wenn mehrere Linien den Bahnhof bedienen
                 x = personen;
-                if(p > 250) {
+                if (p > 250) {
                     //Aussteigen wegen überfüllung
-                    x = x + (p-250);
+                    x = x + (p - 250);
                 }
-                if (p < bahnsteig) {
+                if (p < aussteigen) {
                     ausgestiegen = p;
-                    bahnsteig = bahnsteig + p;
+                    aussteigen += (-1)*p;
                 } else {
-                    ausgestiegen = bahnsteig;
-                    bahnsteig = 0;
+                    ausgestiegen = aussteigen;
+                    aussteigen = 0;
                 }
             }
-        }
-        System.out.println(getAusgestiegen() + " in " + name + " ausgestiegen!");
+        System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
         return getAusgestiegen();
     }
 
     public int allesAussteigen(int personen) {
-        bahnsteig += personen;
+        einsteigen += personen;
         return personen;
     }
 
@@ -296,6 +303,20 @@ public class Bahnhof {
      */
     public int getAusgestiegen() {
         return ausgestiegen;
+    }
+
+    /**
+     * @return the einsteigen
+     */
+    public int getEinsteigen() {
+        return einsteigen;
+    }
+
+    /**
+     * @return the aussteigen
+     */
+    public int getAussteigen() {
+        return aussteigen;
     }
 
 }

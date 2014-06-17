@@ -1231,7 +1231,6 @@ public class Spielsteuerung {
                 for (int b = 0; b < bahnhoefe[h].length; b++) {
                     if (bahnhoefe[h][b] != null) {
                         bahnhoefe[h][b].bahnsteigFuellen();
-                        System.out.println("Bahnhof " + bahnhoefe[h][b].getName() + " gefüllt!");
                     }
                 }
             }

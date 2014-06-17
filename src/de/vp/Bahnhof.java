@@ -83,6 +83,7 @@ public class Bahnhof {
             }
         }
         einsteigen += x;
+        System.out.println(einsteigen);
         return x;
     }
 
@@ -94,12 +95,16 @@ public class Bahnhof {
             }
         }
         aussteigen += x;
+        System.out.println(aussteigen);
         return x;
     }
 
     public void bahnsteigFuellen() {
-        einsteigenBerechnen();
-        aussteigenBerechnen();
+        if (anzahlLinien > 0) {
+            einsteigenBerechnen();
+            aussteigenBerechnen();
+            System.out.println("Bahnhof " + name + " gefüllt!");
+        }
     }
 
     /**
@@ -111,7 +116,7 @@ public class Bahnhof {
         int f = frei;
         eingestiegen = 0;
         int x = 0;
-        if(f > 0) {
+        if (f > 0) {
             if (anzahlLinien == 1) {
                 // Wenn nur eine Linie den Bahnhof bedient
                 if (frei > einsteigen) {
@@ -129,7 +134,7 @@ public class Bahnhof {
                     einsteigen -= x;
                 } else if (x > frei) {
                     eingestiegen = frei;
-                    einsteigen-= frei;
+                    einsteigen -= frei;
                 }
             }
         } else {
@@ -150,12 +155,12 @@ public class Bahnhof {
         ausgestiegen = 0;
         int p = personen;
         int x = 0;
-        if(p > 0) {
+        if (p > 0) {
             if (anzahlLinien == 1) {
                 // Wenn nur eine Linie den Bahnhof bedient
                 if (p < aussteigen) {
                     ausgestiegen = p;
-                    aussteigen += (-1)*p;
+                    aussteigen += (-1) * p;
                 } else {
                     ausgestiegen = aussteigen;
                     aussteigen = 0;
@@ -170,7 +175,7 @@ public class Bahnhof {
                 }
                 if (p < aussteigen) {
                     ausgestiegen = p;
-                    aussteigen += (-1)*p;
+                    aussteigen += (-1) * p;
                 } else {
                     ausgestiegen = aussteigen;
                     aussteigen = 0;

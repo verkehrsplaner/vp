@@ -209,8 +209,8 @@ public class Linie {
             tmpStreckeZurueck[i] = -1;
         }
         // Bahnhöfe einfügen
-        tmpIstBhf[0] = 0;
         if (bhfs > 1) {
+        tmpIstBhf[0] = 0;
             // Bahnhöfe durchgehen
             for (int i = 1; i < bhfs; i++) {
                 // Entfernung bis zum Bahnhof

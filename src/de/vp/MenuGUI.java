@@ -30,6 +30,13 @@ public class MenuGUI extends JDialog {
 
         ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
         setIconImage(icon.getImage());
+        boolean pause = strg.getPause();
+        if (pause == true) {
+            jToggleButton1.setSelected(true);
+        }
+        else {
+            jToggleButton1.setSelected(false);
+        }
     }
 
     /**

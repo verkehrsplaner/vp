@@ -1166,6 +1166,7 @@ public class Spielsteuerung {
      */
     public boolean step() {
         // \/ Stadtteil bauen
+        if(!verloren) {
         if (stadtbauen) {
             if (zeitS == stadtbauIntervall && Math.random() > stadtbaugeschw) {
                 stadtteilBauen();
@@ -1208,14 +1209,14 @@ public class Spielsteuerung {
             zugKaputten();
         }
         // \/ Abrechnung
-        if (zeit == abrechnungsIntervall) {
+        if (zeit >= abrechnungsIntervall) {
             if (geld + gesamtGewinn() > maxMinus) {
                 geld = geld + gesamtGewinn();
                 zeit = 0;
             } else {
                 verloren = true;
-                VerlorenGUI f = new VerlorenGUI();
-                f.setVisible(true);
+                VerlorenGUI v = new VerlorenGUI();
+                v.setVisible(true);
                 
             }
             System.out.println("Abrechnung! " + verloren);
@@ -1245,6 +1246,7 @@ public class Spielsteuerung {
         // \{ Tickernachricht bei Pleite
         if (verloren) {
             ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
+        }
         }
         return true;
     }

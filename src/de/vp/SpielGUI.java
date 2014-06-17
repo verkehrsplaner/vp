@@ -88,7 +88,12 @@ public class SpielGUI extends javax.swing.JFrame {
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                if(strg.getPause() == false) {
                 uhrzeitLabel.setText(formatDatum.format(strg.getTime()));
+                }
+                else {
+                    uhrzeitLabel.setText("PAUSE");
+                }
                 geldLabel.setText(formatGeld.format(strg.getGeld()));
                 anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
                 werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));

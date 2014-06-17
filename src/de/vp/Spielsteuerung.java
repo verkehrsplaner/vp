@@ -30,7 +30,11 @@ public class Spielsteuerung {
     private TickerPanel ticker;
     private ArrayList<String> bhfNamen;
     private boolean nacht;
-
+    private SpielGUI gui;
+    private BahnhofGUI bhf;
+    private LinienGUI linie;
+    private MenuGUI menu;
+    
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -50000000;
     private final int preisZug = 1000000;
@@ -1210,6 +1214,8 @@ public class Spielsteuerung {
                 zeit = 0;
             } else {
                 verloren = true;
+                VerlorenGUI f = new VerlorenGUI();
+                
             }
         } else {
             zeit++;

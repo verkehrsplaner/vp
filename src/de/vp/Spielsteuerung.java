@@ -1217,9 +1217,10 @@ public class Spielsteuerung {
                 verloren = true;
                 VerlorenGUI v = new VerlorenGUI();
                 v.setVisible(true);
+                ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
                 
             }
-            System.out.println("Abrechnung! " + verloren);
+            System.out.println("Abrechnung! verloren: " + verloren);
         } else {
             zeit++;
         }
@@ -1244,9 +1245,6 @@ public class Spielsteuerung {
             linien[i].step();
         }
         // \{ Tickernachricht bei Pleite
-        if (verloren) {
-            ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
-        }
         }
         return true;
     }

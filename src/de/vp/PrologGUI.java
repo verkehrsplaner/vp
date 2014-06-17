@@ -93,7 +93,9 @@ public class PrologGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prolog");
-        setMinimumSize(new java.awt.Dimension(600, 300));
+        setMaximumSize(new java.awt.Dimension(800, 560));
+        setMinimumSize(new java.awt.Dimension(800, 560));
+        setPreferredSize(new java.awt.Dimension(800, 560));
 
         vor.setText(">");
         vor.addActionListener(new java.awt.event.ActionListener() {

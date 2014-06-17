@@ -32,7 +32,12 @@ public class PrologGUI extends javax.swing.JFrame {
         "<html><p>In der rechten Seitenleiste finden sie alles, um ihr Unternehmen zu leiten und auszubauen:</p></html>",
         "<html><p>Einen neuen Bahnhof bauen sie, indem Sie hier drücken und danach auf den gewünschten Platz im Spielfeld klicken.</p></html>",
         "<html><p>Eine neue Linie wird mit diesem Knopf erstellt!</p></html>",
-        "<html><p></p></html>"}; /*"<html><p></p></html>"*/
+        "<html><p>Hier können Sie neue Züge für deine Linien Kaufen bzw. Verkaufen.</p><p>Diese Züge stehen dann in einem Depot bereit, sind jedoch noch keiner Linie zugewiesen.</html>",
+        "<html><p>Haben sie eine neue Linie erstellt können sie diese in der Seitenleiste aufrufen!</p><p>Hier können sie einen Bahnhof und so viele Züge wie sie haben der Linie zu weisen. Außerdem sind hier alle Informationen zur Linie gesammelt.</p></html>",
+        "<html><p>Klickt man auf einen Bahnhof öffnet sich ebenfalls ein Fenster, mit allen dort nötigen Informationen.</p></html>",
+        "<html><p>Die Zahl neben dem Bahnhof ist die Zahl der Personen die dort auf einen Zug warten. Ist die Zahl sehr hoch, sollten sie über eine bessere U-Bahn-Anbindung nachdenken. Ist die Zahl bei 0 ist alles im grünen Bereich.</p></html>",
+        "<html><p>Der News-Ticker am oberen Rand informiert Sie immer über alles was passiert. Ihn zu lesen schadet nicht.</p></html>",
+        "<html><p>Ich denke damit wäre alles gesagt. Stoßen wir auf eine erfolgreiche Zukunft an! Aber vergessen sie nicht ihre Pflichten!</p></html>"}; /*"<html><p></p></html>"*/
     private Image[] bild;
     private int nummer;
 

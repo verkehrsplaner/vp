@@ -51,7 +51,7 @@ public class LinienGUI extends JDialog {
                 //System.out.print("Eigentliche Auslastung: " + eigentlichelast + "      ");
                 double last = linie.auslastung();
                 last = Math.round(last * 1000) / 10.0;
-                auslastung.setText(Double.toString(last));
+                auslastung.setText(Double.toString(last) + " %");
                 gesamtLaenge.setText(Integer.toString(linie.gesamtLaenge()));
                 depot.setText(Integer.toString(linie.getDepot()));
                 //System.out.println("Gerundete Auslastung: " + last);

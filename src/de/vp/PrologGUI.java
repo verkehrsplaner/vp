@@ -24,11 +24,15 @@ public class PrologGUI extends javax.swing.JFrame {
     private int breite;
 
     private String[] text = {
-        "Hallo und Herzlich Willkommen! Ich freue mich sehr sie kennen zu lernen!", 
-        "Mein Name ist Horst Bichler und ich bin Bürgermeister dieser bescheidenen Komune... Seit meiner Wahl bewegt sich hier einiges und neue Industrie- und Wohngebiete entstehen", 
-        "Um dem immer dichteren Verkehr in der Stadt eine Alternative bieten, hat sich der Gemeinderat dazu entschlossen eine Verkehrsgesellschaft zu gründen und diese mit den Bau eines U-Bahnnetzes zu beauftragen!",
-        "Sie haben sich nun bei einem Wettbewerb, um die leitende Stelle in der Verkehrsgesellschaft durchgesetzt! Ich denke wir werden gut miteinander auskommen.",
-        "Lassen sie mich nun die Anforderungen meines Gemeinderates vorstellen:"};
+        "<html><p>Hallo und Herzlich Willkommen!</p><p> Ich freue mich sehr sie kennen zu lernen!</p></html>", 
+        "<html><p>Mein Name ist Horst Bichler und ich bin Bürgermeister dieser bescheidenen Komune...</p><p>Seit meiner Wahl bewegt sich hier einiges und neue Industrie- und Wohngebiete entstehen</p></html>", 
+        "<html><p>Um dem immer dichteren Verkehrsaufkommen in der Stadt eine Alternative zu bieten, hat sich der Gemeinderat dazu entschlossen eine Verkehrsgesellschaft zu gründen und diese mit den Bau eines U-Bahnnetzes zu beauftragen!</p></html>",
+        "<html><p>Sie haben sich bei unserem Wettbewerb, um die leitende Stelle in der Verkehrsgesellschaft, durchgesetzt! Ich denke damit haben wir die richtige Entscheidung getroffen! Ich denke wir werden gut miteinander zurecht kommen.</p></html>",
+        "<html><p>Die Anforderungen an Ihr Unternehmen sind einfach zu erklären: Ziel soll es sein, möglichst schnell alle Stadtteile miteinander zu vernetzen! Jeder unangebundene Stadtteil wir mit einer kleinen Strafe auf sich aufmerksam machen!</p></html>",
+        "<html><p>In der rechten Seitenleiste finden sie alles, um ihr Unternehmen zu leiten und auszubauen:</p></html>",
+        "<html><p>Einen neuen Bahnhof bauen sie, indem Sie hier drücken und danach auf den gewünschten Platz im Spielfeld klicken.</p></html>",
+        "<html><p>Eine neue Linie wird mit diesem Knopf erstellt!</p></html>",
+        "<html><p></p></html>"}; /*"<html><p></p></html>"*/
     private Image[] bild;
     private int nummer;
 

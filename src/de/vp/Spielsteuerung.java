@@ -1209,7 +1209,7 @@ public class Spielsteuerung {
         }
         // \/ Abrechnung
         if (zeit == abrechnungsIntervall) {
-            if (geld - gesamtGewinn() > maxMinus) {
+            if (geld - gesamtGewinn() < maxMinus) {
                 geld = geld + gesamtGewinn();
                 zeit = 0;
             } else {
@@ -1217,6 +1217,7 @@ public class Spielsteuerung {
                 VerlorenGUI f = new VerlorenGUI();
                 
             }
+            System.out.println("Abrechnung! " + verloren);
         } else {
             zeit++;
         }

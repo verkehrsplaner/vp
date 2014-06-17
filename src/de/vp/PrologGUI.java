@@ -24,20 +24,20 @@ public class PrologGUI extends javax.swing.JFrame {
     private int breite;
 
     private String[] text = {
-        "<html><p>Hallo und Herzlich Willkommen!</p><p> Ich freue mich sehr sie kennen zu lernen!</p></html>", 
-        "<html><p>Mein Name ist Horst Bichler und ich bin Bürgermeister dieser bescheidenen Komune...</p><p>Seit meiner Wahl bewegt sich hier einiges und neue Industrie- und Wohngebiete entstehen</p></html>", 
-        "<html><p>Um dem immer dichteren Verkehrsaufkommen in der Stadt eine Alternative zu bieten, hat sich der Gemeinderat dazu entschlossen eine Verkehrsgesellschaft zu gründen und diese mit den Bau eines U-Bahnnetzes zu beauftragen!</p></html>",
-        "<html><p>Sie haben sich bei unserem Wettbewerb, um die leitende Stelle in der Verkehrsgesellschaft, durchgesetzt! Ich denke damit haben wir die richtige Entscheidung getroffen! Ich denke wir werden gut miteinander zurecht kommen.</p></html>",
-        "<html><p>Die Anforderungen an Ihr Unternehmen sind einfach zu erklären: Ziel soll es sein, möglichst schnell alle Stadtteile miteinander zu vernetzen! Jeder unangebundene Stadtteil wir mit einer kleinen Strafe auf sich aufmerksam machen!</p></html>",
-        "<html><p>In der rechten Seitenleiste finden sie alles, um ihr Unternehmen zu leiten und auszubauen:</p></html>",
-        "<html><p>Einen neuen Bahnhof bauen sie, indem Sie hier drücken und danach auf den gewünschten Platz im Spielfeld klicken.</p></html>",
-        "<html><p>Eine neue Linie wird mit diesem Knopf erstellt!</p></html>",
-        "<html><p>Hier können Sie neue Züge für deine Linien Kaufen bzw. Verkaufen.</p><p>Diese Züge stehen dann in einem Depot bereit, sind jedoch noch keiner Linie zugewiesen.</html>",
-        "<html><p>Haben sie eine neue Linie erstellt können sie diese in der Seitenleiste aufrufen!</p><p>Hier können sie einen Bahnhof und so viele Züge wie sie haben der Linie zu weisen. Außerdem sind hier alle Informationen zur Linie gesammelt.</p></html>",
-        "<html><p>Klickt man auf einen Bahnhof öffnet sich ebenfalls ein Fenster, mit allen dort nötigen Informationen.</p></html>",
-        "<html><p>Die Zahl neben dem Bahnhof ist die Zahl der Personen die dort auf einen Zug warten. Ist die Zahl sehr hoch, sollten sie über eine bessere U-Bahn-Anbindung nachdenken. Ist die Zahl bei 0 ist alles im grünen Bereich.</p></html>",
-        "<html><p>Der News-Ticker am oberen Rand informiert Sie immer über alles was passiert. Ihn zu lesen schadet nicht.</p></html>",
-        "<html><p>Ich denke damit wäre alles gesagt. Stoßen wir auf eine erfolgreiche Zukunft an! Aber vergessen sie nicht ihre Pflichten!</p></html>"}; /*"<html><p></p></html>"*/
+        /*1*/"<html><p>Hallo und Herzlich Willkommen!</p><p> Ich freue mich sehr sie kennen zu lernen!</p></html>", 
+        /*2*/"<html><p>Mein Name ist Horst Bichler und ich bin Bürgermeister dieser bescheidenen Komune...</p><p>Seit meiner Wahl bewegt sich hier einiges und neue Industrie- und Wohngebiete entstehen</p></html>", 
+        /*3*/"<html><p>Um dem immer dichteren Verkehrsaufkommen in der Stadt eine Alternative zu bieten, hat sich der Gemeinderat dazu entschlossen eine Verkehrsgesellschaft zu gründen und diese mit den Bau eines U-Bahnnetzes zu beauftragen!</p></html>",
+        /*4*/"<html><p>Sie haben sich bei unserem Wettbewerb, um die leitende Stelle in der Verkehrsgesellschaft, durchgesetzt! Ich denke damit haben wir die richtige Entscheidung getroffen! Ich denke wir werden gut miteinander zurecht kommen.</p></html>",
+        /*5*/"<html><p>Die Anforderungen an Ihr Unternehmen sind einfach zu erklären: Ziel soll es sein, möglichst schnell alle Stadtteile miteinander zu vernetzen! Jeder unangebundene Stadtteil wir mit einer kleinen Strafe auf sich aufmerksam machen!</p></html>",
+        /*6*/"<html><p>In der rechten Seitenleiste finden sie alles, um ihr Unternehmen zu leiten und auszubauen:</p></html>",
+        /*7*/"<html><p>Einen neuen Bahnhof bauen sie, indem Sie hier drücken und danach auf den gewünschten Platz im Spielfeld klicken.</p></html>",
+        /*8*/"<html><p>Eine neue Linie wird mit diesem Knopf erstellt!</p></html>",
+        /*9*/"<html><p>Hier können Sie neue Züge für deine Linien Kaufen bzw. Verkaufen.</p><p>Diese Züge stehen dann in einem Depot bereit, sind jedoch noch keiner Linie zugewiesen.</html>",
+        /*10*/"<html><p>Haben sie eine neue Linie erstellt können sie diese in der Seitenleiste aufrufen!</p><p>Hier können sie einen Bahnhof und so viele Züge wie sie haben der Linie zu weisen. Außerdem sind hier alle Informationen zur Linie gesammelt.</p></html>",
+        /*11*/"<html><p>Klickt man auf einen Bahnhof öffnet sich ebenfalls ein Fenster, mit allen dort nötigen Informationen.</p></html>",
+        /*12*/"<html><p>Die Zahl neben dem Bahnhof ist die Zahl der Personen die dort auf einen Zug warten. Ist die Zahl sehr hoch, sollten sie über eine bessere U-Bahn-Anbindung nachdenken. Ist die Zahl bei 0 ist alles im grünen Bereich.</p></html>",
+        /*13*/"<html><p>Der News-Ticker am oberen Rand informiert Sie immer über alles was passiert. Ihn zu lesen schadet nicht.</p></html>",
+        /*14*/"<html><p>Ich denke damit wäre alles gesagt. Stoßen wir auf eine erfolgreiche Zukunft an! Aber vergessen sie nicht ihre Pflichten!</p></html>"}; /*"<html><p></p></html>"*/
     private Image[] bild;
     private int nummer;
 
@@ -47,11 +47,21 @@ public class PrologGUI extends javax.swing.JFrame {
     public PrologGUI(int h, int b) {
         try {
 
-            this.bild = new Image[]{ImageIO.read(this.getClass().getResource("images/pink.jpg")),
-                ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                ImageIO.read(this.getClass().getResource("images/linien.png"))};
+            this.bild = new Image[]{
+                /*1*/ImageIO.read(this.getClass().getResource("images/pink.jpg")),
+                /*2*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*3*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*4*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*5*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*6*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*7*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*8*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*9*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*10*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*11*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*12*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*13*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*14*/ImageIO.read(this.getClass().getResource("images/mayor.png")),};
 
         } catch (IOException ex) {
             System.err.println("Prolog konnte nicht geladen werden!");

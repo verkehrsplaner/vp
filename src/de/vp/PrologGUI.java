@@ -23,7 +23,12 @@ public class PrologGUI extends javax.swing.JFrame {
     private int hoehe;
     private int breite;
 
-    private String[] text = {"Hallo!", "Herzlich willkommen zur Eröffnung unseres Zuglinienprojekts!", "Ich hoffe,unsere Stadt wird bald komplett vernetzt sein!"};
+    private String[] text = {
+        "Hallo und Herzlich Willkommen! Ich freue mich sehr sie kennen zu lernen!", 
+        "Mein Name ist Horst Bichler und ich bin Bürgermeister dieser bescheidenen Komune... Seit meiner Wahl bewegt sich hier einiges und neue Industrie- und Wohngebiete entstehen", 
+        "Um dem immer dichteren Verkehr in der Stadt eine Alternative bieten, hat sich der Gemeinderat dazu entschlossen eine Verkehrsgesellschaft zu gründen und diese mit den Bau eines U-Bahnnetzes zu beauftragen!",
+        "Sie haben sich nun bei einem Wettbewerb, um die leitende Stelle in der Verkehrsgesellschaft durchgesetzt! Ich denke wir werden gut miteinander auskommen.",
+        "Lassen sie mich nun die Anforderungen meines Gemeinderates vorstellen:"};
     private Image[] bild;
     private int nummer;
 
@@ -34,6 +39,8 @@ public class PrologGUI extends javax.swing.JFrame {
         try {
 
             this.bild = new Image[]{ImageIO.read(this.getClass().getResource("images/pink.jpg")),
+                ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 ImageIO.read(this.getClass().getResource("images/linien.png"))};
 

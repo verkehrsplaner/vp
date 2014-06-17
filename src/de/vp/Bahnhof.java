@@ -98,7 +98,7 @@ public class Bahnhof {
     }
 
     public void bahnsteigFuellen() {
-        bahnsteig = bahnsteig + einsteigenBerechnen();
+        einsteigenBerechnen();
         aussteigenBerechnen();
     }
 
@@ -111,18 +111,19 @@ public class Bahnhof {
         int f = frei;
         eingestiegen = 0;
         int x = 0;
+        if(f > 0) {
             if (anzahlLinien == 1) {
                 // Wenn nur eine Linie den Bahnhof bedient
-                if (frei > getEinsteigen()) {
-                    eingestiegen = getEinsteigen();
+                if (frei > einsteigen) {
+                    eingestiegen = einsteigen;
                     einsteigen = 0;
-                } else if (getEinsteigen() > frei) {
+                } else {
                     eingestiegen = frei;
                     einsteigen -= frei;
                 }
             } else {
                 // Wenn mehrere Linien den Bahnhof bedienen
-                x = Math.round(getEinsteigen() * anzahlLinien);
+                x = Math.round(einsteigen * anzahlLinien);
                 if (frei > x) {
                     eingestiegen = x;
                     einsteigen -= x;
@@ -131,10 +132,13 @@ public class Bahnhof {
                     einsteigen-= frei;
                 }
             }
+        } else {
+            eingestiegen = 0;
+        }
 
-        System.out.println(getEingestiegen() + " in " + name + " eingestiegen!");
-        kasse += getEingestiegen() * fahrtKosten;
-        return getEingestiegen();
+        System.out.println(eingestiegen + " in " + name + " eingestiegen!");
+        kasse += eingestiegen * fahrtKosten;
+        return eingestiegen;
     }
 
     /**
@@ -146,6 +150,7 @@ public class Bahnhof {
         ausgestiegen = 0;
         int p = personen;
         int x = 0;
+        if(p > 0) {
             if (anzahlLinien == 1) {
                 // Wenn nur eine Linie den Bahnhof bedient
                 if (p < aussteigen) {
@@ -171,8 +176,11 @@ public class Bahnhof {
                     aussteigen = 0;
                 }
             }
+        } else {
+            ausgestiegen = 0;
+        }
         System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
-        return getAusgestiegen();
+        return ausgestiegen;
     }
 
     public int allesAussteigen(int personen) {

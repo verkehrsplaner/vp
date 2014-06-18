@@ -34,7 +34,7 @@ public class PrologGUI extends javax.swing.JFrame {
         /*8*/"<html><p>Eine neue Linie wird mit diesem Knopf erstellt!</p></html>",
         /*9*/"<html><p>Hier können Sie neue Züge für Ihre Linien kaufen bzw. verkaufen.</p><p>Diese Züge stehen dann in einem Depot bereit, sind jedoch noch keiner Linie zugewiesen.</html>",
         /*10*/"<html><p>Haben sie eine neue Linie erstellt können sie diese in der Seitenleiste aufrufen!</p><p>Hier können sie einen Bahnhof und so viele Züge wie sie haben der Linie zu weisen. Außerdem sind hier alle Informationen zur Linie gesammelt.</p></html>",
-        /*11*/"<html><p>Klickt man auf einen Bahnhof,öffnet sich ebenfalls ein Fenster mit allen dort nötigen Informationen.</p></html>",
+        /*11*/"<html><p>Klickt man auf einen Bahnhof, öffnet sich ebenfalls ein Fenster mit allen dort nötigen Informationen.</p></html>",
         /*12*/"<html><p>Die Zahl neben dem Bahnhof ist die Zahl der Personen die dort auf einen Zug warten. Ist die Zahl sehr hoch, sollten sie über eine bessere U-Bahn-Anbindung nachdenken;Ist die Zahl bei 0 ist alles im grünen Bereich.</p></html>",
         /*13*/"<html><p>Der News-Ticker am oberen Rand informiert Sie immer über alles was passiert. Ihn zu lesen schadet nicht.</p></html>",
         /*14*/"<html><p>Ich denke damit wäre alles gesagt. Stoßen wir auf eine erfolgreiche Zukunft an! Aber vergessen sie nicht ihre Pflichten!</p></html>"}; /*"<html><p></p></html>"*/
@@ -96,6 +96,7 @@ public class PrologGUI extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(800, 560));
         setMinimumSize(new java.awt.Dimension(800, 560));
         setPreferredSize(new java.awt.Dimension(800, 560));
+        setResizable(false);
 
         vor.setText(">");
         vor.addActionListener(new java.awt.event.ActionListener() {

@@ -1403,7 +1403,7 @@ public class Spielsteuerung {
     }
     
     public boolean istkaeuflich(int preis) {
-        if(geld - preis > getMaxMinus()) {
+        if(geld - preis >= getMaxMinus()) {
             return true;
         } else {
             return false;

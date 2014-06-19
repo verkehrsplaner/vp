@@ -112,6 +112,12 @@ public class SpielGUI extends javax.swing.JFrame {
                         linienListe.addElement(linien[i]);
                     }
                 }
+                if (strg.getDepot() == 0) {
+                    minusButton.setEnabled(false);
+                }
+                else {
+                    minusButton.setEnabled(true);
+                }
             }
         }, 0, 40);
         

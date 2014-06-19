@@ -118,6 +118,42 @@ public class SpielGUI extends javax.swing.JFrame {
                 else {
                     minusButton.setEnabled(true);
                 }
+                
+                // ======== Abfrage ob Sachen noch kaufbar sind oder nicht ========
+                
+                // Zugkaufen Button
+                if (strg.istkaeuflich(strg.getPreisZug())) {
+                    plusButton.setEnabled(true);
+                }
+                else {
+                    plusButton.setEnabled(false);
+                }
+                
+                // Linie Button
+                if (strg.istkaeuflich(strg.getPreisLinie())) {
+                    linieBauenButton.setEnabled(true);
+                }
+                else {
+                    linieBauenButton.setEnabled(false);
+                }
+                
+                //  Bahnhofkaufen Button
+                if(strg.istkaeuflich(strg.getPreisBhf())) {
+                    bahnhofBauenButton.setEnabled(true);
+                }
+                else {
+                    bahnhofBauenButton.setEnabled(false);
+                }
+               
+                // Reparieren Button
+                if (strg.istkaeuflich(strg.getReparatur())) {
+                    reparierenButton.setEnabled(true);
+                }
+                else {
+                    reparierenButton.setEnabled(false);
+                }
+                
+                // ======== Überprüfung ENDE =======
             }
         }, 0, 40);
         
@@ -550,7 +586,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private javax.swing.JPanel tickerPanel;
     */
     private TickerPanel tickerPanel;
-    private javax.swing.JLabel uhrzeitLabel;
+    public javax.swing.JLabel uhrzeitLabel;
     private javax.swing.JLabel werkstattAnzahlLabel;
     private javax.swing.JLabel werkstattNameLabel;
     // End of variables declaration//GEN-END:variables

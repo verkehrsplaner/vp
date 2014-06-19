@@ -1215,7 +1215,7 @@ public class Spielsteuerung {
                 zeit = 0;
             } else {
                 verloren = true;
-                
+                gui.uhrzeitLabel.setText("GAME OVER!");
                 VerlorenGUI v = new VerlorenGUI();
                 v.setVisible(true);
                 ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");

@@ -1400,6 +1400,14 @@ public class Spielsteuerung {
         }
         return liste;
     }
+    
+    public boolean istkaeuflich(int preis) {
+        if(geld - preis > maxMinus) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public Bahnhof getBahnhof(String bahnhof) {
         Bahnhof[] liste = new Bahnhof[bhfs];

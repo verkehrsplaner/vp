@@ -178,7 +178,6 @@ public class SpielPanel extends javax.swing.JPanel {
                 }
             }
         }
-
     }
 
     /**

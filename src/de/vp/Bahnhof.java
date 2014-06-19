@@ -291,7 +291,7 @@ public class Bahnhof {
             }
             anschlussLinien[anzahlLinien] = null;
             anzahlLinien--;
-        }
+        } //böaaa
     }
 
     /**

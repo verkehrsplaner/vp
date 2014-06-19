@@ -244,8 +244,8 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugKaufen() {
-        if (geld - preisZug >= maxMinus) {
-            geld = geld - preisZug;
+        if (geld - getPreisZug() >= getMaxMinus()) {
+            geld = geld - getPreisZug();
             depot++;
             ticker.neueNachricht("Ein neuer Zug erweitert den städtischen Fuhrhpark!");
             return true;
@@ -262,7 +262,7 @@ public class Spielsteuerung {
      */
     public boolean zugVerschrotten() {
         if (depot > 0) {
-            geld = geld + geldZugZurueck;
+            geld = geld + getGeldZugZurueck();
             depot--;
             return true;
         } else {
@@ -315,7 +315,7 @@ public class Spielsteuerung {
      * @return
      */
     public boolean neueLinie(String name) {
-        if (geld - preisLinie >= maxMinus) {
+        if (geld - getPreisLinie() >= getMaxMinus()) {
             if (linien.length - 1 < neueLinien + 1) {
                 Linie[] hilf = new Linie[neueLinien + 10];
                 for (int i = 0; i > neueLinien; i++) {
@@ -325,7 +325,7 @@ public class Spielsteuerung {
             }
             linien[neueLinien] = new Linie(name, this);
             neueLinien++;
-            geld = geld - preisLinie;
+            geld = geld - getPreisLinie();
             ticker.neueNachricht("Linie " + name + " wurde feierlich eröffnet!");
             return true;
         } else {
@@ -371,10 +371,10 @@ public class Spielsteuerung {
      * @return
      */
     private boolean neuerBahnhof(int x, int y) {
-        if (geld - preisBhf >= maxMinus && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {
+        if (geld - getPreisBhf() >= getMaxMinus() && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {
             String name = bhfNamen.remove((int) Math.round(Math.random() * (bhfNamen.size() - 1)));
             bahnhoefe[y][x] = new Bahnhof(x, y, name);
-            geld = geld - preisBhf;
+            geld = geld - getPreisBhf();
             ticker.neueNachricht("Bahnhof " + name + " wurde feierlich eröffnet!");
 
             // Häuser zum Bahnhof
@@ -1094,10 +1094,10 @@ public class Spielsteuerung {
      * @return
      */
     public boolean zugReparieren() {
-        if (getWerkstatt() > 0 && geld - reparatur >= maxMinus) {
+        if (getWerkstatt() > 0 && geld - getReparatur() >= getMaxMinus()) {
             werkstatt--;
             depot++;
-            geld = geld - reparatur;
+            geld = geld - getReparatur();
             return true;
         } else {
             return false;
@@ -1131,7 +1131,7 @@ public class Spielsteuerung {
         for (int h = 0; h < bahnhoefe.length; h++) {
             for (int b = 0; b < bahnhoefe[h].length; b++) {
                 if (bahnhoefe[h][b] != null) {
-                    kosten = kosten + bhfUnterhalt;
+                    kosten = kosten + getBhfUnterhalt();
                 }
             }
         }
@@ -1210,7 +1210,7 @@ public class Spielsteuerung {
         }
         // \/ Abrechnung
         if (zeit >= abrechnungsIntervall) {
-            if (geld + gesamtGewinn() > maxMinus) {
+            if (geld + gesamtGewinn() > getMaxMinus()) {
                 geld = geld + gesamtGewinn();
                 zeit = 0;
             } else {
@@ -1402,7 +1402,7 @@ public class Spielsteuerung {
     }
     
     public boolean istkaeuflich(int preis) {
-        if(geld - preis > maxMinus) {
+        if(geld - preis > getMaxMinus()) {
             return true;
         } else {
             return false;
@@ -1418,6 +1418,55 @@ public class Spielsteuerung {
             }
         }
         return bhf;
+    }
+
+    /**
+     * @return the maxMinus
+     */
+    public int getMaxMinus() {
+        return maxMinus;
+    }
+
+    /**
+     * @return the preisZug
+     */
+    public int getPreisZug() {
+        return preisZug;
+    }
+
+    /**
+     * @return the geldZugZurueck
+     */
+    public int getGeldZugZurueck() {
+        return geldZugZurueck;
+    }
+
+    /**
+     * @return the preisBhf
+     */
+    public int getPreisBhf() {
+        return preisBhf;
+    }
+
+    /**
+     * @return the bhfUnterhalt
+     */
+    public int getBhfUnterhalt() {
+        return bhfUnterhalt;
+    }
+
+    /**
+     * @return the preisLinie
+     */
+    public int getPreisLinie() {
+        return preisLinie;
+    }
+
+    /**
+     * @return the reparatur
+     */
+    public int getReparatur() {
+        return reparatur;
     }
 
 }

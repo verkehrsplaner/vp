@@ -228,7 +228,7 @@ public class SpielGUI extends javax.swing.JFrame {
         werkstattNameLabel.setText("Werkstatt:");
 
         reparierenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/hammer.png"))); // NOI18N
-        reparierenButton.setToolTipText("Reparieren: " + strg.getReparatur());
+        reparierenButton.setToolTipText("Reparieren: " + strg.getReparatur() +  " €");
         reparierenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reparierenButtonActionPerformed(evt);

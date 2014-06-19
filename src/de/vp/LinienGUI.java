@@ -63,6 +63,8 @@ public class LinienGUI extends JDialog {
                     jButtonBahnhof.setEnabled(true);
                     jButtonBahnhofWeg.setEnabled(true);
                 }
+                
+                
             }
         }, 0, 40);
 

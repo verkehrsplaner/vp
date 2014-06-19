@@ -215,7 +215,7 @@ public class SpielGUI extends javax.swing.JFrame {
 
         minusButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         minusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/zug-.png"))); // NOI18N
-        minusButton.setToolTipText("Zug verkaufen!");
+        minusButton.setToolTipText("Schrottpreis: 40.000 €");
         minusButton.setPreferredSize(new java.awt.Dimension(50, 50));
         minusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +228,7 @@ public class SpielGUI extends javax.swing.JFrame {
         werkstattNameLabel.setText("Werkstatt:");
 
         reparierenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/hammer.png"))); // NOI18N
-        reparierenButton.setToolTipText("Zug reparieren!");
+        reparierenButton.setToolTipText("Reparatur: 10.000 €");
         reparierenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reparierenButtonActionPerformed(evt);
@@ -245,7 +245,7 @@ public class SpielGUI extends javax.swing.JFrame {
 
         plusButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         plusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/zug+.png"))); // NOI18N
-        plusButton.setToolTipText("Zug kaufen!");
+        plusButton.setToolTipText("Kosten: 1.000.000 €");
         plusButton.setPreferredSize(new java.awt.Dimension(50, 50));
         plusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +254,7 @@ public class SpielGUI extends javax.swing.JFrame {
         });
 
         bahnhofBauenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bahnhofplus.png"))); // NOI18N
+        bahnhofBauenButton.setToolTipText("Kosten: 50.000 €");
         bahnhofBauenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bahnhofBauenButtonActionPerformed(evt);
@@ -261,6 +262,7 @@ public class SpielGUI extends javax.swing.JFrame {
         });
 
         linieBauenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/linie bauen transparent.png"))); // NOI18N
+        linieBauenButton.setToolTipText("Kosten: 10.000 €");
         linieBauenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 linieBauenButtonActionPerformed(evt);

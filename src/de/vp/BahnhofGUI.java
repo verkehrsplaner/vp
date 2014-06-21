@@ -70,6 +70,7 @@ public class BahnhofGUI extends javax.swing.JDialog {
         name.setText("Bahnhof");
 
         bhfAbreissen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bomb.png"))); // NOI18N
+        bhfAbreissen.setToolTipText("Bahnhof abreißen");
         bhfAbreissen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bhfAbreissenActionPerformed(evt);

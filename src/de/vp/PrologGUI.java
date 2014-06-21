@@ -214,7 +214,7 @@ public class PrologGUI extends javax.swing.JFrame {
         @Override
         protected void paintComponent(Graphics g) {
             // g.drawImage(bild[nummer], 0, 0, null);
-            g.drawImage(bild[nummer], ((this.getWidth() - bild[nummer].getWidth(null)) / 2), 0, null);
+            g.drawImage(bild[nummer], ((this.getWidth() - bild[nummer].getWidth(null)) / 2), 0, null); // Stellt die Posotion des Bildes ein
         }
     }
 

@@ -58,10 +58,10 @@ public class SpielGUI extends javax.swing.JFrame {
 
         hView = jScrollPane3.getViewport().getWidth();
         vView = jScrollPane3.getViewport().getHeight();
-
+        
+        // Ansicht zentrieren
         jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum() - hView) / 2);
         jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum() - vView) / 2);
-
         hPos = jScrollPane3.getHorizontalScrollBar().getValue();
         vPos = jScrollPane3.getVerticalScrollBar().getValue();
 
@@ -84,7 +84,7 @@ public class SpielGUI extends javax.swing.JFrame {
         
         linien = strg.getLinien();
 
-        //Timer für Uhrzeit
+        //Timer für Uhrzeit und andere Dinge
         Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -121,7 +121,6 @@ public class SpielGUI extends javax.swing.JFrame {
                 }
                 
                 // ======== Abfrage ob Sachen noch kaufbar sind oder nicht ========
-                
                 // Zugkaufen Button
                 if (strg.istkaeuflich(strg.getPreisZug())) {
                     plusButton.setEnabled(true);
@@ -154,7 +153,7 @@ public class SpielGUI extends javax.swing.JFrame {
                     reparierenButton.setEnabled(false);
                 }
                 
-                // ======== Überprüfung ENDE =======
+                // ======== Überprüfung ENDE ========
             }
         }, 0, 40);
         
@@ -471,14 +470,14 @@ public class SpielGUI extends javax.swing.JFrame {
 
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         jPanel3.requestFocus();
-        JDialog f = new MenuGUI(sound, (SpielPanel)jPanel3, strg);
+        JDialog f = new MenuGUI(sound, (SpielPanel)jPanel3, strg); //Öfnet neue GUI
         f.setModal(true);
         f.setVisible(true);
     }//GEN-LAST:event_EinstellungenActionPerformed
 
     private void linieBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linieBauenButtonActionPerformed
-        // Neues Fenster machen, um Name für Linie eingeben zu können
-        String s = JOptionPane.showInputDialog("Bitte Name für die neue Line eingeben:");
+
+        String s = JOptionPane.showInputDialog("Bitte Name für die neue Line eingeben:"); //Fenster für Linienname
         if (s != null && !s.equals("")) {
             strg.neueLinie(s);
         }

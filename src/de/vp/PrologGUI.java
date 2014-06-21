@@ -51,19 +51,19 @@ public class PrologGUI extends javax.swing.JFrame {
         try {
 
             this.bild = new Image[]{
-                /*1*/ImageIO.read(this.getClass().getResource("images/pink.jpg")),
+                /*1*/ImageIO.read(this.getClass().getResource("images/mayor.jpg")),
                 /*2*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*3*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*4*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*5*/ ImageIO.read(this.getClass().getResource("images/linien.png")),
-                /*6*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*7*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*8*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*9*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*10*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*11*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*12*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*13*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*6*/ ImageIO.read(this.getClass().getResource("images/anleitung1.png")),
+                /*7*/ ImageIO.read(this.getClass().getResource("images/anleitung2.png")),
+                /*8*/ ImageIO.read(this.getClass().getResource("images/anleitung3.png")),
+                /*9*/ ImageIO.read(this.getClass().getResource("images/anleitung4.png")),
+                /*10*/ ImageIO.read(this.getClass().getResource("images/anleitung5.png")),
+                /*11*/ ImageIO.read(this.getClass().getResource("images/anleitung6.png")),
+                /*12*/ ImageIO.read(this.getClass().getResource("images/anleitung7.png")),
+                /*13*/ ImageIO.read(this.getClass().getResource("images/anleitung8.png")),
                 /*14*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),};
 
         } catch (IOException ex) {

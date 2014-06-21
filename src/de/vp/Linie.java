@@ -377,7 +377,6 @@ public class Linie {
             baubar = false;
         }
         // Fahren
-        System.out.println("1. " + personen);
         if (strecke.length > 0 && !baubar) {
             // Den jeweils letzten Zug bearbeiten
             // Aussteigen
@@ -389,26 +388,22 @@ public class Linie {
                 bhfListe[bhfs - 1].allesAussteigen(strecke[strecke.length - 1]);
                 strecke[strecke.length - 1] = 0;
             }
-            System.out.println("2. " + personen);
             // Umdrehen am Ende
             int streckeEnde = strecke[strecke.length - 1];
             if (streckeZurueck[streckeZurueck.length - 1] > -1) {
                 depot++;
             }
-            System.out.println("3. " + personen);
             // Auf der Linie weiterfahren
             for (int i = strecke.length - 1; i > 0; i--) {
                 strecke[i] = strecke[i - 1];
                 streckeZurueck[i] = streckeZurueck[i - 1];
             }
-            System.out.println("4. " + personen);
             // Züge aus Linie
             while (zuegeRaus > 0 && depot > 0) {
                 depot--;
                 zuegeRaus--;
                 strg.zugInsDepot();
             }
-            System.out.println("5. " + personen);
             // Den ersten Zug bearbeiten
             streckeZurueck[0] = streckeEnde;
             if (depot > 0 && zeitStep >= zeitZug && gruenesLicht) {
@@ -419,7 +414,6 @@ public class Linie {
                 strecke[0] = -1;
             }
         }
-        System.out.println("6. " + personen);
         // Aus- / Einsteigen
         for (int i = 0; i < istBhf.length; i++) {
             // Es ist ein Bahnhof da
@@ -441,7 +435,7 @@ public class Linie {
                 }
             }
         }
-        System.out.println("7. " + personen);
+        System.out.println(name + "-Personen: " + personen);
         zeitStep++;
     }
 

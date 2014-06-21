@@ -291,16 +291,18 @@ public class Bahnhof {
             }
             anschlussLinien[anzahlLinien] = null;
             anzahlLinien--;
-        }
+        } //böaaa
     }
 
     /**
      * räumt auf wenn die Linie gelöscht werden soll
      */
     public void letzterSchritt() {
-        // alle Linien verabschieden sich von dem Bhf
-        for (int i = 0; i < anzahlLinien + 1; i++) {
-            anschlussLinien[i].bahnhofEntfernen(this);
+        if (anzahlLinien > 0) {
+            // alle Linien verabschieden sich von dem Bhf
+            for (int i = 0; i < anzahlLinien + 1; i++) {
+                anschlussLinien[i].bahnhofEntfernen(this);
+            }
         }
     }
 

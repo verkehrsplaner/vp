@@ -63,6 +63,8 @@ public class LinienGUI extends JDialog {
                     jButtonBahnhof.setEnabled(true);
                     jButtonBahnhofWeg.setEnabled(true);
                 }
+                
+                
             }
         }, 0, 40);
 
@@ -129,7 +131,7 @@ public class LinienGUI extends JDialog {
         jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelName.setText(linie.getName());
 
-        jButtonBahnhofWeg.setText("Bahnhof entfernen");
+        jButtonBahnhofWeg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bahnhofminus.png"))); // NOI18N
         jButtonBahnhofWeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBahnhofWegActionPerformed(evt);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -1268,8 +1269,7 @@ public class Spielsteuerung {
                 break;
             default:
                 if (bahnhoefe[y][x] != null) {
-                    JDialog d = new BahnhofGUI(bahnhoefe[y][x], this);
-                    d.setModal(true);
+                    JFrame d = new BahnhofGUI(bahnhoefe[y][x], this);
                     d.setVisible(true);
                 }
                 break;

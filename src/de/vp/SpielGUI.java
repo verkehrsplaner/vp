@@ -469,7 +469,6 @@ public class SpielGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
-        System.out.println("Button 'Menü' wurde gedrückt!");
         jPanel3.requestFocus();
         JDialog f = new MenuGUI(sound, (SpielPanel)jPanel3, strg);
         f.setModal(true);
@@ -477,7 +476,6 @@ public class SpielGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EinstellungenActionPerformed
 
     private void linieBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linieBauenButtonActionPerformed
-        System.out.println("Button 'Linie Bauen!' wurde gedrückt!");
         // Neues Fenster machen, um Name für Linie eingeben zu können
         String s = JOptionPane.showInputDialog("Bitte Name für die neue Line eingeben:");
         if (s != null && !s.equals("")) {
@@ -487,13 +485,11 @@ public class SpielGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_linieBauenButtonActionPerformed
 
     private void bahnhofBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bahnhofBauenButtonActionPerformed
-        System.out.println("Button 'Bahnhof Bauen!' wurde gedrückt!");
         strg.setNextAction("bhf");
         jPanel3.requestFocus();
     }//GEN-LAST:event_bahnhofBauenButtonActionPerformed
 
     private void plusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusButtonActionPerformed
-        System.out.println("Button 'Zug Kaufen!' wurde gedrückt!");
         strg.zugKaufen();
         jPanel3.requestFocus();
         if (strg.getDepot() == 0) {
@@ -505,7 +501,6 @@ public class SpielGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_plusButtonActionPerformed
 
     private void reparierenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparierenButtonActionPerformed
-        System.out.println("Button 'Zug Reparieren!' wurde gedrückt!");
         strg.zugReparieren();
         jPanel3.requestFocus();
         if (strg.getWerkstatt() == 0) {
@@ -517,7 +512,6 @@ public class SpielGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_reparierenButtonActionPerformed
 
     private void minusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusButtonActionPerformed
-        System.out.println("Button 'Zug Verschrotten!' wurde gedrückt!");
         strg.zugVerschrotten();
         jPanel3.requestFocus();
         if (strg.getDepot() == 0) {

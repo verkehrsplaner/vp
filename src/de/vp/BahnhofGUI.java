@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
  *
  * @author hecker
  */
-public class BahnhofGUI extends javax.swing.JDialog {
+public class BahnhofGUI extends javax.swing.JFrame {
     
     private Bahnhof bhf;
     private Spielsteuerung strg;

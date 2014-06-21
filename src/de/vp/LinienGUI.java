@@ -9,17 +9,16 @@ import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Felix
  */
-public class LinienGUI extends JDialog {
+public class LinienGUI extends JFrame {
 
     private Linie linie;
     private Spielsteuerung strg;

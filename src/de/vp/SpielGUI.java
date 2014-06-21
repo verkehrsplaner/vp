@@ -17,6 +17,7 @@ import java.util.TimerTask;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -531,8 +532,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         int pos = jList1.getSelectedIndex();
         if (pos >= 0) {
-            JDialog f = new LinienGUI(linien[pos], strg);
-            f.setModal(true);
+            JFrame f = new LinienGUI(linien[pos], strg);
             f.setVisible(true);
         }
     }//GEN-LAST:event_jList1MouseClicked

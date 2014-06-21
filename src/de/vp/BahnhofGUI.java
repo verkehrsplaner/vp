@@ -63,6 +63,8 @@ public class BahnhofGUI extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(bhf.getName());
+        setResizable(false);
 
         name.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         name.setText("Bahnhof");
@@ -86,11 +88,11 @@ public class BahnhofGUI extends javax.swing.JDialog {
 
         jLabel3.setText("Verlauf:");
 
-        jLabel4.setText("eingestiegen");
+        jLabel4.setText("Eingestiegen:");
 
         aus.setText("aus");
 
-        jLabel5.setText("ausgestiegen");
+        jLabel5.setText("Ausgestiegen:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,18 +114,17 @@ public class BahnhofGUI extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(name)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
                                 .addComponent(jLabel3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ein)
-                                            .addComponent(aus))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(12, 12, 12))
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)))))
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ein)
+                                    .addComponent(aus))))))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

@@ -37,7 +37,7 @@ public class PrologGUI extends javax.swing.JFrame {
         /*9*/ "<html><center><p>Hier können Sie neue Züge für Ihre Linien kaufen bzw. verkaufen.</p><p>Diese Züge stehen dann in einem Depot bereit, sind jedoch noch keiner Linie zugewiesen.</p></center></html>",
         /*10*/ "<html><center><p>Haben sie eine neue Linie erstellt können sie diese in der Seitenleiste aufrufen!</p><p>Hier können sie einen Bahnhof und so viele Züge wie sie haben der Linie zu weisen. Außerdem sind hier alle Informationen zur Linie gesammelt.</p></center></html>",
         /*11*/ "<html><center><p>Klickt man auf einen Bahnhof, öffnet sich ebenfalls ein Fenster mit allen dort nötigen Informationen.</p></center></html>",
-        /*12*/ "<html><center><p>Die Zahl neben dem Bahnhof ist die Zahl der Personen die dort auf einen Zug warten. Ist die Zahl sehr hoch, sollten sie über eine bessere U-Bahn-Anbindung nachdenken;Ist die Zahl bei 0 ist alles im grünen Bereich.</p></center></html>",
+        /*12*/ "<html><center><p>Die Zahl neben dem Bahnhof ist die Zahl der Personen die dort auf einen Zug warten. Ist die Zahl sehr hoch, sollten sie über eine bessere U-Bahn-Anbindung nachdenken; Ist die Zahl bei 0 ist alles im grünen Bereich.</p></center></html>",
         /*13*/ "<html><center><p>Der News-Ticker am oberen Rand informiert Sie immer über alles was passiert. Ihn zu lesen schadet nicht.</p></center></html>",
         /*14*/ "<html><center><p>Ich denke damit wäre alles gesagt. Stoßen wir auf eine erfolgreiche Zukunft an! Aber vergessen sie nicht ihre Pflichten!</p></center></html>"}; /*"<html><p></p></html>"*/
 

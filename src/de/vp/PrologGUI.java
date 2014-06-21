@@ -117,13 +117,14 @@ public class PrologGUI extends javax.swing.JFrame {
             }
         });
 
-        skip.setText("Skip");
+        skip.setText("Überspringen");
         skip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 skipActionPerformed(evt);
             }
         });
 
+        hintergrund.setOpaque(false);
         hintergrund.setPreferredSize(new java.awt.Dimension(512, 288));
 
         javax.swing.GroupLayout hintergrundLayout = new javax.swing.GroupLayout(hintergrund);
@@ -160,7 +161,7 @@ public class PrologGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(skip))))
-            .addComponent(hintergrund, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+            .addComponent(hintergrund, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +213,6 @@ public class PrologGUI extends javax.swing.JFrame {
 
         @Override
         protected void paintComponent(Graphics g) {
-            System.out.println(bild[nummer].getWidth(null));
             // g.drawImage(bild[nummer], 0, 0, null);
             g.drawImage(bild[nummer], ((this.getWidth() - bild[nummer].getWidth(null)) / 2), 0, null);
         }

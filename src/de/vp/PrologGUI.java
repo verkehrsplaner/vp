@@ -51,19 +51,19 @@ public class PrologGUI extends javax.swing.JFrame {
         try {
 
             this.bild = new Image[]{
-                /*1*/ImageIO.read(this.getClass().getResource("images/pink.jpg")),
+                /*1*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*2*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*3*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*4*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*5*/ ImageIO.read(this.getClass().getResource("images/linien.png")),
-                /*6*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*7*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*8*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*9*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*10*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*11*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*12*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*13*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
+                /*6*/ ImageIO.read(this.getClass().getResource("images/anleitung1.png")),
+                /*7*/ ImageIO.read(this.getClass().getResource("images/anleitung2.png")),
+                /*8*/ ImageIO.read(this.getClass().getResource("images/anleitung3.png")),
+                /*9*/ ImageIO.read(this.getClass().getResource("images/anleitung4.png")),
+                /*10*/ ImageIO.read(this.getClass().getResource("images/anleitung5.png")),
+                /*11*/ ImageIO.read(this.getClass().getResource("images/anleitung6.png")),
+                /*12*/ ImageIO.read(this.getClass().getResource("images/anleitung7.png")),
+                /*13*/ ImageIO.read(this.getClass().getResource("images/anleitung8.png")),
                 /*14*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),};
 
         } catch (IOException ex) {
@@ -124,14 +124,13 @@ public class PrologGUI extends javax.swing.JFrame {
             }
         });
 
-        hintergrund.setMaximumSize(getPreferredSize());
         hintergrund.setPreferredSize(new java.awt.Dimension(512, 288));
 
         javax.swing.GroupLayout hintergrundLayout = new javax.swing.GroupLayout(hintergrund);
         hintergrund.setLayout(hintergrundLayout);
         hintergrundLayout.setHorizontalGroup(
             hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         hintergrundLayout.setVerticalGroup(
             hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,19 +146,21 @@ public class PrologGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(skip))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(monolog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hintergrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(zurueck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(vor)))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(monolog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(zurueck)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(vor)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(skip))))
+            .addComponent(hintergrund, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +212,9 @@ public class PrologGUI extends javax.swing.JFrame {
 
         @Override
         protected void paintComponent(Graphics g) {
-            g.drawImage(bild[nummer], 0, 0, null);
+            System.out.println(bild[nummer].getWidth(null));
+            // g.drawImage(bild[nummer], 0, 0, null);
+            g.drawImage(bild[nummer], ((this.getWidth() - bild[nummer].getWidth(null)) / 2), 0, null);
         }
     }
 

@@ -97,11 +97,14 @@ public class Linie {
     /**
      * einen Zug hinzufügen
      */
-    public void zugEinstellen() {
+    public boolean zugEinstellen() {
         if (zuege < strecke.length) {
             zuege++;
             depot++;
             this.setZeitZug();
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -368,8 +371,6 @@ public class Linie {
      *
      */
     public void step() {
-        int quak = 0;
-        int blub = 0;
         // Baubar setzen
         if (!gruenesLicht && depot == zuege) {
             baubar = true;
@@ -381,11 +382,11 @@ public class Linie {
             // Den jeweils letzten Zug bearbeiten
             // Aussteigen
             if (streckeZurueck[streckeZurueck.length - 1] > 0) {
-                bhfListe[0].allesAussteigen(streckeZurueck[streckeZurueck.length - 1]);
+                personen -= bhfListe[0].allesAussteigen(streckeZurueck[streckeZurueck.length - 1]);
                 streckeZurueck[streckeZurueck.length - 1] = 0;
             }
             if (strecke[strecke.length - 1] > 0) {
-                bhfListe[bhfs - 1].allesAussteigen(strecke[strecke.length - 1]);
+                personen -= bhfListe[bhfs - 1].allesAussteigen(strecke[strecke.length - 1]);
                 strecke[strecke.length - 1] = 0;
             }
             // Umdrehen am Ende
@@ -420,18 +421,18 @@ public class Linie {
             if (istBhf[i] > -1) {
                 // Zug am Bahnhof auf Strecke
                 if (strecke[i] > -1) {
-                    quak = bhfListe[istBhf[i]].aussteigen(strecke[i]);
-                    blub = bhfListe[istBhf[i]].einsteigen(zugKapazitaet - strecke[i]);
-                    personen += quak + blub;
-                    strecke[i] += quak + blub;
+                    int raus = bhfListe[istBhf[i]].aussteigen(strecke[i]);
+                    int rein = bhfListe[istBhf[i]].einsteigen(zugKapazitaet - strecke[i]);
+                    personen = (personen - raus) + rein;
+                    strecke[i] = (strecke[i] - raus) + rein;
                 }
                 // Zug am Bahnhof auf StreckeZurück
                 int j = streckeZurueck.length - i - 1;
                 if (streckeZurueck[j] > -1) {
-                    quak = bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
-                    blub = bhfListe[istBhf[i]].einsteigen(zugKapazitaet - streckeZurueck[j]);
-                    personen += quak + blub;
-                    strecke[j] += quak + blub;
+                    int raus = bhfListe[istBhf[i]].aussteigen(streckeZurueck[j]);
+                    int rein = bhfListe[istBhf[i]].einsteigen(zugKapazitaet - streckeZurueck[j]);
+                    personen = (personen - raus) + rein;
+                    streckeZurueck[j] = (streckeZurueck[j] - raus) + rein;
                 }
             }
         }

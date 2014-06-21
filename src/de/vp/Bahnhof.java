@@ -16,7 +16,7 @@ public class Bahnhof {
     private int Y;
     private Stadtteil[] teile;
     private int stadtteile;
-    private int personen, einsteigen, aussteigen, eingestiegen, ausgestiegen;
+    private int einsteigen, aussteigen, eingestiegen, ausgestiegen;
     private int bahnsteig; // Leute die auf einen Zug warten
     private int kasse; // Eingenommenes Geld für abgeholte Personen
     private Linie[] anschlussLinien; //Wie viele Linien bedienen diesen Bahnhof
@@ -113,29 +113,16 @@ public class Bahnhof {
      * @return eingestiege Personen
      */
     public int einsteigen(int frei) {
-        int f = frei;
         eingestiegen = 0;
-        int x = 0;
-        if (f > 0) {
-            if (anzahlLinien == 1) {
-                // Wenn nur eine Linie den Bahnhof bedient
-                if (frei > einsteigen) {
-                    eingestiegen = einsteigen;
-                    einsteigen = 0;
-                } else {
-                    eingestiegen = frei;
-                    einsteigen -= frei;
-                }
-            } else {
-                // Wenn mehrere Linien den Bahnhof bedienen
-                x = Math.round(einsteigen * anzahlLinien);
-                if (frei > x) {
-                    eingestiegen = x;
-                    einsteigen -= x;
-                } else if (x > frei) {
-                    eingestiegen = frei;
-                    einsteigen -= frei;
-                }
+        if (frei > 0 && anzahlLinien > 0) {
+            // Wenn mehrere Linien den Bahnhof bedienen
+            int einsteigenProLinie = Math.round(einsteigen / anzahlLinien);
+            if (frei > einsteigenProLinie) {
+                eingestiegen = einsteigenProLinie;
+                einsteigen -= einsteigenProLinie;
+            } else if (einsteigenProLinie > frei) {
+                eingestiegen = frei;
+                einsteigen -= frei;
             }
         } else {
             eingestiegen = 0;
@@ -153,34 +140,39 @@ public class Bahnhof {
      */
     public int aussteigen(int personen) {
         ausgestiegen = 0;
-        int p = personen;
-        int x = 0;
-        if (p > 0) {
-            if (anzahlLinien == 1) {
-                // Wenn nur eine Linie den Bahnhof bedient
-                if (p < aussteigen) {
-                    ausgestiegen = p;
-                    aussteigen += (-1) * p;
-                } else {
-                    ausgestiegen = aussteigen;
-                    aussteigen = 0;
-                }
+        if (personen > 0 && anzahlLinien > 0) {
+            int wollenAussteigen = 0;
+            //Aussteigen wegen überfüllung
+            if (personen > 320) {
+                wollenAussteigen += (personen - 320);
             }
+            // Wenn man umsteigen kann
             if (anzahlLinien > 1) {
-                // Wenn mehrere Linien den Bahnhof bedienen
-                x = personen;
-                if (p > 250) {
-                    //Aussteigen wegen überfüllung
-                    x = x + (p - 250);
-                }
-                if (p < aussteigen) {
-                    ausgestiegen = p;
-                    aussteigen += (-1) * p;
+                wollenAussteigen = (anzahlLinien - 1) * 25;
+            }
+            // Weil der Bahnhof Leute haben will
+            if (aussteigen < 0) {
+                if (personen > -aussteigen) {
+                    wollenAussteigen += personen + aussteigen;
                 } else {
-                    ausgestiegen = aussteigen;
-                    aussteigen = 0;
+                    wollenAussteigen += personen;
                 }
             }
+            
+            // wollenAussteigen nicht zu groß machen 
+            if (wollenAussteigen > personen) {
+                wollenAussteigen = personen;
+            }
+
+            if (wollenAussteigen < -aussteigen) {
+                ausgestiegen = wollenAussteigen;
+                aussteigen += wollenAussteigen;
+            } else {
+                ausgestiegen = wollenAussteigen;
+                einsteigen += wollenAussteigen + aussteigen;
+                aussteigen = 0;
+            }
+
         } else {
             ausgestiegen = 0;
         }

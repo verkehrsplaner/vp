@@ -34,7 +34,7 @@ public class Spielsteuerung {
     private BahnhofGUI bhf;
     private LinienGUI linie;
     private MenuGUI menu;
-    
+
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -50000000;
     private final int preisZug = 1000000;
@@ -279,10 +279,14 @@ public class Spielsteuerung {
      */
     public boolean zugEinstellen(Linie l) {
         if (depot > 0) {
-            l.zugEinstellen();
-            depot--;
-            ticker.neueNachricht("Verstärkter Takt auf Linie " + l.getName() + "!");
-            return true;
+            boolean geht = l.zugEinstellen();
+            if (geht) {
+                depot--;
+                ticker.neueNachricht("Verstärkter Takt auf Linie " + l.getName() + "!");
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -304,7 +308,7 @@ public class Spielsteuerung {
             return false;
         }
     }
-    
+
     public void zugInsDepot() {
         depot++;
     }
@@ -1166,85 +1170,85 @@ public class Spielsteuerung {
      */
     public boolean step() {
         // \/ Stadtteil bauen
-        if(!verloren) {
-        if (stadtbauen) {
-            if (zeitS == stadtbauIntervall && Math.random() > stadtbaugeschw) {
-                stadtteilBauen();
-                zeitS = 0;
-            } else {
-                zeitS++;
+        if (!verloren) {
+            if (stadtbauen) {
+                if (zeitS == stadtbauIntervall && Math.random() > stadtbaugeschw) {
+                    stadtteilBauen();
+                    zeitS = 0;
+                } else {
+                    zeitS++;
+                }
             }
-        }
 
-        // Tag/Nacht setzen
-        if ((strgTimer.getTicks() < 6000 || strgTimer.getTicks() > 18000) && !nacht) {
-            nacht = true;
-            if (ticker != null) {
-                ticker.neueNachricht("Nachtwächter spricht: Hört, Ihr Leut´ und lasst Euch sagen, unsre Glock´ hat 6 geschlagen!");
-                ticker.neueNachricht("Nachtwächter wegen Ruhestörung vor Gericht!");
-            }
-            for (int y = 0; y < hoehe; y++) {
-                for (int x = 0; x < breite; x++) {
-                    if (teile[y][x] != null) {
-                        teile[y][x].tageszeitAendern(nacht);
+            // Tag/Nacht setzen
+            if ((strgTimer.getTicks() < 6000 || strgTimer.getTicks() > 18000) && !nacht) {
+                nacht = true;
+                if (ticker != null) {
+                    ticker.neueNachricht("Nachtwächter spricht: Hört, Ihr Leut´ und lasst Euch sagen, unsre Glock´ hat 6 geschlagen!");
+                    ticker.neueNachricht("Nachtwächter wegen Ruhestörung vor Gericht!");
+                }
+                for (int y = 0; y < hoehe; y++) {
+                    for (int x = 0; x < breite; x++) {
+                        if (teile[y][x] != null) {
+                            teile[y][x].tageszeitAendern(nacht);
+                        }
+                    }
+                }
+            } else if ((strgTimer.getTicks() > 6000 && strgTimer.getTicks() < 18000) && nacht) {
+                nacht = false;
+                if (ticker != null) {
+                    ticker.neueNachricht("Die Sonne geht auf, ein neuer Tag bricht an!");
+                }
+                for (int y = 0; y < hoehe; y++) {
+                    for (int x = 0; x < breite; x++) {
+                        if (teile[y][x] != null) {
+                            teile[y][x].tageszeitAendern(nacht);
+                        }
                     }
                 }
             }
-        } else if ((strgTimer.getTicks() > 6000 && strgTimer.getTicks() < 18000) && nacht) {
-            nacht = false;
-            if (ticker != null) {
-                ticker.neueNachricht("Die Sonne geht auf, ein neuer Tag bricht an!");
-            }
-            for (int y = 0; y < hoehe; y++) {
-                for (int x = 0; x < breite; x++) {
-                    if (teile[y][x] != null) {
-                        teile[y][x].tageszeitAendern(nacht);
-                    }
-                }
-            }
-        }
 
-        //\/ Zug per Zufall schrotten
-        if (Math.random() < 0.0001) {
-            zugKaputten();
-        }
-        // \/ Abrechnung
-        if (zeit >= abrechnungsIntervall) {
-            if (geld + gesamtGewinn() > getMaxMinus()) {
-                geld = geld + gesamtGewinn();
-                zeit = 0;
-            } else {
-                verloren = true;
-                gui.uhrzeitLabel.setText("GAME OVER!");
-                VerlorenGUI v = new VerlorenGUI();
-                v.setVisible(true);
-                ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
-                
+            //\/ Zug per Zufall schrotten
+            if (Math.random() < 0.0001) {
+                zugKaputten();
             }
-            System.out.println("Abrechnung! verloren: " + verloren);
-        } else {
-            zeit++;
-        }
-        // \/ Bahnhöfe mit Personen füllen
-        if (zeitB == bahnsteigIntervall) {
-            System.out.println("---------------------");
-            for (int h = 0; h < bahnhoefe.length; h++) {
-                for (int b = 0; b < bahnhoefe[h].length; b++) {
-                    if (bahnhoefe[h][b] != null) {
-                        bahnhoefe[h][b].bahnsteigFuellen();
+            // \/ Abrechnung
+            if (zeit >= abrechnungsIntervall) {
+                if (geld + gesamtGewinn() > getMaxMinus()) {
+                    geld = geld + gesamtGewinn();
+                    zeit = 0;
+                } else {
+                    verloren = true;
+                    gui.uhrzeitLabel.setText("GAME OVER!");
+                    VerlorenGUI v = new VerlorenGUI();
+                    v.setVisible(true);
+                    ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
+
+                }
+                System.out.println("Abrechnung! verloren: " + verloren);
+            } else {
+                zeit++;
+            }
+            // \/ Bahnhöfe mit Personen füllen
+            if (zeitB == bahnsteigIntervall) {
+                System.out.println("---------------------");
+                for (int h = 0; h < bahnhoefe.length; h++) {
+                    for (int b = 0; b < bahnhoefe[h].length; b++) {
+                        if (bahnhoefe[h][b] != null) {
+                            bahnhoefe[h][b].bahnsteigFuellen();
+                        }
                     }
                 }
+                System.out.println("---------------------");
+                zeitB = 0;
+            } else {
+                zeitB++;
             }
-            System.out.println("---------------------");
-            zeitB = 0;
-        } else {
-            zeitB++;
-        }
-        // \/ Linien-Step
-        for (int i = 0; i < neueLinien; i++) {
-            linien[i].step();
-        }
-        // \{ Tickernachricht bei Pleite
+            // \/ Linien-Step
+            for (int i = 0; i < neueLinien; i++) {
+                linien[i].step();
+            }
+            // \{ Tickernachricht bei Pleite
         }
         return true;
     }
@@ -1401,9 +1405,9 @@ public class Spielsteuerung {
         }
         return liste;
     }
-    
+
     public boolean istkaeuflich(int preis) {
-        if(geld - preis >= getMaxMinus()) {
+        if (geld - preis >= getMaxMinus()) {
             return true;
         } else {
             return false;

@@ -51,7 +51,7 @@ public class PrologGUI extends javax.swing.JFrame {
         try {
 
             this.bild = new Image[]{
-                /*1*/ImageIO.read(this.getClass().getResource("images/mayor.jpg")),
+                /*1*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*2*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*3*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
                 /*4*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
@@ -212,7 +212,9 @@ public class PrologGUI extends javax.swing.JFrame {
 
         @Override
         protected void paintComponent(Graphics g) {
-            g.drawImage(bild[nummer], (BildPanel.WIDTH - bild[nummer].getWidth(null)) / 2, 0, null);
+            System.out.println(bild[nummer].getWidth(null));
+            // g.drawImage(bild[nummer], 0, 0, null);
+            g.drawImage(bild[nummer], ((this.getWidth() - bild[nummer].getWidth(null)) / 2), 0, null);
         }
     }
 

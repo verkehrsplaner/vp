@@ -223,6 +223,11 @@ public class SpielGUI extends javax.swing.JFrame {
                 jPanel3MouseEntered(evt);
             }
         });
+        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel3MouseMoved(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -534,6 +539,10 @@ public class SpielGUI extends javax.swing.JFrame {
     private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
         jPanel3.requestFocus();
     }//GEN-LAST:event_jPanel3MouseEntered
+
+    private void jPanel3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseMoved
+        jPanel3.requestFocus();
+    }//GEN-LAST:event_jPanel3MouseMoved
 
     public void saveScrollValues() {
         hPos = jScrollPane3.getHorizontalScrollBar().getValue();

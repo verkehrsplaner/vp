@@ -31,10 +31,6 @@ public class Spielsteuerung {
     private TickerPanel ticker;
     private ArrayList<String> bhfNamen;
     private boolean nacht;
-    private SpielGUI gui;
-    private BahnhofGUI bhf;
-    private LinienGUI linie;
-    private MenuGUI menu;
 
     // ========== Anfang Spielvariablen ==========
     private final int maxMinus = -50000000;
@@ -1114,15 +1110,26 @@ public class Spielsteuerung {
      */
     public long gesamtKosten() {
         long kosten = 0;
+        long temp = 0;
 
         // \/ alle unangebundenen Stadtteile
         for (int h = 0; h < hatBahnhof.length; h++) {
             for (int b = 0; b < hatBahnhof[h].length; b++) {
                 if (teile[h][b] != null && hatBahnhof[h][b] == false) {
-                    kosten = kosten + beschwerde;
+                    temp += beschwerde;
                 }
             }
         }
+        // Prämien
+        if(temp < beschwerde * 10) {
+            kosten -= 1000;
+        }
+        if(temp < beschwerde * 5) {
+            kosten -= 1000;
+        }
+        if(temp < beschwerde) {
+            kosten -= 2000;
+        } 
 
         // \/ alle Linien
         for (int i = 0; i < neueLinien - 1; i++) {
@@ -1220,7 +1227,6 @@ public class Spielsteuerung {
                     zeit = 0;
                 } else {
                     verloren = true;
-                    gui.uhrzeitLabel.setText("GAME OVER!");
                     VerlorenGUI v = new VerlorenGUI();
                     v.setVisible(true);
                     ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");

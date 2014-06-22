@@ -403,6 +403,7 @@ public class Linie {
             while (zuegeRaus > 0 && depot > 0) {
                 depot--;
                 zuegeRaus--;
+                zuege--;
                 strg.zugInsDepot();
             }
             // Den ersten Zug bearbeiten

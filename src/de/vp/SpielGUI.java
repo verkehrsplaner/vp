@@ -50,15 +50,15 @@ public class SpielGUI extends javax.swing.JFrame {
         linienRenderer = new LinienCellRenderer();
         sound = new Sound();
         initComponents();
-        
+
         strg.panelStarten(jPanel3);
         strg.setTicker(tickerPanel);
-        
+
         sound.musikAus();
 
         hView = jScrollPane3.getViewport().getWidth();
         vView = jScrollPane3.getViewport().getHeight();
-        
+
         // Ansicht zentrieren
         jScrollPane3.getHorizontalScrollBar().setValue((jScrollPane3.getHorizontalScrollBar().getMaximum() - hView) / 2);
         jScrollPane3.getVerticalScrollBar().setValue((jScrollPane3.getVerticalScrollBar().getMaximum() - vView) / 2);
@@ -80,8 +80,7 @@ public class SpielGUI extends javax.swing.JFrame {
         werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
         bilanzLabel.setText(formatGeld.format(strg.gesamtGewinn()));
         // ========== Ende Formatierung ==========
-        
-        
+
         linien = strg.getLinien();
 
         //Timer für Uhrzeit und andere Dinge
@@ -89,12 +88,16 @@ public class SpielGUI extends javax.swing.JFrame {
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if(strg.getPause() == false) {
-                uhrzeitLabel.setText(formatDatum.format(strg.getTime()));
-                }
-                else {
+                if (strg.getPause() == false) {
+                    uhrzeitLabel.setText(formatDatum.format(strg.getTime()));
+                } else {
                     uhrzeitLabel.setText("PAUSE");
                 }
+                
+                if (strg.isVerloren()) {
+                    uhrzeitLabel.setText("GAME OVER!");
+                }
+                
                 geldLabel.setText(formatGeld.format(strg.getGeld()));
                 anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
                 werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
@@ -115,70 +118,63 @@ public class SpielGUI extends javax.swing.JFrame {
                 }
                 if (strg.getDepot() == 0) {
                     minusButton.setEnabled(false);
-                }
-                else {
+                } else {
                     minusButton.setEnabled(true);
                 }
-                
+
                 // ======== Abfrage ob Sachen noch kaufbar sind oder nicht ========
                 // Zugkaufen Button
                 if (strg.istkaeuflich(strg.getPreisZug())) {
                     plusButton.setEnabled(true);
-                }
-                else {
+                } else {
                     plusButton.setEnabled(false);
                 }
-                
+
                 // Linie Button
                 if (strg.istkaeuflich(strg.getPreisLinie())) {
                     linieBauenButton.setEnabled(true);
-                }
-                else {
+                } else {
                     linieBauenButton.setEnabled(false);
                 }
-                
+
                 //  Bahnhofkaufen Button
-                if(strg.istkaeuflich(strg.getPreisBhf())) {
+                if (strg.istkaeuflich(strg.getPreisBhf())) {
                     bahnhofBauenButton.setEnabled(true);
-                }
-                else {
+                } else {
                     bahnhofBauenButton.setEnabled(false);
                 }
-               
+
                 // Reparieren Button
                 if (strg.istkaeuflich(strg.getReparatur())) {
                     reparierenButton.setEnabled(true);
-                }
-                else {
+                } else {
                     reparierenButton.setEnabled(false);
                 }
-                
+
                 // ======== Überprüfung ENDE ========
             }
         }, 0, 40);
-        
+
         tickerPanel.getPixel();
         Thread th = new Thread(tickerPanel);
         th.start();
-        
+
         //Setzt das Programm Icon
         ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
         setIconImage(icon.getImage());
 
         jPanel3.requestFocus();
-        
+
         //Button Abfrage
         if (strg.getDepot() == 0) {
             minusButton.setEnabled(false);
-        }
-        else{
+        } else {
             minusButton.setEnabled(true);
         }
-        
+
         if (strg.getWerkstatt() == 0) {
             reparierenButton.setEnabled(false);
-        }
-        else{
+        } else {
             reparierenButton.setEnabled(true);
         }
     }
@@ -470,7 +466,7 @@ public class SpielGUI extends javax.swing.JFrame {
 
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
         jPanel3.requestFocus();
-        JDialog f = new MenuGUI(sound, (SpielPanel)jPanel3, strg); //Öfnet neue GUI
+        JDialog f = new MenuGUI(sound, (SpielPanel) jPanel3, strg); //Öfnet neue GUI
         f.setModal(true);
         f.setVisible(true);
     }//GEN-LAST:event_EinstellungenActionPerformed
@@ -494,8 +490,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jPanel3.requestFocus();
         if (strg.getDepot() == 0) {
             minusButton.setEnabled(false);
-        }
-        else{
+        } else {
             minusButton.setEnabled(true);
         }
     }//GEN-LAST:event_plusButtonActionPerformed
@@ -505,8 +500,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jPanel3.requestFocus();
         if (strg.getWerkstatt() == 0) {
             reparierenButton.setEnabled(false);
-        }
-        else{
+        } else {
             reparierenButton.setEnabled(true);
         }
     }//GEN-LAST:event_reparierenButtonActionPerformed
@@ -516,8 +510,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jPanel3.requestFocus();
         if (strg.getDepot() == 0) {
             minusButton.setEnabled(false);
-        }
-        else{
+        } else {
             minusButton.setEnabled(true);
         }
     }//GEN-LAST:event_minusButtonActionPerformed
@@ -579,7 +572,7 @@ public class SpielGUI extends javax.swing.JFrame {
     private javax.swing.JPanel tickerPanel;
     */
     private TickerPanel tickerPanel;
-    public javax.swing.JLabel uhrzeitLabel;
+    private javax.swing.JLabel uhrzeitLabel;
     private javax.swing.JLabel werkstattAnzahlLabel;
     private javax.swing.JLabel werkstattNameLabel;
     // End of variables declaration//GEN-END:variables

@@ -15,7 +15,7 @@ public class StrgTimer extends TimerTask {
     public StrgTimer(Spielsteuerung s) {
         strg = s;
         date = new Date();
-        date.setTime(0);
+        date.setTime(43200000);
     }
 
     public StrgTimer(Spielsteuerung s, Date d) {

@@ -12,6 +12,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.DefaultListModel;
@@ -71,6 +72,7 @@ public class SpielGUI extends javax.swing.JFrame {
 
         // ========== Formatiert verschiedene Variabeln ==========
         final SimpleDateFormat formatDatum = new SimpleDateFormat("HH:mm"); // Erstellt neuen "Kalender"
+        formatDatum.setTimeZone(TimeZone.getTimeZone("GMT"));
         final NumberFormat formatGeld = DecimalFormat.getCurrencyInstance(Locale.GERMANY);
         formatGeld.setCurrency(Currency.getInstance("EUR"));
 

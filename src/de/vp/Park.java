@@ -14,14 +14,16 @@ import java.awt.Color;
 public class Park extends Stadtteil {
 
     private int personen = -2;
-    private boolean nacht = false;
+    private int zeit = NICHTS;
     
     @Override
     public int getPersonen() {
-        if (nacht) {
-        return -personen;
+        if (zeit == NICHTS || zeit == MITTAG || zeit == NACHT) {
+            return 0;
+        } else if (zeit == MORGEN) {
+            return personen;
         } else {
-        return personen;
+            return -personen;
         }
     }
 
@@ -36,8 +38,8 @@ public class Park extends Stadtteil {
     }
 
     @Override
-    public void tageszeitAendern(boolean nacht) {
-        this.nacht = nacht;
+    public void tageszeitAendern(int tageszeit) {
+        zeit = tageszeit;
     }
 
 }

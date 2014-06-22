@@ -28,7 +28,7 @@ public class Linie {
     private int[] strecke; //jede Stelle ist ein Zug wenn "[i] != -1" und die Zahl ist gleichzeitig die Personenanzahl im Zug
     private int[] streckeZurueck;
     private int[] istBhf; //sozusagen die Abschnitte der Linie
-    private int depot;
+    private int depot, gewinn, kosten;
     private Spielsteuerung strg;
 
     // ========== Anfang Spielvariablen ==========
@@ -249,7 +249,8 @@ public class Linie {
      * @return alle Kosten die für Zug- und Bahnhofsunterhalt anfallen
      */
     public int kosten() {
-        return zuege * zugUnterhaltungsKosten + bhfs * bhfUnterhaltungsKosten;
+        kosten = zuege * zugUnterhaltungsKosten + bhfs * bhfUnterhaltungsKosten;
+        return kosten;
     }
 
     /**
@@ -262,7 +263,16 @@ public class Linie {
         for (int i = 0; i < bhfs; i++) {
             k = k + bhfListe[i].gewinn();
         }
-        return k;
+        gewinn = k;
+        return gewinn;
+    }
+    
+    /**
+     * 
+     * @return den aktuellen Gewinn der Linie
+     */
+    public int getGewinn() {
+        return gewinn;
     }
 
     /**

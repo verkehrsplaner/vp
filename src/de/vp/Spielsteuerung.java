@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class Spielsteuerung {
 
     private int depot, werkstatt, neueLinien, hoehe, breite, hauszahl, zeit, zeitB, zeitS, zeitL, strgPause, bhfs;
-    private long geld;
+    private long geld, bilanz;
     private boolean[][] hatBahnhof;
     private Stadtteil[][] teile;
     private Bahnhof[][] bahnhoefe;
@@ -1160,7 +1160,63 @@ public class Spielsteuerung {
         for (int i = 0; i < neueLinien; i++) {
             gewinn = gewinn + linien[i].gewinn();
         }
-        return gewinn; //genau!
+        return gewinn;
+    }
+    
+    public long bilanz() {
+        long biilanz = 0;
+        long kosten = 0;
+        int temp = 0;
+        // Gewinn
+        for (int i = 0; i < neueLinien; i++) {
+            biilanz = biilanz + linien[i].getGewinn();
+        }
+        // \/ alle unangebundenen Stadtteile
+        for (int h = 0; h < hatBahnhof.length; h++) {
+            for (int b = 0; b < hatBahnhof[h].length; b++) {
+                if (teile[h][b] != null && hatBahnhof[h][b] == false) {
+                    temp += beschwerde;
+                }
+            }
+        }
+        //Prämien
+        if(temp < beschwerde * 10) {
+            kosten -= 1000;
+        }
+        if(temp < beschwerde * 5) {
+            kosten -= 1000;
+        }
+        if(temp < beschwerde) {
+            kosten -= 2000;
+        } 
+
+        //Kosten
+        // \/ alle Linien
+        for (int i = 0; i < neueLinien - 1; i++) {
+            kosten = kosten + linien[i].kosten();
+        }
+
+        // \/ das was immer anfällt
+        kosten = kosten + betriebskosten;
+
+        // \/ alle Bahnhöfe
+        for (int h = 0; h < bahnhoefe.length; h++) {
+            for (int b = 0; b < bahnhoefe[h].length; b++) {
+                if (bahnhoefe[h][b] != null) {
+                    kosten = kosten + getBhfUnterhalt();
+                }
+            }
+        }
+        bilanz = biilanz - kosten;
+        return bilanz;
+    }
+    
+    /**
+     * 
+     * @return aktuelle gesamte Bilanz
+     */
+    public long getBilanz() {
+        return bilanz;
     }
 
     /**
@@ -1248,8 +1304,8 @@ public class Spielsteuerung {
             }
             // \/ Abrechnung
             if (zeit >= abrechnungsIntervall) {
-                if (geld + gesamtGewinn() > getMaxMinus()) {
-                    geld = geld + gesamtGewinn();
+                if (geld + bilanz() > getMaxMinus()) {
+                    geld += gesamtGewinn();
                     zeit = 0;
                 } else {
                     verloren = true;
@@ -1282,7 +1338,7 @@ public class Spielsteuerung {
             for (int i = 0; i < neueLinien; i++) {
                 linien[i].step();
             }
-            // \{ Tickernachricht bei Pleite
+            bilanz();
         }
         return true;
     }

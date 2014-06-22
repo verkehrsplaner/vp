@@ -103,7 +103,7 @@ public class SpielGUI extends javax.swing.JFrame {
                 geldLabel.setText(formatGeld.format(strg.getGeld()));
                 anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
                 werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
-                long bilanz = strg.gesamtGewinn();
+                long bilanz = strg.getBilanz();
                 if (bilanz < 0) {
                     bilanzLabel.setForeground(Color.RED);
                 } else {

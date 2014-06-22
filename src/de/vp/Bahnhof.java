@@ -66,7 +66,7 @@ public class Bahnhof {
      * Radius
      */
     public int gewinn() {
-        int x = kasse;
+        int x = getKasse();
         kasse = 0;
         return x;
     }
@@ -324,6 +324,13 @@ public class Bahnhof {
      */
     public int getAussteigen() {
         return aussteigen;
+    }
+
+    /**
+     * @return the kasse
+     */
+    public int getKasse() {
+        return kasse;
     }
 
 }

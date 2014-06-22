@@ -53,6 +53,7 @@ public class LinienGUI extends JFrame {
                 auslastung.setText(Double.toString(last) + " %");
                 gesamtLaenge.setText(Integer.toString(linie.gesamtLaenge()));
                 depot.setText(Integer.toString(linie.getDepot()));
+                bilanz.setText(Integer.toString(linie.getGewinn()));
                 //System.out.println("Gerundete Auslastung: " + last);
 
                 if (!linie.getBaubar()) {
@@ -110,6 +111,8 @@ public class LinienGUI extends JFrame {
         ampelButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         depot = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        bilanz = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linien Konfiguration");
@@ -196,6 +199,10 @@ public class LinienGUI extends JFrame {
 
         depot.setText("jLabel7");
 
+        jLabel7.setText("Bilanz:");
+
+        bilanz.setText("jLabel8");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,22 +230,27 @@ public class LinienGUI extends JFrame {
                                 .addComponent(plus)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(kapazitaet))
-                                    .addComponent(auslastung)
-                                    .addComponent(jLabel4)
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(kapazitaet))
+                                        .addComponent(auslastung)
+                                        .addComponent(jLabel4)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(gesamtLaenge))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(depot)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(gesamtLaenge))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(depot)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                        .addComponent(bilanz)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                                 .addComponent(ampelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(67, 67, 67)))
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,7 +300,11 @@ public class LinienGUI extends JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(depot))
-                        .addGap(53, 53, 53))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(bilanz))
+                        .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -437,6 +453,7 @@ public class LinienGUI extends JFrame {
     private javax.swing.JButton ampelButton;
     private javax.swing.JLabel anzahlZuege;
     private javax.swing.JLabel auslastung;
+    private javax.swing.JLabel bilanz;
     private javax.swing.JLabel depot;
     private javax.swing.JLabel gesamtLaenge;
     private javax.swing.JButton jButtonBahnhof;
@@ -449,6 +466,7 @@ public class LinienGUI extends JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;

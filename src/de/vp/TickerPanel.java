@@ -31,12 +31,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
         "Zombieangriffe schockieren Randbezirke!",
         "Langzeitstudie: Planeten können durchschnittlich älter werden als Mensch!",
         "Neue Farbe entdeckt: Lila-blassblau!",
-        "Dies ist ein News-Ticker!",
-        "Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaallo!",
-        "Wer hat den Keks aus der Dose geklaut?",
         "Hier könnte ihre Werbung stehen!",
-        "Hecker hat nen kleinen!",
-        "!",
         "Wer hat an der Uhr gedreht?"};
 
     public TickerPanel() {

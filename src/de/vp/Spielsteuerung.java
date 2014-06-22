@@ -1228,6 +1228,7 @@ public class Spielsteuerung {
                 } else {
                     verloren = true;
                     VerlorenGUI v = new VerlorenGUI();
+                    v.setModal(true);
                     v.setVisible(true);
                     ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
 

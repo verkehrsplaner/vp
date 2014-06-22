@@ -11,7 +11,7 @@ package de.vp;
  */
 public class Bahnhof {
 
-    private int fahrtKosten;
+
     private int X;
     private int Y;
     private Stadtteil[] teile;
@@ -23,7 +23,11 @@ public class Bahnhof {
     private int anzahlLinien;
     private String name;
     private Spielsteuerung strg;
-
+    
+    // ========== Anfang Spielvariablen ==========
+    private final int fahrtKosten = 3;
+    // ========== Ende Spielvariablen ==========
+    
     /**
      *
      * @param x
@@ -34,7 +38,6 @@ public class Bahnhof {
         X = x;
         Y = y;
         name = n;
-        fahrtKosten = 5;
         teile = new Stadtteil[30];
         anschlussLinien = new Linie[10];
     }
@@ -181,7 +184,12 @@ public class Bahnhof {
     }
 
     public int allesAussteigen(int personen) {
-        einsteigen += personen;
+        if(aussteigen + personen < 0) {
+            aussteigen += personen;
+        } else {
+            einsteigen += personen + aussteigen;
+            aussteigen = 0;
+        }
         return personen;
     }
 

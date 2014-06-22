@@ -218,6 +218,12 @@ public class SpielGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verkehrsplaner");
 
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel3MouseEntered(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -524,6 +530,10 @@ public class SpielGUI extends javax.swing.JFrame {
             f.setVisible(true);
         }
     }//GEN-LAST:event_jList1MouseClicked
+
+    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
+        jPanel3.requestFocus();
+    }//GEN-LAST:event_jPanel3MouseEntered
 
     public void saveScrollValues() {
         hPos = jScrollPane3.getHorizontalScrollBar().getValue();

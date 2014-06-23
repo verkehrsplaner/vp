@@ -55,7 +55,7 @@ public class MenuGUI extends JDialog {
         spielSpeichern = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         blinken = new javax.swing.JCheckBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        hAtmo = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menü");
@@ -110,7 +110,13 @@ public class MenuGUI extends JDialog {
             }
         });
 
-        jCheckBox1.setText("Atmosphäre");
+        hAtmo.setSelected(sound.getAtmoAn());
+        hAtmo.setText("Atmosphäre");
+        hAtmo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hAtmoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,7 +141,7 @@ public class MenuGUI extends JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(hAtmo)
                         .addGap(118, 118, 118))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(hMusik)
@@ -149,7 +155,7 @@ public class MenuGUI extends JDialog {
                 .addContainerGap()
                 .addComponent(Menü)
                 .addGap(64, 64, 64)
-                .addComponent(jCheckBox1)
+                .addComponent(hAtmo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hMusik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -214,12 +220,20 @@ public class MenuGUI extends JDialog {
         }
     }//GEN-LAST:event_blinkenActionPerformed
 
+    private void hAtmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hAtmoActionPerformed
+        if (hAtmo.isSelected() == true) {
+            sound.atmoAn();
+        } else {
+            sound.atmoAus();
+        }
+    }//GEN-LAST:event_hAtmoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Menü;
     public javax.swing.JCheckBox blinken;
+    private javax.swing.JCheckBox hAtmo;
     private javax.swing.JCheckBox hMusik;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JCheckBox soundeffekte;

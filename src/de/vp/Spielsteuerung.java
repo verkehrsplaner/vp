@@ -37,12 +37,12 @@ public class Spielsteuerung {
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 40000;
     private final int preisBhf = 500000;
-    private final int bhfUnterhalt = 500;
-    private final int preisLinie = 10000;
+    private final int bhfUnterhalt = 750;
+    private final int preisLinie = 50000;
     private final int reparatur = 10000;
     private final double stadtbaugeschw = 0.0; // je weniger umso mehr!
-    private final int beschwerde = 50; //Kosten wenn ein Stadtteil nicht angebunden ist
-    private final int betriebskosten = 1000;
+    private final int beschwerde = 65; //Kosten wenn ein Stadtteil nicht angebunden ist
+    private final int betriebskosten = 10000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 85%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl% bis 95% | Rest von 95% bis 100% ist Parkwahrscheinlichkeit
     // step() wird 2x pro sek aufgerufen!
@@ -65,7 +65,7 @@ public class Spielsteuerung {
         verloren = false;
         zoom = 0;
         bhfs = 0;
-        geld = 10000000; // 10 Mio
+        geld = 100000000; // 10 Mio
         timer = new Timer();
         timerS = new Timer();
         tageszeit = Stadtteil.NICHTS;

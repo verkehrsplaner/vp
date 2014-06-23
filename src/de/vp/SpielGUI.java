@@ -68,8 +68,8 @@ public class SpielGUI extends javax.swing.JFrame {
         vPos = jScrollPane3.getVerticalScrollBar().getValue();
 
         //Stellt die Scrollgeschwindigkeit ein
-        jScrollPane3.getVerticalScrollBar().setUnitIncrement(10);
-        jScrollPane3.getHorizontalScrollBar().setUnitIncrement(10);
+        jScrollPane3.getVerticalScrollBar().setUnitIncrement(25);
+        jScrollPane3.getHorizontalScrollBar().setUnitIncrement(25);
 
         // ========== Formatiert verschiedene Variabeln ==========
         final SimpleDateFormat formatDatum = new SimpleDateFormat("HH:mm"); // Erstellt neuen "Kalender"

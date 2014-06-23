@@ -24,17 +24,20 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class Sound {
 
-    private AudioInputStream[] musikStreams;
-    private Line musikLine, atmoLine, fxLine;
-    private Clip musikClip, atmoClip, fxClip;
-    private boolean musikAn, atmoAn, fxAn;
-    private int musikPlayed;
+    private AudioInputStream[] musikStreams, atmoStreams;
+    private Clip musikClip, atmoClip;
+    private boolean musikAn, atmoAn;
+    private int musikPlayed, atmoPlayed;
     private URL[] musikFiles = {this.getClass().getResource("sound/Nerviger_Song.aiff"),
         this.getClass().getResource("sound/Action.aiff"),
         this.getClass().getResource("sound/Orgel.aiff"),
         this.getClass().getResource("sound/M_Style.aiff")};
+    private URL[] atmoFiles = {this.getClass().getResource("sound/Atmo1_mixdown.aiff"),
+        this.getClass().getResource("sound/Atmo2_mixdown.aiff"),
+        this.getClass().getResource("sound/Atmo3_mixdown.aiff")};
 
     public Sound() {
+        // Musik einlesen
         musikStreams = new AudioInputStream[musikFiles.length];
         for (int i = 0; i < musikFiles.length; i++) {
             try {
@@ -43,6 +46,18 @@ public class Sound {
                 System.err.println("Unbekanntes Audio-Format!");
             } catch (IOException ex) {
                 System.err.println("Fehler an Musik-Datei!");
+            }
+        }
+        
+        // Atmo einlesen
+        atmoStreams = new AudioInputStream[atmoFiles.length];
+        for (int i = 0; i < atmoFiles.length; i++) {
+            try {
+                atmoStreams[i] = AudioSystem.getAudioInputStream(atmoFiles[i]);
+            } catch (UnsupportedAudioFileException ex) {
+                System.err.println("Unbekanntes Audio-Format!");
+            } catch (IOException ex) {
+                System.err.println("Fehler an Atmo-Datei!");
             }
         }
     }
@@ -66,7 +81,6 @@ public class Sound {
                 rand = (int) Math.round(Math.random() * (musikStreams.length - 1));
             }
             musikPlayed = rand;
-//            System.out.println("Song " + rand + " wird gespielt!");
             AudioInputStream musik = musikStreams[rand];
             AudioFormat format = musik.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
@@ -91,14 +105,12 @@ public class Sound {
         if (musikClip != null) {
             musikClip.stop();
         }
-        System.out.println("Musik Aus!");
     }
 
     private class MusikListener implements LineListener {
 
         @Override
         public void update(LineEvent event) {
-//            System.out.println("LineEvent! (" + event.getType() + ")");
             if (event.getType() == LineEvent.Type.STOP) {
                 musikClip.close();
                 try {
@@ -115,4 +127,70 @@ public class Sound {
         }
     }
 
+    // ======== Atmo ===========
+
+    public void atmoAn() {
+        if (!atmoAn) {
+            atmoAn = true;
+            atmoSpielen();
+        }
+    }
+
+    public boolean getAtmoAn() {
+        return atmoAn;
+    }
+    
+    private void atmoSpielen() {
+        try {
+            int rand = (int) Math.round(Math.random() * (atmoStreams.length - 1));
+            // Nicht zweilmal hintereinnander spielen
+            while (rand == atmoPlayed) {
+                rand = (int) Math.round(Math.random() * (atmoStreams.length - 1));
+            }
+            atmoPlayed = rand;
+            AudioInputStream atmo = atmoStreams[rand];
+            AudioFormat format = atmo.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            atmoClip = (Clip) AudioSystem.getLine(info);
+            atmoClip.addLineListener(new AtmoListener());
+            atmoClip.open(atmo);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    atmoClip.start();
+                }
+            }).start();
+        } catch (LineUnavailableException ex) {
+            System.err.println("Keine Line verfügbar!");
+        } catch (IOException ex) {
+            System.err.println("Fehler an Atmo-Datei!");
+        }
+    }
+
+    public void atmoAus() {
+        atmoAn = false;
+        if (atmoClip != null) {
+            atmoClip.stop();
+        }
+    }
+
+    private class AtmoListener implements LineListener {
+
+        @Override
+        public void update(LineEvent event) {
+            if (event.getType() == LineEvent.Type.STOP) {
+                atmoClip.close();
+                try {
+                    atmoStreams[atmoPlayed] = AudioSystem.getAudioInputStream(atmoFiles[atmoPlayed]);
+                } catch (UnsupportedAudioFileException ex) {
+                    System.err.println("Unbekanntes Audio-Format!");
+                } catch (IOException ex) {
+                    System.err.println("Fehler an Atmo-Datei!");
+                }
+                if (atmoAn) {
+                    atmoSpielen();
+                }
+            }
+        }
+    }
 }

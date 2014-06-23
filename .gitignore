@@ -1,3 +1,5 @@
 /build/
 /nbproject/private/
-/dist/
+/dist/*
+!/dist/javadoc/
+*.log

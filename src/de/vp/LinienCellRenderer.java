@@ -3,6 +3,7 @@ package de.vp;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -28,6 +29,12 @@ public class LinienCellRenderer extends JLabel implements ListCellRenderer {
         Font newFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
         this.setFont(newFont);
         this.setOpaque(true);
+        
+        if (linie.getGruenesLicht()) {
+            this.setIcon(new ImageIcon(getClass().getResource("images/green.png")));
+        } else {
+            this.setIcon(new ImageIcon(getClass().getResource("images/red.png")));
+        }
         
         if (isSelected) {
             // Schriftfarbe, wenn ausgewählt

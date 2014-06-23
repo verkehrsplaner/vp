@@ -166,7 +166,7 @@ public class Spielsteuerung {
     }
 
     /**
-     * Speichert den Spielstand in eine Datei
+     * Speichert den Spielstand in eine Datei. Die Datei wird überschrieben, oder neu angelegt.
      * @param file Datei, in die der Spielstand gespeichert werden soll
      */
     public void speichern(File file) {
@@ -1588,15 +1588,4 @@ public class Spielsteuerung {
     public int getReparatur() {
         return reparatur;
     }
-
-    /**
-     * speichtert den aktuellen Spielstand
-     * @param file muss ein leerer(!) File sein!
-     * @return true
-     */
-    public boolean speichern(File file) {
-        file.
-        return true;
-    }
-
 }

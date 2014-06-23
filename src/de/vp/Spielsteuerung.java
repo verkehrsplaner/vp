@@ -340,21 +340,25 @@ public class Spielsteuerung {
      */
     public boolean neueLinie(String name) {
         if (geld - getPreisLinie() >= getMaxMinus()) {
-            if (linien.length - 1 < neueLinien + 1) {
-                Linie[] hilf = new Linie[neueLinien + 10];
-                for (int i = 0; i > neueLinien; i++) {
-                    hilf[i] = linien[i];
-                }
-                linien = hilf;
-            }
-            linien[neueLinien] = new Linie(name, this);
-            neueLinien++;
+            intNeueLinie(name);
             geld = geld - getPreisLinie();
             ticker.neueNachricht("Linie " + name + " wurde feierlich eröffnet!");
             return true;
         } else {
             return false;
         }
+    }
+
+    private void intNeueLinie(String name) {
+        if (linien.length - 1 < neueLinien + 1) {
+            Linie[] hilf = new Linie[neueLinien + 10];
+            for (int i = 0; i > neueLinien; i++) {
+                hilf[i] = linien[i];
+            }
+            linien = hilf;
+        }
+        linien[neueLinien] = new Linie(name, this);
+        neueLinien++;
     }
 
     /**
@@ -1144,15 +1148,15 @@ public class Spielsteuerung {
             }
         }
         // Prämien
-        if(temp < beschwerde * 10) {
+        if (temp < beschwerde * 10) {
             kosten -= 1000;
         }
-        if(temp < beschwerde * 5) {
+        if (temp < beschwerde * 5) {
             kosten -= 1000;
         }
-        if(temp < beschwerde) {
+        if (temp < beschwerde) {
             kosten -= 2000;
-        } 
+        }
 
         // \/ alle Linien
         for (int i = 0; i < neueLinien - 1; i++) {
@@ -1184,7 +1188,7 @@ public class Spielsteuerung {
         }
         return gewinn;
     }
-    
+
     public long bilanz() {
         long biilanz = 0;
         long kosten = 0;
@@ -1202,15 +1206,15 @@ public class Spielsteuerung {
             }
         }
         //Prämien
-        if(temp < beschwerde * 10) {
+        if (temp < beschwerde * 10) {
             kosten -= 1000;
         }
-        if(temp < beschwerde * 5) {
+        if (temp < beschwerde * 5) {
             kosten -= 1000;
         }
-        if(temp < beschwerde) {
+        if (temp < beschwerde) {
             kosten -= 2000;
-        } 
+        }
 
         //Kosten
         // \/ alle Linien
@@ -1232,9 +1236,9 @@ public class Spielsteuerung {
         bilanz = biilanz - kosten;
         return bilanz;
     }
-    
+
     /**
-     * 
+     *
      * @return aktuelle gesamte Bilanz
      */
     public long getBilanz() {
@@ -1583,6 +1587,16 @@ public class Spielsteuerung {
      */
     public int getReparatur() {
         return reparatur;
+    }
+
+    /**
+     * speichtert den aktuellen Spielstand
+     * @param file muss ein leerer(!) File sein!
+     * @return true
+     */
+    public boolean speichern(File file) {
+        file.
+        return true;
     }
 
 }

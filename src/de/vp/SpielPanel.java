@@ -42,7 +42,6 @@ public class SpielPanel extends javax.swing.JPanel {
         list = new Listener(strg);
         this.setFocusable(true);
         this.addMouseListener(list);
-        this.addKeyListener(list);
         setSize(b * pixel[zoom] + 40, h * pixel[zoom] + 40);
         this.setPreferredSize(this.getSize());
     }

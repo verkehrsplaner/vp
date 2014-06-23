@@ -7,6 +7,10 @@
 package de.vp;
 
 import java.awt.Color;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -55,6 +59,8 @@ public class SpielGUI extends javax.swing.JFrame {
         strg.panelStarten(jPanel3);
         strg.setTicker(tickerPanel);
 
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyControlls());
+
         sound.musikAus();
         sound.atmoAn();
 
@@ -96,11 +102,11 @@ public class SpielGUI extends javax.swing.JFrame {
                 } else {
                     uhrzeitLabel.setText("PAUSE");
                 }
-                
+
                 if (strg.isVerloren()) {
                     uhrzeitLabel.setText("GAME OVER!");
                 }
-                
+
                 geldLabel.setText(formatGeld.format(strg.getGeld()));
                 anzahldepotLabel.setText(Integer.toString(strg.getDepot()));
                 werkstattAnzahlLabel.setText(Integer.toString(strg.getWerkstatt()));
@@ -218,17 +224,6 @@ public class SpielGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verkehrsplaner");
-
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel3MouseEntered(evt);
-            }
-        });
-        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jPanel3MouseMoved(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -479,7 +474,6 @@ public class SpielGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
-        jPanel3.requestFocus();
         JDialog f = new MenuGUI(sound, (SpielPanel) jPanel3, strg); //Öfnet neue GUI
         f.setModal(true);
         f.setVisible(true);
@@ -491,17 +485,14 @@ public class SpielGUI extends javax.swing.JFrame {
         if (s != null && !s.equals("")) {
             strg.neueLinie(s);
         }
-        jPanel3.requestFocus();
     }//GEN-LAST:event_linieBauenButtonActionPerformed
 
     private void bahnhofBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bahnhofBauenButtonActionPerformed
         strg.setNextAction("bhf");
-        jPanel3.requestFocus();
     }//GEN-LAST:event_bahnhofBauenButtonActionPerformed
 
     private void plusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusButtonActionPerformed
         strg.zugKaufen();
-        jPanel3.requestFocus();
         if (strg.getDepot() == 0) {
             minusButton.setEnabled(false);
         } else {
@@ -511,7 +502,6 @@ public class SpielGUI extends javax.swing.JFrame {
 
     private void reparierenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparierenButtonActionPerformed
         strg.zugReparieren();
-        jPanel3.requestFocus();
         if (strg.getWerkstatt() == 0) {
             reparierenButton.setEnabled(false);
         } else {
@@ -521,7 +511,6 @@ public class SpielGUI extends javax.swing.JFrame {
 
     private void minusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusButtonActionPerformed
         strg.zugVerschrotten();
-        jPanel3.requestFocus();
         if (strg.getDepot() == 0) {
             minusButton.setEnabled(false);
         } else {
@@ -537,14 +526,10 @@ public class SpielGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jList1MouseClicked
 
-    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
-        jPanel3.requestFocus();
-    }//GEN-LAST:event_jPanel3MouseEntered
-
-    private void jPanel3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseMoved
-        jPanel3.requestFocus();
-    }//GEN-LAST:event_jPanel3MouseMoved
-
+    /**
+     * Speichert die Positionen der Scrollbalken und die Größe des Viewports,
+     * damit diese beim Zoomen später verwendet weden können.
+     */
     public void saveScrollValues() {
         hPos = jScrollPane3.getHorizontalScrollBar().getValue();
         vPos = jScrollPane3.getVerticalScrollBar().getValue();
@@ -552,6 +537,9 @@ public class SpielGUI extends javax.swing.JFrame {
         vView = jScrollPane3.getViewport().getHeight();
     }
 
+    /**
+     * Zoomt rein und schiebt die Mitte wieder in die Mitte
+     */
     public void zoomIn() {
         jScrollPane3.getVerticalScrollBar().setValue(0);
         jScrollPane3.getVerticalScrollBar().setValue(vPos * 2 + vView / 2);
@@ -559,12 +547,20 @@ public class SpielGUI extends javax.swing.JFrame {
         this.saveScrollValues();
     }
 
+    /**
+     * Zoomt raus und schiebt die Mitte wieder in die Mitte
+     */
     public void zoomOut() {
         jScrollPane3.getHorizontalScrollBar().setValue(hPos / 2 - hView / 4);
         jScrollPane3.getVerticalScrollBar().setValue(vPos / 2 - vView / 4);
         this.saveScrollValues();
     }
 
+    /**
+     * Gibt die Nummer der aktuell ausgewählten Linie zurück
+     *
+     * @return Nummer der gewählten Linie
+     */
     public int getLinienNr() {
         return jList1.getSelectedIndex();
     }
@@ -599,4 +595,29 @@ public class SpielGUI extends javax.swing.JFrame {
     private javax.swing.JLabel werkstattNameLabel;
     // End of variables declaration//GEN-END:variables
 
+    private class KeyControlls implements KeyEventDispatcher {
+
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent e) {
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+                if (e.getKeyCode() == KeyEvent.VK_B) {
+                    strg.setNextAction("bhf");
+                } else if (e.getKeyCode() == KeyEvent.VK_J) {
+                    strg.langsamer();
+                } else if (e.getKeyCode() == KeyEvent.VK_L) {
+                    strg.schneller();
+                } else if (e.getKeyCode() == KeyEvent.VK_K || e.getKeyCode() == KeyEvent.VK_P) {
+                    strg.setPause(!strg.getPause());
+                } else if (e.getKeyCode() == KeyEvent.VK_C) {
+                    strg.geldCheat();
+                } else if (e.getKeyCode() == KeyEvent.VK_PLUS || e.getKeyCode() == 93 || e.getKeyCode() == KeyEvent.VK_X) { // Das zweite ist für Maxis Mac und insgesamt gehts hier um Zoomen
+                    strg.zoomIn();
+                } else if (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == 47 || e.getKeyCode() == KeyEvent.VK_Y) {
+                    strg.zoomOut();
+                }
+            }
+            return false;
+        }
+
+    }
 }

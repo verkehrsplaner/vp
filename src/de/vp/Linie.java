@@ -32,9 +32,9 @@ public class Linie {
     private Spielsteuerung strg;
 
     // ========== Anfang Spielvariablen ==========
-    private final int preisStrecke = 100000;
-    private final int bhfUnterhaltungsKosten = 500;
-    private final int zugUnterhaltungsKosten = 1000;
+    private final int preisStrecke = 1000000;
+    private int bhfUnterhaltungsKosten;
+    private final int zugUnterhaltungsKosten = 1500;
     private final int zugKapazitaet = 350;
     private final int fahrtZeit = 2; // Fahrtzeit pro Block
     // ========== Ende Spielvariablen ==========
@@ -49,6 +49,7 @@ public class Linie {
         personen = 0;
         gesamtLaenge = 0;
         gruenesLicht = false;
+        bhfUnterhaltungsKosten = strg.getBhfUnterhalt();
         Color[] farben = {new Color(255, 140, 0)/* Orange */, new Color(47, 255, 0)/*hellgrün*/,
             new Color(4, 115, 0)/* dunkelgrün */, new Color(212, 0, 0)/*rot*/,
             new Color(61, 77, 255)/*blau*/, new Color(151, 175, 222)/*hellblau*/,

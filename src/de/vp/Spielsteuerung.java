@@ -1,5 +1,6 @@
 package de.vp;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
@@ -52,6 +53,11 @@ public class Spielsteuerung {
     private final boolean stadtbauen = true; // Stadt erweiterter sich oder auch nicht.
     // ========== Ende Spielvariablen ==========
 
+    /**
+     * Erzeugt eine neue Spielsteuerung
+     * @param h Höhe des Spielfeldes
+     * @param b Breite des Spielfeldes
+     */
     public Spielsteuerung(int h, int b) {
         hauszahl = 0;
         hoehe = h;
@@ -150,7 +156,23 @@ public class Spielsteuerung {
 
         timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
     }
+    
+    /**
+     * Erzeugt eine neue Spielsteuerung aus einem gespeicherten Spielstand
+     * @param file Datei, in dem der Spielstand gespeichert ist
+     */
+    public Spielsteuerung(File file) {
+        
+    }
 
+    /**
+     * Speichert den Spielstand in eine Datei
+     * @param file Datei, in die der Spielstand gespeichert werden soll
+     */
+    public void speichern(File file) {
+        
+    }
+    
     /**
      * Startet die Animation des Panels
      *

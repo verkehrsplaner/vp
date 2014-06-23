@@ -120,6 +120,14 @@ public class Linie {
             return false;
         }
     }
+    
+    /**
+     * 
+     * @param bhfListe 
+     */
+    public void bahnhofListeEinfuegen(Bahnhof[] liste) {
+        bhfListe = liste;
+    }
 
     /**
      *

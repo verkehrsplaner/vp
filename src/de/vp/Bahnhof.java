@@ -70,7 +70,7 @@ public class Bahnhof {
      */
     public int gewinn() {
         int x = getKasse();
-        kasse = 0;
+        setKasse(0);
         return x;
     }
 
@@ -132,7 +132,7 @@ public class Bahnhof {
         }
 
         System.out.println(eingestiegen + " in " + name + " eingestiegen!");
-        kasse += eingestiegen * fahrtKosten;
+        setKasse(kasse + eingestiegen * fahrtKosten);
         return eingestiegen;
     }
 
@@ -353,6 +353,13 @@ public class Bahnhof {
      */
     public void setAussteigen(int aussteigen) {
         this.aussteigen = aussteigen;
+    }
+
+    /**
+     * @param kasse the kasse to set
+     */
+    public void setKasse(int kasse) {
+        this.kasse = kasse;
     }
 
 }

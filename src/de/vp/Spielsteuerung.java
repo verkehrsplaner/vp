@@ -313,6 +313,7 @@ public class Spielsteuerung {
             datei.println("geld:" + geld); // geld
             datei.println("depot:" + depot); // depot
             datei.println("w:" + werkstatt); // Werkstatt
+            datei.println("bil:" + bilanz); // gesamte Bilanz
             datei.println("date:" + strgTimer.getTime().getTime()); // UNIX x 1000
 
             // Alle Stadtteile
@@ -340,7 +341,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (bahnhoefe[h][b] != null) {
                         if (bahnhoefe[h][b] instanceof Bahnhof) {
-                            datei.println("bhf:" + h + "," + b + "," + bahnhoefe[h][b].getName() + "," + bahnhoefe[h][b].getEinsteigen() + "," + bahnhoefe[h][b].getAussteigen()); // Höhe, Breite, Name, Leute die einsteigen wollen, Leute die aussteigen wollen
+                            datei.println("bhf:" + h + "," + b + "," + bahnhoefe[h][b].getName() + "," + bahnhoefe[h][b].getEinsteigen() + "," + bahnhoefe[h][b].getAussteigen()+ "," + bahnhoefe[h][b].getKasse()); // Höhe, Breite, Name, Leute die einsteigen wollen, Leute die aussteigen wollen
                         }
                     }
                 }
@@ -349,7 +350,7 @@ public class Spielsteuerung {
             // Alle Linien
             for (int i = 0; i < linien.length; i++) {
                 if (linien[i] != null) {
-                    datei.println("linie:" + linien[i].getName() + "," + linien[i].getFarbe().getRed() + "," + linien[i].getFarbe().getGreen() + "," + linien[i].getFarbe().getBlue() + "," + linien[i].getZuege() + "," + linien[i].getGruenesLicht()); // Name, RGB Farbe, Züge der Linie, boolean: Grünes Licht
+                    datei.println("linie:" + linien[i].getName() + "," + linien[i].getFarbe().getRed() + "," + linien[i].getFarbe().getGreen() + "," + linien[i].getFarbe().getBlue() + "," + linien[i].getZuege() + "," + linien[i].getGruenesLicht() + "," + linien[i].getGewinn()); // Name, RGB Farbe, Züge der Linie, boolean: Grünes Licht
 
                     // und derren Bahnhöfe
                     Bahnhof[] bahnhof = linien[i].getBahnhof();
@@ -366,6 +367,7 @@ public class Spielsteuerung {
             writer.close();
             System.out.println("~~~~~~~~~~~~~~~~~~");
             System.out.println("Spiel gespeichert!");
+            System.out.println("und zwar geil™!");
             System.out.println("~~~~~~~~~~~~~~~~~~");
             setPause(false);
         } catch (IOException ex) {

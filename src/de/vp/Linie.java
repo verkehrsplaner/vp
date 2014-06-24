@@ -301,7 +301,7 @@ public class Linie {
         for (int i = 0; i < bhfs; i++) {
             k = k + bhfListe[i].gewinn();
         }
-        gewinn = k;
+        setGewinn(k);
         return gewinn;
     }
 
@@ -516,6 +516,13 @@ public class Linie {
      */
     public int getDepot() {
         return depot;
+    }
+
+    /**
+     * @param gewinn the gewinn to set
+     */
+    public void setGewinn(int gewinn) {
+        this.gewinn = gewinn;
     }
 
 }

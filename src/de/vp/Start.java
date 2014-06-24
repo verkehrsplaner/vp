@@ -164,7 +164,7 @@ public class Start extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showSaveDialog(this);
+        int returnVal = fc.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Path file = fc.getSelectedFile().toPath();
             JFrame f = new SpielGUI(file);

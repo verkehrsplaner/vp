@@ -57,6 +57,13 @@ public class Linie {
             new Color(117, 71, 15)/*braun*/, new Color(255, 0, 170)/*rosa*/,
             new Color(61, 77, 255)/*blau*/,};
         farbe = farben[(int) Math.round(Math.random() * (farben.length - 1))];
+        
+        // Baubar setzen
+        if (!gruenesLicht && depot == zuege) {
+            baubar = true;
+        } else {
+            baubar = false;
+        }
     }
 
     public Bahnhof[] getBahnhof() {
@@ -176,14 +183,19 @@ public class Linie {
         }
     }
 
-    private void bahnhofWiedereinfuegen(Bahnhof bhf) {
+    public void setZuegeWieder(int z) {
+        zuege = z;
+        depot = z;
+        this.setZeitZug();
+    }
+
+    public void bahnhofWiederEinfuegen(Bahnhof bhf) {
         if (baubar) {
+            System.out.println("Bahnhof eingefügt!");
             // Wenn am Anfang eingefügt werden soll
             if (bhfListe[0] == null) {
                 bhfListe[0] = bhf;
-            }
-
-            else {
+            } else {
                 if (bhfListe.length < bhfs + 1) {
                     //Bei zu kurzer Liste wird diese erweitert
                     Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
@@ -193,11 +205,11 @@ public class Linie {
                     bhfListe = bhfHilf;
                 }
                 bhfListe[bhfs] = bhf;
-                
-                streckeBerechnen(bhfs -1 , bhfs);
-                
+
+                streckeBerechnen(bhfs - 1, bhfs);
+
                 gesamtLaenge();
-                
+
             }
             // Strecken bauen
             bhf.linieHinzu(this);
@@ -205,6 +217,7 @@ public class Linie {
             this.streckenBauen();
         }
     }
+
     /**
      *
      * @param bhf gegebener Bhf wird aus der Liste gelöscht? letzter Bhf wird
@@ -243,7 +256,7 @@ public class Linie {
         }
         // Bahnhöfe einfügen
         if (bhfs > 1) {
-        tmpIstBhf[0] = 0;
+            tmpIstBhf[0] = 0;
             // Bahnhöfe durchgehen
             for (int i = 1; i < bhfs; i++) {
                 // Entfernung bis zum Bahnhof
@@ -296,9 +309,9 @@ public class Linie {
         gewinn = k;
         return gewinn;
     }
-    
+
     /**
-     * 
+     *
      * @return den aktuellen Gewinn der Linie
      */
     public int getGewinn() {
@@ -326,10 +339,10 @@ public class Linie {
      * @return auslastung
      */
     public double auslastung() {
-        if(kapazitaet() == 0){
+        if (kapazitaet() == 0) {
             return 0;
         } else {
-            return ((double)personen) / kapazitaet();
+            return ((double) personen) / kapazitaet();
         }
 
     }

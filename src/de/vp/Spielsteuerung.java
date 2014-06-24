@@ -486,17 +486,32 @@ public class Spielsteuerung {
      * Ein neuer Bahnhof wird in bahnhoefe[x][y] an den gegebenen Koordinaten x
      * & y eingesetzt
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x Koordiante
+     * @param y Koordinate
+     * @return wenig bis nix sinnvollen
      */
     private boolean neuerBahnhof(int x, int y) {
         if (geld - getPreisBhf() >= getMaxMinus() && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {
             String name = bhfNamen.remove((int) Math.round(Math.random() * (bhfNamen.size() - 1)));
-            bahnhoefe[y][x] = new Bahnhof(x, y, name);
+            intNeuerBahnhof(x,y,name);
             geld = geld - getPreisBhf();
             ticker.neueNachricht("Bahnhof " + name + " wurde feierlich eröffnet!");
+            return true;
+        } else {
+            return false;
+        }
 
+    }
+    
+    /**
+     * 
+     * @param x Kooridnate
+     * @param y Koordinate
+     * @param name Name des zukünftigen Bahnhofs
+     */
+    private void intNeuerBahnhof(int x, int y, String name) {
+            bahnhoefe[y][x] = new Bahnhof(x, y, name);
+            
             // Häuser zum Bahnhof
             int minX = x - 4;
             int minY = y - 4;
@@ -516,11 +531,6 @@ public class Spielsteuerung {
             }
 
             bhfs++;
-            return true;
-        } else {
-            return false;
-        }
-
     }
 
     /**

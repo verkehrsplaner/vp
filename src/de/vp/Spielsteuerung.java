@@ -296,6 +296,7 @@ public class Spielsteuerung {
      * @param file Datei, in die der Spielstand gespeichert werden soll
      */
     public void speichern(Path file) {
+        setPause(true);
         try {
             Charset charset = Charset.forName("UTF-8");
             BufferedWriter writer = Files.newBufferedWriter(file, charset);
@@ -362,6 +363,7 @@ public class Spielsteuerung {
             System.out.println("~~~~~~~~~~~~~~~~~~");
             System.out.println("Spiel gespeichert!");
             System.out.println("~~~~~~~~~~~~~~~~~~");
+            setPause(false);
         } catch (IOException ex) {
             System.err.println("Fehler bei der Ausgabe!");
         }

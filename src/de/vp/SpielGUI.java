@@ -68,7 +68,7 @@ public class SpielGUI extends javax.swing.JFrame {
         initComponents();
         initRest();
     }
-    
+
     private void initRest() {
         strg.panelStarten(jPanel3);
         strg.setTicker(tickerPanel);
@@ -105,6 +105,10 @@ public class SpielGUI extends javax.swing.JFrame {
         // ========== Ende Formatierung ==========
 
         linien = strg.getLinien();
+        linienListe.clear();
+        for (int i = 0; i < linien.length; i++) {
+            linienListe.addElement(linien[i]);
+        }
 
         //Timer für Uhrzeit und andere Dinge
         Timer t = new Timer();
@@ -201,7 +205,7 @@ public class SpielGUI extends javax.swing.JFrame {
             reparierenButton.setEnabled(true);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

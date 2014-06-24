@@ -57,7 +57,7 @@ public class Linie {
             new Color(117, 71, 15)/*braun*/, new Color(255, 0, 170)/*rosa*/,
             new Color(61, 77, 255)/*blau*/,};
         farbe = farben[(int) Math.round(Math.random() * (farben.length - 1))];
-        
+
         // Baubar setzen
         if (!gruenesLicht && depot == zuege) {
             baubar = true;
@@ -193,24 +193,19 @@ public class Linie {
         if (baubar) {
             System.out.println("Bahnhof eingefügt!");
             // Wenn am Anfang eingefügt werden soll
-            if (bhfListe[0] == null) {
-                bhfListe[0] = bhf;
-            } else {
-                if (bhfListe.length < bhfs + 1) {
-                    //Bei zu kurzer Liste wird diese erweitert
-                    Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
-                    for (int i = 0; i < bhfListe.length; i++) {
-                        bhfHilf[i] = bhfListe[i];
-                    }
-                    bhfListe = bhfHilf;
+            if (bhfListe.length < bhfs + 1) {
+                //Bei zu kurzer Liste wird diese erweitert
+                Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
+                for (int i = 0; i < bhfListe.length; i++) {
+                    bhfHilf[i] = bhfListe[i];
                 }
-                bhfListe[bhfs] = bhf;
-
-                streckeBerechnen(bhfs - 1, bhfs);
-
-                gesamtLaenge();
-
+                bhfListe = bhfHilf;
             }
+            bhfListe[bhfs] = bhf;
+            bhfs++;
+            
+            gesamtLaenge();
+
             // Strecken bauen
             bhf.linieHinzu(this);
             this.setZeitZug();

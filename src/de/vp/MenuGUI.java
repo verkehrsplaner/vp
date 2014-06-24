@@ -5,8 +5,10 @@
  */
 package de.vp;
 
+import java.nio.file.Path;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -201,7 +203,13 @@ public class MenuGUI extends JDialog {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void spielSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielSpeichernActionPerformed
-
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showSaveDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            Path file = fc.getSelectedFile().toPath();
+            strg.speichern(file);
+        }
+        this.dispose();
     }//GEN-LAST:event_spielSpeichernActionPerformed
 
     private void hMusikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hMusikActionPerformed

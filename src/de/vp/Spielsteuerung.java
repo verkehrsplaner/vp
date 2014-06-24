@@ -1,9 +1,17 @@
 package de.vp;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -55,6 +63,7 @@ public class Spielsteuerung {
 
     /**
      * Erzeugt eine neue Spielsteuerung
+     *
      * @param h Höhe des Spielfeldes
      * @param b Breite des Spielfeldes
      */
@@ -156,23 +165,38 @@ public class Spielsteuerung {
 
         timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
     }
-    
+
     /**
      * Erzeugt eine neue Spielsteuerung aus einem gespeicherten Spielstand
+     *
      * @param file Datei, in dem der Spielstand gespeichert ist
      */
     public Spielsteuerung(File file) {
-        
+
     }
 
     /**
-     * Speichert den Spielstand in eine Datei. Die Datei wird überschrieben, oder neu angelegt.
+     * Speichert den Spielstand in eine Datei. Die Datei wird überschrieben,
+     * oder neu angelegt.
+     *
      * @param file Datei, in die der Spielstand gespeichert werden soll
      */
-    public void speichern(File file) {
-        
+    public void speichern(Path file) {
+        try {
+            Charset charset = Charset.forName("UTF-8");
+            BufferedWriter writer = Files.newBufferedWriter(file, charset);
+            PrintWriter datei = new PrintWriter(writer);
+            
+            // Schreiben
+            datei.println("Test!");
+            
+            datei.close();
+            writer.close();
+        } catch (IOException ex) {
+            System.err.println("Fehler bei der Ausgabe!");
+        }
     }
-    
+
     /**
      * Startet die Animation des Panels
      *

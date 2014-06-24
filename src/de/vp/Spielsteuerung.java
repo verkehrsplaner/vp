@@ -281,10 +281,66 @@ public class Spielsteuerung {
             PrintWriter datei = new PrintWriter(writer);
 
             // Schreiben
-            datei.println("Test!");
+            datei.println("Speicherstand ~VERKEHRSPLANER™~"); // Sinnloses Anfangsgedönse
+            datei.println("b:" + breite); // Breite
+            datei.println("h:" + hoehe); // Höhe
+            datei.println("geld:" + geld); // geld
+            datei.println("depot:" + depot); // depot
+            datei.println("w:" + werkstatt); // Werkstatt
+            datei.println("date:" + strgTimer.getTime().getTime()); // UNIX x 1000
+
+            // Alle Stadtteile
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if (teile[h][b] != null) {
+                        if (teile[h][b] instanceof Haus) {
+                            datei.println("haus:" + h + "," + b);
+                        }
+                        if (teile[h][b] instanceof Firma) {
+                            datei.println("firma:" + h + "," + b);
+                        }
+                        if (teile[h][b] instanceof Park) {
+                            datei.println("park:" + h + "," + b);
+                        }
+                        if (teile[h][b] instanceof Rathaus) {
+                            datei.println("firma:" + h + "," + b);
+                        }
+                    }
+                }
+            }
+
+            // Alle Bahnhöfe
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if (bahnhoefe[h][b] != null) {
+                        if (bahnhoefe[h][b] instanceof Bahnhof) {
+                            datei.println("bhf:" + h + "," + b + "," + bahnhoefe[h][b].getName() + "," + bahnhoefe[h][b].getEinsteigen() + "," + bahnhoefe[h][b].getAussteigen()); // Höhe, Breite, Name, Leute die einsteigen wollen, Leute die aussteigen wollen
+                        }
+                    }
+                }
+            }
+
+            // Alle Linien
+            for (int i = 0; i < linien.length; i++) {
+                if (linien[i] != null) {
+                    datei.println("linie:" + linien[i].getName() + "," + linien[i].getFarbe().getRed() + "," + linien[i].getFarbe().getGreen() + "," + linien[i].getFarbe().getBlue() + "," + linien[i].getZuege() + "," + linien[i].getGruenesLicht()); // Name, RGB Farbe, Züge der Linie, boolean: Grünes Licht
+
+                    // und derren Bahnhöfe
+                    Bahnhof[] bahnhof = linien[i].getBahnhof();
+                    for (int bhf = 0; bhf < bahnhof.length; bhf++) {
+                        if (bahnhof[bhf] != null) {
+                            datei.println("bzl:" + bahnhof[bhf].getY() + "," + bahnhof[bhf].getX()); // Bahnhofs Höhe und Breite
+                        }
+                    }
+                    datei.println("endeLinie");
+                }
+            }
 
             datei.close();
             writer.close();
+            System.out.println("~~~~~~~~~~~~~~~~~~");
+            System.out.println("Spiel gespeichert!");
+            System.out.println("~~~~~~~~~~~~~~~~~~");
         } catch (IOException ex) {
             System.err.println("Fehler bei der Ausgabe!");
         }
@@ -508,20 +564,35 @@ public class Spielsteuerung {
 
     /**
      *
-     * Ein neuer Bahnhof wird in bahnhoefe[x][y] an den gegebenen Koordinaten x
-     * & y eingesetzt
+     * Ein neuer Bahnhof wird erzeugt
+     * muss aber noch intNeuerBahnhof() aufrufen
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x Koordiante
+     * @param y Koordinate
+     * @return wenig bis nix sinnvollen
      */
     private boolean neuerBahnhof(int x, int y) {
         if (geld - getPreisBhf() >= getMaxMinus() && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {
             String name = bhfNamen.remove((int) Math.round(Math.random() * (bhfNamen.size() - 1)));
-            bahnhoefe[y][x] = new Bahnhof(x, y, name);
+            intNeuerBahnhof(x,y,name);
             geld = geld - getPreisBhf();
             ticker.neueNachricht("Bahnhof " + name + " wurde feierlich eröffnet!");
+            return true;
+        } else {
+            return false;
+        }
 
+    }
+    
+    /**
+     * Interne Methode fügt einen neuen Bahnhof ein
+     * @param x Kooridnate
+     * @param y Koordinate
+     * @param name Name des zukünftigen Bahnhofs
+     */
+    private void intNeuerBahnhof(int x, int y, String name) {
+            bahnhoefe[y][x] = new Bahnhof(x, y, name);
+            
             // Häuser zum Bahnhof
             int minX = x - 4;
             int minY = y - 4;
@@ -541,11 +612,6 @@ public class Spielsteuerung {
             }
 
             bhfs++;
-            return true;
-        } else {
-            return false;
-        }
-
     }
 
     /**

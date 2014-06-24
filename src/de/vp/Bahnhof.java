@@ -85,7 +85,7 @@ public class Bahnhof {
                 x = x + teile[i].getPersonen();
             }
         }
-        einsteigen += x;
+        setEinsteigen(einsteigen + x);
         System.out.println(einsteigen);
         return x;
     }
@@ -97,7 +97,7 @@ public class Bahnhof {
                 x = x + teile[i].getPersonen();
             }
         }
-        aussteigen += x;
+        setAussteigen(aussteigen + x);
         System.out.println(aussteigen);
         return x;
     }
@@ -122,10 +122,10 @@ public class Bahnhof {
             int einsteigenProLinie = Math.round(einsteigen / anzahlLinien);
             if (frei > einsteigenProLinie) {
                 eingestiegen = einsteigenProLinie;
-                einsteigen -= einsteigenProLinie;
+                setEinsteigen(einsteigen - einsteigenProLinie);
             } else if (einsteigenProLinie > frei) {
                 eingestiegen = frei;
-                einsteigen -= frei;
+                setEinsteigen(einsteigen - frei);
             }
         } else {
             eingestiegen = 0;
@@ -169,11 +169,11 @@ public class Bahnhof {
 
             if (wollenAussteigen < -aussteigen) {
                 ausgestiegen = wollenAussteigen;
-                aussteigen += wollenAussteigen;
+                setAussteigen(aussteigen + wollenAussteigen);
             } else {
                 ausgestiegen = wollenAussteigen;
-                einsteigen += wollenAussteigen + aussteigen;
-                aussteigen = 0;
+                setEinsteigen(einsteigen + wollenAussteigen + aussteigen);
+                setAussteigen(0);
             }
 
         } else {
@@ -185,10 +185,10 @@ public class Bahnhof {
 
     public int allesAussteigen(int personen) {
         if(aussteigen + personen < 0) {
-            aussteigen += personen;
+            setAussteigen(aussteigen + personen);
         } else {
-            einsteigen += personen + aussteigen;
-            aussteigen = 0;
+            setEinsteigen(einsteigen + personen + aussteigen);
+            setAussteigen(0);
         }
         return personen;
     }
@@ -339,6 +339,20 @@ public class Bahnhof {
      */
     public int getKasse() {
         return kasse;
+    }
+
+    /**
+     * @param einsteigen the einsteigen to set
+     */
+    public void setEinsteigen(int einsteigen) {
+        this.einsteigen = einsteigen;
+    }
+
+    /**
+     * @param aussteigen the aussteigen to set
+     */
+    public void setAussteigen(int aussteigen) {
+        this.aussteigen = aussteigen;
     }
 
 }

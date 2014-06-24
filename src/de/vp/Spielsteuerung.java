@@ -118,6 +118,9 @@ public class Spielsteuerung {
                     case "geld":
                         geld = Long.parseLong(data[1]);
                         break;
+                    case "bil":
+                        depot = Integer.parseInt(data[1]);
+                        break;
                     case "depot":
                         depot = Integer.parseInt(data[1]);
                         break;
@@ -164,6 +167,7 @@ public class Spielsteuerung {
                         intNeuerBahnhof(x, y, detail[2]);
                         bahnhoefe[y][x].setEinsteigen(Integer.parseInt(detail[3]));
                         bahnhoefe[y][x].setAussteigen(Integer.parseInt(detail[4]));
+                        bahnhoefe[y][x].setKasse(Integer.parseInt(detail[5]));
                         break;
                     case "linie":
                         System.out.println("Linie geladen!");

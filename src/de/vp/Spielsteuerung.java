@@ -69,11 +69,116 @@ public class Spielsteuerung {
      * @param b Breite des Spielfeldes
      */
     public Spielsteuerung(int h, int b) {
-        hauszahl = 0;
         hoehe = h;
         breite = b;
+        hauszahl = 0;
         depot = 0;
         werkstatt = 0;
+        geld = 100000000; // 10 Mio
+
+        initVariables();
+
+        altstadt();
+
+        strgTimer = new StrgTimer(this);
+        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+    }
+
+    /**
+     * Erzeugt eine neue Spielsteuerung aus einem gespeicherten Spielstand
+     *
+     * @param file Datei, in dem der Spielstand gespeichert ist
+     */
+    public Spielsteuerung(Path file) {
+        BufferedReader reader = null;
+        try {
+            Charset charset = Charset.forName("UTF-8");
+            reader = Files.newBufferedReader(file, charset);
+            String zeile = null;
+            long date = 0;
+            while ((zeile = reader.readLine()) != null) {
+                // Einlesen
+                String[] data = zeile.split(":");
+                String[] detail;
+                int x, y;
+                switch (data[0]) {
+                    case "b":
+                        breite = Integer.parseInt(data[1]);
+                        if (hoehe != 0 && breite != 0) {
+                            initVariables();
+                        }
+                        break;
+                    case "h":
+                        hoehe = Integer.parseInt(data[1]);
+                        if (hoehe != 0 && breite != 0) {
+                            initVariables();
+                        }
+                        break;
+                    case "geld":
+                        geld = Long.parseLong(data[1]);
+                        break;
+                    case "depot":
+                        depot = Integer.parseInt(data[1]);
+                        break;
+                    case "w":
+                        werkstatt = Integer.parseInt(data[1]);
+                        break;
+                    case "date":
+                        date = Long.parseLong(data[1]);
+                        break;
+                    case "haus":
+                        detail = data[1].split(",");
+                        x = Integer.parseInt(detail[1]);
+                        y = Integer.parseInt(detail[0]);
+                        teile[y][x] = new Haus();
+                        hauszahl++;
+                        break;
+                    case "firma":
+                        detail = data[1].split(",");
+                        x = Integer.parseInt(detail[1]);
+                        y = Integer.parseInt(detail[0]);
+                        teile[y][x] = new Firma();
+                        hauszahl++;
+                        break;
+                    case "park":
+                        detail = data[1].split(",");
+                        x = Integer.parseInt(detail[1]);
+                        y = Integer.parseInt(detail[0]);
+                        teile[y][x] = new Park();
+                        hauszahl++;
+                        break;
+                    case "rh":
+                        detail = data[1].split(",");
+                        x = Integer.parseInt(detail[1]);
+                        y = Integer.parseInt(detail[0]);
+                        teile[y][x] = new Rathaus();
+                        hauszahl++;
+                        break;
+                    case "bhf":
+                        detail = data[1].split(",");
+                        x = Integer.parseInt(detail[1]);
+                        y = Integer.parseInt(detail[0]);
+                        bhfNamen.remove(bhfNamen.indexOf(detail[2]));
+                        intNeuerBahnhof(x, y, detail[2]);
+                        bahnhoefe[y][x].setEinsteigen(Integer.parseInt(detail[3]));
+                        bahnhoefe[y][x].setAussteigen(Integer.parseInt(detail[4]));
+                        break;
+                }
+            }
+            reader.close();
+
+            strgTimer = new StrgTimer(this, new Date(date));
+            timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+
+        } catch (IOException ex) {
+            System.err.println("Fehler beim Lesen der Datei!");
+        }
+    }
+
+    /**
+     * Initialisiert alle Variablen, aufgerufen im Konstuktor
+     */
+    private void initVariables() {
         neueLinien = 0;
         feldVoll = false;
         pause = false;
@@ -81,12 +186,12 @@ public class Spielsteuerung {
         verloren = false;
         zoom = 0;
         bhfs = 0;
-        geld = 100000000; // 10 Mio
+
         timer = new Timer();
         timerS = new Timer();
         tageszeit = Stadtteil.NICHTS;
         strgPause = 500; // Timer-Rate
-        strgTimer = new StrgTimer(this);
+
         hatBahnhof = new boolean[hoehe][breite];
         teile = new Stadtteil[hoehe][breite];
         bahnhoefe = new Bahnhof[hoehe][breite];
@@ -160,30 +265,6 @@ public class Spielsteuerung {
         bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {
             bhfNamen.add(bhfNamenTmp[i]);
-        }
-
-        altstadt();
-
-        timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
-    }
-
-    /**
-     * Erzeugt eine neue Spielsteuerung aus einem gespeicherten Spielstand
-     *
-     * @param file Datei, in dem der Spielstand gespeichert ist
-     */
-    public Spielsteuerung(Path file) {
-        BufferedReader reader = null;
-        try {
-            Charset charset = Charset.forName("UTF-8");
-            reader = Files.newBufferedReader(file, charset);
-            String zeile = null;
-            while ((zeile = reader.readLine()) != null) {
-                // Einlesen
-            }
-                reader.close();
-        } catch (IOException ex) {
-            System.err.println("Fehler beim Lesen der Datei!");
         }
     }
 

@@ -200,10 +200,57 @@ public class Spielsteuerung {
             PrintWriter datei = new PrintWriter(writer);
 
             // Schreiben
-            datei.println("Test!");
+            datei.println("Speicherstand ~VERKEHRSPLANER™~"); // Sinnloses Anfangsgedönse
+            datei.println("b:" + breite); // Breite
+            datei.println("h:" + hoehe); // Höhe
+            datei.println("geld:" + geld); // geld
+            datei.println("depot:" + depot); // depot
+            datei.println("w:" + werkstatt); // Werkstatt
+            datei.println("date:" + strgTimer.getTime().getTime()); // UNIX x 1000
+            
+            // Alle Stadtteile
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if(teile[h][b] instanceof Haus) {
+                        datei.println("haus:" + h + b);
+                    }
+                    if(teile[h][b] instanceof Firma) {
+                        datei.println("firma:" + h + b);
+                    }
+                    if(teile[h][b] instanceof Park) {
+                        datei.println("park:" + h + b);
+                    }
+                    if(teile[h][b] instanceof Rathaus) {
+                        datei.println("firma:" + h + b);
+                    }
+                }
+            }
+            
+            // Alle Bahnhöfe
+            for (int h = 0; h < teile.length; h++) {
+                for (int b = 0; b < teile[h].length; b++) {
+                    if(bahnhoefe[h][b] instanceof Bahnhof) {
+                        datei.println("bhf:" + h + b + bahnhoefe[h][b].getName() + bahnhoefe[h][b].getEinsteigen() + bahnhoefe[h][b].getAussteigen()); // Höhe, Breite, Name, Leute die einsteigen wollen, Leute die aussteigen wollen
+                    }
+                }
+            }
+            
+            // Alle Linien
+            for (int i = 0; i < linien.length; i++) {
+                datei.println("linie:" + linien[i].getName() + linien[i].getFarbe().getRed() + linien[i].getFarbe().getGreen() + linien[i].getFarbe().getBlue() + linien[i].getZuege() + linien[i].getGruenesLicht()); // Name, RGB Farbe, Züge der Linie, boolean: Grünes Licht
+                // und derren Bahnhöfe
+                for(int bhf = 0; bhf < linien[i].getBahnhof().length; bhf++) {
+                    if(linien[bhf] != null){
+                    datei.println("bzl:" + linien[i].getBahnhof()[bhf].getY() + linien[i].getBahnhof()[bhf].getX()); // Bahnhofs Höhe und Breite
+                }}
+                datei.println("endeLinie");
+            }
 
             datei.close();
             writer.close();
+            System.out.println("~~~~~~~~~~~~~~~~~~");
+            System.out.println("Spiel gespeichert!");
+            System.out.println("~~~~~~~~~~~~~~~~~~");
         } catch (IOException ex) {
             System.err.println("Fehler bei der Ausgabe!");
         }

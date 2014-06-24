@@ -120,14 +120,6 @@ public class Linie {
             return false;
         }
     }
-    
-    /**
-     * 
-     * @param bhfListe 
-     */
-    public void bahnhofListeEinfuegen(Bahnhof[] liste) {
-        bhfListe = liste;
-    }
 
     /**
      *
@@ -184,6 +176,35 @@ public class Linie {
         }
     }
 
+    private void bahnhofWiedereinfuegen(Bahnhof bhf) {
+        if (baubar) {
+            // Wenn am Anfang eingefügt werden soll
+            if (bhfListe[0] == null) {
+                bhfListe[0] = bhf;
+            }
+
+            else {
+                if (bhfListe.length < bhfs + 1) {
+                    //Bei zu kurzer Liste wird diese erweitert
+                    Bahnhof[] bhfHilf = new Bahnhof[bhfListe.length + 10];
+                    for (int i = 0; i < bhfListe.length; i++) {
+                        bhfHilf[i] = bhfListe[i];
+                    }
+                    bhfListe = bhfHilf;
+                }
+                bhfListe[bhfs] = bhf;
+                
+                streckeBerechnen(bhfs -1 , bhfs);
+                
+                gesamtLaenge();
+                
+            }
+            // Strecken bauen
+            bhf.linieHinzu(this);
+            this.setZeitZug();
+            this.streckenBauen();
+        }
+    }
     /**
      *
      * @param bhf gegebener Bhf wird aus der Liste gelöscht? letzter Bhf wird

@@ -483,8 +483,8 @@ public class Spielsteuerung {
 
     /**
      *
-     * Ein neuer Bahnhof wird in bahnhoefe[x][y] an den gegebenen Koordinaten x
-     * & y eingesetzt
+     * Ein neuer Bahnhof wird erzeugt
+     * muss aber noch intNeuerBahnhof() aufrufen
      *
      * @param x Koordiante
      * @param y Koordinate
@@ -504,7 +504,7 @@ public class Spielsteuerung {
     }
     
     /**
-     * 
+     * Interne Methode fügt einen neuen Bahnhof ein
      * @param x Kooridnate
      * @param y Koordinate
      * @param name Name des zukünftigen Bahnhofs

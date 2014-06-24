@@ -1,5 +1,6 @@
 package de.vp;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -171,8 +172,19 @@ public class Spielsteuerung {
      *
      * @param file Datei, in dem der Spielstand gespeichert ist
      */
-    public Spielsteuerung(File file) {
-
+    public Spielsteuerung(Path file) {
+        BufferedReader reader = null;
+        try {
+            Charset charset = Charset.forName("UTF-8");
+            reader = Files.newBufferedReader(file, charset);
+            String zeile = null;
+            while ((zeile = reader.readLine()) != null) {
+                // Einlesen
+            }
+                reader.close();
+        } catch (IOException ex) {
+            System.err.println("Fehler beim Lesen der Datei!");
+        }
     }
 
     /**
@@ -186,10 +198,10 @@ public class Spielsteuerung {
             Charset charset = Charset.forName("UTF-8");
             BufferedWriter writer = Files.newBufferedWriter(file, charset);
             PrintWriter datei = new PrintWriter(writer);
-            
+
             // Schreiben
             datei.println("Test!");
-            
+
             datei.close();
             writer.close();
         } catch (IOException ex) {

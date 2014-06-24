@@ -11,6 +11,7 @@ import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -47,7 +48,6 @@ public class SpielGUI extends javax.swing.JFrame {
      * @param b
      */
     public SpielGUI(int h, int b) {
-//        setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet das Fenster in Fullscreen 
         strg = new Spielsteuerung(h, b);
         linienListe = new DefaultListModel();
         hoehe = h;
@@ -55,7 +55,21 @@ public class SpielGUI extends javax.swing.JFrame {
         linienRenderer = new LinienCellRenderer();
         sound = new Sound();
         initComponents();
+        initRest();
+    }
 
+    public SpielGUI(Path file) {
+        strg = new Spielsteuerung(file);
+        linienListe = new DefaultListModel();
+        hoehe = strg.getHoehe();
+        breite = strg.getBreite();
+        linienRenderer = new LinienCellRenderer();
+        sound = new Sound();
+        initComponents();
+        initRest();
+    }
+    
+    private void initRest() {
         strg.panelStarten(jPanel3);
         strg.setTicker(tickerPanel);
 
@@ -187,7 +201,7 @@ public class SpielGUI extends javax.swing.JFrame {
             reparierenButton.setEnabled(true);
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

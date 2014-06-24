@@ -303,7 +303,7 @@ public class Spielsteuerung {
             PrintWriter datei = new PrintWriter(writer);
 
             // Schreiben
-            datei.println("Speicherstand ~VERKEHRSPLANER™~"); // Sinnloses Anfangsgedönse
+            datei.println("Speicherstand ~VERKEHRSPLANER™~ (Datei muss unverändert erhalten bleiben, sonst unbrauchbar!)"); // Sinnloses Anfangsgedönse
             datei.println("b:" + breite); // Breite
             datei.println("h:" + hoehe); // Höhe
             datei.println("geld:" + geld); // geld

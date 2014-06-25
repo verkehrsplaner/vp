@@ -176,7 +176,7 @@ public class BahnhofGUI extends javax.swing.JFrame {
 
     private void bhfAbreissenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhfAbreissenActionPerformed
         Object[] options = {"Ja", "Nein"};
-        int s = JOptionPane.showOptionDialog(null, "Möchtest du den Bahnhof wirklich löschen?", "Spiel Beenden",
+        int s = JOptionPane.showOptionDialog(null, "Möchtest du den Bahnhof wirklich abreißen?", "Spiel Beenden",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                 null, options, options[0]);
         if (s == 0) {

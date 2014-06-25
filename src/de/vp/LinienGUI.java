@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Felix
+ * @author Felix, Maxi
  */
 public class LinienGUI extends JFrame {
 

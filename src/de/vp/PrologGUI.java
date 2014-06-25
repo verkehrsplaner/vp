@@ -8,6 +8,9 @@ package de.vp;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -80,6 +83,8 @@ public class PrologGUI extends javax.swing.JFrame {
 
         ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
         setIconImage(icon.getImage());
+        
+        getRootPane().setDefaultButton(vor);
     }
 
     /**
@@ -104,6 +109,7 @@ public class PrologGUI extends javax.swing.JFrame {
         setResizable(false);
 
         vor.setText(">");
+        vor.setToolTipText("Weiter");
         vor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vorActionPerformed(evt);

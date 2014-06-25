@@ -79,6 +79,7 @@
     <Component class="javax.swing.JButton" name="vor">
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;"/>
+        <Property name="toolTipText" type="java.lang.String" value="Weiter"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vorActionPerformed"/>

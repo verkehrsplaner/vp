@@ -185,7 +185,7 @@ public class MenuGUI extends JDialog {
 
     private void spielBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielBeendenActionPerformed
         Object[] options = {"Ja", "Nein"};
-        int s = JOptionPane.showOptionDialog(null, "Möchtest du das Spiel wirklich beenden?", "Spiel Beenden",
+        int s = JOptionPane.showOptionDialog(this, "Möchtest du das Spiel wirklich beenden?", "Spiel Beenden",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                 null, options, options[0]);
         // System.out.println(s);

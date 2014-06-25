@@ -100,6 +100,7 @@ public class PrologGUI extends javax.swing.JFrame {
         skip = new javax.swing.JButton();
         hintergrund = new BildPanel();
         monolog = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prolog");
@@ -107,6 +108,7 @@ public class PrologGUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(800, 560));
         setPreferredSize(new java.awt.Dimension(800, 560));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         vor.setText(">");
         vor.setToolTipText("Weiter");
@@ -115,6 +117,8 @@ public class PrologGUI extends javax.swing.JFrame {
                 vorActionPerformed(evt);
             }
         });
+        getContentPane().add(vor);
+        vor.setBounds(481, 433, 41, 23);
 
         zurueck.setText("<");
         zurueck.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +126,8 @@ public class PrologGUI extends javax.swing.JFrame {
                 zurueckActionPerformed(evt);
             }
         });
+        getContentPane().add(zurueck);
+        zurueck.setBounds(10, 433, 41, 23);
 
         skip.setText("Überspringen");
         skip.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +135,8 @@ public class PrologGUI extends javax.swing.JFrame {
                 skipActionPerformed(evt);
             }
         });
+        getContentPane().add(skip);
+        skip.setBounds(435, 0, 97, 13);
 
         hintergrund.setOpaque(false);
         hintergrund.setPreferredSize(new java.awt.Dimension(512, 288));
@@ -144,45 +152,20 @@ public class PrologGUI extends javax.swing.JFrame {
             .addGap(0, 288, Short.MAX_VALUE)
         );
 
+        getContentPane().add(hintergrund);
+        hintergrund.setBounds(0, 24, 532, 288);
+
         monolog.setText("jLabel1");
         monolog.setMaximumSize(new java.awt.Dimension(512, 200));
         monolog.setMinimumSize(new java.awt.Dimension(512, 200));
         monolog.setPreferredSize(new java.awt.Dimension(512, 200));
+        getContentPane().add(monolog);
+        monolog.setBounds(10, 330, 512, 97);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(monolog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(zurueck)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(vor)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(skip))))
-            .addComponent(hintergrund, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(skip, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(hintergrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(monolog, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vor)
-                    .addComponent(zurueck))
-                .addContainerGap())
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/Unbenannt-1.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 530, 470);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,6 +209,7 @@ public class PrologGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel hintergrund;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel monolog;
     private javax.swing.JButton skip;
     private javax.swing.JButton vor;

@@ -120,7 +120,7 @@ public class Spielsteuerung {
                         geld = Long.parseLong(data[1]);
                         break;
                     case "bil":
-                        depot = Integer.parseInt(data[1]);
+                        bilanz = Integer.parseInt(data[1]);
                         break;
                     case "depot":
                         depot = Integer.parseInt(data[1]);
@@ -176,6 +176,7 @@ public class Spielsteuerung {
                         int stelle = intNeueLinie(detail[0]);
                         linien[stelle].setFarbe(new Color(Integer.parseInt(detail[1]), Integer.parseInt(detail[2]), Integer.parseInt(detail[3])));
                         linien[stelle].setZuegeWieder(Integer.parseInt(detail[4]));
+                        linien[stelle].setGewinn(Integer.parseInt(detail[6]));
                         // Bahnhöfe einfügen
                         String bhfZeile = "";
                         while (!(bhfZeile = reader.readLine()).equals("endeLinie")) {

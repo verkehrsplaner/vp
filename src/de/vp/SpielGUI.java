@@ -240,7 +240,7 @@ public class SpielGUI extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         tickerPanel = new TickerPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Verkehrsplaner");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

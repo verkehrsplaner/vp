@@ -101,7 +101,7 @@ public class Start extends javax.swing.JFrame {
         hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/Startbild.png"))); // NOI18N
         hintergrund.setToolTipText("");
         jPanel1.add(hintergrund);
-        hintergrund.setBounds(0, 0, 580, 280);
+        hintergrund.setBounds(0, 0, 590, 290);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

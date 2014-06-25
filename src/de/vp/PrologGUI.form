@@ -40,7 +40,9 @@
                   <Component id="hintergrund" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="zurueck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel1" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="vor" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -57,6 +59,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="vor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="zurueck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -106,6 +109,12 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vorActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Zum &#xdc;berspringen Leertaste dr&#xfc;cken!"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

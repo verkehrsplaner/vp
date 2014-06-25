@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
@@ -301,6 +302,10 @@ public class Spielsteuerung {
      */
     public void speichern(Path file) {
         setPause(true);
+        if (!file.endsWith(".vp")) {
+            String tmpPath = file.toString() + ".vp";
+            file = Paths.get(tmpPath);
+        }
         try {
             Charset charset = Charset.forName("UTF-8");
             BufferedWriter writer = Files.newBufferedWriter(file, charset);

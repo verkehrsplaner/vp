@@ -60,25 +60,25 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(170, 140, 110, 29);
+        jButton1.setBounds(150, 170, 110, 23);
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Höhe:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(152, 115, 50, 16);
+        jLabel1.setBounds(150, 145, 50, 14);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(190, 110, 90, 27);
+        jComboBox1.setBounds(200, 140, 60, 20);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(330, 110, 88, 27);
+        jComboBox2.setBounds(330, 140, 60, 20);
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Breite:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(287, 115, 50, 16);
+        jLabel2.setBounds(280, 145, 50, 14);
 
         jButton2.setText("Credits");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +87,7 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(480, 250, 90, 29);
+        jButton2.setBounds(445, 220, 90, 23);
 
         jButton3.setText("Spiel laden");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -96,25 +96,29 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(300, 140, 100, 29);
+        jButton3.setBounds(280, 170, 110, 23);
 
-        hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/Startbild.png"))); // NOI18N
+        hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/start.png"))); // NOI18N
         hintergrund.setToolTipText("");
         jPanel1.add(hintergrund);
-        hintergrund.setBounds(0, 0, 590, 290);
+        hintergrund.setBounds(-10, -90, 720, 440);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(584, 305));
+        setSize(new java.awt.Dimension(563, 291));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

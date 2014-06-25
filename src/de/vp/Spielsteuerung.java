@@ -563,6 +563,8 @@ public class Spielsteuerung {
             }
             linien = hilf;
         }
+        name = name.replaceAll(",", "");
+        name = name.replaceAll(":", "");
         linien[neueLinien] = new Linie(name, this);
         neueLinien++;
         return neueLinien - 1;

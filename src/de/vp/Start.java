@@ -46,7 +46,7 @@ public class Start extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        hintergrund = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verkehrsplaner");
@@ -62,23 +62,25 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(277, 112, 93, 23);
+        jButton1.setBounds(170, 140, 110, 23);
 
         jTextField1.setText("1000");
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(277, 153, 60, 20);
+        jTextField1.setBounds(220, 110, 60, 20);
 
         jTextField2.setText("1000");
         jPanel1.add(jTextField2);
-        jTextField2.setBounds(386, 153, 60, 20);
+        jTextField2.setBounds(340, 110, 60, 20);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Höhe:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(244, 156, 29, 14);
+        jLabel1.setBounds(170, 115, 29, 14);
 
-        jLabel2.setText("Breite");
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Breite:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(354, 156, 28, 14);
+        jLabel2.setBounds(300, 115, 32, 14);
 
         jButton2.setText("Credits");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +89,7 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(388, 112, 67, 23);
+        jButton2.setBounds(480, 250, 90, 23);
 
         jButton3.setText("Spiel laden");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -96,12 +98,12 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(316, 228, 83, 23);
+        jButton3.setBounds(300, 140, 100, 23);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/Startbild.png"))); // NOI18N
-        jLabel3.setToolTipText("");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(0, 0, 580, 280);
+        hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/Startbild.png"))); // NOI18N
+        hintergrund.setToolTipText("");
+        jPanel1.add(hintergrund);
+        hintergrund.setBounds(0, 0, 580, 280);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,12 +154,12 @@ public class Start extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel hintergrund;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

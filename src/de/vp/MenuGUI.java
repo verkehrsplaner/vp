@@ -177,6 +177,7 @@ public class MenuGUI extends JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void soundeffekteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soundeffekteActionPerformed

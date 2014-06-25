@@ -47,6 +47,7 @@ public class Start extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verkehrsplaner");
+        setResizable(false);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1094, 619));
         jPanel1.setLayout(null);
@@ -59,7 +60,7 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(170, 140, 110, 26);
+        jButton1.setBounds(170, 140, 110, 29);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Höhe:");
@@ -68,11 +69,11 @@ public class Start extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(200, 110, 56, 25);
+        jComboBox1.setBounds(190, 110, 90, 27);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(340, 110, 56, 25);
+        jComboBox2.setBounds(330, 110, 88, 27);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Breite:");
@@ -86,7 +87,7 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(480, 250, 90, 26);
+        jButton2.setBounds(480, 250, 90, 29);
 
         jButton3.setText("Spiel laden");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +96,7 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(300, 140, 100, 26);
+        jButton3.setBounds(300, 140, 100, 29);
 
         hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/Startbild.png"))); // NOI18N
         hintergrund.setToolTipText("");
@@ -113,7 +114,7 @@ public class Start extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(600, 322));
+        setSize(new java.awt.Dimension(584, 305));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -162,7 +162,6 @@ public class PrologGUI extends javax.swing.JFrame {
         getContentPane().add(monolog);
         monolog.setBounds(10, 330, 512, 97);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/Unbenannt-1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 530, 470);

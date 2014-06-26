@@ -5,14 +5,11 @@
  */
 package de.vp;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -30,6 +27,7 @@ public class PrologGUI extends javax.swing.JFrame {
     private int breite;
     private Image[] bild;
     private int nummer;
+    private boolean gedrueckt;
 
     /**
      * Creates new form PrologGUI
@@ -59,16 +57,20 @@ public class PrologGUI extends javax.swing.JFrame {
         breite = b;
         hoehe = h;
         nummer = 0;
+        gedrueckt = false;
         initComponents();
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
             @Override
             public boolean dispatchKeyEvent(KeyEvent e) {
-                if (e.getID() == KeyEvent.KEY_PRESSED) {
-                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                        JFrame f = new SpielGUI(hoehe, breite);
-                        f.setVisible(true);
-                        dispose();
+                if (!gedrueckt) {
+                    if (e.getID() == KeyEvent.KEY_PRESSED) {
+                        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                            JFrame f = new SpielGUI(hoehe, breite);
+                            f.setVisible(true);
+                            dispose();
+                            gedrueckt = true;
+                        }
                     }
                 }
                 return false;

@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 
 /**
  *
- * @author Maxi
+ * @author Maxi und hecker
  */
 public class SpielPanel extends javax.swing.JPanel {
 
@@ -125,6 +125,24 @@ public class SpielPanel extends javax.swing.JPanel {
             g2d.setStroke(new BasicStroke(liniendicke[zoom]));
             for (int j = 0; j < linienBahnhof.length - 1; j++) {
                 g2d.drawLine(linienBahnhof[j].getX() * pixel[zoom] + 20, linienBahnhof[j].getY() * pixel[zoom] + 20, linienBahnhof[j + 1].getX() * pixel[zoom] + 20, linienBahnhof[j + 1].getY() * pixel[zoom] + 20);
+            }
+            //Züge Zeichnen
+            int[][] strecken = linien[i].getStrecken();
+            g2d.setColor(Color.GRAY);
+            if (strecken != null) {
+                for (int s = 0; s < strecken.length; s++) {
+                    System.out.println("Strecke " + s + " gezeichnet");
+                    int xBhf = linienBahnhof[s].getX() * pixel[zoom] + 20;
+                    int yBhf = linienBahnhof[s].getY() * pixel[zoom] + 20;
+                    int xDis = (linienBahnhof[s + 1].getX() * pixel[zoom] + 20) - xBhf;
+                    int yDis = (linienBahnhof[s + 1].getY() * pixel[zoom] + 20) - yBhf;
+                    double laenge = strecken[s].length - 1;
+                    for (int pos = 1; pos < strecken[s].length; pos++) {
+                        if (strecken[s][pos] > -1) {
+                            g2d.fillRect(xBhf + ((int) Math.round((pos / laenge) * xDis)) - 8, yBhf + ((int) Math.round((pos / laenge) * yDis)) - 8, 16, 16);
+                        }
+                    }
+                }
             }
 
         }

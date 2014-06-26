@@ -131,7 +131,6 @@ public class SpielPanel extends javax.swing.JPanel {
             g2d.setColor(Color.GRAY);
             if (strecken != null) {
                 for (int s = 0; s < strecken.length; s++) {
-                    System.out.println("Strecke " + s + " gezeichnet");
                     int xBhf = linienBahnhof[s].getX() * pixel[zoom] + 20;
                     int yBhf = linienBahnhof[s].getY() * pixel[zoom] + 20;
                     int xDis = (linienBahnhof[s + 1].getX() * pixel[zoom] + 20) - xBhf;
@@ -145,6 +144,23 @@ public class SpielPanel extends javax.swing.JPanel {
                 }
             }
 
+            //Züge Zeichnen zurück
+            strecken = linien[i].getStreckenZurueck();
+            g2d.setColor(Color.GRAY);
+            if (strecken != null) {
+                for (int s = 0; s < strecken.length; s++) {
+                    int xBhf = linienBahnhof[linienBahnhof.length - s - 1].getX() * pixel[zoom] + 20;
+                    int yBhf = linienBahnhof[linienBahnhof.length - s - 1].getY() * pixel[zoom] + 20;
+                    int xDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getX() * pixel[zoom] + 20) - xBhf;
+                    int yDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getY() * pixel[zoom] + 20) - yBhf;
+                    double laenge = strecken[s].length - 1;
+                    for (int pos = 1; pos < strecken[s].length; pos++) {
+                        if (strecken[s][pos] > -1) {
+                            g2d.fillRect(xBhf + ((int) Math.round((pos / laenge) * xDis)) - 8, yBhf + ((int) Math.round((pos / laenge) * yDis)) - 8, 16, 16);
+                        }
+                    }
+                }
+            }
         }
 
         // Aktuelle Linie oben zeichnen

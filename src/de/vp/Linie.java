@@ -270,6 +270,10 @@ public class Linie {
         istBhf = tmpIstBhf;
     }
 
+    /**
+     * Gibt die Linie (Hinweg) aufgeteilt in einzelen Streckenabschnitte zurück
+     * @return Die Streckenabschnitte
+     */
     public int[][] getStrecken() {
         if (bhfs > 0) {
             int[][] strecken = new int[bhfs - 1][];
@@ -289,6 +293,37 @@ public class Linie {
                 // Einfügen
                 for (int pos = start; pos < start + strecken[i].length; pos++) {
                     strecken[i][pos - start] = strecke[pos];
+                }
+            }
+            return strecken;
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Gibt die Linie (Rückweg) aufgeteilt in einzelen Streckenabschnitte zurück
+     * @return Die Streckenabschnitte
+     */
+    public int[][] getStreckenZurueck() {
+        if (bhfs > 0) {
+            int[][] strecken = new int[bhfs - 1][];
+            for (int i = 0; i < bhfs - 1; i++) {
+                // Länge der Strecken
+                strecken[i] = new int[streckeBerechnen((bhfs - 1) - i , (bhfs - 1) - (i + 1)) + 1];
+                int start = 0;
+                // Anfangsposition des Streckenabschnittes
+                if (i > 0) {
+                    for (int j = 0; j < i; j++) {
+                        // Strecke
+                        start += streckeBerechnen((bhfs - 1) - j, (bhfs - 1) - (j + 1));
+                        // Bahnhof
+                        start++;
+                    }
+                }
+                // Einfügen
+                for (int pos = start; pos < start + strecken[i].length; pos++) {
+                    strecken[i][pos - start] = streckeZurueck[pos];
                 }
             }
             return strecken;

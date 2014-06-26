@@ -128,17 +128,17 @@ public class SpielPanel extends javax.swing.JPanel {
             }
             //Züge Zeichnen
             int[][] strecken = linien[i].getStrecken();
-            g2d.setColor(Color.GRAY);
+            g2d.setColor(linien[i].getFarbe());
             if (strecken != null) {
                 for (int s = 0; s < strecken.length; s++) {
-                    int xBhf = linienBahnhof[s].getX() * pixel[zoom] + 20;
-                    int yBhf = linienBahnhof[s].getY() * pixel[zoom] + 20;
-                    int xDis = (linienBahnhof[s + 1].getX() * pixel[zoom] + 20) - xBhf;
-                    int yDis = (linienBahnhof[s + 1].getY() * pixel[zoom] + 20) - yBhf;
+                    int xBhf = linienBahnhof[s].getX() * pixel[zoom] + 20 + 8;
+                    int yBhf = linienBahnhof[s].getY() * pixel[zoom] + 20 + 8;
+                    int xDis = (linienBahnhof[s + 1].getX() * pixel[zoom] + 20 + 8) - xBhf;
+                    int yDis = (linienBahnhof[s + 1].getY() * pixel[zoom] + 20 + 8) - yBhf;
                     double laenge = strecken[s].length - 1;
                     for (int pos = 1; pos < strecken[s].length; pos++) {
                         if (strecken[s][pos] > -1) {
-                            g2d.fillRect(xBhf + ((int) Math.round((pos / laenge) * xDis)) - 8, yBhf + ((int) Math.round((pos / laenge) * yDis)) - 8, 16, 16);
+                            g2d.fillRoundRect(xBhf + ((int) Math.round((pos / laenge) * xDis)) - 8, yBhf + ((int) Math.round((pos / laenge) * yDis)) - 8, 16, 16, 4, 4);
                         }
                     }
                 }
@@ -146,17 +146,16 @@ public class SpielPanel extends javax.swing.JPanel {
 
             //Züge Zeichnen zurück
             strecken = linien[i].getStreckenZurueck();
-            g2d.setColor(Color.GRAY);
             if (strecken != null) {
                 for (int s = 0; s < strecken.length; s++) {
-                    int xBhf = linienBahnhof[linienBahnhof.length - s - 1].getX() * pixel[zoom] + 20;
-                    int yBhf = linienBahnhof[linienBahnhof.length - s - 1].getY() * pixel[zoom] + 20;
-                    int xDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getX() * pixel[zoom] + 20) - xBhf;
-                    int yDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getY() * pixel[zoom] + 20) - yBhf;
+                    int xBhf = linienBahnhof[linienBahnhof.length - s - 1].getX() * pixel[zoom] + 20 - 8;
+                    int yBhf = linienBahnhof[linienBahnhof.length - s - 1].getY() * pixel[zoom] + 20 - 8;
+                    int xDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getX() * pixel[zoom] + 20 - 8) - xBhf;
+                    int yDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getY() * pixel[zoom] + 20 - 8) - yBhf;
                     double laenge = strecken[s].length - 1;
                     for (int pos = 1; pos < strecken[s].length; pos++) {
                         if (strecken[s][pos] > -1) {
-                            g2d.fillRect(xBhf + ((int) Math.round((pos / laenge) * xDis)) - 8, yBhf + ((int) Math.round((pos / laenge) * yDis)) - 8, 16, 16);
+                            g2d.fillRoundRect(xBhf + ((int) Math.round((pos / laenge) * xDis)) - 8, yBhf + ((int) Math.round((pos / laenge) * yDis)) - 8, 16, 16, 4, 4);
                         }
                     }
                 }

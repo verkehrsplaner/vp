@@ -69,6 +69,15 @@ public class SpielGUI extends javax.swing.JFrame {
         initRest();
     }
 
+    /**
+     * Panel wird initialisiert
+     * Ticker ebenso
+     * Musik auch
+     * Das Panel wird in die Mitte gesetzt 
+     * Durch unitincrement wird die Scrollgeschwindigkeit der Scrollbars eingestellt
+     * jLabels werden formatiert
+     * Ein Timer wird gestartet, welcher die jLabel regelmäßig aktualisiert und Button überprüft
+     */
     private void initRest() {
         strg.panelStarten(jPanel3);
         strg.setTicker(tickerPanel);
@@ -492,12 +501,21 @@ public class SpielGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Öffnet neue MenueGUI
+     * @param evt Neues ungenutztes Event 
+     */
     private void EinstellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EinstellungenActionPerformed
-        JDialog f = new MenuGUI(sound, (SpielPanel) jPanel3, strg); //Öfnet neue GUI
+        JDialog f = new MenuGUI(sound, (SpielPanel) jPanel3, strg); //Öffnet neue GUI
         f.setModal(true);
         f.setVisible(true);
     }//GEN-LAST:event_EinstellungenActionPerformed
 
+    /**
+     * Es erscheint ein OptionPane, in welchem der Variable s ein neuer Wert zugewiesen wird, welcher der neue Linien Name sein soll.
+     * Wenn der String s nicht leer ist, wird eine neue Linie in der Spielsteuerung erzeugt.
+     * @param evt Neues ungenutztes Event 
+     */
     private void linieBauenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linieBauenButtonActionPerformed
 
         String s = JOptionPane.showInputDialog("Bitte Name für die neue Line eingeben:"); //Fenster für Linienname
@@ -510,6 +528,11 @@ public class SpielGUI extends javax.swing.JFrame {
         strg.setNextAction("bhf");
     }//GEN-LAST:event_bahnhofBauenButtonActionPerformed
 
+    /**
+     * In der Klasse Spielsteuerung wird ein Zug erstellt.
+     * Zusätzlich wird überprüft, ob das Depot leer ist. Falls dies der Fall ist, wird der Button deaktiviert.
+     * @param evt Neues ungenutztes Event 
+     */
     private void plusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusButtonActionPerformed
         strg.zugKaufen();
         if (strg.getDepot() == 0) {
@@ -528,6 +551,12 @@ public class SpielGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_reparierenButtonActionPerformed
 
+    /**
+     * In der Steuerung wird ein Zug gelöscht. 
+     * Zusätzlich wird überprüft, ob das Depot leer ist. 
+     * Ist dies der Fall, wirdder Button deaktiviert.
+     * @param evt Neues ungenutztes Event 
+     */
     private void minusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusButtonActionPerformed
         strg.zugVerschrotten();
         if (strg.getDepot() == 0) {
@@ -537,6 +566,11 @@ public class SpielGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_minusButtonActionPerformed
 
+    /**
+     * Sobald in die Liste mit der Maustaste geklickt wurde, wird einem Int der ausgewählte Eintrag zugewiesen. 
+     * Wenn die Liste nicht leer ist, wird eine LinienGUI für die jeweilig ausgewählte Linie erstellt.
+     * @param evt Neues ungenutztes Event 
+     */
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         int pos = jList1.getSelectedIndex();
         if (pos >= 0) {

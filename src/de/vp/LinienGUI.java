@@ -343,6 +343,12 @@ public class LinienGUI extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Zuerst wird ein neues Feld erstellt, in denen die Buttontexte festgelegt werden.
+     * Danach wird dem Benutzer ein JOptionPane angezeigt, in welchem er gefragt wird, ob die Linien gelöscht werden soll.
+     * Wenn "Ja" geklickt wird (0), wird die Linie aus der Spielsteuerung gelöscht und das Linien Fenster geschlossen.
+     * @param evt Neues ungenutztes Event 
+     */
     private void jButtonLöschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLöschenActionPerformed
         Object[] options = {"Ja", "Nein"};
         int s = JOptionPane.showOptionDialog(null, "Möchtest du die Linie wirklich löschen?", "Spiel Beenden",
@@ -356,6 +362,10 @@ public class LinienGUI extends JFrame {
 
     }//GEN-LAST:event_jButtonLöschenActionPerformed
 
+    /**
+     * Dem Integer pos wird der ausgewählte Eintrag der JList zugeschrieben.
+     * @param evt Neues ungenutztes Event 
+     */
     private void jButtonBahnhofActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofActionPerformed
         int pos = jList1.getSelectedIndex();
         int x = -1;

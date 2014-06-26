@@ -24,7 +24,8 @@ public class LinienCellRenderer extends JLabel implements ListCellRenderer {
         
         Linie linie = (Linie) value;
         
-        this.setText(linie.getName() + "        " +  Math.round(linie.auslastung()*100) + "%");
+        this.setText(linie.getName());
+        // this.add(new JLabel(Math.round(linie.auslastung()*100) + "%"));
         Font font = this.getFont();
         Font newFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
         this.setFont(newFont);

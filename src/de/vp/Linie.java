@@ -203,7 +203,7 @@ public class Linie {
             }
             bhfListe[bhfs] = bhf;
             bhfs++;
-            
+
             gesamtLaenge();
 
             // Strecken bauen
@@ -268,6 +268,33 @@ public class Linie {
         strecke = tmpStrecke;
         streckeZurueck = tmpStreckeZurueck;
         istBhf = tmpIstBhf;
+    }
+
+    public int[][] getStrecken() {
+        if (bhfs > 0) {
+            int[][] strecken = new int[bhfs - 1][];
+            for (int i = 0; i < bhfs - 1; i++) {
+                // Länge der Strecken
+                strecken[i] = new int[streckeBerechnen(i, i + 1) + 1];
+                int start = 0;
+                // Anfangsposition des Streckenabschnittes
+                if (i > 0) {
+                    for (int j = 0; j < i; j++) {
+                        // Strecke
+                        start += streckeBerechnen(j, j + 1);
+                        // Bahnhof
+                        start++;
+                    }
+                }
+                // Einfügen
+                for (int pos = start; pos < start + strecken[i].length; pos++) {
+                    strecken[i][pos - start] = strecke[pos];
+                }
+            }
+            return strecken;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -398,7 +425,7 @@ public class Linie {
      */
     public void setZeitZug() {
         if (zuege != 0) {
-            zeitZug = Math.round(strecke.length / zuege);
+            zeitZug = Math.round(strecke.length * 2 / zuege);
         } else {
             zeitZug = -1;
         }

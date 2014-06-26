@@ -28,10 +28,7 @@ public class Sound {
     private Clip musikClip, atmoClip;
     private boolean musikAn, atmoAn;
     private int musikPlayed, atmoPlayed;
-    private URL[] musikFiles = {this.getClass().getResource("sound/Nerviger_Song.aiff"),
-        this.getClass().getResource("sound/Action.aiff"),
-        this.getClass().getResource("sound/Orgel.aiff"),
-        this.getClass().getResource("sound/M_Style.aiff")};
+    private URL[] musikFiles = {this.getClass().getResource("sound/Soundtrack.wav")};
     private URL[] atmoFiles = {this.getClass().getResource("sound/Atmo1_mixdown.aiff"),
         this.getClass().getResource("sound/Atmo2_mixdown.aiff"),
         this.getClass().getResource("sound/Atmo3_mixdown.aiff")};

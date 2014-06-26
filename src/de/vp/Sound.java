@@ -28,7 +28,7 @@ public class Sound {
     private Clip musikClip, atmoClip;
     private boolean musikAn, atmoAn;
     private int musikPlayed, atmoPlayed;
-    private URL[] musikFiles = {this.getClass().getResource("sound/Soundtrack.wav")};
+    private URL[] musikFiles = {this.getClass().getResource("sound/Soundtrack.wav"), this.getClass().getResource("sound/Soundtrack.wav")};
     private URL[] atmoFiles = {this.getClass().getResource("sound/Atmo1_mixdown.aiff"),
         this.getClass().getResource("sound/Atmo2_mixdown.aiff"),
         this.getClass().getResource("sound/Atmo3_mixdown.aiff")};

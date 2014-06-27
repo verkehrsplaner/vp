@@ -32,10 +32,10 @@ public class Linie {
     private Spielsteuerung strg;
 
     // ========== Anfang Spielvariablen ==========
-    private final int preisStrecke = 1000000;
+    private final int preisStrecke = 500000;
     private int bhfUnterhaltungsKosten;
-    private final int zugUnterhaltungsKosten = 900;
-    private final int zugKapazitaet = 350;
+    private final int zugUnterhaltungsKosten = 800;
+    private final int zugKapazitaet = 450;
     private final int fahrtZeit = 2; // Fahrtzeit pro Block
     // ========== Ende Spielvariablen ==========
 
@@ -191,7 +191,7 @@ public class Linie {
 
     public void bahnhofWiederEinfuegen(Bahnhof bhf) {
         if (baubar) {
-            System.out.println("Bahnhof eingefügt!");
+            //System.out.println("Bahnhof eingefügt!");
             // Wenn am Anfang eingefügt werden soll
             if (bhfListe.length < bhfs + 1) {
                 //Bei zu kurzer Liste wird diese erweitert
@@ -547,7 +547,7 @@ public class Linie {
                 }
             }
         }
-        System.out.println(name + "-Personen: " + personen);
+        //System.out.println(name + "-Personen: " + personen);
         zeitStep++;
     }
 

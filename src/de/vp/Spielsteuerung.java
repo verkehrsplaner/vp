@@ -49,16 +49,16 @@ public class Spielsteuerung {
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 40000;
     private final int preisBhf = 500000;
-    private final int bhfUnterhalt = 700;
+    private final int bhfUnterhalt = 650;
     private final int preisLinie = 50000;
     private final int reparatur = 10000;
     private final double stadtbaugeschw = 0.0; // je weniger umso mehr!
     private final int beschwerde = 55; //Kosten wenn ein Stadtteil nicht angebunden ist
-    private final int betriebskosten = 10000;
+    private final int betriebskosten = 9000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 85%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl% bis 95% | Rest von 95% bis 100% ist Parkwahrscheinlichkeit
-    // step() wird 2x pro sek aufgerufen!
-    private final int abrechnungsIntervall = 60;
+    // step() wird 2x pro (reale) sek aufgerufen!
+    private final int abrechnungsIntervall = 1440;
     private final int bahnsteigIntervall = 3;
     private final int stadtbauIntervall = 3;
     private final boolean stadtbauen = true; // Stadt erweiterter sich oder auch nicht.
@@ -749,6 +749,7 @@ public class Spielsteuerung {
         int x = 0;
         int y = 0;
         if (!feldVoll) {
+            hauszahl++;
             long start = System.nanoTime();
             for (int h = 0; h < teile.length; h++) {
                 for (int b = 0; b < teile[h].length; b++) {
@@ -947,6 +948,7 @@ public class Spielsteuerung {
         int x = 0;
         int y = 0;
         if (!feldVoll) {
+            hauszahl++;
             long start = System.nanoTime();
             for (int h = 0; h < teile.length; h++) {
                 for (int b = 0; b < teile[h].length; b++) {
@@ -1109,6 +1111,7 @@ public class Spielsteuerung {
         int x = 0;
         int y = 0;
         if (!feldVoll) {
+            hauszahl++;
             long start = System.nanoTime();
             for (int h = 0; h < teile.length; h++) {
                 for (int b = 0; b < teile[h].length; b++) {
@@ -1332,6 +1335,9 @@ public class Spielsteuerung {
         return true;
     }
 
+    /**
+     * per Zufall wird ein Zug einer zufällig gewählten Linie in Werkstatt verschoben
+     */
     public void zugKaputten() {
         int x = (int) Math.round(Math.random() * neueLinien);
         if (linien[x] != null && linien[x].getZuege() > 0) {
@@ -1369,19 +1375,19 @@ public class Spielsteuerung {
         for (int h = 0; h < hatBahnhof.length; h++) {
             for (int b = 0; b < hatBahnhof[h].length; b++) {
                 if (teile[h][b] != null && hatBahnhof[h][b] == false) {
-                    temp += beschwerde;
+                    temp++;
                 }
             }
         }
         // Prämien
-        if (temp < beschwerde * 10) {
-            kosten -= 1000;
+        if (temp < hauszahl/2) {
+            kosten -= 3000;
         }
-        if (temp < beschwerde * 5) {
-            kosten -= 1000;
+        if (temp < hauszahl/4) {
+            kosten -= 3000;
         }
-        if (temp < beschwerde) {
-            kosten -= 2000;
+        if (temp < 5) {
+            kosten -= 5000;
         }
 
         // \/ alle Linien
@@ -1551,7 +1557,7 @@ public class Spielsteuerung {
             }
 
             //\/ Zug per Zufall schrotten
-            if (Math.random() < 0.001) {
+            if (Math.random() < 0.00075) {
                 zugKaputten();
             }
             // \/ Abrechnung
@@ -1573,7 +1579,7 @@ public class Spielsteuerung {
             }
             // \/ Bahnhöfe mit Personen füllen
             if (zeitB == bahnsteigIntervall) {
-                System.out.println("---------------------");
+                //System.out.println("---------------------");
                 for (int h = 0; h < bahnhoefe.length; h++) {
                     for (int b = 0; b < bahnhoefe[h].length; b++) {
                         if (bahnhoefe[h][b] != null) {
@@ -1581,7 +1587,7 @@ public class Spielsteuerung {
                         }
                     }
                 }
-                System.out.println("---------------------");
+                //System.out.println("---------------------");
                 zeitB = 0;
             } else {
                 zeitB++;

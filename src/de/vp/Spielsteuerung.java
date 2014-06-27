@@ -49,18 +49,18 @@ public class Spielsteuerung {
     private final int preisZug = 1000000;
     private final int geldZugZurueck = 40000;
     private final int preisBhf = 500000;
-    private final int bhfUnterhalt = 750;
+    private final int bhfUnterhalt = 700;
     private final int preisLinie = 50000;
     private final int reparatur = 10000;
     private final double stadtbaugeschw = 0.0; // je weniger umso mehr!
-    private final int beschwerde = 65; //Kosten wenn ein Stadtteil nicht angebunden ist
+    private final int beschwerde = 55; //Kosten wenn ein Stadtteil nicht angebunden ist
     private final int betriebskosten = 10000;
     private final double hausWrschl = 0.85; // in % für die Wahrscheinlichkeit, dass ein Hausentsteht: 0% bis 85%
     private final double firmaWrschl = 0.95; // in % für die Wahrscheinlichkeit, dass eine Firma entsteht: hausWrschl% bis 95% | Rest von 95% bis 100% ist Parkwahrscheinlichkeit
     // step() wird 2x pro sek aufgerufen!
     private final int abrechnungsIntervall = 60;
     private final int bahnsteigIntervall = 3;
-    private final int stadtbauIntervall = 2;
+    private final int stadtbauIntervall = 3;
     private final boolean stadtbauen = true; // Stadt erweiterter sich oder auch nicht.
     // ========== Ende Spielvariablen ==========
 
@@ -288,7 +288,8 @@ public class Spielsteuerung {
             "Platz der Geometrie", "Volksstraße", "Bajuwarenstraße", "Ameisenstraße",
             "Apfelstraße", "Birnenstraße", "Pampelmusenstraße", "Melonenstraße", "Himbeerweg",
             "Brombeerweg", "Erdbeerweg", "Stinktierstraße", "Mangostraße", "Walnussstraße",
-            "Sehr Seriöse Straße", "Wegweiser"};
+            "Sehr Seriöse Straße", "Wegweiser", "Balkonien", "Kolonie", "Busbahnhof", "Ungern",
+            "Granatapfelweg", "Mühlenallee"};
         bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {
             bhfNamen.add(bhfNamenTmp[i]);
@@ -1498,7 +1499,7 @@ public class Spielsteuerung {
 
             // Tag/Nacht setzen
             long ticks = strgTimer.getTicks();
-            if (ticks >= 4000 && ticks < 11000 && tageszeit != Stadtteil.MORGEN) { // Morgen
+            if (ticks >= 3000 && ticks < 12000 && tageszeit != Stadtteil.MORGEN) { // Morgen
                 tageszeit = Stadtteil.MORGEN;
                 if (ticker != null) {
                     ticker.neueNachricht("Die Sonne geht auf, ein neuer Tag bricht an!");
@@ -1510,10 +1511,10 @@ public class Spielsteuerung {
                         }
                     }
                 }
-            } else if (ticks >= 11000 && ticks < 14000 && tageszeit != Stadtteil.MITTAG) { // Mittag
+            } else if (ticks >= 12000 && ticks < 13000 && tageszeit != Stadtteil.MITTAG) { // Mittag
                 tageszeit = Stadtteil.MITTAG;
                 if (ticker != null) {
-                    ticker.neueNachricht("Eilmeldung: Mittagspause!");
+                    ticker.neueNachricht("Tiefpreis bei Mittagsmenü beim Weiswurscht-Toni!");
                 }
                 for (int y = 0; y < hoehe; y++) {
                     for (int x = 0; x < breite; x++) {
@@ -1522,10 +1523,10 @@ public class Spielsteuerung {
                         }
                     }
                 }
-            } else if (ticks >= 14000 && ticks < 21000 && tageszeit != Stadtteil.ABEND) { // Abend
+            } else if (ticks >= 13000 && ticks < 22000 && tageszeit != Stadtteil.ABEND) { // Abend
                 tageszeit = Stadtteil.ABEND;
                 if (ticker != null) {
-                    ticker.neueNachricht("Eilmeldung: Feierabend!");
+                    ticker.neueNachricht("Wirte besorgt wegen Knappheit bei Feierabendbier!");
                 }
                 for (int y = 0; y < hoehe; y++) {
                     for (int x = 0; x < breite; x++) {
@@ -1534,7 +1535,7 @@ public class Spielsteuerung {
                         }
                     }
                 }
-            } else if ((ticks >= 21000 || ticks < 4000) && tageszeit != Stadtteil.NACHT) { // Nacht
+            } else if ((ticks >= 22000 || ticks < 3000) && tageszeit != Stadtteil.NACHT) { // Nacht
                 tageszeit = Stadtteil.NACHT;
                 if (ticker != null) {
                     ticker.neueNachricht("Nachtwächter spricht: Hört, Ihr Leut´ und lasst Euch sagen, unsre Glock´ hat 6 geschlagen!");
@@ -1550,7 +1551,7 @@ public class Spielsteuerung {
             }
 
             //\/ Zug per Zufall schrotten
-            if (Math.random() < 0.0001) {
+            if (Math.random() < 0.001) {
                 zugKaputten();
             }
             // \/ Abrechnung

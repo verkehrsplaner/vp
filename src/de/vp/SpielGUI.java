@@ -84,7 +84,7 @@ public class SpielGUI extends javax.swing.JFrame {
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyControlls());
 
-        sound.musikAus();
+        sound.musikAn();
         sound.atmoAn();
 
         hView = jScrollPane3.getViewport().getWidth();

@@ -25,7 +25,7 @@ public class Bahnhof {
     private Spielsteuerung strg;
     
     // ========== Anfang Spielvariablen ==========
-    private final int fahrtKosten = 3;
+    private final int fahrtKosten = 5;
     // ========== Ende Spielvariablen ==========
     
     /**
@@ -111,10 +111,18 @@ public class Bahnhof {
     }
 
     public void bahnsteigFuellen() {
-        if (anzahlLinien > 0) {
+        if(anzahlLinien > 0) {
+        boolean ok = false;
+        for(int i = 0; i < anzahlLinien; i++) {
+            if(anschlussLinien[i].getGruenesLicht()) {
+                ok = true;
+            }
+        }
+        if (ok) {
             einsteigenBerechnen();
             aussteigenBerechnen();
-            System.out.println("Bahnhof " + name + " gefüllt!");
+            //System.out.println("Bahnhof " + name + " gefüllt!");
+        }
         }
     }
 

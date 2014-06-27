@@ -34,7 +34,7 @@ public class Linie {
     // ========== Anfang Spielvariablen ==========
     private final int preisStrecke = 1000000;
     private int bhfUnterhaltungsKosten;
-    private final int zugUnterhaltungsKosten = 1500;
+    private final int zugUnterhaltungsKosten = 900;
     private final int zugKapazitaet = 350;
     private final int fahrtZeit = 2; // Fahrtzeit pro Block
     // ========== Ende Spielvariablen ==========

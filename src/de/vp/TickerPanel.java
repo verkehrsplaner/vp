@@ -32,7 +32,13 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
         "Langzeitstudie: Planeten können durchschnittlich älter werden als Mensch!",
         "Neue Farbe entdeckt: Lila-blassblau!",
         "Hier könnte ihre Werbung stehen!",
-        "Wer hat an der Uhr gedreht?"};
+        "Wer hat an der Uhr gedreht?",
+        "Das Wetter: Wie immer sonnig!",
+        "Verkehrsplaner ist bestes Spiel des Jahres!",
+        "Irgendjemand, irgendwo, hat eben gehustet!",
+        "Ticker wurde von Ratingagentur als nicht lustig abgestuft!",
+        "Angebliches Geheimrezept gegen Kater für 1.000.000 € an Pharmakonzern verkauft!",
+        "Barbaren an Rharberbarbarbarasbierbar stehelen Rhabarberbarbaras Rhabarberbabarenbier!"};
 
     public TickerPanel() {
         text = "Bürgermeister eröffnet feierlich neue Stadtwerke!";

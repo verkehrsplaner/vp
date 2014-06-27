@@ -198,7 +198,7 @@ public class SpielPanel extends javax.swing.JPanel {
                         g2d.drawString(Integer.toString(bhf[y][x].getEinsteigen()), x * pixel[zoom], y * pixel[zoom] + 50);
 
                         //aussteigen Zahl
-                        g2d.drawString(Integer.toString(bhf[y][x].getAussteigen()), x * pixel[zoom], y * pixel[zoom] + 70);
+                        //g2d.drawString(Integer.toString(bhf[y][x].getAussteigen()), x * pixel[zoom], y * pixel[zoom] + 70);
                     }
 
                 }

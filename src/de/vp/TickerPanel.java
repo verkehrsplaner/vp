@@ -38,7 +38,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
         "Irgendjemand, irgendwo, hat eben gehustet!",
         "Ticker wurde von Ratingagentur als nicht lustig abgestuft!",
         "Angebliches Geheimrezept gegen Kater für 1.000.000 € an Pharmakonzern verkauft!",
-        "Barbaren an Rharberbarbarbarasbierbar stehelen Rhabarberbarbaras Rhabarberbabarenbier!"};
+        "Barbaren in Rharbarberbarbarasbierbar stehelen Rhabarberbarbaras Rhabarberbabarenbier!"};
 
     public TickerPanel() {
         text = "Bürgermeister eröffnet feierlich neue Stadtwerke!";

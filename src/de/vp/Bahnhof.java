@@ -14,7 +14,7 @@ public class Bahnhof {
 
     private int X;
     private int Y;
-    private Stadtteil[] teile;
+    private Stadtteil[] teile; //Liste der Stadtteile die von dem Bahnhof abhängig sind
     private int stadtteile;
     private int einsteigen, aussteigen, eingestiegen, ausgestiegen;
     private int bahnsteig; // Leute die auf einen Zug warten
@@ -25,7 +25,7 @@ public class Bahnhof {
     private Spielsteuerung strg;
     
     // ========== Anfang Spielvariablen ==========
-    private final int fahrtKosten = 5;
+    private final int fahrtKosten = 10;
     // ========== Ende Spielvariablen ==========
     
     /**
@@ -83,8 +83,8 @@ public class Bahnhof {
     }
 
     /**
-     *
-     * @return alle personen zusammen die ein und aussteigen
+     * berechnet alle personen zusammen die einsteigen
+     * @return alle personen die einsteigen
      */
     public int einsteigenBerechnen() {
         int x = 0;
@@ -94,10 +94,14 @@ public class Bahnhof {
             }
         }
         setEinsteigen(einsteigen + x);
-        System.out.println(einsteigen);
+        //System.out.println(einsteigen);
         return x;
     }
 
+    /**
+     * berechnet alle personen zusammen die aussteigen
+     * @return alle personen die aussteigen
+     */
     public int aussteigenBerechnen() {
         int x = 0;
         for (int i = 0; i < teile.length; i++) {
@@ -106,10 +110,14 @@ public class Bahnhof {
             }
         }
         setAussteigen(aussteigen + x);
-        System.out.println(aussteigen);
+        //System.out.println(aussteigen);
         return x;
     }
 
+    /**
+     * überprüft ob eine Linie Leute abholen würde,
+     * wenn ja dann: aussteigenBerechnen() und einsteigenBerechnen()
+     */
     public void bahnsteigFuellen() {
         if(anzahlLinien > 0) {
         boolean ok = false;
@@ -127,7 +135,7 @@ public class Bahnhof {
     }
 
     /**
-     *
+     * Personen steigen in Zug ein
      * @param frei freie Sitzplätze im Zug
      * @return eingestiege Personen
      */
@@ -147,13 +155,13 @@ public class Bahnhof {
             eingestiegen = 0;
         }
 
-        System.out.println(eingestiegen + " in " + name + " eingestiegen!");
+        //System.out.println(eingestiegen + " in " + name + " eingestiegen!");
         setKasse(kasse + eingestiegen * fahrtKosten);
         return eingestiegen;
     }
 
     /**
-     *
+     * Personen steigen aus Zug aus
      * @param personen wie viele Personen in der Linie sitzen
      * @return Personen, die Aussteigen wollen
      */
@@ -163,7 +171,7 @@ public class Bahnhof {
             int wollenAussteigen = 0;
             //Aussteigen wegen überfüllung
             if (personen > 320) {
-                wollenAussteigen += (personen - 320);
+                wollenAussteigen += (personen - 420);
             }
             // Wenn man umsteigen kann
             if (anzahlLinien > 1) {
@@ -195,10 +203,15 @@ public class Bahnhof {
         } else {
             ausgestiegen = 0;
         }
-        System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
+        //System.out.println(ausgestiegen + " in " + name + " ausgestiegen!");
         return ausgestiegen;
     }
 
+    /**
+     * alle Personen die in dem Zug sind der gerade im Bahnhof ist müssen aussteigen
+     * @param personen ausgestiegene Personen
+     * @return ausgestiegene Personen
+     */
     public int allesAussteigen(int personen) {
         if(aussteigen + personen < 0) {
             setAussteigen(aussteigen + personen);
@@ -210,7 +223,7 @@ public class Bahnhof {
     }
 
     /**
-     *
+     * Stadtteil in teile[]
      * @param s Stadtteil wird in die Liste des Bahnhofs hinzugefügt
      */
     public void stadtteilHinzufuegen(Stadtteil s) {

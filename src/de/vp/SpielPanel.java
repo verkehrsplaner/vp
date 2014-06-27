@@ -66,7 +66,7 @@ public class SpielPanel extends javax.swing.JPanel {
     }
 
     /**
-     * 
+     *
      * @return Einen Boolean Wert, ob blinken an oder aus ist
      */
     public boolean getBlinken() {
@@ -78,7 +78,11 @@ public class SpielPanel extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         //Beiger Hintergrund
-        g2d.setColor(new Color(192, 219, 154));
+        if (strg.getTageszeit() == Stadtteil.ABEND || strg.getTageszeit() == Stadtteil.NACHT) {
+            g2d.setColor(new Color(47, 44, 47));
+        } else {
+            g2d.setColor(new Color(192, 219, 154));
+        }
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         //Schwarzer Rahmen um Spielfeld

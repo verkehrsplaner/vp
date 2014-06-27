@@ -1692,6 +1692,10 @@ public class Spielsteuerung {
     public int getBreite() {
         return breite;
     }
+    
+    public int getTageszeit() {
+        return tageszeit;
+    }
 
     public void geldCheat() {
         if (geld + 1000000 < Long.MAX_VALUE) {

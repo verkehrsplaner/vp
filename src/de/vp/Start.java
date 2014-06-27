@@ -24,7 +24,7 @@ public class Start extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon(getClass().getResource("images/icon.png"));
         setIconImage(icon.getImage());
-        getRootPane().setDefaultButton(jButton1); // Wenn man jetzt Enter drückt gelangt man in den Prolog
+        getRootPane().setDefaultButton(spielStartenButton); // Wenn man jetzt Enter drückt gelangt man in den Prolog
     }
 
     /**
@@ -36,13 +36,13 @@ public class Start extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        spielStartenButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        hoeheComboBox = new javax.swing.JComboBox();
+        breiteComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        creditsButton = new javax.swing.JButton();
+        spielLadenButton = new javax.swing.JButton();
         hintergrund = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,51 +52,56 @@ public class Start extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1094, 619));
         jPanel1.setLayout(null);
 
-        jButton1.setText("Spiel Starten");
-        jButton1.setToolTipText("Startet das Spiel!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        spielStartenButton.setText("Spiel Starten");
+        spielStartenButton.setToolTipText("Startet das Spiel!");
+        spielStartenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                spielStartenButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(150, 170, 110, 23);
+        jPanel1.add(spielStartenButton);
+        spielStartenButton.setBounds(150, 170, 110, 29);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Höhe:");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(150, 145, 50, 14);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(200, 140, 60, 20);
+        hoeheComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
+        hoeheComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hoeheComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(hoeheComboBox);
+        hoeheComboBox.setBounds(200, 140, 60, 27);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
-        jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(330, 140, 60, 20);
+        breiteComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
+        jPanel1.add(breiteComboBox);
+        breiteComboBox.setBounds(330, 140, 60, 27);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Breite:");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(280, 145, 50, 14);
 
-        jButton2.setText("Credits");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        creditsButton.setText("Credits");
+        creditsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                creditsButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(445, 220, 90, 23);
+        jPanel1.add(creditsButton);
+        creditsButton.setBounds(445, 220, 90, 29);
 
-        jButton3.setText("Spiel laden");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        spielLadenButton.setText("Spiel laden");
+        spielLadenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                spielLadenButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(280, 170, 110, 23);
+        jPanel1.add(spielLadenButton);
+        spielLadenButton.setBounds(280, 170, 110, 29);
 
         hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/start.png"))); // NOI18N
         hintergrund.setToolTipText("");
@@ -122,7 +127,12 @@ public class Start extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    /**
+     * Durch einen File-Chooser kann ein Spielstand geladen werden
+     * 
+     * @param evt 
+     */
+    private void spielLadenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielLadenButtonActionPerformed
         JFileChooser fc = new JFileChooser();
         int returnVal = fc.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -131,16 +141,27 @@ public class Start extends javax.swing.JFrame {
             f.setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_spielLadenButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    /**
+     * Eine neue GUI 'Credits' wird geöffnet
+     * 
+     * @param evt 
+     */
+    private void creditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditsButtonActionPerformed
         JFrame f = new CreditsGUI();
         f.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_creditsButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int hoehe = Integer.parseInt((String) jComboBox1.getModel().getElementAt(jComboBox1.getSelectedIndex())); //Setzt hoehe = ComboBox
-        int breite = Integer.parseInt((String) jComboBox2.getModel().getElementAt(jComboBox2.getSelectedIndex()));
+    /**
+     * Es wird die Mindestgröße des Feldes überprüft
+     * Eine neue GUI 'Prolog' erscheint
+     * 
+     * @param evt 
+     */
+    private void spielStartenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielStartenButtonActionPerformed
+        int hoehe = Integer.parseInt((String) hoeheComboBox.getModel().getElementAt(hoeheComboBox.getSelectedIndex())); //Setzt hoehe = ComboBox
+        int breite = Integer.parseInt((String) breiteComboBox.getModel().getElementAt(breiteComboBox.getSelectedIndex()));
         try {
             if (hoehe < 50 && breite < 50) {
                 System.out.println("Zahl kleiner als 50!");
@@ -154,17 +175,21 @@ public class Start extends javax.swing.JFrame {
             System.out.println("Keine Zahl!");
             JOptionPane.showMessageDialog(null, "Bitte eine gültige Zahl eingeben!", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_spielStartenButtonActionPerformed
+
+    private void hoeheComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoeheComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hoeheComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox breiteComboBox;
+    private javax.swing.JButton creditsButton;
     private javax.swing.JLabel hintergrund;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox hoeheComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton spielLadenButton;
+    private javax.swing.JButton spielStartenButton;
     // End of variables declaration//GEN-END:variables
 }

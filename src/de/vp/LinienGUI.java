@@ -431,6 +431,11 @@ public class LinienGUI extends JFrame {
         }
     }//GEN-LAST:event_jButtonBahnhofActionPerformed
 
+    /**
+     * Aus der Liste wird der ausgewählte Bahnhof entnommen
+     * 
+     * @param evt 
+     */
     private void jButtonBahnhofWegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofWegActionPerformed
         int pos = jList1.getSelectedIndex() - 1;
         if (pos >= 0) {
@@ -444,6 +449,11 @@ public class LinienGUI extends JFrame {
         }
     }//GEN-LAST:event_jButtonBahnhofWegActionPerformed
 
+    /**
+     * In einem Java Color Chooser kann eine neue Farbe für die Linie ausgewählt werden
+     * 
+     * @param evt 
+     */
     private void jButtonFarbeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFarbeActionPerformed
         Color farbe = JColorChooser.showDialog(this, "Neue Farbe wählen", linie.getFarbe());
         if (farbe != null) {
@@ -475,6 +485,12 @@ public class LinienGUI extends JFrame {
         auslastung.setText(String.valueOf(linie.auslastung()));
     }//GEN-LAST:event_plusActionPerformed
 
+    /**
+     * Die Linie wird freigegeben oder nicht
+     * In der Klasse Linie wird setGruenesLicht auf true oder false gesetzt
+     * 
+     * @param evt 
+     */
     private void ampelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ampelButtonActionPerformed
         boolean istgruen = linie.getGruenesLicht();
         if (istgruen) {
@@ -486,6 +502,11 @@ public class LinienGUI extends JFrame {
         }
     }//GEN-LAST:event_ampelButtonActionPerformed
 
+    /**
+     * Ein neuer Name für die geöffnete Linie kann hier eingestellt werden
+     * 
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String s = JOptionPane.showInputDialog("Bitte Name für die neue Line eingeben:"); //Fenster für Linienname
         if (s != null && !s.equals("")) {

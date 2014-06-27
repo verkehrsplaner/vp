@@ -62,6 +62,14 @@ public class Bahnhof {
     public int getY() {
         return Y;
     }
+    
+    public Linie[] getLinien() {
+        Linie[] linien = new Linie[anzahlLinien];
+        for (int i = 0; i < linien.length;i++) {
+            linien[i] = anschlussLinien[i];
+        }
+        return linien;
+    }
 
     /**
      *

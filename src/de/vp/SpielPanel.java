@@ -65,6 +65,10 @@ public class SpielPanel extends javax.swing.JPanel {
         blinken = b;
     }
 
+    /**
+     * 
+     * @return Einen Boolean Wert, ob blinken an oder aus ist
+     */
     public boolean getBlinken() {
         return blinken;
     }

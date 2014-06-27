@@ -169,6 +169,12 @@ public class PrologGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Das nächste Bild wird geladen
+     * Falls alle Bilder bereits angezeigt wurden, öffnet sich eine neue GUI und das Spiel wird gestartet
+     * 
+     * @param evt 
+     */
     private void vorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vorActionPerformed
         nummer++;
         if (nummer < bild.length) {
@@ -181,6 +187,11 @@ public class PrologGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vorActionPerformed
 
+    /**
+     * Das vorherige Bild wird geladen
+     * 
+     * @param evt 
+     */
     private void zurueckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zurueckActionPerformed
         if (nummer - 1 >= 0) {
             nummer--;

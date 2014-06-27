@@ -60,7 +60,7 @@ public class Spielsteuerung {
     // step() wird 2x pro (reale) sek aufgerufen!
     private final int abrechnungsIntervall = 1440;
     private final int bahnsteigIntervall = 3;
-    private final int stadtbauIntervall = 5;
+    private final int stadtbauIntervall = 3;
     private final boolean stadtbauen = true; // Stadt erweiterter sich oder auch nicht.
     // ========== Ende Spielvariablen ==========
 
@@ -542,18 +542,8 @@ public class Spielsteuerung {
         }
     }
 
-    /**
-     * Ein Zug ins Depot
-     */
     public void zugInsDepot() {
         depot++;
-    }
-    
-    /**
-     * Ein Zug in die Werkstatt
-     */
-     public void zugInWerkstatt() {
-        werkstatt++;
     }
 
     /**
@@ -1352,7 +1342,7 @@ public class Spielsteuerung {
     public void zugKaputten() {
         int x = (int) Math.round(Math.random() * neueLinien);
         if (linien[x] != null && linien[x].getZuege() > 0) {
-            linien[x].zugSchrotten();
+            linien[x].zugEntfernen();
             ticker.neueNachricht("Auf Linie " + linien[x].getName() + " ist ein Zug ausgefallen!");
             werkstatt++;
         }
@@ -1398,7 +1388,7 @@ public class Spielsteuerung {
             kosten -= 3000;
         }
         if (temp < 5) {
-            kosten -= 15000;
+            kosten -= 5000;
         }
 
         // \/ alle Linien

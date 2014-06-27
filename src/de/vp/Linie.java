@@ -129,7 +129,7 @@ public class Linie {
     }
     
     public boolean zugSchrotten() {
-        if (zuege - zuegeRaus > 0) {
+        if (zuege - zuegeWerkstatt > 0) {
             zuegeWerkstatt++;
             return true;
         } else {

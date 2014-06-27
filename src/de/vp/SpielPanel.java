@@ -22,6 +22,8 @@ public class SpielPanel extends javax.swing.JPanel {
     private int[] radius = {20, 16, 10, 6, 4, 2};
     private int[] bahnhofdicke = {2, 2, 1, 1, 0, 0};
     private int[] liniendicke = {7, 5, 4, 4, 3, 2};
+    private int[] schriftgroesse = {16, 14, 12, 0, 0, 0};
+    private int[] personenPos = {50, 40, 35, 0, 0, 0};
     private int blink;
     private boolean blinken;
 
@@ -78,7 +80,7 @@ public class SpielPanel extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         //Beiger Hintergrund
-        if (strg.getTageszeit() == Stadtteil.ABEND || strg.getTageszeit() == Stadtteil.NACHT) {
+        if (strg.getTageszeit() == Stadtteil.NACHT) {
             g2d.setColor(new Color(47, 44, 47));
         } else {
             g2d.setColor(new Color(192, 219, 154));
@@ -195,11 +197,11 @@ public class SpielPanel extends javax.swing.JPanel {
                     }
                     if (zoom < 3) {
                         // Name
-                        g2d.setFont(new Font("Arial", Font.BOLD, 16));
+                        g2d.setFont(new Font("Arial", Font.BOLD, schriftgroesse[zoom]));
                         g2d.drawString(bhf[y][x].getName(), x * pixel[zoom] - 10, y * pixel[zoom] + 5);
 
                         //einsteigen Zahl
-                        g2d.drawString(Integer.toString(bhf[y][x].getEinsteigen()), x * pixel[zoom], y * pixel[zoom] + 50);
+                        g2d.drawString(Integer.toString(bhf[y][x].getEinsteigen()), x * pixel[zoom], y * pixel[zoom] + personenPos[zoom]);
 
                         //aussteigen Zahl
                         //g2d.drawString(Integer.toString(bhf[y][x].getAussteigen()), x * pixel[zoom], y * pixel[zoom] + 70);

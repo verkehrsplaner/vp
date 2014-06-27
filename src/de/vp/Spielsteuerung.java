@@ -348,7 +348,7 @@ public class Spielsteuerung {
                 for (int b = 0; b < teile[h].length; b++) {
                     if (bahnhoefe[h][b] != null) {
                         if (bahnhoefe[h][b] instanceof Bahnhof) {
-                            datei.println("bhf:" + h + "," + b + "," + bahnhoefe[h][b].getName() + "," + bahnhoefe[h][b].getEinsteigen() + "," + bahnhoefe[h][b].getAussteigen()+ "," + bahnhoefe[h][b].getKasse()); // Höhe, Breite, Name, Leute die einsteigen wollen, Leute die aussteigen wollen
+                            datei.println("bhf:" + h + "," + b + "," + bahnhoefe[h][b].getName() + "," + bahnhoefe[h][b].getEinsteigen() + "," + bahnhoefe[h][b].getAussteigen() + "," + bahnhoefe[h][b].getKasse()); // Höhe, Breite, Name, Leute die einsteigen wollen, Leute die aussteigen wollen
                         }
                     }
                 }
@@ -1336,7 +1336,8 @@ public class Spielsteuerung {
     }
 
     /**
-     * per Zufall wird ein Zug einer zufällig gewählten Linie in Werkstatt verschoben
+     * per Zufall wird ein Zug einer zufällig gewählten Linie in Werkstatt
+     * verschoben
      */
     public void zugKaputten() {
         int x = (int) Math.round(Math.random() * neueLinien);
@@ -1380,10 +1381,10 @@ public class Spielsteuerung {
             }
         }
         // Prämien
-        if (temp < hauszahl/2) {
+        if (temp < hauszahl / 2) {
             kosten -= 3000;
         }
-        if (temp < hauszahl/4) {
+        if (temp < hauszahl / 4) {
             kosten -= 3000;
         }
         if (temp < 5) {
@@ -1609,19 +1610,23 @@ public class Spielsteuerung {
      * @return
      */
     public boolean klick(int x, int y) {
-        switch (nextAction) {
-            case "bhf":
-                neuerBahnhof(x, y);
-                nextAction = "";
-                break;
-            default:
-                if (bahnhoefe[y][x] != null) {
-                    JFrame d = new BahnhofGUI(bahnhoefe[y][x], this);
-                    d.setVisible(true);
-                }
-                break;
+        if (x < breite && y < hoehe) {
+            switch (nextAction) {
+                case "bhf":
+                    neuerBahnhof(x, y);
+                    nextAction = "";
+                    break;
+                default:
+                    if (bahnhoefe[y][x] != null) {
+                        JFrame d = new BahnhofGUI(bahnhoefe[y][x], this);
+                        d.setVisible(true);
+                    }
+                    break;
+            }
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
     public int kapazitaet(Linie l) {
@@ -1698,7 +1703,7 @@ public class Spielsteuerung {
     public int getBreite() {
         return breite;
     }
-    
+
     public int getTageszeit() {
         return tageszeit;
     }

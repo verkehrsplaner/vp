@@ -31,11 +31,14 @@ public class Listener extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        e.getComponent().requestFocusInWindow();
-        int x = e.getX() - 20;
-        int y = e.getY() - 20;
-        double f_x = x / pixel[zoom];
-        double f_y = y / pixel[zoom];
-        strg.klick((int) Math.round(f_x), (int) Math.round(f_y));
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            int x = e.getX() - 20;
+            int y = e.getY() - 20;
+            double f_x = x / pixel[zoom];
+            double f_y = y / pixel[zoom];
+            strg.klick((int) Math.round(f_x), (int) Math.round(f_y));
+        } else {
+            strg.setNextAction("");
+        }
     }
 }

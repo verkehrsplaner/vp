@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
@@ -239,6 +240,23 @@ public class SpielPanel extends javax.swing.JPanel {
                         //g2d.drawString(Integer.toString(bhf[y][x].getAussteigen()), x * pixel[zoom], y * pixel[zoom] + 70);
                     }
 
+                }
+            }
+        }
+
+        // Zu bauenden Bahnhof malen
+        if (strg.getNextAction().equals("bhf")) {
+            Point pos = this.getMousePosition();
+            if (pos != null) {
+                int x = pos.x;
+                int y = pos.y;
+                g2d.setColor(Color.WHITE);
+                g2d.setStroke(new BasicStroke(1));
+                g2d.fillOval((int) Math.round((x - 20) / (double) pixel[zoom]) * pixel[zoom] + 20 - radius[zoom] / 2, (int) Math.round((y - 20) / (double) pixel[zoom]) * pixel[zoom] + 20 - radius[zoom] / 2, radius[zoom], radius[zoom]);
+                if (bahnhofdicke[zoom] > 0) {
+                    g2d.setColor(Color.BLACK);
+                    g2d.setStroke(new BasicStroke(bahnhofdicke[zoom]));
+                    g2d.drawOval((int) Math.round((x - 20) / (double) pixel[zoom]) * pixel[zoom] + 20 - radius[zoom] / 2, (int) Math.round((y - 20) / (double) pixel[zoom]) * pixel[zoom] + 20 - radius[zoom] / 2, radius[zoom], radius[zoom]);
                 }
             }
         }

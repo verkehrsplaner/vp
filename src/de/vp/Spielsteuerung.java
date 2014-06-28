@@ -1654,6 +1654,10 @@ public class Spielsteuerung {
         nextAction = a;
         return true;
     }
+    
+    public String getNextAction() {
+        return nextAction;
+    }
 
     /**
      * @return the teile

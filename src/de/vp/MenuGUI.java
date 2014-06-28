@@ -34,9 +34,11 @@ public class MenuGUI extends JDialog {
         setIconImage(icon.getImage());
         boolean pause = strg.getPause();
         if (pause == true) {
-            jToggleButton1.setSelected(true);
+           
+           spielPause.setIcon(new ImageIcon(getClass().getResource("images/play.png")));
         } else {
-            jToggleButton1.setSelected(false);
+           
+           spielPause.setIcon(new ImageIcon(getClass().getResource("images/pause.png")));
         }
     }
 
@@ -54,9 +56,9 @@ public class MenuGUI extends JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         spielBeenden = new javax.swing.JButton();
         spielSpeichern = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         blinken = new javax.swing.JCheckBox();
         hAtmo = new javax.swing.JCheckBox();
+        spielPause = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menü");
@@ -96,13 +98,6 @@ public class MenuGUI extends JDialog {
             }
         });
 
-        jToggleButton1.setText("Spiel pausieren");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
         blinken.setSelected(panel.getBlinken());
         blinken.setText("Nicht versorgte Bahnhöfe blinken");
         blinken.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +114,13 @@ public class MenuGUI extends JDialog {
             }
         });
 
+        spielPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/pause.png"))); // NOI18N
+        spielPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spielPauseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,14 +130,14 @@ public class MenuGUI extends JDialog {
                 .addComponent(Menü)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(spielPause, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(spielSpeichern, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(spielBeenden, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -168,11 +170,9 @@ public class MenuGUI extends JDialog {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spielSpeichern, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
-                    .addComponent(spielBeenden, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(spielBeenden, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spielPause, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -198,19 +198,6 @@ public class MenuGUI extends JDialog {
             System.exit(0);
         }
     }//GEN-LAST:event_spielBeendenActionPerformed
-
-    /**
-     * Der SpielTimer wird auf Pause oder Play gesetzt.
-     *
-     * @param evt
-     */
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        if (jToggleButton1.isSelected()) {
-            strg.setPause(true);
-        } else {
-            strg.setPause(false);
-        }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * Das Spiel kann unter einem beliebigen Pfad gespeichert werden
@@ -266,6 +253,18 @@ public class MenuGUI extends JDialog {
         }
     }//GEN-LAST:event_hAtmoActionPerformed
 
+    private void spielPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielPauseActionPerformed
+        if(strg.getPause()) {
+            strg.setPause(false);
+            spielPause.setIcon(new ImageIcon(getClass().getResource("images/pause.png")));
+        }
+        else {
+            strg.setPause(true);
+            spielPause.setIcon(new ImageIcon(getClass().getResource("images/play.png")));
+            
+        }
+    }//GEN-LAST:event_spielPauseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Menü;
@@ -273,9 +272,9 @@ public class MenuGUI extends JDialog {
     private javax.swing.JCheckBox hAtmo;
     private javax.swing.JCheckBox hMusik;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JCheckBox soundeffekte;
     private javax.swing.JButton spielBeenden;
+    private javax.swing.JButton spielPause;
     private javax.swing.JButton spielSpeichern;
     // End of variables declaration//GEN-END:variables
 }

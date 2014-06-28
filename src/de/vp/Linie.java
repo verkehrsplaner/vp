@@ -88,6 +88,10 @@ public class Linie {
         this.name = name;
     }
 
+    /**
+     * 
+     * @return Anzahl Bahnhöfe in der Liste
+     */
     public int getBhfs() {
         return bhfs;
     }

@@ -463,6 +463,14 @@ public class Spielsteuerung {
     }
 
     /**
+     * 
+     * @return Anzahl Bahnhöfe in der Liste
+     */
+    public int getBhfs() {
+        return bhfs;
+    }
+    
+    /**
      *
      * @return Die aktuelle In-Game-Zeit als Date-Objekt
      */

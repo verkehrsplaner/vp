@@ -70,6 +70,13 @@ public class LinienGUI extends JFrame {
                 else {
                     jButtonBahnhofWeg.setEnabled(true);
                 }
+                
+                if(strg.getBhfs() == 0) {
+                    jButtonBahnhof.setEnabled(false);
+                }
+                else {
+                    jButtonBahnhof.setEnabled(true);
+                }
 
             }
         }, 0, 40);

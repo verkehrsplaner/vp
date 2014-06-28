@@ -189,16 +189,37 @@ public class MenuGUI extends JDialog {
      * @param evt
      */
     private void spielBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielBeendenActionPerformed
-        Object[] options = {"Ja", "Nein"};
-        int s = JOptionPane.showOptionDialog(this, "Möchtest du das Spiel wirklich beenden?", "Spiel Beenden",
+        Object[] options = {"Abbrechen", "Nein", "Ja"};
+        int s = JOptionPane.showOptionDialog(this, "Möchtest du das Spiel vor dem Beenden speichern?", "Spiel Speichern",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                 null, options, options[0]);
-        // System.out.println(s);
-        if (s == 0) {
+         System.out.println(s);
+        if (s == 1) {
             System.exit(0);
+        }
+        else if (s == 0) {
+            
+        }
+        else if (s == 2) {
+            speichern();
         }
     }//GEN-LAST:event_spielBeendenActionPerformed
 
+    /**
+     * 
+     * Speichert das aktuelle Spiel und beendet es
+     */
+    private void speichern() {
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showSaveDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            Path file = fc.getSelectedFile().toPath();
+            strg.speichern(file);
+            this.dispose();
+        }
+        System.exit(0);
+    }
+    
     /**
      * Das Spiel kann unter einem beliebigen Pfad gespeichert werden
      *

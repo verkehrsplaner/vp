@@ -124,6 +124,9 @@ public class SpielGUI extends javax.swing.JFrame {
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+               
+                // ========== Initialisierung und Formatierung der JLabels =========
+                
                 if (strg.getPause() == false) {
                     uhrzeitLabel.setText(formatDatum.format(strg.getTime()));
                 } else {
@@ -145,6 +148,11 @@ public class SpielGUI extends javax.swing.JFrame {
                 }
                 bilanzLabel.setText(formatGeld.format(bilanz));
                 Linie[] linienTemp = strg.getLinien();
+                
+                // ========== Formatierung Ende ==========
+                
+                
+                
                 if (linienTemp.length != linien.length) {
                     linien = linienTemp;
                     linienListe.clear();
@@ -152,10 +160,20 @@ public class SpielGUI extends javax.swing.JFrame {
                         linienListe.addElement(linien[i]);
                     }
                 }
+                
+                // De - aktiviert den Bahnhof verkaufen Button
                 if (strg.getDepot() == 0) {
                     minusButton.setEnabled(false);
                 } else {
                     minusButton.setEnabled(true);
+                }
+                
+                // De - aktiviert den Werkstatt Button
+                if (strg.getWerkstatt() == 0) {
+                    reparierenButton.setEnabled(false);
+                }
+                else {
+                    reparierenButton.setEnabled(true);
                 }
 
                 // ======== Abfrage ob Sachen noch kaufbar sind oder nicht ========

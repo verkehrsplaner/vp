@@ -16,7 +16,7 @@ public class Linie {
     private String name;
     private Color farbe;
     private int zuege;
-    private int zuegeRaus; // Zuege, die noch aus der Linie entfernt werden müssen
+    private int zuegeRaus, zuegeWerkstatt; // Zuege, die noch aus der Linie entfernt werden müssen
     private Bahnhof[] bhfListe;
     private int bhfs;
     private boolean gruenesLicht; // Dürfen Züge aus dem Depot fahren?
@@ -122,6 +122,15 @@ public class Linie {
     public boolean zugEntfernen() {
         if (zuege - zuegeRaus > 0) {
             zuegeRaus++;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean zugSchrotten() {
+        if (zuege - zuegeWerkstatt > 0) {
+            zuegeWerkstatt++;
             return true;
         } else {
             return false;
@@ -515,6 +524,12 @@ public class Linie {
                 zuegeRaus--;
                 zuege--;
                 strg.zugInsDepot();
+            }
+            while (zuegeWerkstatt > 0 && depot > 0) {
+                depot--;
+                zuegeWerkstatt--;
+                zuege--;
+                strg.zugInWerkstatt();
             }
             // Den ersten Zug bearbeiten
             streckeZurueck[0] = streckeEnde;

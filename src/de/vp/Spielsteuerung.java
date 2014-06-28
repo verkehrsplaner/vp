@@ -542,8 +542,18 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * Ein Zug ins Depot
+     */
     public void zugInsDepot() {
         depot++;
+    }
+    
+    /**
+     * Ein Zug in Werkstatt
+     */
+    public void zugInWerkstatt() {
+        werkstatt++;
     }
 
     /**
@@ -1342,7 +1352,7 @@ public class Spielsteuerung {
     public void zugKaputten() {
         int x = (int) Math.round(Math.random() * neueLinien);
         if (linien[x] != null && linien[x].getZuege() > 0) {
-            linien[x].zugEntfernen();
+            linien[x].zugSchrotten();
             ticker.neueNachricht("Auf Linie " + linien[x].getName() + " ist ein Zug ausgefallen!");
             werkstatt++;
         }
@@ -1558,7 +1568,8 @@ public class Spielsteuerung {
             }
 
             //\/ Zug per Zufall schrotten
-            if (Math.random() < 0.00075) {
+
+            if (Math.random() > 0) {
                 zugKaputten();
             }
             // \/ Abrechnung

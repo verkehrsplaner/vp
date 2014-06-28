@@ -88,6 +88,10 @@ public class Linie {
         this.name = name;
     }
 
+    public int getBhfs() {
+        return bhfs;
+    }
+
     /**
      * @return the farbe
      */
@@ -127,7 +131,7 @@ public class Linie {
             return false;
         }
     }
-    
+
     public boolean zugSchrotten() {
         if (zuege - zuegeWerkstatt > 0) {
             zuegeWerkstatt++;
@@ -224,8 +228,7 @@ public class Linie {
 
     /**
      *
-     * @param bhf gegebener Bhf wird aus der Liste gelöscht? letzter Bhf wird
-     * aus der Liste gelöscht!
+     * @param bhf gegebener Bhf wird aus der Liste gelöscht? letzter Bhf wird aus der Liste gelöscht!
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
         if (baubar) {
@@ -281,6 +284,7 @@ public class Linie {
 
     /**
      * Gibt die Linie (Hinweg) aufgeteilt in einzelen Streckenabschnitte zurück
+     *
      * @return Die Streckenabschnitte
      */
     public int[][] getStrecken() {
@@ -309,9 +313,10 @@ public class Linie {
             return null;
         }
     }
-    
+
     /**
      * Gibt die Linie (Rückweg) aufgeteilt in einzelen Streckenabschnitte zurück
+     *
      * @return Die Streckenabschnitte
      */
     public int[][] getStreckenZurueck() {
@@ -319,7 +324,7 @@ public class Linie {
             int[][] strecken = new int[bhfs - 1][];
             for (int i = 0; i < bhfs - 1; i++) {
                 // Länge der Strecken
-                strecken[i] = new int[streckeBerechnen((bhfs - 1) - i , (bhfs - 1) - (i + 1)) + 1];
+                strecken[i] = new int[streckeBerechnen((bhfs - 1) - i, (bhfs - 1) - (i + 1)) + 1];
                 int start = 0;
                 // Anfangsposition des Streckenabschnittes
                 if (i > 0) {
@@ -364,8 +369,7 @@ public class Linie {
 
     /**
      *
-     * @return der Gewinn der für die Ganze Linie anfällt Berechnet durch die
-     * Teilgewinne jedes Bhfs
+     * @return der Gewinn der für die Ganze Linie anfällt Berechnet durch die Teilgewinne jedes Bhfs
      */
     public int gewinn() {
         int k = 0 - kosten();
@@ -386,8 +390,7 @@ public class Linie {
 
     /**
      *
-     * @return Kapazität der Linie Berechnet durch alle Personen die in allen
-     * Bhfs einsteigen
+     * @return Kapazität der Linie Berechnet durch alle Personen die in allen Bhfs einsteigen
      */
     public int potential() {
         int k = 0;
@@ -476,8 +479,7 @@ public class Linie {
     }
 
     /**
-     * räumt auf wenn die Linie gelöscht werden soll zB allen Bahnhöfen bescheid
-     * geben
+     * räumt auf wenn die Linie gelöscht werden soll zB allen Bahnhöfen bescheid geben
      */
     public void letzterSchritt() {
         // bei allen Bhfs die Linie löschen

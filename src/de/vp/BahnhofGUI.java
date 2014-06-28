@@ -18,6 +18,7 @@ public class BahnhofGUI extends javax.swing.JFrame {
 
     private Bahnhof bhf;
     private Spielsteuerung strg;
+    private boolean bau;
 
     /**
      * Creates new form BahnhofGUI
@@ -27,6 +28,7 @@ public class BahnhofGUI extends javax.swing.JFrame {
         strg = s;
         initComponents();
         name.setText(b.getName());
+        bau = true;
 
         ImageIcon icon = new ImageIcon(getClass().getResource("images/bahnhof.png"));
         setIconImage(icon.getImage());
@@ -39,6 +41,18 @@ public class BahnhofGUI extends javax.swing.JFrame {
                 ein.setText(Integer.toString(bhf.getEingestiegen()));
                 aus.setText(Integer.toString(bhf.getAusgestiegen()));
                 kasse.setText(Integer.toString(bhf.getKasse()));
+
+                Linie[] linien = bhf.getLinien();
+                for (int i = 0; i < linien.length; i++) {
+                    if (!linien[i].getBaubar()) {
+                        bau = false;
+                    }
+                }
+                if (bau) {
+                    bhfAbreissen.setEnabled(true);
+                } else {
+                    bhfAbreissen.setEnabled(false);
+                }
             }
         }, 0, 40);
     }
@@ -174,7 +188,8 @@ public class BahnhofGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bhfAbreissenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhfAbreissenActionPerformed
-          Object[] options = {"Ja", "Nein"};
+
+        Object[] options = {"Ja", "Nein"};
         int s = JOptionPane.showOptionDialog(null, "Möchtest du den Bahnhof wirklich abreißen?", "Spiel Beenden",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                 null, options, options[0]);
@@ -183,7 +198,6 @@ public class BahnhofGUI extends javax.swing.JFrame {
             strg.bhfEntfernen(bhf);
             dispose();
         }
-
 
     }//GEN-LAST:event_bhfAbreissenActionPerformed
 

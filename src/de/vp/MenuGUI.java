@@ -217,7 +217,10 @@ public class MenuGUI extends JDialog {
             strg.speichern(file);
             this.dispose();
         }
-        System.exit(0);
+        else if (returnVal == JFileChooser.CANCEL_OPTION) {
+            System.exit(0);
+        }
+        
     }
     
     /**
@@ -233,6 +236,7 @@ public class MenuGUI extends JDialog {
             strg.speichern(file);
             this.dispose();
         }
+        
     }//GEN-LAST:event_spielSpeichernActionPerformed
 
     /**

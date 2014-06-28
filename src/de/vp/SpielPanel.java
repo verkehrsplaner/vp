@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 
 /**
  *
@@ -24,6 +27,8 @@ public class SpielPanel extends javax.swing.JPanel {
     private int[] liniendicke = {7, 5, 4, 4, 3, 2};
     private int[] schriftgroesse = {16, 14, 12, 0, 0, 0};
     private int[] personenPos = {50, 40, 35, 0, 0, 0};
+    private int[] zugGroesse = {16, 16, 8, 8, 0, 0};
+    private int[] zugRundung = {2, 2, 1, 1, 0, 0};
     private int blink;
     private boolean blinken;
 
@@ -136,19 +141,33 @@ public class SpielPanel extends javax.swing.JPanel {
             for (int j = 0; j < linienBahnhof.length - 1; j++) {
                 g2d.drawLine(linienBahnhof[j].getX() * pixel[zoom] + 20, linienBahnhof[j].getY() * pixel[zoom] + 20, linienBahnhof[j + 1].getX() * pixel[zoom] + 20, linienBahnhof[j + 1].getY() * pixel[zoom] + 20);
             }
+
             //Züge Zeichnen
             int[][] strecken = linien[i].getStrecken();
             g2d.setColor(linien[i].getFarbe());
             if (strecken != null) {
                 for (int s = 0; s < strecken.length; s++) {
-                    int xBhf = linienBahnhof[s].getX() * pixel[zoom] + 20 + 8;
-                    int yBhf = linienBahnhof[s].getY() * pixel[zoom] + 20 + 8;
-                    int xDis = (linienBahnhof[s + 1].getX() * pixel[zoom] + 20 + 8) - xBhf;
-                    int yDis = (linienBahnhof[s + 1].getY() * pixel[zoom] + 20 + 8) - yBhf;
+                    int xBhf = linienBahnhof[s].getX() * pixel[zoom] + 20;
+                    int yBhf = linienBahnhof[s].getY() * pixel[zoom] + 20;
+                    int xDis = (linienBahnhof[s + 1].getX() * pixel[zoom] + 20) - xBhf;
+                    int yDis = (linienBahnhof[s + 1].getY() * pixel[zoom] + 20) - yBhf;
                     double laenge = strecken[s].length - 1;
-                    for (int pos = 1; pos < strecken[s].length; pos++) {
+                    for (int pos = 1; pos < laenge; pos++) {
                         if (strecken[s][pos] > -1) {
-                            g2d.fillRoundRect(xBhf + ((int) Math.round((pos / laenge) * xDis)) - 8, yBhf + ((int) Math.round((pos / laenge) * yDis)) - 8, 16, 16, 4, 4);
+                            // Position auf der gezeichneten Linie
+                            double xZugAufLinie = (pos / (double) laenge) * xDis; // b1
+                            double yZugAufLinie = (pos / (double) laenge) * yDis; // b2
+                            // Versatz im rechten Winkel von der Linie weg
+                            double xZugVersatz = ((zugGroesse[zoom] / 2 + 2) * yZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
+                            double yZugVersatz = ((zugGroesse[zoom] / 2 + 2) * xZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
+                            // Winkel, um den der Zug gedreht werden muss
+                            double winkel = Math.abs(Math.asin(yDis / Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2))));
+                            // Zug drehen und zeichnen
+                            Rectangle kasten = new Rectangle(xBhf + (int) Math.round(xZugAufLinie + xZugVersatz) - zugGroesse[zoom] / 2, yBhf + (int) Math.round(yZugAufLinie + yZugVersatz) - zugGroesse[zoom] / 2, zugGroesse[zoom], zugGroesse[zoom]);
+                            AffineTransform transform = new AffineTransform();
+                            transform.rotate(winkel, kasten.getCenterX(), kasten.getCenterY());
+                            Shape zug = transform.createTransformedShape(kasten);
+                            g2d.fill(zug);
                         }
                     }
                 }
@@ -158,14 +177,27 @@ public class SpielPanel extends javax.swing.JPanel {
             strecken = linien[i].getStreckenZurueck();
             if (strecken != null) {
                 for (int s = 0; s < strecken.length; s++) {
-                    int xBhf = linienBahnhof[linienBahnhof.length - s - 1].getX() * pixel[zoom] + 20 - 8;
-                    int yBhf = linienBahnhof[linienBahnhof.length - s - 1].getY() * pixel[zoom] + 20 - 8;
-                    int xDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getX() * pixel[zoom] + 20 - 8) - xBhf;
-                    int yDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getY() * pixel[zoom] + 20 - 8) - yBhf;
+                    int xBhf = linienBahnhof[linienBahnhof.length - s - 1].getX() * pixel[zoom] + 20;
+                    int yBhf = linienBahnhof[linienBahnhof.length - s - 1].getY() * pixel[zoom] + 20;
+                    int xDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getX() * pixel[zoom] + 20) - xBhf;
+                    int yDis = (linienBahnhof[linienBahnhof.length - (s + 1) - 1].getY() * pixel[zoom] + 20) - yBhf;
                     double laenge = strecken[s].length - 1;
-                    for (int pos = 1; pos < strecken[s].length; pos++) {
+                    for (int pos = 1; pos < laenge; pos++) {
                         if (strecken[s][pos] > -1) {
-                            g2d.fillRoundRect(xBhf + ((int) Math.round((pos / laenge) * xDis)) - 8, yBhf + ((int) Math.round((pos / laenge) * yDis)) - 8, 16, 16, 4, 4);
+                            // Position auf der gezeichneten Linie
+                            double xZugAufLinie = (pos / (double) laenge) * xDis; // b1
+                            double yZugAufLinie = (pos / (double) laenge) * yDis; // b2
+                            // Versatz im rechten Winkel von der Linie weg
+                            double xZugVersatz = ((zugGroesse[zoom] / 2 + 2) * yZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
+                            double yZugVersatz = ((zugGroesse[zoom] / 2 + 2) * xZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
+                            // Winkel, um den der Zug gedreht werden muss
+                            double winkel = Math.abs(-Math.asin(yDis / Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2))));
+                            // Zug drehen und zeichnen
+                            Rectangle kasten = new Rectangle(xBhf + (int) Math.round(xZugAufLinie + xZugVersatz) - zugGroesse[zoom] / 2, yBhf + (int) Math.round(yZugAufLinie + yZugVersatz) - zugGroesse[zoom] / 2, zugGroesse[zoom], zugGroesse[zoom]);
+                            AffineTransform transform = new AffineTransform();
+                            transform.rotate(winkel, kasten.getCenterX(), kasten.getCenterY());
+                            Shape zug = transform.createTransformedShape(kasten);
+                            g2d.fill(zug);
                         }
                     }
                 }

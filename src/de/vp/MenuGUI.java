@@ -63,10 +63,13 @@ public class MenuGUI extends JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menü");
         setAlwaysOnTop(true);
-        setMinimumSize(new java.awt.Dimension(551, 377));
+        setMaximumSize(new java.awt.Dimension(551, 400));
+        setMinimumSize(new java.awt.Dimension(551, 400));
+        setPreferredSize(getMinimumSize());
         setResizable(false);
         getContentPane().setLayout(null);
 
+        hMusik.setForeground(new java.awt.Color(255, 255, 255));
         hMusik.setSelected(sound.getMusikAn());
         hMusik.setText("Hintergrundmusik");
         hMusik.setToolTipText("Musik an / aus");
@@ -77,7 +80,7 @@ public class MenuGUI extends JDialog {
             }
         });
         getContentPane().add(hMusik);
-        hMusik.setBounds(55, 164, 140, 24);
+        hMusik.setBounds(55, 164, 140, 23);
 
         Menü.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Menü.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,6 +110,7 @@ public class MenuGUI extends JDialog {
         getContentPane().add(spielSpeichern);
         spielSpeichern.setBounds(204, 250, 131, 98);
 
+        blinken.setForeground(new java.awt.Color(255, 255, 255));
         blinken.setSelected(panel.getBlinken());
         blinken.setText("Nicht versorgte Bahnhöfe blinken");
         blinken.setToolTipText("Bahnhof blinken an / aus");
@@ -117,8 +121,9 @@ public class MenuGUI extends JDialog {
             }
         });
         getContentPane().add(blinken);
-        blinken.setBounds(55, 187, 220, 24);
+        blinken.setBounds(55, 187, 220, 23);
 
+        hAtmo.setForeground(new java.awt.Color(255, 255, 255));
         hAtmo.setSelected(sound.getAtmoAn());
         hAtmo.setText("Atmosphäre");
         hAtmo.setToolTipText("Atmosphäre an / aus");
@@ -129,7 +134,7 @@ public class MenuGUI extends JDialog {
             }
         });
         getContentPane().add(hAtmo);
-        hAtmo.setBounds(55, 141, 110, 24);
+        hAtmo.setBounds(55, 141, 110, 23);
 
         spielPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/pause.png"))); // NOI18N
         spielPause.setToolTipText("Spiel pausieren");
@@ -142,6 +147,8 @@ public class MenuGUI extends JDialog {
         spielPause.setBounds(55, 250, 131, 98);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/BGMenu.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(551, 380));
+        jLabel1.setMinimumSize(new java.awt.Dimension(551, 380));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -2, 550, 380);
 

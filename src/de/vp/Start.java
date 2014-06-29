@@ -48,9 +48,7 @@ public class Start extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verkehrsplaner");
-        setMaximumSize(minimumSize());
         setMinimumSize(new java.awt.Dimension(577, 275));
-        setPreferredSize(new java.awt.Dimension(577, 275));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -62,12 +60,12 @@ public class Start extends javax.swing.JFrame {
             }
         });
         getContentPane().add(spielStartenButton);
-        spielStartenButton.setBounds(160, 190, 110, 23);
+        spielStartenButton.setBounds(160, 170, 110, 23);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Höhe:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(130, 150, 50, 14);
+        jLabel1.setBounds(160, 147, 50, 14);
 
         hoeheComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
         hoeheComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -76,16 +74,16 @@ public class Start extends javax.swing.JFrame {
             }
         });
         getContentPane().add(hoeheComboBox);
-        hoeheComboBox.setBounds(170, 140, 100, 20);
+        hoeheComboBox.setBounds(210, 140, 60, 20);
 
         breiteComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
         getContentPane().add(breiteComboBox);
-        breiteComboBox.setBounds(320, 140, 100, 20);
+        breiteComboBox.setBounds(330, 140, 60, 20);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Breite:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(270, 150, 50, 14);
+        jLabel2.setBounds(280, 147, 50, 14);
 
         creditsButton.setText("Credits");
         creditsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +101,7 @@ public class Start extends javax.swing.JFrame {
             }
         });
         getContentPane().add(spielLadenButton);
-        spielLadenButton.setBounds(280, 190, 110, 23);
+        spielLadenButton.setBounds(280, 170, 110, 23);
 
         hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/start.png"))); // NOI18N
         hintergrund.setToolTipText("");

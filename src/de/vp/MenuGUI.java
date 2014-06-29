@@ -75,6 +75,7 @@ public class MenuGUI extends JDialog {
         hMusik.setSelected(sound.getMusikAn());
         hMusik.setText("Hintergrundmusik");
         hMusik.setToolTipText("Musik an / aus");
+        hMusik.setContentAreaFilled(false);
         hMusik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hMusikActionPerformed(evt);
@@ -115,6 +116,7 @@ public class MenuGUI extends JDialog {
         blinken.setSelected(panel.getBlinken());
         blinken.setText("Nicht versorgte Bahnhöfe blinken");
         blinken.setToolTipText("Bahnhof blinken an / aus");
+        blinken.setContentAreaFilled(false);
         blinken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 blinkenActionPerformed(evt);
@@ -127,6 +129,7 @@ public class MenuGUI extends JDialog {
         hAtmo.setSelected(sound.getAtmoAn());
         hAtmo.setText("Atmosphäre");
         hAtmo.setToolTipText("Atmosphäre an / aus");
+        hAtmo.setContentAreaFilled(false);
         hAtmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hAtmoActionPerformed(evt);

@@ -127,15 +127,22 @@ public class LinienGUI extends JFrame {
         jLabel7 = new javax.swing.JLabel();
         bilanz = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        hintergrund = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linien Konfiguration");
-        setPreferredSize(new java.awt.Dimension(606, 520));
+        setMaximumSize(minimumSize());
+        setMinimumSize(new java.awt.Dimension(617, 523));
+        setPreferredSize(new java.awt.Dimension(612, 495));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         jList1.setModel(bhfListe);
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(354, 100, 248, 150);
 
         jButtonBahnhof.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bahnhofplus.png"))); // NOI18N
         jButtonBahnhof.setToolTipText("Bahnhof hinzufügen");
@@ -144,10 +151,14 @@ public class LinienGUI extends JFrame {
                 jButtonBahnhofActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonBahnhof);
+        jButtonBahnhof.setBounds(353, 264, 115, 73);
 
         jLabelName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelName.setText(linie.getName());
+        getContentPane().add(jLabelName);
+        jLabelName.setBounds(10, 11, 592, 50);
 
         jButtonBahnhofWeg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bahnhofminus.png"))); // NOI18N
         jButtonBahnhofWeg.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +166,10 @@ public class LinienGUI extends JFrame {
                 jButtonBahnhofWegActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonBahnhofWeg);
+        jButtonBahnhofWeg.setBounds(488, 264, 115, 73);
 
+        jButtonLöschen.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonLöschen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bomb.png"))); // NOI18N
         jButtonLöschen.setText("Linie löschen");
         jButtonLöschen.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +177,10 @@ public class LinienGUI extends JFrame {
                 jButtonLöschenActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonLöschen);
+        jButtonLöschen.setBounds(312, 410, 290, 73);
 
+        jButtonFarbe.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonFarbe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/palette.png"))); // NOI18N
         jButtonFarbe.setText("Farbe ändern");
         jButtonFarbe.addActionListener(new java.awt.event.ActionListener() {
@@ -171,48 +188,83 @@ public class LinienGUI extends JFrame {
                 jButtonFarbeActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonFarbe);
+        jButtonFarbe.setBounds(10, 410, 290, 73);
 
+        minus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         minus.setText("-");
         minus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 minusActionPerformed(evt);
             }
         });
+        getContentPane().add(minus);
+        minus.setBounds(5, 95, 50, 40);
 
+        plus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         plus.setText("+");
         plus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusActionPerformed(evt);
             }
         });
+        getContentPane().add(plus);
+        plus.setBounds(255, 95, 50, 40);
 
         anzahlZuege.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        anzahlZuege.setForeground(new java.awt.Color(255, 255, 255));
         anzahlZuege.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         anzahlZuege.setText(Integer.toString(linie.getZuege()));
+        getContentPane().add(anzahlZuege);
+        anzahlZuege.setBounds(51, 105, 205, 17);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Züge im Einsatz");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(51, 72, 205, 22);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Bahnhöfe");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(354, 72, 248, 22);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Kapazität");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 171, 92, 22);
 
+        kapazitaet.setForeground(new java.awt.Color(255, 255, 255));
         kapazitaet.setText(Integer.toString(linie.kapazitaet()));
         kapazitaet.setName("kapazitaet"); // NOI18N
+        getContentPane().add(kapazitaet);
+        kapazitaet.setBounds(10, 204, 66, 14);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Auslastung");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 246, 86, 22);
 
+        auslastung.setForeground(new java.awt.Color(255, 255, 255));
         auslastung.setText(Double.toString(linie.auslastung()));
+        getContentPane().add(auslastung);
+        auslastung.setBounds(10, 274, 66, 14);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Länge");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(254, 335, 47, 22);
 
+        gesamtLaenge.setForeground(new java.awt.Color(255, 255, 255));
         gesamtLaenge.setText("jLabel6");
+        getContentPane().add(gesamtLaenge);
+        gesamtLaenge.setBounds(254, 363, 34, 14);
 
         ampelButton.setToolTipText("Ampel");
         ampelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -220,16 +272,30 @@ public class LinienGUI extends JFrame {
                 ampelButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(ampelButton);
+        ampelButton.setBounds(216, 171, 85, 117);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Depot");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(130, 335, 47, 22);
 
+        depot.setForeground(new java.awt.Color(255, 255, 255));
         depot.setText("jLabel7");
+        getContentPane().add(depot);
+        depot.setBounds(130, 363, 34, 14);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Bilanz");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(10, 335, 46, 22);
 
+        bilanz.setForeground(new java.awt.Color(255, 255, 255));
         bilanz.setText("jLabel8");
+        getContentPane().add(bilanz);
+        bilanz.setBounds(10, 363, 34, 14);
 
         jButton1.setText("Liniennamen ändern");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -237,115 +303,12 @@ public class LinienGUI extends JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(353, 350, 250, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonFarbe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(depot))
-                                .addGap(71, 71, 71)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(gesamtLaenge)
-                                    .addComponent(jLabel5)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(auslastung)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(kapazitaet))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                                .addComponent(ampelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(minus)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(anzahlZuege, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(plus)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonLöschen, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(bilanz))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButtonBahnhof, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonBahnhofWeg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(plus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(minus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(anzahlZuege))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(kapazitaet)
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(auslastung))
-                            .addComponent(ampelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bilanz)
-                            .addComponent(depot)
-                            .addComponent(gesamtLaenge))
-                        .addGap(35, 35, 35))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonBahnhofWeg, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonBahnhof, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonLöschen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonFarbe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/BGLinie.png"))); // NOI18N
+        getContentPane().add(hintergrund);
+        hintergrund.setBounds(0, 0, 620, 500);
 
         pack();
         setLocationRelativeTo(null);
@@ -534,6 +497,7 @@ public class LinienGUI extends JFrame {
     private javax.swing.JLabel bilanz;
     private javax.swing.JLabel depot;
     private javax.swing.JLabel gesamtLaenge;
+    private javax.swing.JLabel hintergrund;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBahnhof;
     private javax.swing.JButton jButtonBahnhofWeg;

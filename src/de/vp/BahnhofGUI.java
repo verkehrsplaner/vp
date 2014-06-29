@@ -78,13 +78,22 @@ public class BahnhofGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         kasse = new javax.swing.JLabel();
+        hintergrund = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(bhf.getName());
+        setMaximumSize(minimumSize());
+        setMinimumSize(new java.awt.Dimension(274, 365));
+        setPreferredSize(new java.awt.Dimension(274, 365));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        name.setForeground(new java.awt.Color(255, 255, 255));
+        name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name.setText("Bahnhof");
+        getContentPane().add(name);
+        name.setBounds(0, 11, 274, 22);
 
         bhfAbreissen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/bomb.png"))); // NOI18N
         bhfAbreissen.setToolTipText("Bahnhof abreißen");
@@ -93,106 +102,77 @@ public class BahnhofGUI extends javax.swing.JFrame {
                 bhfAbreissenActionPerformed(evt);
             }
         });
+        getContentPane().add(bhfAbreissen);
+        bhfAbreissen.setBounds(80, 253, 113, 76);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Wartende Passagiere:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(50, 70, 133, 17);
 
+        bahnsteig.setForeground(new java.awt.Color(255, 255, 255));
         bahnsteig.setText("jLabel4");
+        getContentPane().add(bahnsteig);
+        bahnsteig.setBounds(190, 70, 34, 14);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Angebundene Linien:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(50, 100, 128, 17);
 
+        anzahlLinien.setForeground(new java.awt.Color(255, 255, 255));
         anzahlLinien.setText("jLabel3");
+        getContentPane().add(anzahlLinien);
+        anzahlLinien.setBounds(190, 100, 34, 14);
 
+        ein.setForeground(new java.awt.Color(255, 255, 255));
+        ein.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ein.setText("ein");
+        getContentPane().add(ein);
+        ein.setBounds(190, 150, 40, 14);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Verlauf:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(50, 130, 46, 17);
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Eingestiegen:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(60, 150, 100, 14);
 
+        aus.setForeground(new java.awt.Color(255, 255, 255));
+        aus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         aus.setText("aus");
+        getContentPane().add(aus);
+        aus.setBounds(190, 170, 40, 14);
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ausgestiegen:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(60, 170, 110, 14);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Kasse:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(50, 210, 39, 17);
 
+        kasse.setForeground(new java.awt.Color(255, 255, 255));
         kasse.setText("jLabel7");
+        getContentPane().add(kasse);
+        kasse.setBounds(190, 210, 34, 14);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel4))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(aus)
-                                    .addComponent(ein)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(100, 100, 100)
-                                .addComponent(kasse))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(bahnsteig)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(40, 40, 40))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(anzahlLinien)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(name))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(bhfAbreissen, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(name)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(bahnsteig))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(anzahlLinien))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(ein))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(aus))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(kasse))
-                .addGap(30, 30, 30)
-                .addComponent(bhfAbreissen, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        hintergrund.setForeground(new java.awt.Color(255, 255, 255));
+        hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/BGBhf.png"))); // NOI18N
+        hintergrund.setMaximumSize(new java.awt.Dimension(280, 360));
+        hintergrund.setMinimumSize(new java.awt.Dimension(280, 360));
+        hintergrund.setPreferredSize(new java.awt.Dimension(280, 360));
+        getContentPane().add(hintergrund);
+        hintergrund.setBounds(0, 0, 280, 340);
 
         pack();
         setLocationRelativeTo(null);
@@ -223,6 +203,7 @@ public class BahnhofGUI extends javax.swing.JFrame {
     private javax.swing.JLabel bahnsteig;
     private javax.swing.JButton bhfAbreissen;
     private javax.swing.JLabel ein;
+    private javax.swing.JLabel hintergrund;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

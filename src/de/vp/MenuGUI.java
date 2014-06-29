@@ -5,11 +5,13 @@
  */
 package de.vp;
 
+import java.io.File;
 import java.nio.file.Path;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -185,6 +187,21 @@ public class MenuGUI extends JDialog {
      */
     private int speichern() {
         JFileChooser fc = new JFileChooser();
+        fc.removeChoosableFileFilter(fc.getAcceptAllFileFilter());
+        fc.setFileFilter(new FileFilter() {
+
+            @Override
+            public boolean accept(File file) {
+                if (file.isDirectory()) {
+                    return true;
+                }
+                return file.getName().toLowerCase().endsWith(".vp");
+            }
+            public String getDescription() {
+                return "Spielstände";
+            }
+            
+        });
         int returnVal = fc.showSaveDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Path file = fc.getSelectedFile().toPath();

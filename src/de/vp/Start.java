@@ -5,11 +5,13 @@
  */
 package de.vp;
 
+import java.io.File;
 import java.nio.file.Path;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -119,6 +121,21 @@ public class Start extends javax.swing.JFrame {
      */
     private void spielLadenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielLadenButtonActionPerformed
         JFileChooser fc = new JFileChooser();
+        fc.removeChoosableFileFilter(fc.getAcceptAllFileFilter());
+        fc.setFileFilter(new FileFilter() {
+
+            @Override
+            public boolean accept(File file) {
+                if (file.isDirectory()) {
+                    return true;
+                }
+                return file.getName().toLowerCase().endsWith(".vp");
+            }
+            public String getDescription() {
+                return "Spielstände";
+            }
+            
+        });
         int returnVal = fc.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Path file = fc.getSelectedFile().toPath();

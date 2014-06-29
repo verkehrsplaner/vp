@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -98,7 +99,8 @@ public class Spielsteuerung {
             reader = Files.newBufferedReader(file, charset);
             String zeile = null;
             long date = 0;
-            while ((zeile = reader.readLine()) != null) {
+            boolean dateiKaputt = false;
+            while ((zeile = reader.readLine()) != null && !dateiKaputt) {
                 // Einlesen
                 String[] data = zeile.split(":");
                 String[] detail;
@@ -132,70 +134,103 @@ public class Spielsteuerung {
                         date = Long.parseLong(data[1]);
                         break;
                     case "haus":
-                        detail = data[1].split(",");
-                        x = Integer.parseInt(detail[1]);
-                        y = Integer.parseInt(detail[0]);
-                        teile[y][x] = new Haus();
-                        hauszahl++;
+                        if (hoehe != 0 && breite != 0) {
+                            detail = data[1].split(",");
+                            x = Integer.parseInt(detail[1]);
+                            y = Integer.parseInt(detail[0]);
+                            teile[y][x] = new Haus();
+                            hauszahl++;
+                        } else {
+                            dateiKaputt = true;
+                        }
                         break;
                     case "firma":
-                        detail = data[1].split(",");
-                        x = Integer.parseInt(detail[1]);
-                        y = Integer.parseInt(detail[0]);
-                        teile[y][x] = new Firma();
-                        hauszahl++;
+                        if (hoehe != 0 && breite != 0) {
+                            detail = data[1].split(",");
+                            x = Integer.parseInt(detail[1]);
+                            y = Integer.parseInt(detail[0]);
+                            teile[y][x] = new Firma();
+                            hauszahl++;
+                        } else {
+                            dateiKaputt = true;
+                        }
                         break;
                     case "park":
-                        detail = data[1].split(",");
-                        x = Integer.parseInt(detail[1]);
-                        y = Integer.parseInt(detail[0]);
-                        teile[y][x] = new Park();
-                        hauszahl++;
+                        if (hoehe != 0 && breite != 0) {
+                            detail = data[1].split(",");
+                            x = Integer.parseInt(detail[1]);
+                            y = Integer.parseInt(detail[0]);
+                            teile[y][x] = new Park();
+                            hauszahl++;
+                        } else {
+                            dateiKaputt = true;
+                        }
                         break;
                     case "rh":
-                        detail = data[1].split(",");
-                        x = Integer.parseInt(detail[1]);
-                        y = Integer.parseInt(detail[0]);
-                        teile[y][x] = new Rathaus();
-                        hauszahl++;
+                        if (hoehe != 0 && breite != 0) {
+                            detail = data[1].split(",");
+                            x = Integer.parseInt(detail[1]);
+                            y = Integer.parseInt(detail[0]);
+                            teile[y][x] = new Rathaus();
+                            hauszahl++;
+                        } else {
+                            dateiKaputt = true;
+                        }
                         break;
                     case "bhf":
-                        System.out.println("Bahnhof geladen!");
-                        detail = data[1].split(",");
-                        x = Integer.parseInt(detail[1]);
-                        y = Integer.parseInt(detail[0]);
-                        bhfNamen.remove(bhfNamen.indexOf(detail[2]));
-                        intNeuerBahnhof(x, y, detail[2]);
-                        bahnhoefe[y][x].setEinsteigen(Integer.parseInt(detail[3]));
-                        bahnhoefe[y][x].setAussteigen(Integer.parseInt(detail[4]));
-                        bahnhoefe[y][x].setKasse(Integer.parseInt(detail[5]));
+                        if (hoehe != 0 && breite != 0) {
+                            System.out.println("Bahnhof geladen!");
+                            detail = data[1].split(",");
+                            x = Integer.parseInt(detail[1]);
+                            y = Integer.parseInt(detail[0]);
+                            bhfNamen.remove(bhfNamen.indexOf(detail[2]));
+                            intNeuerBahnhof(x, y, detail[2]);
+                            bahnhoefe[y][x].setEinsteigen(Integer.parseInt(detail[3]));
+                            bahnhoefe[y][x].setAussteigen(Integer.parseInt(detail[4]));
+                            bahnhoefe[y][x].setKasse(Integer.parseInt(detail[5]));
+                        } else {
+                            dateiKaputt = true;
+                        }
                         break;
                     case "linie":
-                        System.out.println("Linie geladen!");
-                        detail = data[1].split(",");
-                        int stelle = intNeueLinie(detail[0]);
-                        linien[stelle].setFarbe(new Color(Integer.parseInt(detail[1]), Integer.parseInt(detail[2]), Integer.parseInt(detail[3])));
-                        linien[stelle].setZuegeWieder(Integer.parseInt(detail[4]));
-                        linien[stelle].setGewinn(Integer.parseInt(detail[6]));
-                        // Bahnhöfe einfügen
-                        String bhfZeile = "";
-                        while (!(bhfZeile = reader.readLine()).equals("endeLinie")) {
-                            System.out.println("Bahnhof zu Linie geladen!");
-                            String[] bhf = bhfZeile.split(":");
-                            if (bhf[0].equals("bzl")) {
-                                String[] koord = bhf[1].split(",");
-                                linien[stelle].bahnhofWiederEinfuegen(bahnhoefe[Integer.parseInt(koord[0])][Integer.parseInt(koord[1])]);
+                        if (hoehe != 0 && breite != 0) {
+                            System.out.println("Linie geladen!");
+                            detail = data[1].split(",");
+                            int stelle = intNeueLinie(detail[0]);
+                            linien[stelle].setFarbe(new Color(Integer.parseInt(detail[1]), Integer.parseInt(detail[2]), Integer.parseInt(detail[3])));
+                            linien[stelle].setZuegeWieder(Integer.parseInt(detail[4]));
+                            linien[stelle].setGewinn(Integer.parseInt(detail[6]));
+                            // Bahnhöfe einfügen
+                            String bhfZeile = "";
+                            while (!(bhfZeile = reader.readLine()).equals("endeLinie")) {
+                                System.out.println("Bahnhof zu Linie geladen!");
+                                String[] bhf = bhfZeile.split(":");
+                                if (bhf[0].equals("bzl")) {
+                                    String[] koord = bhf[1].split(",");
+                                    linien[stelle].bahnhofWiederEinfuegen(bahnhoefe[Integer.parseInt(koord[0])][Integer.parseInt(koord[1])]);
+                                }
                             }
-                        }
 
-                        linien[stelle].setGruenesLicht(Boolean.parseBoolean(detail[5]));
+                            linien[stelle].setGruenesLicht(Boolean.parseBoolean(detail[5]));
+                        } else {
+                            dateiKaputt = true;
+                        }
                         break;
                 }
             }
             reader.close();
 
-            strgTimer = new StrgTimer(this, new Date(date));
-            timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+            if (hoehe == 0 || breite == 0) {
+                dateiKaputt = true;
+            }
+
+            if (dateiKaputt) {
+                JOptionPane.showMessageDialog(null, "Dieser Spielstand enthält einen Fehler", "Fehlerhafter Spielstand!", JOptionPane.WARNING_MESSAGE);
+                System.exit(1);
+            } else {
+                strgTimer = new StrgTimer(this, new Date(date));
+                timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
+            }
 
         } catch (IOException ex) {
             System.err.println("Fehler beim Lesen der Datei!");
@@ -304,7 +339,7 @@ public class Spielsteuerung {
      */
     public void speichern(Path file) {
         setPause(true);
-        if (!file.endsWith(".vp")) {
+        if (!file.toString().endsWith(".vp")) {
             String tmpPath = file.toString() + ".vp";
             file = Paths.get(tmpPath);
         }
@@ -463,13 +498,13 @@ public class Spielsteuerung {
     }
 
     /**
-     * 
+     *
      * @return Anzahl Bahnhöfe in der Liste
      */
     public int getBhfs() {
         return bhfs;
     }
-    
+
     /**
      *
      * @return Die aktuelle In-Game-Zeit als Date-Objekt
@@ -556,7 +591,7 @@ public class Spielsteuerung {
     public void zugInsDepot() {
         depot++;
     }
-    
+
     /**
      * Ein Zug in Werkstatt
      */
@@ -1576,7 +1611,6 @@ public class Spielsteuerung {
             }
 
             //\/ Zug per Zufall schrotten
-
             if (Math.random() > 0) {
                 zugKaputten();
             }
@@ -1662,7 +1696,7 @@ public class Spielsteuerung {
         nextAction = a;
         return true;
     }
-    
+
     public String getNextAction() {
         return nextAction;
     }

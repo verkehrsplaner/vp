@@ -60,12 +60,12 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(spielStartenButton);
-        spielStartenButton.setBounds(150, 170, 110, 29);
+        spielStartenButton.setBounds(160, 190, 110, 29);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Höhe:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(150, 145, 50, 14);
+        jLabel1.setBounds(130, 150, 50, 14);
 
         hoeheComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
         hoeheComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -74,16 +74,17 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(hoeheComboBox);
-        hoeheComboBox.setBounds(200, 140, 60, 27);
+        hoeheComboBox.setBounds(170, 140, 100, 27);
 
         breiteComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
+        breiteComboBox.setSize(new java.awt.Dimension(100, 27));
         jPanel1.add(breiteComboBox);
-        breiteComboBox.setBounds(330, 140, 60, 27);
+        breiteComboBox.setBounds(320, 140, 110, 27);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Breite:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(280, 145, 50, 14);
+        jLabel2.setBounds(270, 150, 50, 14);
 
         creditsButton.setText("Credits");
         creditsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +102,7 @@ public class Start extends javax.swing.JFrame {
             }
         });
         jPanel1.add(spielLadenButton);
-        spielLadenButton.setBounds(280, 170, 110, 29);
+        spielLadenButton.setBounds(280, 190, 110, 29);
 
         hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/start.png"))); // NOI18N
         hintergrund.setToolTipText("");

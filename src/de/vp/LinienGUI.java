@@ -56,21 +56,29 @@ public class LinienGUI extends JFrame {
                 bilanz.setText(Integer.toString(linie.getGewinn()));
                 //System.out.println("Gerundete Auslastung: " + last);
 
-                if (!linie.getBaubar()) {
-                    jButtonBahnhof.setEnabled(false);
-                    jButtonBahnhofWeg.setEnabled(false);
+                if (linie.getZuege() == 0) {
+                    minus.setEnabled(false);
                 } else {
-                    jButtonBahnhof.setEnabled(true);
-                    jButtonBahnhofWeg.setEnabled(true);
+                    minus.setEnabled(true);
                 }
-                
-                if (linie.getBhfs() == 0 && strg.getBhfs() == 0) {
+
+                if (strg.getDepot() > 0) {
+                    plus.setEnabled(true);
+                } else {
+                    plus.setEnabled(false);
+                }
+
+                if (strg.getBhfs() > 0 && linie.getBaubar()) {
+                    jButtonBahnhof.setEnabled(true);
+                } else {
+                    jButtonBahnhof.setEnabled(false);
+                }
+
+                if (bhf.length > 0 && linie.getBaubar()) {
+                    jButtonBahnhofWeg.setEnabled(true);
+                } else {
                     jButtonBahnhofWeg.setEnabled(false);
                 }
-                else {
-                    jButtonBahnhofWeg.setEnabled(true);
-                }
-                
 
             }
         }, 0, 40);
@@ -344,10 +352,11 @@ public class LinienGUI extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Zuerst wird ein neues Feld erstellt, in denen die Buttontexte festgelegt werden.
-     * Danach wird dem Benutzer ein JOptionPane angezeigt, in welchem er gefragt wird, ob die Linien gelöscht werden soll.
-     * Wenn "Ja" geklickt wird (0), wird die Linie aus der Spielsteuerung gelöscht und das Linien Fenster geschlossen.
-     * @param evt Neues ungenutztes Event 
+     * Zuerst wird ein neues Feld erstellt, in denen die Buttontexte festgelegt werden. Danach wird dem Benutzer ein JOptionPane angezeigt, in welchem er
+     * gefragt wird, ob die Linien gelöscht werden soll. Wenn "Ja" geklickt wird (0), wird die Linie aus der Spielsteuerung gelöscht und das Linien Fenster
+     * geschlossen.
+     *
+     * @param evt Neues ungenutztes Event
      */
     private void jButtonLöschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLöschenActionPerformed
         Object[] options = {"Ja", "Nein"};
@@ -364,7 +373,8 @@ public class LinienGUI extends JFrame {
 
     /**
      * Dem Integer pos wird der ausgewählte Eintrag der JList zugeschrieben.
-     * @param evt Neues ungenutztes Event 
+     *
+     * @param evt Neues ungenutztes Event
      */
     private void jButtonBahnhofActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofActionPerformed
         int pos = jList1.getSelectedIndex();
@@ -433,8 +443,8 @@ public class LinienGUI extends JFrame {
 
     /**
      * Aus der Liste wird der ausgewählte Bahnhof entnommen
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     private void jButtonBahnhofWegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBahnhofWegActionPerformed
         int pos = jList1.getSelectedIndex() - 1;
@@ -451,8 +461,8 @@ public class LinienGUI extends JFrame {
 
     /**
      * In einem Java Color Chooser kann eine neue Farbe für die Linie ausgewählt werden
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     private void jButtonFarbeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFarbeActionPerformed
         Color farbe = JColorChooser.showDialog(this, "Neue Farbe wählen", linie.getFarbe());
@@ -486,10 +496,9 @@ public class LinienGUI extends JFrame {
     }//GEN-LAST:event_plusActionPerformed
 
     /**
-     * Die Linie wird freigegeben oder nicht
-     * In der Klasse Linie wird setGruenesLicht auf true oder false gesetzt
-     * 
-     * @param evt 
+     * Die Linie wird freigegeben oder nicht In der Klasse Linie wird setGruenesLicht auf true oder false gesetzt
+     *
+     * @param evt
      */
     private void ampelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ampelButtonActionPerformed
         boolean istgruen = linie.getGruenesLicht();
@@ -504,8 +513,8 @@ public class LinienGUI extends JFrame {
 
     /**
      * Ein neuer Name für die geöffnete Linie kann hier eingestellt werden
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String s = JOptionPane.showInputDialog("Bitte Name für die neue Line eingeben:"); //Fenster für Linienname

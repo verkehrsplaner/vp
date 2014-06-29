@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

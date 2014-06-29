@@ -19,9 +19,24 @@ public abstract class Stadtteil {
     public static final int NACHT = 3;
     public static final int NICHTS = 4;
     
+    /**
+     * Personen, die von diesem Stadtteil aus in den Bahnhof gehen, abhängig von der Tageszeit
+     * @return Personen für den Bahnhof
+     */
     public abstract int getPersonen();
+    
+    /**
+     * Ändert die Tageszeit in diesem Stadtteil
+     * @param tageszeit Die Neue Tageszeit
+     */
     public abstract void tageszeitAendern(int tageszeit);
 
+    /**
+     * @return Die Farbe des Stadtteils
+     */
     public abstract Color getFarbe();
+    /**
+     * @return Die dunkle Farbe des Stadtteils
+     */
     public abstract Color getDunkleFarbe();
 }

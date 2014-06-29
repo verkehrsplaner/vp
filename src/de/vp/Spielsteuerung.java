@@ -1429,6 +1429,7 @@ public class Spielsteuerung {
             for (int b = 0; b < hatBahnhof[h].length; b++) {
                 if (teile[h][b] != null && hatBahnhof[h][b] == false) {
                     temp++;
+                    kosten += beschwerde;
                 }
             }
         }
@@ -1455,7 +1456,7 @@ public class Spielsteuerung {
         for (int h = 0; h < bahnhoefe.length; h++) {
             for (int b = 0; b < bahnhoefe[h].length; b++) {
                 if (bahnhoefe[h][b] != null) {
-                    kosten = kosten + getBhfUnterhalt();
+                    kosten = kosten + bhfUnterhalt;
                 }
             }
         }
@@ -1475,50 +1476,12 @@ public class Spielsteuerung {
     }
 
     public long bilanz() {
-        long biilanz = 0;
-        long kosten = 0;
-        int temp = 0;
-        // Gewinn
+        long biilanz = -gesamtKosten();
+        
         for (int i = 0; i < neueLinien; i++) {
-            biilanz = biilanz + linien[i].getGewinn();
+            biilanz += linien[i].getGewinn();
         }
-        // \/ alle unangebundenen Stadtteile
-        for (int h = 0; h < hatBahnhof.length; h++) {
-            for (int b = 0; b < hatBahnhof[h].length; b++) {
-                if (teile[h][b] != null && hatBahnhof[h][b] == false) {
-                    temp += beschwerde;
-                }
-            }
-        }
-        //Prämien
-        if (temp < beschwerde * 10) {
-            kosten -= 1000;
-        }
-        if (temp < beschwerde * 5) {
-            kosten -= 1000;
-        }
-        if (temp < beschwerde) {
-            kosten -= 2000;
-        }
-
-        //Kosten
-        // \/ alle Linien
-        for (int i = 0; i < neueLinien - 1; i++) {
-            kosten = kosten + linien[i].kosten();
-        }
-
-        // \/ das was immer anfällt
-        kosten = kosten + betriebskosten;
-
-        // \/ alle Bahnhöfe
-        for (int h = 0; h < bahnhoefe.length; h++) {
-            for (int b = 0; b < bahnhoefe[h].length; b++) {
-                if (bahnhoefe[h][b] != null) {
-                    kosten = kosten + getBhfUnterhalt();
-                }
-            }
-        }
-        bilanz = biilanz - kosten;
+        bilanz = biilanz;
         return bilanz;
     }
 
@@ -1610,7 +1573,7 @@ public class Spielsteuerung {
             }
 
             //\/ Zug per Zufall schrotten
-            if (Math.random() > 0) {
+            if (Math.random() < 0.00005) {
                 zugKaputten();
             }
             // \/ Abrechnung

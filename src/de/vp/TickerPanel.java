@@ -36,7 +36,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
         "Das Wetter: Wie immer sonnig!",
         "Verkehrsplaner ist bestes Spiel des Jahres!",
         "Irgendjemand, irgendwo, hat eben gehustet!",
-        "Ticker wurde von Ratingagentur als nicht lustig abgestuft!",
+        "Ticker wurde von Ratingagentur auf das Niveau \"Nicht lustig\" herabgestuft!",
         "Angebliches Geheimrezept gegen Kater für 1.000.000 € an Pharmakonzern verkauft!",
         "Barbaren in Rharbarberbarbarasbierbar stehelen Rhabarberbarbaras Rhabarberbabarenbier!"};
 

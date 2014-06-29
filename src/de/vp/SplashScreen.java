@@ -6,6 +6,7 @@
 
 package de.vp;
 
+import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
@@ -22,7 +23,7 @@ public class SplashScreen extends javax.swing.JFrame {
     public SplashScreen() {
         this.setUndecorated(true);
         initComponents();
-        
+//        this.setBackground(new Color(0,0,0,0));
         Timer t = new Timer();
         t.schedule(new TimerTask(){
             @Override
@@ -46,6 +47,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new Color(0,0,0,0));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/start.png"))); // NOI18N
 

@@ -120,7 +120,7 @@ public class PrologGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         vor = new javax.swing.JButton();
         zurueck = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        musikButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prolog");
@@ -156,9 +156,14 @@ public class PrologGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/musikaus.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
+        musikButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/musikaus.png"))); // NOI18N
+        musikButton.setBorderPainted(false);
+        musikButton.setContentAreaFilled(false);
+        musikButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musikButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout hintergrundLayout = new javax.swing.GroupLayout(hintergrund);
         hintergrund.setLayout(hintergrundLayout);
@@ -169,7 +174,7 @@ public class PrologGUI extends javax.swing.JFrame {
                 .addGroup(hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(hintergrundLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(musikButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(hintergrundLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(zurueck, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,7 +187,7 @@ public class PrologGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hintergrundLayout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(musikButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
                 .addGroup(hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(zurueck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,6 +244,16 @@ public class PrologGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_zurueckActionPerformed
 
+    private void musikButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musikButtonActionPerformed
+        if (sound.getMusikAn()) { // Musik ausmachen
+            sound.musikAus();
+            musikButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/musik.png")));
+        } else {
+            sound.musikAn();
+            musikButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/musikaus.png")));
+        }
+    }//GEN-LAST:event_musikButtonActionPerformed
+
     private class BildPanel extends JPanel {
 
         @Override
@@ -249,8 +264,8 @@ public class PrologGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel hintergrund;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton musikButton;
     private javax.swing.JButton vor;
     private javax.swing.JButton zurueck;
     // End of variables declaration//GEN-END:variables

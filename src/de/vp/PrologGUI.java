@@ -32,6 +32,7 @@ public class PrologGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form PrologGUI
+     * Zusätzlich wird mit Hilfe eines Timers überwacht, welche Tastaturtasten gedrückt wurden, um den Prolog mit Pfeiltasten zu steuern
      */
     public PrologGUI(int h, int b) {
         sound = new Sound();
@@ -138,7 +139,6 @@ public class PrologGUI extends javax.swing.JFrame {
         vor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/R.png"))); // NOI18N
         vor.setBorderPainted(false);
         vor.setContentAreaFilled(false);
-        vor.setOpaque(false);
         vor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vorActionPerformed(evt);
@@ -149,7 +149,6 @@ public class PrologGUI extends javax.swing.JFrame {
         zurueck.setBorderPainted(false);
         zurueck.setContentAreaFilled(false);
         zurueck.setEnabled(false);
-        zurueck.setOpaque(false);
         zurueck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 zurueckActionPerformed(evt);

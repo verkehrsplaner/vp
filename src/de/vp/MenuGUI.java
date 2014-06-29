@@ -59,12 +59,14 @@ public class MenuGUI extends JDialog {
         blinken = new javax.swing.JCheckBox();
         hAtmo = new javax.swing.JCheckBox();
         spielPause = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menü");
         setAlwaysOnTop(true);
-        setMinimumSize(getPreferredSize());
+        setMinimumSize(new java.awt.Dimension(551, 377));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         hMusik.setSelected(sound.getMusikAn());
         hMusik.setText("Hintergrundmusik");
@@ -73,6 +75,8 @@ public class MenuGUI extends JDialog {
                 hMusikActionPerformed(evt);
             }
         });
+        getContentPane().add(hMusik);
+        hMusik.setBounds(55, 141, 109, 23);
 
         soundeffekte.setText("Soundeffekte");
         soundeffekte.addActionListener(new java.awt.event.ActionListener() {
@@ -80,9 +84,16 @@ public class MenuGUI extends JDialog {
                 soundeffekteActionPerformed(evt);
             }
         });
+        getContentPane().add(soundeffekte);
+        soundeffekte.setBounds(55, 164, 91, 23);
 
-        Menü.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Menü.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Menü.setForeground(new java.awt.Color(255, 255, 255));
         Menü.setText("Menü");
+        getContentPane().add(Menü);
+        Menü.setBounds(252, 19, 70, 29);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(55, 228, 429, 10);
 
         spielBeenden.setText("Spiel beenden");
         spielBeenden.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +101,8 @@ public class MenuGUI extends JDialog {
                 spielBeendenActionPerformed(evt);
             }
         });
+        getContentPane().add(spielBeenden);
+        spielBeenden.setBounds(353, 250, 131, 98);
 
         spielSpeichern.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/speichern transparent.png"))); // NOI18N
         spielSpeichern.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +110,8 @@ public class MenuGUI extends JDialog {
                 spielSpeichernActionPerformed(evt);
             }
         });
+        getContentPane().add(spielSpeichern);
+        spielSpeichern.setBounds(204, 250, 131, 98);
 
         blinken.setSelected(panel.getBlinken());
         blinken.setText("Nicht versorgte Bahnhöfe blinken");
@@ -105,6 +120,8 @@ public class MenuGUI extends JDialog {
                 blinkenActionPerformed(evt);
             }
         });
+        getContentPane().add(blinken);
+        blinken.setBounds(55, 187, 220, 23);
 
         hAtmo.setSelected(sound.getAtmoAn());
         hAtmo.setText("Atmosphäre");
@@ -113,6 +130,8 @@ public class MenuGUI extends JDialog {
                 hAtmoActionPerformed(evt);
             }
         });
+        getContentPane().add(hAtmo);
+        hAtmo.setBounds(55, 118, 83, 23);
 
         spielPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/pause.png"))); // NOI18N
         spielPause.addActionListener(new java.awt.event.ActionListener() {
@@ -120,60 +139,12 @@ public class MenuGUI extends JDialog {
                 spielPauseActionPerformed(evt);
             }
         });
+        getContentPane().add(spielPause);
+        spielPause.setBounds(55, 250, 131, 98);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(Menü)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(spielPause, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(spielSpeichern, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(spielBeenden, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(hAtmo)
-                        .addGap(118, 118, 118))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(hMusik)
-                        .addComponent(soundeffekte)
-                        .addComponent(blinken)))
-                .addGap(144, 144, 144))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Menü)
-                .addGap(64, 64, 64)
-                .addComponent(hAtmo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hMusik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(soundeffekte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(blinken)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spielSpeichern, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spielBeenden, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spielPause, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecke_000\\Desktop\\Neuu\\BGMenu.png")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, -2, 550, 380);
 
         pack();
         setLocationRelativeTo(null);
@@ -296,6 +267,7 @@ public class MenuGUI extends JDialog {
     public javax.swing.JCheckBox blinken;
     private javax.swing.JCheckBox hAtmo;
     private javax.swing.JCheckBox hMusik;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JCheckBox soundeffekte;
     private javax.swing.JButton spielBeenden;

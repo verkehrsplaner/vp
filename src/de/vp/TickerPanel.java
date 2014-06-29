@@ -43,6 +43,9 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
         "Nur die Harten kommen in den Garten!",
         "Internationale Messe für unterirdische Schienentransportsysteme eröffnet!",
         "Computer-Maus verschluckt - Notoperation bei Katze!",
+        "Hat Bürgermeister Bichler eine Affaire mit Frau X.?",
+        "Rekordverdächtig: Rekordjäger bricht Rekord!",
+        "Altes Haus renoviert!",
         ""};
 
     public TickerPanel() {

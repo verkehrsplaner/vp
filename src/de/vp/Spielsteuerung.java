@@ -179,7 +179,7 @@ public class Spielsteuerung {
                         break;
                     case "bhf":
                         if (hoehe != 0 && breite != 0) {
-                            System.out.println("Bahnhof geladen!");
+                            // System.out.println("Bahnhof geladen!");
                             detail = data[1].split(",");
                             x = Integer.parseInt(detail[1]);
                             y = Integer.parseInt(detail[0]);
@@ -194,7 +194,7 @@ public class Spielsteuerung {
                         break;
                     case "linie":
                         if (hoehe != 0 && breite != 0) {
-                            System.out.println("Linie geladen!");
+                            // System.out.println("Linie geladen!");
                             detail = data[1].split(",");
                             int stelle = intNeueLinie(detail[0]);
                             linien[stelle].setFarbe(new Color(Integer.parseInt(detail[1]), Integer.parseInt(detail[2]), Integer.parseInt(detail[3])));
@@ -203,7 +203,7 @@ public class Spielsteuerung {
                             // Bahnhöfe einfügen
                             String bhfZeile = "";
                             while (!(bhfZeile = reader.readLine()).equals("endeLinie")) {
-                                System.out.println("Bahnhof zu Linie geladen!");
+                               //  System.out.println("Bahnhof zu Linie geladen!");
                                 String[] bhf = bhfZeile.split(":");
                                 if (bhf[0].equals("bzl")) {
                                     String[] koord = bhf[1].split(",");
@@ -407,13 +407,13 @@ public class Spielsteuerung {
 
             datei.close();
             writer.close();
-            System.out.println("~~~~~~~~~~~~~~~~~~");
-            System.out.println("Spiel gespeichert!");
-            System.out.println("und zwar geil™!");
-            System.out.println("~~~~~~~~~~~~~~~~~~");
+//            System.out.println("~~~~~~~~~~~~~~~~~~");
+//            System.out.println("Spiel gespeichert!");
+//            System.out.println("und zwar geil™!");
+//            System.out.println("~~~~~~~~~~~~~~~~~~");
             setPause(false);
         } catch (IOException ex) {
-            System.err.println("Fehler bei der Ausgabe!");
+//            System.err.println("Fehler bei der Ausgabe!");
         }
     }
 
@@ -436,10 +436,10 @@ public class Spielsteuerung {
         pause = p;
         if (pause) {
             timerS.cancel();
-            System.out.println("Pause!");
+//            System.out.println("Pause!");
         } else if (!pause) {
             timerS = new Timer();
-            System.out.println("Weiter!");
+//            System.out.println("Weiter!");
             strgTimer = new StrgTimer(this, strgTimer.getTime());
             timerS.scheduleAtFixedRate(strgTimer, 0, strgPause);
         }
@@ -455,7 +455,7 @@ public class Spielsteuerung {
     public void schneller() {
         if (strgPause / 2 > 1) {
             strgPause = strgPause / 2;
-            System.out.println("Schneller!");
+//            System.out.println("Schneller!");
             timerS.cancel();
             timerS = new Timer();
             strgTimer = new StrgTimer(this, strgTimer.getTime());
@@ -469,7 +469,7 @@ public class Spielsteuerung {
     public void langsamer() {
         if (strgPause * 2 < 20000) {
             strgPause = strgPause * 2;
-            System.out.println("Langsamer!");
+//            System.out.println("Langsamer!");
             timerS.cancel();
             timerS = new Timer();
             strgTimer = new StrgTimer(this, strgTimer.getTime());
@@ -983,7 +983,7 @@ public class Spielsteuerung {
                 return true;
             } else {
                 feldVoll = true;
-                System.out.println("! Feld voll !");
+//                System.out.println("System.out.print! Feld voll !");
                 return false;
             }
         }
@@ -1145,7 +1145,7 @@ public class Spielsteuerung {
                 return true;
             } else {
                 feldVoll = true;
-                System.out.println("Feld voll!");
+//                System.out.println("Feld voll!");
                 return false;
             }
         } else {
@@ -1296,7 +1296,7 @@ public class Spielsteuerung {
                 return true;
             } else {
                 feldVoll = true;
-                System.out.println("Feld voll!");
+//                System.out.println("Feld voll!");
                 return false;
             }
         }
@@ -1626,7 +1626,7 @@ public class Spielsteuerung {
                     ticker.neueNachricht("Stadtwerke pleite: Wie soll es weiter gehen?");
 
                 }
-                System.out.println("Abrechnung! verloren: " + verloren);
+//                System.out.println("Abrechnung! verloren: " + verloren);
             } else {
                 zeit++;
             }

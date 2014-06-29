@@ -76,7 +76,7 @@ public class LinienGUI extends JFrame {
         }, 0, 40);
 
         boolean istgruen = linie.getGruenesLicht();
-        System.out.println(istgruen);
+        // System.out.println(istgruen);
         if (istgruen) {
             ampelButton.setIcon(new ImageIcon(getClass().getResource("images/ampelgreen.png")));
         } else {

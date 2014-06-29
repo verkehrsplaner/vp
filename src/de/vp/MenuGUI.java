@@ -168,7 +168,7 @@ public class MenuGUI extends JDialog {
         int s = JOptionPane.showOptionDialog(this, "Möchtest du das Spiel vor dem Beenden speichern?", "Spiel Speichern",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                 null, options, options[0]);
-         System.out.println(s);
+         // System.out.println(s);
          if (s == 1) {
             System.exit(0);
             

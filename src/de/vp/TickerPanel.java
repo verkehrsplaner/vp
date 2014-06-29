@@ -60,7 +60,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
                 this.repaint();
                 Thread.sleep(40);
             } catch (InterruptedException ex) {
-                System.out.println("Timer unterbrochen!");
+//                System.out.println("Timer unterbrochen!");
             }
         }
     }

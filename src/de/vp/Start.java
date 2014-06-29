@@ -35,7 +35,6 @@ public class Start extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         spielStartenButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         hoeheComboBox = new javax.swing.JComboBox();
@@ -47,10 +46,11 @@ public class Start extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Verkehrsplaner");
+        setMaximumSize(minimumSize());
+        setMinimumSize(new java.awt.Dimension(577, 275));
+        setPreferredSize(new java.awt.Dimension(577, 275));
         setResizable(false);
-
-        jPanel1.setPreferredSize(new java.awt.Dimension(1094, 619));
-        jPanel1.setLayout(null);
+        getContentPane().setLayout(null);
 
         spielStartenButton.setText("Spiel Starten");
         spielStartenButton.setToolTipText("Startet das Spiel!");
@@ -59,12 +59,12 @@ public class Start extends javax.swing.JFrame {
                 spielStartenButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(spielStartenButton);
-        spielStartenButton.setBounds(160, 190, 110, 29);
+        getContentPane().add(spielStartenButton);
+        spielStartenButton.setBounds(160, 190, 110, 23);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Höhe:");
-        jPanel1.add(jLabel1);
+        getContentPane().add(jLabel1);
         jLabel1.setBounds(130, 150, 50, 14);
 
         hoeheComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
@@ -73,17 +73,16 @@ public class Start extends javax.swing.JFrame {
                 hoeheComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(hoeheComboBox);
-        hoeheComboBox.setBounds(170, 140, 100, 27);
+        getContentPane().add(hoeheComboBox);
+        hoeheComboBox.setBounds(170, 140, 100, 20);
 
         breiteComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "1000" }));
-        breiteComboBox.setSize(new java.awt.Dimension(100, 27));
-        jPanel1.add(breiteComboBox);
-        breiteComboBox.setBounds(320, 140, 110, 27);
+        getContentPane().add(breiteComboBox);
+        breiteComboBox.setBounds(320, 140, 100, 20);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Breite:");
-        jPanel1.add(jLabel2);
+        getContentPane().add(jLabel2);
         jLabel2.setBounds(270, 150, 50, 14);
 
         creditsButton.setText("Credits");
@@ -92,8 +91,8 @@ public class Start extends javax.swing.JFrame {
                 creditsButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(creditsButton);
-        creditsButton.setBounds(445, 220, 90, 29);
+        getContentPane().add(creditsButton);
+        creditsButton.setBounds(445, 220, 90, 23);
 
         spielLadenButton.setText("Spiel laden");
         spielLadenButton.addActionListener(new java.awt.event.ActionListener() {
@@ -101,30 +100,15 @@ public class Start extends javax.swing.JFrame {
                 spielLadenButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(spielLadenButton);
-        spielLadenButton.setBounds(280, 190, 110, 29);
+        getContentPane().add(spielLadenButton);
+        spielLadenButton.setBounds(280, 190, 110, 23);
 
         hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/start.png"))); // NOI18N
         hintergrund.setToolTipText("");
-        jPanel1.add(hintergrund);
-        hintergrund.setBounds(-10, -90, 720, 440);
+        getContentPane().add(hintergrund);
+        hintergrund.setBounds(0, 0, 577, 270);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        setSize(new java.awt.Dimension(563, 291));
+        setSize(new java.awt.Dimension(567, 295));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -189,7 +173,6 @@ public class Start extends javax.swing.JFrame {
     private javax.swing.JComboBox hoeheComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton spielLadenButton;
     private javax.swing.JButton spielStartenButton;
     // End of variables declaration//GEN-END:variables

@@ -58,6 +58,7 @@ public class PrologGUI extends javax.swing.JFrame {
         hoehe = h;
         nummer = 0;
         gedrueckt = false;
+        this.setUndecorated(true);
         initComponents();
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {

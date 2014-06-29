@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] argv) {
         
-        JFrame s = new Start();
+        JFrame s = new SplashScreen();
         s.setVisible(true);
     }
 

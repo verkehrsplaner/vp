@@ -168,7 +168,7 @@ public class Start extends javax.swing.JFrame {
         int breite = Integer.parseInt((String) breiteComboBox.getModel().getElementAt(breiteComboBox.getSelectedIndex()));
         try {
             if (hoehe < 50 && breite < 50) {
-                System.out.println("Zahl kleiner als 50!");
+//                System.out.println("Zahl kleiner als 50!");
                 JOptionPane.showMessageDialog(null, "Das Spielfeld muss mindestens 50x50 groß sein!", "Fehler", JOptionPane.ERROR_MESSAGE);
             } else {
                 JFrame f = new PrologGUI(hoehe, breite);
@@ -176,7 +176,7 @@ public class Start extends javax.swing.JFrame {
                 dispose();
             }
         } catch (NumberFormatException ex) {
-            System.out.println("Keine Zahl!");
+//            System.out.println("Keine Zahl!");
             JOptionPane.showMessageDialog(null, "Bitte eine gültige Zahl eingeben!", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_spielStartenButtonActionPerformed

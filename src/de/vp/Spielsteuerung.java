@@ -645,7 +645,7 @@ public class Spielsteuerung {
      * Löscht die gegebene Linie aus der Liste linien[]
      *
      * @param l die zu löschende Linie
-     * @return
+     * @return true bei Erfolg, false bei Fehler
      */
     public boolean linieEntfernen(Linie l) {
         l.letzterSchritt();
@@ -674,7 +674,7 @@ public class Spielsteuerung {
      *
      * @param x Koordiante
      * @param y Koordinate
-     * @return wenig bis nix sinnvollen
+     * @return true bei Erfolg, false bei Fehler
      */
     private boolean neuerBahnhof(int x, int y) {
         if (geld - getPreisBhf() >= getMaxMinus() && bahnhoefe[y][x] == null && x > 0 && y > 0 && x < teile[0].length && y < teile.length && bhfNamen.size() > 0) {

@@ -37,6 +37,7 @@ public class Start extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         spielStartenButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         hoeheComboBox = new javax.swing.JComboBox();
@@ -51,6 +52,12 @@ public class Start extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(577, 275));
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Verkehrsplaner");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 20, 550, 70);
 
         spielStartenButton.setText("Spiel Starten");
         spielStartenButton.setToolTipText("Startet das Spiel!");
@@ -190,6 +197,7 @@ public class Start extends javax.swing.JFrame {
     private javax.swing.JComboBox hoeheComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton spielLadenButton;
     private javax.swing.JButton spielStartenButton;
     // End of variables declaration//GEN-END:variables

@@ -428,6 +428,10 @@ public class Spielsteuerung {
         ticker = p;
     }
 
+    /**
+     * Pausiert das Spiel oder setzt es fort
+     * @param p true, wenn das Spiel pausiert werden soll, false zum fortsetzen
+     */
     public void setPause(boolean p) {
         pause = p;
         if (pause) {
@@ -441,6 +445,10 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * Gibt zurück, ob das spiel im Moment pausiert ist
+     * @return true bei Pause, sonst false
+     */
     public boolean getPause() {
         return pause;
     }
@@ -511,9 +519,9 @@ public class Spielsteuerung {
 
     /**
      *
-     * Fügt dem Depot einen neuen Zug hinzu
+     * Fügt dem Depot einen neuen Zug hinzu und bezahlt ihn
      *
-     * @return
+     * @return true bei Erfolg, false bei Fehler
      */
     public boolean zugKaufen() {
         if (geld - getPreisZug() >= getMaxMinus()) {
@@ -530,7 +538,7 @@ public class Spielsteuerung {
      *
      * Entfernt einen Zug aus dem Depot
      *
-     * @return
+     * @return true bei Erfolg, false bei Fehler
      */
     public boolean zugVerschrotten() {
         if (depot > 0) {
@@ -546,8 +554,8 @@ public class Spielsteuerung {
      *
      * Fügt der gegebenen Linie einen Zug aus dem Depot hinzu
      *
-     * @param l Linie
-     * @return
+     * @param l Linie, der ein Zug hinzugefügt werden soll
+     * @return true bei Erfolg, false bei Fehler
      */
     public boolean zugEinstellen(Linie l) {
         if (depot > 0) {
@@ -566,10 +574,10 @@ public class Spielsteuerung {
 
     /**
      *
-     * Entfernt aus gegebener Linie einen Zug ins Depot
+     * Entfernt einen Zug aus der gegebener Linie und fügt ihn ins Depot ein
      *
-     * @param l Linie
-     * @return
+     * @param l Linie, aus der der Zug entfernt werden soll
+     * @return true bei Erfolg, false bei Fehler
      */
     public boolean zugRausnehmen(Linie l) {
         boolean b = l.zugEntfernen();
@@ -582,23 +590,23 @@ public class Spielsteuerung {
     }
 
     /**
-     * Ein Zug ins Depot
+     * Einen Zug ins Depot
      */
     public void zugInsDepot() {
         depot++;
     }
 
     /**
-     * Ein Zug in Werkstatt
+     * Einen Zug in Werkstatt
      */
     public void zugInWerkstatt() {
         werkstatt++;
     }
 
     /**
-     *
-     * @param name benötigt einen Namen
-     * @return
+     * Erzeugt eine neue Linie, fügt sie in die Liste ein und bezahlt sie
+     * @param name Name der neuen Linie
+     * @return true bei Erfolg, false mei Fehler
      */
     public boolean neueLinie(String name) {
         if (geld - getPreisLinie() >= getMaxMinus()) {
@@ -611,6 +619,11 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * Linie erzeugen und einfügen
+     * @param name Name der Linie
+     * @return true bei Erfolg, false mei Fehler
+     */
     private int intNeueLinie(String name) {
         if (linien.length - 1 < neueLinien + 1) {
             Linie[] hilf = new Linie[neueLinien + 10];
@@ -744,7 +757,8 @@ public class Spielsteuerung {
     }
 
     /**
-     *
+     * Ordnet alle nicht zugeordneten Stadtteile, die im Einflussradius eines
+     * Bahnhofs liegen, diesem zu
      */
     private void stadtteileNeuZuordnen() {
         Bahnhof[] b = getBahnhofListe();
@@ -1304,7 +1318,7 @@ public class Spielsteuerung {
      * Baut automatisch die "Altstadt" der Karte - Als Ausgangssituation bei
      * "Spiel starten" für das weitere Spiel insgesamt 68 Stadtteile
      *
-     * @return
+     * @return true bei Erfolg, false mei Fehler
      */
     public boolean altstadt() {
         int mh = Math.round(getHoehe() / 2);
@@ -1400,7 +1414,7 @@ public class Spielsteuerung {
      *
      * verschiebt einen Zug für Geld von werkstatt zu depot
      *
-     * @return
+     * @return true bei Erfolg, false mei Fehler
      */
     public boolean zugReparieren() {
         if (getWerkstatt() > 0 && geld - getReparatur() >= getMaxMinus()) {
@@ -1471,6 +1485,10 @@ public class Spielsteuerung {
         return gewinn;
     }
 
+    /**
+     * Berechnet die Bilanz neu
+     * @return Die Bilanz
+     */
     public long bilanz() {
         long biilanz = -gesamtKosten();
 
@@ -1501,7 +1519,7 @@ public class Spielsteuerung {
      *
      * kümmert sich um alles was bei Zeit ausgeführt werden soll
      *
-     * @return
+     * @return true bei Erfolg, false mei Fehler
      */
     public boolean step() {
         // \/ Stadtteil bauen
@@ -1614,11 +1632,11 @@ public class Spielsteuerung {
     }
 
     /**
-     * was weiß ich!
-     *
-     * @param x
-     * @param y
-     * @return
+     * Führt einen Klick auf das Spielfeld an einer bestimmten Position aus und 
+     * führt alle Aktionen aus, die dann erfogen soll
+     * @param x X-Position des Klicks
+     * @param y Y-Position des Klicks
+     * @return true bei Erfolg, false mei Fehler
      */
     public boolean klick(int x, int y) {
         if (x < breite && y < hoehe) {
@@ -1640,6 +1658,11 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * Gibt die Kapazität der gegebenen Linie zurück
+     * @param l die Linie von der die Kapazität gefragt ist
+     * @return kapazität der Linie l
+     */
     public int kapazitaet(Linie l) {
         int k = 0;
         for (int i = 0; i < linien.length; i++) {
@@ -1650,77 +1673,86 @@ public class Spielsteuerung {
         return k;
     }
 
+    /**
+     * Setzt die nächste Aktion, die beim Klick auf das Spielfeld ausgeführt wird
+     * @param a nächste Aktion
+     * @return true bei Erfolg, false mei Fehler
+     */
     public boolean setNextAction(String a) {
         nextAction = a;
         return true;
     }
 
+    /**
+     * Gibt die Aktion zurükck, die beim nächsten Klick auf das Spielfeld ausgeführt wird
+     * @return nächste Aktion
+     */
     public String getNextAction() {
         return nextAction;
     }
 
     /**
-     * @return the teile
+     * @return Alle Stadtteile in einem zweidimensionalen Feld
      */
     public Stadtteil[][] getTeile() {
         return teile;
     }
 
     /**
-     * @return the bahnhoefe
+     * @return Die Bahnhöfe in einem zweidimensionalen Feld
      */
     public Bahnhof[][] getBahnhoefe() {
         return bahnhoefe;
     }
 
+    /**
+     * überprüft, ob ein Bahnhof an Stelle x,y ist
+     * @return ob Bahnhof oder halt nicht
+     */
     public boolean[][] getHatBahnhof() {
         return hatBahnhof;
     }
 
     /**
-     * @return the geld
+     * @return Den Kontostand des Spielers
      */
     public long getGeld() {
         return geld;
     }
 
     /**
-     * @return the depot
+     * @return Die Anzahl der Züge im Depot
      */
     public int getDepot() {
         return depot;
     }
 
     /**
-     * @return the werkstatt
+     * @return Anzahl der Züge in der Werkstatt
      */
     public int getWerkstatt() {
         return werkstatt;
     }
 
     /**
-     * @return the verloren
+     * @return Ist das Spiel schon verloren
      */
     public boolean isVerloren() {
         return verloren;
     }
 
     /**
-     * @return the hoehe
+     * @return Die Höhe des Spielfeldes
      */
     public int getHoehe() {
         return hoehe;
     }
 
     /**
-     * @return the breite
+     * @return Die Breite des Spielfeldes
      */
     public int getBreite() {
         return breite;
-    }
-
-    public int getTageszeit() {
-        return tageszeit;
     }
 
     /**
@@ -1735,6 +1767,9 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * bereichert den Spieler um eine bestimmte Geldsumme
+     */
     public void geldCheat() {
         if (geld + 1000000 < Long.MAX_VALUE) {
             geld = geld + 1000000;
@@ -1742,6 +1777,10 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * 
+     * @return alle Linien des Spiels
+     */
     public Linie[] getLinien() {
         Linie[] retLinie = new Linie[neueLinien];
         for (int i = 0; i < retLinie.length; i++) {
@@ -1750,6 +1789,10 @@ public class Spielsteuerung {
         return retLinie;
     }
 
+    /**
+     * 
+     * @return alle Bahnhöfe des Spiels
+     */
     public Bahnhof[] getBahnhofListe() {
         Bahnhof[] liste = new Bahnhof[bhfs];
         int zahl = 0;
@@ -1764,6 +1807,11 @@ public class Spielsteuerung {
         return liste;
     }
 
+    /**
+     * Gibt eine Liste von Bahnhöfen zurück, ohne die übergebebenen Bahnhöfe
+     * @param geg Bahnhöfe, die aus der Liste ausgeschlossen werden sollen
+     * @return Alle Bahnhöfe ohne die übergebenen
+     */
     public Bahnhof[] getBahnhofListe(Bahnhof[] geg) {
         Bahnhof[] liste = new Bahnhof[bhfs - geg.length];
         int zahl = 0;
@@ -1789,6 +1837,11 @@ public class Spielsteuerung {
         return liste;
     }
 
+    /**
+     * Überprüft, ob eine Sache noch käuflich ist
+     * @param preis der Preis der gezahlt werden würde
+     * @return obs noch geht oder nicht
+     */
     public boolean istkaeuflich(int preis) {
         if (geld - preis >= getMaxMinus()) {
             return true;
@@ -1797,6 +1850,11 @@ public class Spielsteuerung {
         }
     }
 
+    /**
+     * Sucht einen Bahnhof anhand des Namens aus dem Spielfeld
+     * @param bahnhof Name des Bahnhofes
+     * @return Den gesuchten Bahnhof oder null
+     */
     public Bahnhof getBahnhof(String bahnhof) {
         Bahnhof[] liste = new Bahnhof[bhfs];
         Bahnhof bhf = null;
@@ -1809,49 +1867,49 @@ public class Spielsteuerung {
     }
 
     /**
-     * @return the maxMinus
+     * @return Der niedrigste mögliche Kontostand
      */
     public int getMaxMinus() {
         return maxMinus;
     }
 
     /**
-     * @return the preisZug
+     * @return Der Preis für einen Zug
      */
     public int getPreisZug() {
         return preisZug;
     }
 
     /**
-     * @return the geldZugZurueck
+     * @return Der Erlös beim Verkauf eines Zuges
      */
     public int getGeldZugZurueck() {
         return geldZugZurueck;
     }
 
     /**
-     * @return the preisBhf
+     * @return Der Preis Für einen Bahnhof
      */
     public int getPreisBhf() {
         return preisBhf;
     }
 
     /**
-     * @return the bhfUnterhalt
+     * @return Die Unterhaltskosten eines Bahnhofes
      */
     public int getBhfUnterhalt() {
         return bhfUnterhalt;
     }
 
     /**
-     * @return the preisLinie
+     * @return Den Preis einer Linie
      */
     public int getPreisLinie() {
         return preisLinie;
     }
 
     /**
-     * @return the reparatur
+     * @return Den Preis einer Reperatur
      */
     public int getReparatur() {
         return reparatur;

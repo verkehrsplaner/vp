@@ -159,10 +159,13 @@ public class SpielPanel extends javax.swing.JPanel {
                             double xZugAufLinie = (pos / (double) laenge) * xDis; // b1
                             double yZugAufLinie = (pos / (double) laenge) * yDis; // b2
                             // Versatz im rechten Winkel von der Linie weg
-                            double xZugVersatz = ((zugGroesse[zoom] / 2 + 2) * yZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
-                            double yZugVersatz = ((zugGroesse[zoom] / 2 + 2) * xZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
+                            double xZugVersatz = ((zugGroesse[zoom] / 2) * yZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
+                            double yZugVersatz = -((zugGroesse[zoom] / 2) * xZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
                             // Winkel, um den der Zug gedreht werden muss
-                            double winkel = Math.abs(Math.asin(yDis / Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2))));
+                            double winkel = Math.asin(yDis / Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2)));
+                            if (xDis < 0) {
+                                winkel = -winkel;
+                            }
                             // Zug drehen und zeichnen
                             Rectangle kasten = new Rectangle(xBhf + (int) Math.round(xZugAufLinie + xZugVersatz) - zugGroesse[zoom] / 2, yBhf + (int) Math.round(yZugAufLinie + yZugVersatz) - zugGroesse[zoom] / 2, zugGroesse[zoom], zugGroesse[zoom]);
                             AffineTransform transform = new AffineTransform();
@@ -189,10 +192,13 @@ public class SpielPanel extends javax.swing.JPanel {
                             double xZugAufLinie = (pos / (double) laenge) * xDis; // b1
                             double yZugAufLinie = (pos / (double) laenge) * yDis; // b2
                             // Versatz im rechten Winkel von der Linie weg
-                            double xZugVersatz = ((zugGroesse[zoom] / 2 + 2) * yZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
-                            double yZugVersatz = ((zugGroesse[zoom] / 2 + 2) * xZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
+                            double xZugVersatz = ((zugGroesse[zoom] / 2) * yZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
+                            double yZugVersatz = -((zugGroesse[zoom] / 2) * xZugAufLinie) / Math.sqrt(Math.pow(yZugAufLinie, 2) + Math.pow(xZugAufLinie, 2));
                             // Winkel, um den der Zug gedreht werden muss
-                            double winkel = Math.abs(-Math.asin(yDis / Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2))));
+                            double winkel = Math.asin(yDis / Math.sqrt(Math.pow(xDis, 2) + Math.pow(yDis, 2)));
+                            if (xDis < 0) {
+                                winkel = -winkel;
+                            }
                             // Zug drehen und zeichnen
                             Rectangle kasten = new Rectangle(xBhf + (int) Math.round(xZugAufLinie + xZugVersatz) - zugGroesse[zoom] / 2, yBhf + (int) Math.round(yZugAufLinie + yZugVersatz) - zugGroesse[zoom] / 2, zugGroesse[zoom], zugGroesse[zoom]);
                             AffineTransform transform = new AffineTransform();

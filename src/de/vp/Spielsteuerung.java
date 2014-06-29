@@ -3,7 +3,6 @@ package de.vp;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
@@ -13,9 +12,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -203,7 +199,7 @@ public class Spielsteuerung {
                             // Bahnhöfe einfügen
                             String bhfZeile = "";
                             while (!(bhfZeile = reader.readLine()).equals("endeLinie")) {
-                               //  System.out.println("Bahnhof zu Linie geladen!");
+                                //  System.out.println("Bahnhof zu Linie geladen!");
                                 String[] bhf = bhfZeile.split(":");
                                 if (bhf[0].equals("bzl")) {
                                     String[] koord = bhf[1].split(",");
@@ -1477,7 +1473,7 @@ public class Spielsteuerung {
 
     public long bilanz() {
         long biilanz = -gesamtKosten();
-        
+
         for (int i = 0; i < neueLinien; i++) {
             biilanz += linien[i].getGewinn();
         }
@@ -1725,6 +1721,18 @@ public class Spielsteuerung {
 
     public int getTageszeit() {
         return tageszeit;
+    }
+
+    /**
+     * Gibt zurück, ob es im Moment dunkel ist, oder nicht
+     * @return Dunkelheit
+     */
+    public boolean getDunkel() {
+        if (strgTimer.getTicks() < 6000 || strgTimer.getTicks() > 21000) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void geldCheat() {

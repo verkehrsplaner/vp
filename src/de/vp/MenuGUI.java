@@ -69,13 +69,14 @@ public class MenuGUI extends JDialog {
 
         hMusik.setSelected(sound.getMusikAn());
         hMusik.setText("Hintergrundmusik");
+        hMusik.setOpaque(false);
         hMusik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hMusikActionPerformed(evt);
             }
         });
         getContentPane().add(hMusik);
-        hMusik.setBounds(55, 164, 140, 23);
+        hMusik.setBounds(55, 164, 140, 24);
 
         Menü.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Menü.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,23 +106,25 @@ public class MenuGUI extends JDialog {
 
         blinken.setSelected(panel.getBlinken());
         blinken.setText("Nicht versorgte Bahnhöfe blinken");
+        blinken.setOpaque(false);
         blinken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 blinkenActionPerformed(evt);
             }
         });
         getContentPane().add(blinken);
-        blinken.setBounds(55, 187, 220, 23);
+        blinken.setBounds(55, 187, 220, 24);
 
         hAtmo.setSelected(sound.getAtmoAn());
         hAtmo.setText("Atmosphäre");
+        hAtmo.setOpaque(false);
         hAtmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hAtmoActionPerformed(evt);
             }
         });
         getContentPane().add(hAtmo);
-        hAtmo.setBounds(55, 141, 110, 23);
+        hAtmo.setBounds(55, 141, 110, 24);
 
         spielPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/pause.png"))); // NOI18N
         spielPause.addActionListener(new java.awt.event.ActionListener() {

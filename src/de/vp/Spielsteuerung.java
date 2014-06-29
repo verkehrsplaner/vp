@@ -3,7 +3,6 @@ package de.vp;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
@@ -13,9 +12,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -203,7 +199,7 @@ public class Spielsteuerung {
                             // Bahnhöfe einfügen
                             String bhfZeile = "";
                             while (!(bhfZeile = reader.readLine()).equals("endeLinie")) {
-                               //  System.out.println("Bahnhof zu Linie geladen!");
+                                //  System.out.println("Bahnhof zu Linie geladen!");
                                 String[] bhf = bhfZeile.split(":");
                                 if (bhf[0].equals("bzl")) {
                                     String[] koord = bhf[1].split(",");
@@ -1429,6 +1425,7 @@ public class Spielsteuerung {
             for (int b = 0; b < hatBahnhof[h].length; b++) {
                 if (teile[h][b] != null && hatBahnhof[h][b] == false) {
                     temp++;
+                    kosten += beschwerde;
                 }
             }
         }
@@ -1455,7 +1452,7 @@ public class Spielsteuerung {
         for (int h = 0; h < bahnhoefe.length; h++) {
             for (int b = 0; b < bahnhoefe[h].length; b++) {
                 if (bahnhoefe[h][b] != null) {
-                    kosten = kosten + getBhfUnterhalt();
+                    kosten = kosten + bhfUnterhalt;
                 }
             }
         }
@@ -1475,50 +1472,12 @@ public class Spielsteuerung {
     }
 
     public long bilanz() {
-        long biilanz = 0;
-        long kosten = 0;
-        int temp = 0;
-        // Gewinn
+        long biilanz = -gesamtKosten();
+
         for (int i = 0; i < neueLinien; i++) {
-            biilanz = biilanz + linien[i].getGewinn();
+            biilanz += linien[i].getGewinn();
         }
-        // \/ alle unangebundenen Stadtteile
-        for (int h = 0; h < hatBahnhof.length; h++) {
-            for (int b = 0; b < hatBahnhof[h].length; b++) {
-                if (teile[h][b] != null && hatBahnhof[h][b] == false) {
-                    temp += beschwerde;
-                }
-            }
-        }
-        //Prämien
-        if (temp < beschwerde * 10) {
-            kosten -= 1000;
-        }
-        if (temp < beschwerde * 5) {
-            kosten -= 1000;
-        }
-        if (temp < beschwerde) {
-            kosten -= 2000;
-        }
-
-        //Kosten
-        // \/ alle Linien
-        for (int i = 0; i < neueLinien - 1; i++) {
-            kosten = kosten + linien[i].kosten();
-        }
-
-        // \/ das was immer anfällt
-        kosten = kosten + betriebskosten;
-
-        // \/ alle Bahnhöfe
-        for (int h = 0; h < bahnhoefe.length; h++) {
-            for (int b = 0; b < bahnhoefe[h].length; b++) {
-                if (bahnhoefe[h][b] != null) {
-                    kosten = kosten + getBhfUnterhalt();
-                }
-            }
-        }
-        bilanz = biilanz - kosten;
+        bilanz = biilanz;
         return bilanz;
     }
 
@@ -1610,7 +1569,7 @@ public class Spielsteuerung {
             }
 
             //\/ Zug per Zufall schrotten
-            if (Math.random() > 0) {
+            if (Math.random() < 0.00005) {
                 zugKaputten();
             }
             // \/ Abrechnung
@@ -1762,6 +1721,18 @@ public class Spielsteuerung {
 
     public int getTageszeit() {
         return tageszeit;
+    }
+
+    /**
+     * Gibt zurück, ob es im Moment dunkel ist, oder nicht
+     * @return Dunkelheit
+     */
+    public boolean getDunkel() {
+        if (strgTimer.getTicks() < 6000 || strgTimer.getTicks() > 21000) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void geldCheat() {

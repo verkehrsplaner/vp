@@ -86,7 +86,7 @@ public class SpielPanel extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         //Beiger Hintergrund
-        if (strg.getTageszeit() == Stadtteil.NACHT) {
+        if (strg.getDunkel()) {
             g2d.setColor(new Color(47, 44, 47));
         } else {
             g2d.setColor(new Color(192, 219, 154));

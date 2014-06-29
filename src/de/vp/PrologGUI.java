@@ -115,78 +115,79 @@ public class PrologGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        zurueck = new javax.swing.JButton();
         hintergrund = new BildPanel();
-        vor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        vor = new javax.swing.JButton();
+        zurueck = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prolog");
-        setMaximumSize(new java.awt.Dimension(800, 560));
-        setMinimumSize(new java.awt.Dimension(800, 560));
-        setPreferredSize(new java.awt.Dimension(800, 560));
+        setMaximumSize(getPreferredSize());
+        setMinimumSize(getPreferredSize());
         setResizable(false);
-
-        zurueck.setText("<");
-        zurueck.setEnabled(false);
-        zurueck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                zurueckActionPerformed(evt);
-            }
-        });
 
         hintergrund.setMaximumSize(getPreferredSize());
         hintergrund.setOpaque(false);
         hintergrund.setPreferredSize(new java.awt.Dimension(640, 480));
 
-        javax.swing.GroupLayout hintergrundLayout = new javax.swing.GroupLayout(hintergrund);
-        hintergrund.setLayout(hintergrundLayout);
-        hintergrundLayout.setHorizontalGroup(
-            hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
-        );
-        hintergrundLayout.setVerticalGroup(
-            hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Zum Überspringen Leertaste drücken!");
 
-        vor.setText(">");
+        vor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/R.png"))); // NOI18N
+        vor.setBorderPainted(false);
+        vor.setContentAreaFilled(false);
+        vor.setOpaque(false);
         vor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vorActionPerformed(evt);
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Zum Überspringen Leertaste drücken!");
+        zurueck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/L.png"))); // NOI18N
+        zurueck.setBorderPainted(false);
+        zurueck.setContentAreaFilled(false);
+        zurueck.setEnabled(false);
+        zurueck.setOpaque(false);
+        zurueck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zurueckActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout hintergrundLayout = new javax.swing.GroupLayout(hintergrund);
+        hintergrund.setLayout(hintergrundLayout);
+        hintergrundLayout.setHorizontalGroup(
+            hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hintergrundLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(zurueck, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(vor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+        hintergrundLayout.setVerticalGroup(
+            hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hintergrundLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+                .addGroup(hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(zurueck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hintergrund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(zurueck)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(vor)))
-                .addContainerGap())
+            .addComponent(hintergrund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hintergrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vor)
-                    .addComponent(zurueck)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(hintergrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

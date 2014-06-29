@@ -36,20 +36,20 @@ public class PrologGUI extends javax.swing.JFrame {
         try {
 
             this.bild = new Image[]{
-                /*1*/ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*2*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*3*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*4*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),
-                /*5*/ ImageIO.read(this.getClass().getResource("images/linien.png")),
-                /*6*/ ImageIO.read(this.getClass().getResource("images/anleitung1.png")),
-                /*7*/ ImageIO.read(this.getClass().getResource("images/anleitung2.png")),
-                /*8*/ ImageIO.read(this.getClass().getResource("images/anleitung3.png")),
-                /*9*/ ImageIO.read(this.getClass().getResource("images/anleitung4.png")),
-                /*10*/ ImageIO.read(this.getClass().getResource("images/anleitung5.png")),
-                /*11*/ ImageIO.read(this.getClass().getResource("images/anleitung6.png")),
-                /*12*/ ImageIO.read(this.getClass().getResource("images/anleitung7.png")),
-                /*13*/ ImageIO.read(this.getClass().getResource("images/anleitung8.png")),
-                /*14*/ ImageIO.read(this.getClass().getResource("images/mayor.png")),};
+                /*1*/ImageIO.read(this.getClass().getResource("images/Prolog/1.png")),
+                /*2*/ ImageIO.read(this.getClass().getResource("images/Prolog/2.png")),
+                /*3*/ ImageIO.read(this.getClass().getResource("images/Prolog/3.png")),
+                /*4*/ ImageIO.read(this.getClass().getResource("images/Prolog/4.png")),
+                /*5*/ ImageIO.read(this.getClass().getResource("images/Prolog/5.png")),
+                /*6*/ ImageIO.read(this.getClass().getResource("images/Prolog/6.png")),
+                /*7*/ ImageIO.read(this.getClass().getResource("images/Prolog/7.png")),
+                /*8*/ ImageIO.read(this.getClass().getResource("images/Prolog/8.png")),
+                /*9*/ ImageIO.read(this.getClass().getResource("images/Prolog/9.png")),
+                /*10*/ ImageIO.read(this.getClass().getResource("images/Prolog/10.png")),
+                /*11*/ ImageIO.read(this.getClass().getResource("images/Prolog/11.png")),
+                /*12*/ ImageIO.read(this.getClass().getResource("images/Prolog/12.png")),
+                /*13*/ ImageIO.read(this.getClass().getResource("images/Prolog/13.png")),
+                /*14*/ ImageIO.read(this.getClass().getResource("images/Prolog/14.png")),};
 
         } catch (IOException ex) {
             System.err.println("Prolog konnte nicht geladen werden!");

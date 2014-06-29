@@ -115,17 +115,31 @@ public class PrologGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        zurueck = new javax.swing.JButton();
         hintergrund = new BildPanel();
-        vor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        vor = new javax.swing.JButton();
+        zurueck = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prolog");
-        setMaximumSize(new java.awt.Dimension(800, 560));
-        setMinimumSize(new java.awt.Dimension(800, 560));
-        setPreferredSize(new java.awt.Dimension(800, 560));
+        setMaximumSize(getPreferredSize());
+        setMinimumSize(getPreferredSize());
+        setPreferredSize(new java.awt.Dimension(640, 480));
         setResizable(false);
+
+        hintergrund.setMaximumSize(getPreferredSize());
+        hintergrund.setOpaque(false);
+        hintergrund.setPreferredSize(new java.awt.Dimension(640, 480));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Zum Überspringen Leertaste drücken!");
+
+        vor.setText(">");
+        vor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vorActionPerformed(evt);
+            }
+        });
 
         zurueck.setText("<");
         zurueck.setEnabled(false);
@@ -135,58 +149,39 @@ public class PrologGUI extends javax.swing.JFrame {
             }
         });
 
-        hintergrund.setMaximumSize(getPreferredSize());
-        hintergrund.setOpaque(false);
-        hintergrund.setPreferredSize(new java.awt.Dimension(640, 480));
-
         javax.swing.GroupLayout hintergrundLayout = new javax.swing.GroupLayout(hintergrund);
         hintergrund.setLayout(hintergrundLayout);
         hintergrundLayout.setHorizontalGroup(
             hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(hintergrundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(zurueck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(vor)
+                .addContainerGap())
         );
         hintergrundLayout.setVerticalGroup(
             hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hintergrundLayout.createSequentialGroup()
+                .addContainerGap(446, Short.MAX_VALUE)
+                .addGroup(hintergrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(zurueck)
+                    .addComponent(jLabel1)
+                    .addComponent(vor))
+                .addContainerGap())
         );
-
-        vor.setText(">");
-        vor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vorActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Zum Überspringen Leertaste drücken!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hintergrund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(zurueck)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(vor)))
-                .addContainerGap())
+            .addComponent(hintergrund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hintergrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vor)
-                    .addComponent(zurueck)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(hintergrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

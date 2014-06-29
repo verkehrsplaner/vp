@@ -198,6 +198,11 @@ public class BahnhofGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /**
+     * Nach einer Abfrage ob man sich sicher ist wird der Bahnhof abgerissen und dies der Spielsteuerung übermittelt
+     * @param evt 
+     */
     private void bhfAbreissenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhfAbreissenActionPerformed
 
         Object[] options = {"Ja", "Nein"};

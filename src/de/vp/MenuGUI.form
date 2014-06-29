@@ -47,7 +47,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Hintergrundmusik"/>
         <Property name="toolTipText" type="java.lang.String" value="Musik an / aus"/>
-        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hMusikActionPerformed"/>
@@ -123,7 +122,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Nicht versorgte Bahnh&#xf6;fe blinken"/>
         <Property name="toolTipText" type="java.lang.String" value="Bahnhof blinken an / aus"/>
-        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="blinkenActionPerformed"/>
@@ -147,7 +145,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Atmosph&#xe4;re"/>
         <Property name="toolTipText" type="java.lang.String" value="Atmosph&#xe4;re an / aus"/>
-        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hAtmoActionPerformed"/>

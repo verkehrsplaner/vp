@@ -75,7 +75,6 @@ public class MenuGUI extends JDialog {
         hMusik.setSelected(sound.getMusikAn());
         hMusik.setText("Hintergrundmusik");
         hMusik.setToolTipText("Musik an / aus");
-        hMusik.setOpaque(false);
         hMusik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hMusikActionPerformed(evt);
@@ -116,7 +115,6 @@ public class MenuGUI extends JDialog {
         blinken.setSelected(panel.getBlinken());
         blinken.setText("Nicht versorgte Bahnhöfe blinken");
         blinken.setToolTipText("Bahnhof blinken an / aus");
-        blinken.setOpaque(false);
         blinken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 blinkenActionPerformed(evt);
@@ -129,7 +127,6 @@ public class MenuGUI extends JDialog {
         hAtmo.setSelected(sound.getAtmoAn());
         hAtmo.setText("Atmosphäre");
         hAtmo.setToolTipText("Atmosphäre an / aus");
-        hAtmo.setOpaque(false);
         hAtmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hAtmoActionPerformed(evt);
@@ -159,7 +156,8 @@ public class MenuGUI extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Zuerst wird mit Hilfe eines JOptionPane überprüft, ob das Spiel wirklich beendet werden soll. Falls hier "Ja" ausgewählt wird, wird das Spiel beendet
+     * Falls in dem OptionPane Speichern ausgewählt wird, wird das Spiel gespeichert und anschließend geschlossen
+     * Falls ohne Speichern schließen gewählt wird, wird das Spiel sofort beendet.
      *
      * @param evt
      */
@@ -183,7 +181,7 @@ public class MenuGUI extends JDialog {
 
     /**
      * 
-     * Speichert das aktuelle Spiel und beendet es
+     * Speichert das aktuelle Spiel
      */
     private int speichern() {
         JFileChooser fc = new JFileChooser();
@@ -211,7 +209,7 @@ public class MenuGUI extends JDialog {
     }
     
     /**
-     * Das Spiel kann unter einem beliebigen Pfad gespeichert werden
+     * Die Funktion speichern() wird aufgerufen
      *
      * @param evt
      */

@@ -372,7 +372,8 @@ public class LinienGUI extends JFrame {
     }//GEN-LAST:event_jButtonLöschenActionPerformed
 
     /**
-     * Dem Integer pos wird der ausgewählte Eintrag der JList zugeschrieben.
+     * Dem Integer wird der ausgewählte Eintrag zugewiesen.
+     * Nun kann man in einem OptionPane der Liste einen weiteren Bahnhof hinzufügen
      *
      * @param evt Neues ungenutztes Event
      */
@@ -496,7 +497,7 @@ public class LinienGUI extends JFrame {
     }//GEN-LAST:event_plusActionPerformed
 
     /**
-     * Die Linie wird freigegeben oder nicht In der Klasse Linie wird setGruenesLicht auf true oder false gesetzt
+     * Die Linie wird freigegeben oder und in der Klasse Linie wird setGruenesLicht auf true oder false gesetzt
      *
      * @param evt
      */

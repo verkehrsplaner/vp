@@ -320,7 +320,8 @@ public class Spielsteuerung {
             "Apfelstraße", "Birnenstraße", "Pampelmusenstraße", "Melonenstraße", "Himbeerweg",
             "Brombeerweg", "Erdbeerweg", "Stinktierstraße", "Mangostraße", "Walnussstraße",
             "Sehr Seriöse Straße", "Wegweiser", "Balkonien", "Kolonie", "Busbahnhof", "Ungern",
-            "Granatapfelweg", "Mühlenallee"};
+            "Granatapfelweg", "Mühlenallee", "Platz des 30. Juni", "Sparschweinweg", "Sankt-Paul-Straße",
+            "Silvesterstraße"};
         bhfNamen = new ArrayList<String>();
         for (int i = 0; i < bhfNamenTmp.length; i++) {
             bhfNamen.add(bhfNamenTmp[i]);

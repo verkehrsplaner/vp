@@ -112,6 +112,7 @@ public class BahnhofGUI extends javax.swing.JFrame {
         jLabel1.setBounds(50, 70, 133, 17);
 
         bahnsteig.setForeground(new java.awt.Color(255, 255, 255));
+        bahnsteig.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         bahnsteig.setText("jLabel4");
         getContentPane().add(bahnsteig);
         bahnsteig.setBounds(190, 70, 34, 14);
@@ -123,15 +124,16 @@ public class BahnhofGUI extends javax.swing.JFrame {
         jLabel2.setBounds(50, 100, 128, 17);
 
         anzahlLinien.setForeground(new java.awt.Color(255, 255, 255));
+        anzahlLinien.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         anzahlLinien.setText("jLabel3");
         getContentPane().add(anzahlLinien);
         anzahlLinien.setBounds(190, 100, 34, 14);
 
         ein.setForeground(new java.awt.Color(255, 255, 255));
-        ein.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ein.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ein.setText("ein");
         getContentPane().add(ein);
-        ein.setBounds(190, 150, 40, 14);
+        ein.setBounds(183, 150, 40, 14);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,10 +147,10 @@ public class BahnhofGUI extends javax.swing.JFrame {
         jLabel4.setBounds(60, 150, 100, 14);
 
         aus.setForeground(new java.awt.Color(255, 255, 255));
-        aus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        aus.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         aus.setText("aus");
         getContentPane().add(aus);
-        aus.setBounds(190, 170, 40, 14);
+        aus.setBounds(183, 170, 40, 14);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ausgestiegen:");
@@ -162,9 +164,10 @@ public class BahnhofGUI extends javax.swing.JFrame {
         jLabel6.setBounds(50, 210, 39, 17);
 
         kasse.setForeground(new java.awt.Color(255, 255, 255));
+        kasse.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         kasse.setText("jLabel7");
         getContentPane().add(kasse);
-        kasse.setBounds(190, 210, 34, 14);
+        kasse.setBounds(114, 210, 110, 14);
 
         hintergrund.setForeground(new java.awt.Color(255, 255, 255));
         hintergrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/BGBhf.png"))); // NOI18N

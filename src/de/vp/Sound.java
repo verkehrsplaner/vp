@@ -31,7 +31,10 @@ public class Sound {
     private URL[] atmoFiles = {this.getClass().getResource("sound/Atmo1_mixdown.aiff"),
         this.getClass().getResource("sound/Atmo2_mixdown.aiff"),
         this.getClass().getResource("sound/Atmo3_mixdown.aiff")};
-
+    
+    /**
+     * Erzeugt eine neue Sound-Ausgabe
+     */
     public Sound() {
         try {
             // Musik einlesen
@@ -55,6 +58,9 @@ public class Sound {
         }
     }
 
+    /**
+     * Schaltet die Musik ein
+     */
     public void musikAn() {
         if (!musikAn) {
             try {
@@ -79,10 +85,16 @@ public class Sound {
         }
     }
 
+    /**
+     * @return Ist die Musik an?
+     */
     public boolean getMusikAn() {
         return musikAn;
     }
 
+    /**
+     * Schaltet die Musik aus
+     */
     public void musikAus() {
         musikAn = false;
         if (musikClip != null) {
@@ -99,6 +111,9 @@ public class Sound {
     }
 
     // ======== Atmo ===========
+    /**
+     * Schaltet die Atmo ein
+     */
     public void atmoAn() {
         if (!atmoAn) {
             atmoAn = true;
@@ -106,10 +121,16 @@ public class Sound {
         }
     }
 
+    /**
+     * @return Ist die Atmo an?
+     */
     public boolean getAtmoAn() {
         return atmoAn;
     }
-
+    
+    /**
+     * Spielt einen neuen Atmo-Track
+     */
     private void atmoSpielen() {
         try {
             int rand = (int) Math.round(Math.random() * (atmoStreams.length - 1));
@@ -137,6 +158,9 @@ public class Sound {
         }
     }
 
+    /**
+     * Schaltet die Atmo aus
+     */
     public void atmoAus() {
         atmoAn = false;
         if (atmoClip != null) {
@@ -144,6 +168,9 @@ public class Sound {
         }
     }
 
+    /**
+     * Startet einen neuen Atmo-Track, wenn der alte zu Ende ist
+     */
     private class AtmoListener implements LineListener {
 
         @Override

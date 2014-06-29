@@ -29,9 +29,9 @@ public class Bahnhof {
     // ========== Ende Spielvariablen ==========
     
     /**
-     *
-     * @param x
-     * @param y
+     * Erzeugt einen neuen Bahnhof
+     * @param x X-Koordinate des Bahnhofs
+     * @param y Y-Koordinate des Bahnhofs
      * @param n Name des Bahnhofs
      */
     public Bahnhof(int x, int y, String n) {
@@ -43,26 +43,30 @@ public class Bahnhof {
     }
 
     /**
-     * @return the fahrtKosten
+     * @return Kosten für eine Fahrt
      */
     public int getFahrtKosten() {
         return fahrtKosten;
     }
 
     /**
-     * @return the X
+     * @return X-Position des Bahnhofes
      */
     public int getX() {
         return X;
     }
 
     /**
-     * @return the Y
+     * @return Y-Position des Bahnhofes
      */
     public int getY() {
         return Y;
     }
     
+    /**
+     * Gibt alle Linien zurück, an die der Bahnhof angechlossen ist
+     * @return Alle angeschlossenen Liniem
+     */
     public Linie[] getLinien() {
         Linie[] linien = new Linie[anzahlLinien];
         for (int i = 0; i < linien.length;i++) {
@@ -258,35 +262,28 @@ public class Bahnhof {
     }
 
     /**
-     * @return the name
+     * @return Den Namen des Bahnhofes
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        name = name;
-    }
-
-    /**
-     * @return the bahnsteig
+     * @return Wartende aus dem Bahnsteig
      */
     public int getBahnsteig() {
         return bahnsteig;
     }
 
     /**
-     * @return the anzahlLinien
+     * @return Anzahl der angeschlossenen Linien
      */
     public int getAnzahlLinien() {
         return anzahlLinien;
     }
 
     /**
-     *
+     * Fügt eine neue angeschlossenen Linie hinzu
      * @param l die Linie die den Bahnhof ab jetzt erreichen soll
      */
     public void linieHinzu(Linie l) {
@@ -303,7 +300,7 @@ public class Bahnhof {
     }
 
     /**
-     *
+     * Entfernt eine Linie aus den Anschlüssen
      * @param l die Linie die nicht mehr den Bhf ansteuert
      */
     public void linieWeg(Linie l) {
@@ -336,56 +333,59 @@ public class Bahnhof {
     }
 
     /**
-     * @return the eingestiegen
+     * @return Personen, die eingestiegen sind
      */
     public int getEingestiegen() {
         return eingestiegen;
     }
 
     /**
-     * @return the ausgestiegen
+     * @return Personen, die ausgestiegen sind
      */
     public int getAusgestiegen() {
         return ausgestiegen;
     }
 
     /**
-     * @return the einsteigen
+     * @return Personen, die einsteigen wollen
      */
     public int getEinsteigen() {
         return einsteigen;
     }
 
     /**
-     * @return the aussteigen
+     * @return Personen, die aussteigen wollen
      */
     public int getAussteigen() {
         return aussteigen;
     }
 
     /**
-     * @return the kasse
+     * @return Die Kasse des Bahnhofes
      */
     public int getKasse() {
         return kasse;
     }
 
     /**
-     * @param einsteigen the einsteigen to set
+     * Setzt die Anzahl der Personen, die einsteigen wollen 
+     * @param einsteigen Personen, die einsteigen wollen
      */
     public void setEinsteigen(int einsteigen) {
         this.einsteigen = einsteigen;
     }
 
     /**
-     * @param aussteigen the aussteigen to set
+     * Setzt die Anzahl der Personen, die aussteigen wollen 
+     * @param aussteigen Personen, die aussteigen wollen
      */
     public void setAussteigen(int aussteigen) {
         this.aussteigen = aussteigen;
     }
 
     /**
-     * @param kasse the kasse to set
+     * Setzt die Kasse des Bahnhofes
+     * @param kasse Die neue Kasse
      */
     public void setKasse(int kasse) {
         this.kasse = kasse;

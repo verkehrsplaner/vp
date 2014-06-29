@@ -75,7 +75,7 @@ public class MenuGUI extends JDialog {
             }
         });
         getContentPane().add(hMusik);
-        hMusik.setBounds(55, 164, 109, 23);
+        hMusik.setBounds(55, 164, 140, 23);
 
         Menü.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Menü.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,7 +121,7 @@ public class MenuGUI extends JDialog {
             }
         });
         getContentPane().add(hAtmo);
-        hAtmo.setBounds(55, 141, 83, 23);
+        hAtmo.setBounds(55, 141, 110, 23);
 
         spielPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/pause.png"))); // NOI18N
         spielPause.addActionListener(new java.awt.event.ActionListener() {

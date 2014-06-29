@@ -84,6 +84,7 @@ public class PrologGUI extends javax.swing.JFrame {
                                 JFrame f = new SpielGUI(hoehe, breite);
                                 f.setVisible(true);
                                 dispose();
+                                gedrueckt = true;
                             }
                         }
                     }

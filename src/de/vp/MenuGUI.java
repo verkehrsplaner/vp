@@ -51,7 +51,6 @@ public class MenuGUI extends JDialog {
     private void initComponents() {
 
         hMusik = new javax.swing.JCheckBox();
-        soundeffekte = new javax.swing.JCheckBox();
         Menü = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         spielBeenden = new javax.swing.JButton();
@@ -76,16 +75,7 @@ public class MenuGUI extends JDialog {
             }
         });
         getContentPane().add(hMusik);
-        hMusik.setBounds(55, 141, 109, 23);
-
-        soundeffekte.setText("Soundeffekte");
-        soundeffekte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                soundeffekteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(soundeffekte);
-        soundeffekte.setBounds(55, 164, 91, 23);
+        hMusik.setBounds(55, 164, 109, 23);
 
         Menü.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Menü.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,7 +121,7 @@ public class MenuGUI extends JDialog {
             }
         });
         getContentPane().add(hAtmo);
-        hAtmo.setBounds(55, 118, 83, 23);
+        hAtmo.setBounds(55, 141, 83, 23);
 
         spielPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/pause.png"))); // NOI18N
         spielPause.addActionListener(new java.awt.event.ActionListener() {
@@ -142,17 +132,13 @@ public class MenuGUI extends JDialog {
         getContentPane().add(spielPause);
         spielPause.setBounds(55, 250, 131, 98);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecke_000\\Desktop\\Neuu\\BGMenu.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/BGMenu.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -2, 550, 380);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void soundeffekteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soundeffekteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_soundeffekteActionPerformed
 
     /**
      * Zuerst wird mit Hilfe eines JOptionPane überprüft, ob das Spiel wirklich beendet werden soll. Falls hier "Ja" ausgewählt wird, wird das Spiel beendet
@@ -269,7 +255,6 @@ public class MenuGUI extends JDialog {
     private javax.swing.JCheckBox hMusik;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JCheckBox soundeffekte;
     private javax.swing.JButton spielBeenden;
     private javax.swing.JButton spielPause;
     private javax.swing.JButton spielSpeichern;

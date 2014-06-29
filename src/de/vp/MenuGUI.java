@@ -160,14 +160,15 @@ public class MenuGUI extends JDialog {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                 null, options, options[0]);
          System.out.println(s);
-        if (s == 1) {
+         if (s == 1) {
             System.exit(0);
-        }
-        else if (s == 0) {
             
         }
         else if (s == 2) {
-            speichern();
+            int b = speichern();
+            if (b == JFileChooser.APPROVE_OPTION) {
+                System.exit(0);
+            }
         }
     }//GEN-LAST:event_spielBeendenActionPerformed
 
@@ -175,18 +176,14 @@ public class MenuGUI extends JDialog {
      * 
      * Speichert das aktuelle Spiel und beendet es
      */
-    private void speichern() {
+    private int speichern() {
         JFileChooser fc = new JFileChooser();
         int returnVal = fc.showSaveDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Path file = fc.getSelectedFile().toPath();
             strg.speichern(file);
-            this.dispose();
         }
-        else if (returnVal == JFileChooser.CANCEL_OPTION) {
-            System.exit(0);
-        }
-        
+        return returnVal;
     }
     
     /**
@@ -195,14 +192,7 @@ public class MenuGUI extends JDialog {
      * @param evt
      */
     private void spielSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spielSpeichernActionPerformed
-        JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showSaveDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            Path file = fc.getSelectedFile().toPath();
-            strg.speichern(file);
-            this.dispose();
-        }
-        
+        speichern();
     }//GEN-LAST:event_spielSpeichernActionPerformed
 
     /**

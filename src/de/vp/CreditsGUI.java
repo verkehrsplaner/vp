@@ -37,13 +37,13 @@ public class CreditsGUI extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setText("Credits:");
+        jLabel1.setText("Credits");
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(238, 238, 238));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Programmierung:\n\nTeamleiter:\t\t Maximilian Krause\nSpielsteuerung: \t Felix Maurer, Nicolai Hackbart\nGrafische Oberfäche:\t Felix Hecker, Christine Kaps, Maximilian Krause\nWarscheinlichkeiten: \t Nicolai Hackbart\nProlog & Sounddesign:\t Felix Hecker, Maximilian Krause\nNewsticker:\t\t Christine Kaps, Maximilian Krause, Felix Maurer\n\n\nHerzlichen Dank an \n\twww.freesfx.co.uk\n\twww.freesound.org\n\twww.salamisound.de \nfür die Bereitstellung verschiedener Sound Effekte, welche teilweise für das Spiel\nverändert wurden.\n\nreturn null; Humboldt-Gymnasium Vaterstetten");
+        jTextArea1.setText("Teamleiter\t\t Maximilian Krause\nSpielsteuerung\t\t Felix Maurer, Nicolai Hackbart\nGrafische Oberfäche\t Felix Hecker, Christine Kaps, Maximilian Krause\nWarscheinlichkeiten\t Nicolai Hackbart\nProlog & Sounddesign\t Felix Hecker, Maximilian Krause\nNewsticker\t\t Christine Kaps, Maximilian Krause, Felix Maurer\n\n\nHerzlichen Dank an \n\twww.freesfx.co.uk\n\twww.freesound.org\n\twww.salamisound.de \nfür die Bereitstellung verschiedener Sound Effekte, welche teilweise für das Spiel\nverändert wurden.\n\nreturn null; Humboldt-Gymnasium Vaterstetten");
         jTextArea1.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea1);
 

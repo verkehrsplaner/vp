@@ -53,11 +53,11 @@ public class Start extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Futura Bk BT", 1, 48)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Verkehrsplaner");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 20, 550, 70);
+        jLabel3.setBounds(0, 40, 550, 70);
 
         spielStartenButton.setText("Spiel Starten");
         spielStartenButton.setToolTipText("Startet das Spiel!");

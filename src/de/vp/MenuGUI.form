@@ -37,6 +37,7 @@
           <Connection code="sound.getMusikAn()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Hintergrundmusik"/>
+        <Property name="toolTipText" type="java.lang.String" value="Musik an / aus"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -73,7 +74,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="spielBeenden">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Spiel beenden"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/de/vp/images/exit.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Spiel Beenden"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="spielBeendenActionPerformed"/>
@@ -89,6 +93,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/de/vp/images/speichern transparent.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Spiel Speichern"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="spielSpeichernActionPerformed"/>
@@ -105,6 +110,7 @@
           <Connection code="panel.getBlinken()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nicht versorgte Bahnh&#xf6;fe blinken"/>
+        <Property name="toolTipText" type="java.lang.String" value="Bahnhof blinken an / aus"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -125,6 +131,7 @@
           <Connection code="sound.getAtmoAn()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Atmosph&#xe4;re"/>
+        <Property name="toolTipText" type="java.lang.String" value="Atmosph&#xe4;re an / aus"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -141,6 +148,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/de/vp/images/pause.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Spiel pausieren"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="spielPauseActionPerformed"/>

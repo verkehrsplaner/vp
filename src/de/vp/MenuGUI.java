@@ -69,6 +69,7 @@ public class MenuGUI extends JDialog {
 
         hMusik.setSelected(sound.getMusikAn());
         hMusik.setText("Hintergrundmusik");
+        hMusik.setToolTipText("Musik an / aus");
         hMusik.setOpaque(false);
         hMusik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +87,8 @@ public class MenuGUI extends JDialog {
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(55, 228, 429, 10);
 
-        spielBeenden.setText("Spiel beenden");
+        spielBeenden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/exit.png"))); // NOI18N
+        spielBeenden.setToolTipText("Spiel Beenden");
         spielBeenden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spielBeendenActionPerformed(evt);
@@ -96,6 +98,7 @@ public class MenuGUI extends JDialog {
         spielBeenden.setBounds(353, 250, 131, 98);
 
         spielSpeichern.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/speichern transparent.png"))); // NOI18N
+        spielSpeichern.setToolTipText("Spiel Speichern");
         spielSpeichern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spielSpeichernActionPerformed(evt);
@@ -106,6 +109,7 @@ public class MenuGUI extends JDialog {
 
         blinken.setSelected(panel.getBlinken());
         blinken.setText("Nicht versorgte Bahnhöfe blinken");
+        blinken.setToolTipText("Bahnhof blinken an / aus");
         blinken.setOpaque(false);
         blinken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +121,7 @@ public class MenuGUI extends JDialog {
 
         hAtmo.setSelected(sound.getAtmoAn());
         hAtmo.setText("Atmosphäre");
+        hAtmo.setToolTipText("Atmosphäre an / aus");
         hAtmo.setOpaque(false);
         hAtmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +132,7 @@ public class MenuGUI extends JDialog {
         hAtmo.setBounds(55, 141, 110, 24);
 
         spielPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/vp/images/pause.png"))); // NOI18N
+        spielPause.setToolTipText("Spiel pausieren");
         spielPause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spielPauseActionPerformed(evt);

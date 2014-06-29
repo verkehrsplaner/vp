@@ -1446,13 +1446,13 @@ public class Spielsteuerung {
         }
         // Prämien
         if (temp < hauszahl / 2) {
-            kosten -= 3000;
+            kosten -= 100000;
         }
         if (temp < hauszahl / 4) {
-            kosten -= 3000;
+            kosten -= 100000;
         }
         if (temp < 5) {
-            kosten -= 5000;
+            kosten -= 500000;
         }
 
         // \/ alle Linien

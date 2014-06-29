@@ -25,7 +25,7 @@ public class Bahnhof {
     private Spielsteuerung strg;
     
     // ========== Anfang Spielvariablen ==========
-    private final int fahrtKosten = 10;
+    private final int fahrtKosten = 12;
     // ========== Ende Spielvariablen ==========
     
     /**

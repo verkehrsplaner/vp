@@ -525,17 +525,17 @@ public class Linie {
                 streckeZurueck[i] = streckeZurueck[i - 1];
             }
             // Züge aus Linie
-            while (zuegeRaus > 0 && depot > 0) {
-                depot--;
-                zuegeRaus--;
-                zuege--;
-                strg.zugInsDepot();
-            }
             while (zuegeWerkstatt > 0 && depot > 0) {
                 depot--;
                 zuegeWerkstatt--;
                 zuege--;
                 strg.zugInWerkstatt();
+            }
+            while (zuegeRaus > 0 && depot > 0) {
+                depot--;
+                zuegeRaus--;
+                zuege--;
+                strg.zugInsDepot();
             }
             // Den ersten Zug bearbeiten
             streckeZurueck[0] = streckeEnde;

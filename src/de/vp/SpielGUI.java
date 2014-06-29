@@ -46,24 +46,24 @@ public class SpielGUI extends javax.swing.JFrame {
      * @param h
      * @param b
      */
-    public SpielGUI(int h, int b) {
+    public SpielGUI(int h, int b, Sound s) {
         strg = new Spielsteuerung(h, b);
         linienListe = new DefaultListModel();
         hoehe = h;
         breite = b;
         linienRenderer = new LinienCellRenderer();
-        sound = new Sound();
+        sound = s;
         initComponents();
         initRest();
     }
 
-    public SpielGUI(Path file) {
+    public SpielGUI(Path file, Sound s) {
         strg = new Spielsteuerung(file);
         linienListe = new DefaultListModel();
         hoehe = strg.getHoehe();
         breite = strg.getBreite();
         linienRenderer = new LinienCellRenderer();
-        sound = new Sound();
+        sound = s;
         initComponents();
         initRest();
     }
@@ -78,7 +78,6 @@ public class SpielGUI extends javax.swing.JFrame {
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyControlls());
 
-        sound.musikAn();
         sound.atmoAn();
 
         hView = jScrollPane3.getViewport().getWidth();

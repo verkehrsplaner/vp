@@ -17,7 +17,7 @@ import java.awt.Graphics2D;
 public class TickerPanel extends javax.swing.JPanel implements Runnable {
 
     private boolean run;
-    private int breite, pos, textlaenge, y;
+    private int breite, pos, textlaenge, y, alterText;
     private String text;
     private Font font;
     private final String trenn = "   +++   ";
@@ -43,6 +43,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
     public TickerPanel() {
         text = "Bürgermeister eröffnet feierlich neue Stadtwerke!";
         font = this.getFont();
+        alterText = -1;
         getPixel();
     }
 
@@ -94,6 +95,11 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
     }
 
     private void neuerText() {
+        int rand = (int) Math.round(Math.random() * (nachrichten.length - 1));
+        while (rand == alterText) {
+            rand = (int) Math.round(Math.random() * (nachrichten.length - 1));
+        }
+        alterText = rand;
         text = text + trenn + nachrichten[(int) Math.round(Math.random() * (nachrichten.length - 1))];
     }
 

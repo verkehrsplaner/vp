@@ -28,11 +28,14 @@ public class PrologGUI extends javax.swing.JFrame {
     private Image[] bild;
     private int nummer;
     private boolean gedrueckt;
+    private Sound sound;
 
     /**
      * Creates new form PrologGUI
      */
     public PrologGUI(int h, int b) {
+        sound = new Sound();
+        sound.musikAn();
         try {
 
             this.bild = new Image[]{
@@ -67,7 +70,7 @@ public class PrologGUI extends javax.swing.JFrame {
                 if (!gedrueckt) {
                     if (e.getID() == KeyEvent.KEY_PRESSED) {
                         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                            JFrame f = new SpielGUI(hoehe, breite);
+                            JFrame f = new SpielGUI(hoehe, breite, sound);
                             f.setVisible(true);
                             dispose();
                             gedrueckt = true;
@@ -85,7 +88,7 @@ public class PrologGUI extends javax.swing.JFrame {
                                 hintergrund.repaint();
                                 zurueck.setEnabled(true);
                             } else {
-                                JFrame f = new SpielGUI(hoehe, breite);
+                                JFrame f = new SpielGUI(hoehe, breite, sound);
                                 f.setVisible(true);
                                 dispose();
                                 gedrueckt = true;
@@ -202,7 +205,7 @@ public class PrologGUI extends javax.swing.JFrame {
             hintergrund.repaint();
             zurueck.setEnabled(true);
         } else {
-            JFrame f = new SpielGUI(hoehe, breite);
+            JFrame f = new SpielGUI(hoehe, breite, sound);
             f.setVisible(true);
             dispose();
         }

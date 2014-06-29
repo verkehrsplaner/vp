@@ -122,7 +122,9 @@ public class Start extends javax.swing.JFrame {
         int returnVal = fc.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             Path file = fc.getSelectedFile().toPath();
-            JFrame f = new SpielGUI(file);
+            Sound sound = new Sound();
+            sound.musikAn();
+            JFrame f = new SpielGUI(file, sound);
             f.setVisible(true);
             dispose();
         }

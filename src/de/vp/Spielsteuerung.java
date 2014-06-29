@@ -1397,7 +1397,6 @@ public class Spielsteuerung {
         if (linien[x] != null && linien[x].getZuege() > 0) {
             linien[x].zugSchrotten();
             ticker.neueNachricht("Auf Linie " + linien[x].getName() + " ist ein Zug ausgefallen!");
-            werkstatt++;
         }
     }
 

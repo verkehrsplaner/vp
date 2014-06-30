@@ -8,7 +8,7 @@ package de.vp;
 
 /**
  *
- * @author maxikrause
+ * @author maxi, hecker
  */
 public class CreditsGUI extends javax.swing.JFrame {
 

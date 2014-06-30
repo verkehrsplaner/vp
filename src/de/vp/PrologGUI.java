@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Felix, Nicolai, Christine, Maxi
+ * @author Felix, Hecker, Nicolai, Christine, Maxi
  *
  */
 public class PrologGUI extends javax.swing.JFrame {

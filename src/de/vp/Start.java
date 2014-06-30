@@ -15,7 +15,7 @@ import javax.swing.filechooser.FileFilter;
 
 /**
  *
- * @author Maxi
+ * @author Hecker, Maxi
  */
 public class Start extends javax.swing.JFrame {
 

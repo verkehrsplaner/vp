@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Maxi & Hecker
+ * @author Maxi, Hecker
  */
 public class SpielGUI extends javax.swing.JFrame {
 

@@ -487,9 +487,11 @@ public class Linie {
      */
     public void letzterSchritt() {
         // bei allen Bhfs die Linie löschen
+        strg.xZuegeInsDepot(zuege);
         for (int i = 0; i < bhfs; i++) {
             bhfListe[i].linieWeg(this);
         }
+
     }
 
     /**

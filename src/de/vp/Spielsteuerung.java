@@ -598,6 +598,13 @@ public class Spielsteuerung {
     }
 
     /**
+     * mehrere Züge ins Depot
+     */
+    public void xZuegeInsDepot(int zahl) {
+        depot += zahl;
+    }
+    
+    /**
      * Einen Zug in Werkstatt
      */
     public void zugInWerkstatt() {

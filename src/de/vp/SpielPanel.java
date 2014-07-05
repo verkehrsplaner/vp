@@ -235,6 +235,11 @@ public class SpielPanel extends javax.swing.JPanel {
                         g2d.drawOval(x * pixel[zoom] - radius[zoom] / 2 + 20, y * pixel[zoom] - radius[zoom] / 2 + 20, radius[zoom], radius[zoom]);
                     }
                     if (zoom < 3) {
+                        if (strg.getDunkel()) {
+                            g2d.setColor(Color.WHITE);
+                        } else {
+                            g2d.setColor(Color.BLACK);
+                        }
                         // Name
                         g2d.setFont(new Font("Arial", Font.BOLD, schriftgroesse[zoom]));
                         g2d.drawString(bhf[y][x].getName(), x * pixel[zoom] - 10, y * pixel[zoom] + 5);

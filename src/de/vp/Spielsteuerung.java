@@ -1595,7 +1595,7 @@ public class Spielsteuerung {
             }
 
             //\/ Zug per Zufall schrotten
-            if (Math.random() < 0.00005) {
+            if (Math.random() < 0.00006) {
                 zugKaputten();
             }
             // \/ Abrechnung

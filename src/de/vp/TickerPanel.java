@@ -45,8 +45,7 @@ public class TickerPanel extends javax.swing.JPanel implements Runnable {
         "Computer-Maus verschluckt - Notoperation bei Katze!",
         "Hat Bürgermeister Bichler eine Affaire mit Frau X.?",
         "Rekordverdächtig: Rekordjäger bricht Rekord!",
-        "Altes Haus renoviert!",
-        ""};
+        "Altes Haus renoviert!"};
 
     public TickerPanel() {
         text = "Bürgermeister eröffnet feierlich neue Stadtwerke!";

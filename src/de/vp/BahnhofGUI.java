@@ -36,7 +36,7 @@ public class BahnhofGUI extends javax.swing.JFrame {
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                bahnsteig.setText(Integer.toString(bhf.getBahnsteig()));
+                bahnsteig.setText(Integer.toString(bhf.getEinsteigen()));
                 anzahlLinien.setText(Integer.toString(bhf.getAnzahlLinien()));
                 ein.setText(Integer.toString(bhf.getEingestiegen()));
                 aus.setText(Integer.toString(bhf.getAusgestiegen()));

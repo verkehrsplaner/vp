@@ -1453,13 +1453,13 @@ public class Spielsteuerung {
         }
         // Prämien
         if (temp < hauszahl / 2) {
-            kosten -= 100000;
+            kosten -= 50000;
         }
         if (temp < hauszahl / 4) {
-            kosten -= 100000;
+            kosten -= 50000;
         }
         if (temp < 5) {
-            kosten -= 500000;
+            kosten -= 100000;
         }
 
         // \/ alle Linien
@@ -1600,7 +1600,7 @@ public class Spielsteuerung {
             }
             // \/ Abrechnung
             if (zeit >= abrechnungsIntervall) {
-                if (geld + bilanz() > getMaxMinus()) {
+                if (geld + bilanz > getMaxMinus()) {
                     geld += gesamtGewinn();
                     zeit = 0;
                 } else {

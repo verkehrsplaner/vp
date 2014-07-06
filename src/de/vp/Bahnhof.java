@@ -81,8 +81,8 @@ public class Bahnhof {
      * Radius
      */
     public int gewinn() {
-        int x = getKasse();
-        setKasse(0);
+        int x = kasse;
+        kasse = 0;
         return x;
     }
 

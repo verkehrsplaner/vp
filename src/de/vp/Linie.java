@@ -89,7 +89,7 @@ public class Linie {
     }
 
     /**
-     * 
+     *
      * @return Anzahl Bahnhöfe in der Liste
      */
     public int getBhfs() {
@@ -232,7 +232,8 @@ public class Linie {
 
     /**
      *
-     * @param bhf gegebener Bhf wird aus der Liste gelöscht? letzter Bhf wird aus der Liste gelöscht!
+     * @param bhf gegebener Bhf wird aus der Liste gelöscht? letzter Bhf wird
+     * aus der Liste gelöscht!
      */
     public void bahnhofEntfernen(Bahnhof bhf) {
         if (baubar) {
@@ -373,7 +374,8 @@ public class Linie {
 
     /**
      *
-     * @return der Gewinn der für die Ganze Linie anfällt Berechnet durch die Teilgewinne jedes Bhfs
+     * @return der Gewinn der für die Ganze Linie anfällt Berechnet durch die
+     * Teilgewinne jedes Bhfs
      */
     public int gewinn() {
         int k = 0 - kosten();
@@ -394,7 +396,8 @@ public class Linie {
 
     /**
      *
-     * @return Kapazität der Linie Berechnet durch alle Personen die in allen Bhfs einsteigen
+     * @return Kapazität der Linie Berechnet durch alle Personen die in allen
+     * Bhfs einsteigen
      */
     public int potential() {
         int k = 0;
@@ -483,7 +486,8 @@ public class Linie {
     }
 
     /**
-     * räumt auf wenn die Linie gelöscht werden soll zB allen Bahnhöfen bescheid geben
+     * räumt auf wenn die Linie gelöscht werden soll zB allen Bahnhöfen bescheid
+     * geben
      */
     public void letzterSchritt() {
         // bei allen Bhfs die Linie löschen

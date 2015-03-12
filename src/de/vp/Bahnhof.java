@@ -38,7 +38,7 @@ public class Bahnhof {
         X = x;
         Y = y;
         name = n;
-        teile = new Stadtteil[30];
+        teile = new Stadtteil[50];
         anschlussLinien = new Linie[10];
     }
 
